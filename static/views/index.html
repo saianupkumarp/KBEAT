@@ -22,14 +22,14 @@
   </div>
 </div>
 
-<div id="wrapper" ng-cloak="">
-  <header id="header" role="banner" ui-view="header"></header>
-  <section id="content" role="main" class="pad-25 container">
-    <div class="container" ui-view="content">
+<div ng-cloak="">
+  <header role="banner" ui-view="header"></header>
+  <section role="main">
+    <div ui-view="content">
 
     </div>
   </section>
-  <footer role="contentinfo" id="kem-footer" ui-view="footer" ng-cloak></footer>
+  <footer role="contentinfo" ui-view="footer" ng-cloak></footer>
 </div>
 
 <script type="text/javascript" src="/keec/assets/vendor/requirejs/require.js" data-main="/keec/assets/app/config.js"></script>
