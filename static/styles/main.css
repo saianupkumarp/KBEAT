@@ -1,0 +1,10 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    min-width: 600px !important;
+}
+* {
+    box-sizing: border-box;
+}

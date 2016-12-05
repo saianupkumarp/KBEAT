@@ -1,0 +1,11 @@
+{
+  "name": "keec",
+  "directory": "static/vendor/",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-ui-router": "latest",
+    "jquery": "latest",
+    "requirejs": "^2.3.2"
+  }
+}
