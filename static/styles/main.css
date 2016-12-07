@@ -1,10 +1,254 @@
 html {
     overflow-y: scroll;
+    background-image: url("../img/infographic.jpg");
+    background-repeat:no-repeat;
+	background-size:100% 200%;
 }
 
 body {
     min-width: 600px !important;
+    margin:0px;
+   background: none;
 }
 * {
     box-sizing: border-box;
+}
+.content{
+	background:none;
+   }
+/*Keec header
+..............*/
+.header{
+	background-color:#f8f8f8;
+    border-color: #f8f8f8;
+    height:90px;
+}
+.header__logo {
+    background-image: url("../img/logo/logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    position: absolute;
+    top: 1.11rem;
+    white-space: nowrap;
+    width: 20.45rem;
+    margin-left:50px;
+}
+ .navbar-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    padding-top: 15px;
+    padding-bottom: 40px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* kem-footer
+* -------------------------- */
+.container {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#kem-footer {
+    padding: 35px 0;
+    font-size: 12px;
+}
+
+#kem-footer {
+    background: #6a6a6a none repeat scroll 0 0;
+    border-top: 1px solid #e7e7e7;
+    color: #fff;
+    border-top: 1px solid #e7e7e7;
+    /*color: #807F83;*/
+}
+
+#kem-footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+span.footer__logo {
+    background: url("../img/logo/logo--white.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    position: relative;
+    top: -1.3rem;
+    white-space: nowrap;
+    width: 20.45rem;
+    height: 6.5rem;
+}
+
+@media only screen and (max-device-width: 800px) {
+    span.footer__logo {
+        display: none!important;
+    }
+}
+
+.footer-info-wrapper, .footer-links-wrapper {
+    margin-top: 15px;
+}
+
+#kem-footer .list-inline {
+    margin-bottom: 0;
+    text-align: right;
+    list-style-type: none;
+}
+
+@media (max-width: 767px) {
+    #kem-footer .list-inline {
+        text-align: center;
+    }
+}
+
+#kem-footer .list-inline li {
+    border-right: 1px solid #ecf0f1;
+    padding-right: 10px;
+    padding-left:10px;
+}
+
+#kem-footer .list-inline li:first-child {
+    padding-left: 0;
+}
+
+#kem-footer .list-inline li:last-child {
+    border-right: 0;
+    padding-right: 0;
+}
+
+#kem-footer a:hover {
+    color: #61A659;
+}
+
+@media (max-width: 767px) {
+    #kem-footer .footer-info-wrapper, #kem-footer .social-link-wrapper {
+        text-align: center;
+    }
+    #kem-footer .social-link-wrapper .social-links {
+        float: inherit;
+    }
+}
+
+@media (min-width: 769px) {
+    .u-hide-on-mobile {
+        display: block;
+    }
+}
+
+/* Social Links
+* -------------------------- */
+
+.footer-social-links {
+    margin: 0px!important;
+    padding: 0px!important;
+    margin-top: 10px!important;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .footer-social-links {
+        display: none!important;
+    }
+}
+
+.social-links {
+    padding-left: 0;
+    list-style: none;
+    font-size: 15px;
+    margin: 0;
+}
+
+.social-links>li {
+    display: inline-block;
+}
+
+.social-links>li a {
+    color: rgb(127, 140, 141);
+    width: 30px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #bdc3c7;
+    border-radius: 50%;
+}
+
+.social-links>li a.twitter:hover {
+    background-color: #3abdd1;
+    color: #fff !important;
+    border-color: #3abdd1;
+}
+
+.social-links>li a.linkedin:hover {
+    background-color: #1D9F75;
+    color: #fff !important;
+    border-color: #1D9F75;
+}
+
+/*Stepper
+.......*/
+.md-step.md-active md-step-label-wrapper::before, .md-step.md-success md-step-label-wrapper::before {
+    background: #ffd200;
+   
+}
+.md-step md-step-label-wrapper::hover{
+    background: #ffd200;
+   
+}
+.md-step md-step-label-wrapper::before {
+	background:#61a659;
+}
+.md-step md-step-label-wrapper span {
+    color: #807f83;
+}
+.md-step.md-active md-steppers-wrapper.md-stretch-steppers md-pagination-wrapper md-step-item{
+	background:rgb(242, 241, 235);
+}
+.info{
+	background: none;
+}
+.BuildingInfo{
+	background-color:#f8f8f8;
+	opacity: 0.75;
+}
+.heading{
+	padding:10px;
+	font-weight:600;
+}
+md-input-container.md-default-theme label, md-input-container label, 
+md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder {
+    color: #000;
+}
+md-select.md-default-theme .md-select-value.md-select-placeholder,
+ md-select .md-select-value.md-select-placeholder {
+    color: #000;
+}
+md-steppers:not(.md-no-step-content):not(.md-dynamic-height) {
+    min-height: 1120px;
+}
+
+/*button
+........*/
+.md-button.md-default-theme.md-raised, .md-button.md-raised {
+    color: #fff;
+    background-color: #61a246 !important;
+}
+
+/*Envelope
+........*/
+.exterior{
+	margin:10px;
+	text-align:center;
+	font-weight:700;
+	font-size: 20px;
+}
+.wallType{
+	margin-top:0px;
+	margin-left:0px;
+}
+.windowContent{
+	background-color:#f8f8f8;
+	opacity: 0.75;
+	margin: 15px 40px 10px 40px;
 }

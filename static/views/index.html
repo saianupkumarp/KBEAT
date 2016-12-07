@@ -13,7 +13,10 @@
   <link rel="shortcut icon" href="/keec/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/keec/favicon.ico" type="image/x-icon">
   <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="/keec/assets/vendor/angular-material/angular-material.min.css"/>
+  <link rel="stylesheet" href="/keec/assets/vendor/md-steppers/dist/md-steppers.css"/>
   <link rel="stylesheet" href="/keec/assets/styles/main.css"/>
+
 </head>
 <body>
 <div class="splash" ng-cloak="">
@@ -25,11 +28,11 @@
 <div ng-cloak="">
   <header role="banner" ui-view="header"></header>
   <section role="main">
-    <div ui-view="content">
+    <div ui-view="content" class="content">
 
     </div>
   </section>
-  <footer role="contentinfo" ui-view="footer" ng-cloak></footer>
+  <footer role="contentinfo" id="kem-footer" ui-view="footer" ng-cloak></footer>
 </div>
 
 <script type="text/javascript" src="/keec/assets/vendor/requirejs/require.js" data-main="/keec/assets/app/config.js"></script>

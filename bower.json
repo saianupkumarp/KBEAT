@@ -6,6 +6,8 @@
     "angular": "latest",
     "angular-ui-router": "latest",
     "jquery": "latest",
-    "requirejs": "^2.3.2"
+    "requirejs": "^2.3.2",
+    "md-steppers": "^0.3.4",
+    "angular-material": "^1.1.1"
   }
 }

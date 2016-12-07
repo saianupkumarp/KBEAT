@@ -1,9 +1,10 @@
-define(['jquery', 'angular', 'angular-ui-router'],
+define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria','angular-messages',
+  'angular-material','md-steppers'],
 
   function ($, angular) {
 
     angular.module('keec', [
-      'ui.router'
+      'ui.router','ngMaterial', 'md-steppers'
     ])
 
       .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
