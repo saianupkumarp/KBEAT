@@ -17,3 +17,8 @@ APP_ROOT = path.dirname(path.abspath(__file__))
 DATA_ROOT = path.join(APP_ROOT, 'models')
 STATIC_ROOT = path.join(APP_ROOT, 'static')
 OUTPUT_ROOT = tempfile.gettempdir()
+
+#MongoDB
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+MONGO_DBNAME = 'keec'

@@ -4,10 +4,14 @@ monkey.patch_all()
 from flask import Flask
 from core.commands import command_manager
 import settings
+from core.api import rest_api
 
 #Flask App
 app = Flask(__name__, static_url_path='/keec/assets')
 app.config.from_object(settings)
+
+#KEEC Rest api
+app.register_blueprint(rest_api, url_prefix='/keec/api')
 
 #Commands
 manager = command_manager(app)
