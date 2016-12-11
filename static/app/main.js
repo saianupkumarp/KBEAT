@@ -20,6 +20,14 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           .state('app', {
             abstract: true,
             url: '',
+            resolve: {
+              model: function($http, $rootScope){
+                return $http.get('/keec/api/model').then(function(response){
+                  $rootScope.model = response.data;
+                  return response.data;
+                })
+              }
+            },
             views: {
               'header': {templateUrl: '/keec/assets/views/header.html'},
               'footer': {templateUrl: '/keec/assets/views/footer.html'}
