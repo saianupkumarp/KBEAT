@@ -1,6 +1,6 @@
 <div>
     <label for="{{field.id}}">{{field.label}}</label>
     <select id="{{field.id}}" ng-model="field.value">
-    	<option ng-value="{{option.option}}" ng-repeat="option in field.dropdownoptions">{{option.value}}</option>
+    	<option ng-value="{{option.option}}" ng-repeat="option in field.options">{{field.values[$index]}}</option>
     </select>
 </div>

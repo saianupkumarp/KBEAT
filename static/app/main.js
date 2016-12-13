@@ -78,6 +78,12 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             return '/keec/assets/views/fields/' + scope.field.type + '.html';
           };
 
+          switch(scope.field.type) {
+            case 'dropdown':
+              scope.field.options = scope.field.options.split(', '); 
+              scope.field.values = scope.field.values.split(', '); 
+              break;
+          }
 
         }
       }
