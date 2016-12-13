@@ -77,24 +77,27 @@ header {
 
 .step-headers {
     display: flex;
-    padding: 20px;
+    margin-top: 10px;
 }
 
 .step-header {
     display: flex;
     flex: 1;
 }
+.step-header:last-of-type {
+    flex-grow: 0;
+    flex-basis: 175px;
+}
 
 .step-header > .clickable {
     cursor: pointer;
-    margin-left: 20px;
-    margin-right: 20px;
     outline: none;
     display: flex;
+    padding: 10px 20px;
 }
 
 .step-header > .clickable.active {
-
+    background-color: rgba(202, 221, 166, 0.25);
 }
 
 .step-header .number {
