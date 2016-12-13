@@ -5,10 +5,10 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
 
     angular.module('keec', [
       'ui.router','ngMaterial', 'md-steppers'
-    ])
+      ])
 
-      .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
-        
+    .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
+
         // Enabling HTML 5 mode to remove the # prefix from URL's
         $locationProvider.html5Mode({
           enabled: true,
@@ -17,30 +17,37 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
 
         // URL States (routes)
         $stateProvider
-          .state('app', {
-            abstract: true,
-            url: '',
-            resolve: {
-              model: function($http, $rootScope){
-                return $http.get('/keec/api/model').then(function(response){
-                  $rootScope.model = response.data;
-                  return response.data;
-                })
-              }
-            },
-            views: {
-              'header': {templateUrl: '/keec/assets/views/header.html'},
-              'footer': {templateUrl: '/keec/assets/views/footer.html'}
+        .state('app', {
+          abstract: true,
+          url: '',
+          resolve: {
+            model: function($http, $rootScope){
+              return $http.get('/keec/api/model').then(function(response){
+                $rootScope.model = response.data;
+                return response.data;
+              })
             }
-          })
+          },
+          views: {
+            'header': {templateUrl: '/keec/assets/views/header.html'},
+            'footer': {templateUrl: '/keec/assets/views/footer.html'},
+          }
+        })
 
-          /* Home */
-          .state('app.home', {
-            url: '/keec/',
-            views: {
-              'content@': {templateUrl: '/keec/assets/views/home.html'}
-            }
-          })
+        /* Home */
+        .state('app.home', {
+          url: '/keec/',
+          views: {
+            'content@': {templateUrl: '/keec/assets/views/home.html',
+            controller: function($scope, $rootScope){
+              $scope.activeStepIndex = 0;
+              $scope.activateStep = function(index) {
+                $scope.activeStepIndex = index;
+              };
+
+            }}
+          }
+        })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })

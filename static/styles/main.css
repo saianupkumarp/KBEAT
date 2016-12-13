@@ -88,7 +88,14 @@ header {
 .step-header > .clickable {
     cursor: pointer;
     margin-left: 20px;
+    outline: none;
+    display: flex;
 }
+
+.step-header > .clickable.active {
+
+}
+
 .step-header .number {
     height: 40px;
     width: 40px;
@@ -102,6 +109,7 @@ header {
 
 .step-header  .label {
     line-height: 40px;
+    margin-left: 10px;
 }
 .step-header > .line {
     background-color: #debdbd;
