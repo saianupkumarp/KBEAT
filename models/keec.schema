@@ -45,7 +45,7 @@ steps:
           widthPercent: 50  
     - id: buildingShape
       label: Building Shape
-      widthPercent: 50
+      widthPercent: 100
       parameters:
         - id: buildingShape
           type: dropdown
@@ -135,7 +135,7 @@ steps:
           label: 1st Floor Contact Condition
           widthPercent: 33    
     - id: windows
-      label: windows (Conditioned space ONLY)
+      label: Windows (Conditioned space ONLY)
       widthPercent: 100
       parameters:
         - id: windowWallRatio

@@ -12,14 +12,20 @@
 		<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
 			<div class="step-container-wrapper">
 				<div class="step-container flex-{{container.widthPercent}}" ng-repeat="container in step.containers">
-					<div class="heading">
-						{{container.label}}
-					</div>
-					<div class="input-area">
-						<field field="field" ng-repeat="field in container.parameters" />
+					<div class="body">
+						<div class="heading">
+							{{container.label}}
+						</div>
+						<div class="input-area">
+							<field field="field" ng-repeat="field in container.parameters" />
+						</div>
 					</div>
 				</div>			
 			</div>
 		</div>			
+	</div>
+	<div class="step-footers">
+		<input type="button" ng-click="stepBack()" value="Prev">
+		<input type="button" ng-click="stepNext()" value="Next">
 	</div>
 </div>

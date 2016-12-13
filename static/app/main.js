@@ -41,8 +41,17 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope){
               $scope.activeStepIndex = 0;
+              $scope.totalSteps = $rootScope.model.steps.length;
               $scope.activateStep = function(index) {
                 $scope.activeStepIndex = index;
+              };
+              $scope.stepNext = function() {
+                if ($scope.activeStepIndex < $scope.totalSteps - 1)
+                  $scope.activeStepIndex += 1;
+              };
+              $scope.stepBack = function() {
+                if ($scope.activeStepIndex > 0)
+                  $scope.activeStepIndex -= 1;
               };
 
             }}
