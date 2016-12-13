@@ -4,7 +4,7 @@ steps:
     label: Building Info
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information1
       widthPercent: 100
       parameters:
         - id: buildingName
@@ -17,6 +17,7 @@ steps:
           widthPercent: 50
     - id: buildingUse
       label: Building Use
+      widthPercent: 50
       parameters:
         - id: buildingType
           type: dropdown
@@ -33,7 +34,7 @@ steps:
     label: Envelope
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information2
       widthPercent: 100
       parameters:
         - id: buildingName
@@ -62,7 +63,7 @@ steps:
     label: Space/DHW
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information3
       widthPercent: 100
       parameters:
         - id: buildingName
@@ -91,7 +92,7 @@ steps:
     label: HVAC System
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information4
       widthPercent: 100
       parameters:
         - id: buildingName
