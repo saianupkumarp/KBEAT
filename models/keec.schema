@@ -157,7 +157,7 @@ steps:
       label: Construction Edit
       widthPercent: 100
       parameters:
-      - id: construction
+        - id: construction
           type: dropdown
           options: ewallconsnolnsu, roofconsnolnsu
           values: EWALL Cons-Nolnsu, Roof Cons-Nolnsu
@@ -165,7 +165,7 @@ steps:
           label: Construction
           dialog: 1
           widthPercent: 50
-      - id: layers
+        - id: layers
           type: dropdown
           options: ewallconslayersnolnsu, roofconslayersnolnsu
           values: EWALL Cons Layers-Nolnsu, Roof Cons Layers-Nolnsu
@@ -173,16 +173,16 @@ steps:
           label: Layers
           dialog: 1
           widthPercent: 50   
-      - id: newConstructionName
+        - id: newConstructionName
           type: text
           label: New Construction Name
           widthPercent: 50   
-       - id: newLayerName
+        - id: newLayerName
           type: text
           label: New Layer Name
           dialog: 1
           widthPercent: 50       
-      - id: specificationMethod
+        - id: specificationMethod
           type: dropdown
           options: layersinput
           values: Layers Input
@@ -190,12 +190,12 @@ steps:
           label: Specification Method
           dialog: 1
           widthPercent: 50   
-      - id: surfaceroughness
+        - id: surfaceroughness
           type: number
           label: Surface Roughness
           dialog: 1
           widthPercent: 50  
-      - id: extcolor
+        - id: extcolor
           type: number
           label: Ext.Color
           label_suffix: (absorpt.)
