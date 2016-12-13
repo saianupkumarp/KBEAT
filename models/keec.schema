@@ -29,4 +29,90 @@ steps:
           type: text
           label: Building Address
           widthPercent: 50
-
+  - id: envelope
+    label: Envelope
+    containers: 
+    - id: buildingInformation
+      label: Building Information
+      widthPercent: 100
+      parameters:
+        - id: buildingName
+          type: text
+          label: Building Name
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
+    - id: buildingUse
+      label: Building Use
+      parameters:
+        - id: buildingType
+          type: dropdown
+          options: web, app
+          values: Web, Application
+          default: web
+          label: Building Type
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
+  - id: spacedhw
+    label: Space/DHW
+    containers: 
+    - id: buildingInformation
+      label: Building Information
+      widthPercent: 100
+      parameters:
+        - id: buildingName
+          type: text
+          label: Building Name
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
+    - id: buildingUse
+      label: Building Use
+      parameters:
+        - id: buildingType
+          type: dropdown
+          options: web, app
+          values: Web, Application
+          default: web
+          label: Building Type
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
+  - id: hvac
+    label: HVAC System
+    containers: 
+    - id: buildingInformation
+      label: Building Information
+      widthPercent: 100
+      parameters:
+        - id: buildingName
+          type: text
+          label: Building Name
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
+    - id: buildingUse
+      label: Building Use
+      parameters:
+        - id: buildingType
+          type: dropdown
+          options: web, app
+          values: Web, Application
+          default: web
+          label: Building Type
+          widthPercent: 50
+        - id: buildingAddress
+          type: text
+          label: Building Address
+          widthPercent: 50
