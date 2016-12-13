@@ -1,6 +1,9 @@
-<div>
+<div layout="row">
     <label for="{{field.id}}">{{field.label}}</label>
     <select id="{{field.id}}" ng-model="field.value">
     	<option ng-value="{{option.option}}" ng-repeat="option in field.options">{{field.values[$index]}}</option>
     </select>
+   
+<input ng-if="field.edit" type="button" value="Edit"/>
+
 </div>
