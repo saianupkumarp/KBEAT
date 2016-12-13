@@ -8,9 +8,18 @@
 			<div class="line" ng-if="$index != model.steps.length-1"></div>
 		</div>	
 	</div>
-	<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
-		Step {{$index + 1}}
-		{{step|json}}
-		
-	</div>	
+	<div class="step-area-wrapper">
+		<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
+			<div class="step-container-wrapper">
+				<div class="step-container flex-{{container.widthPercent}}" ng-repeat="container in step.containers">
+					<div class="heading">
+						{{container.label}}
+					</div>
+					<div class="input-area">
+						<field field="field" ng-repeat="field in container.parameters" />
+					</div>
+				</div>			
+			</div>
+		</div>			
+	</div>
 </div>

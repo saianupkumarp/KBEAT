@@ -72,7 +72,7 @@ steps:
     label: Envelope
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information2
       widthPercent: 100
       parameters:
         - id: buildingName
@@ -101,7 +101,7 @@ steps:
     label: Space/DHW
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information3
       widthPercent: 100
       parameters:
         - id: buildingName
@@ -130,7 +130,7 @@ steps:
     label: HVAC System
     containers: 
     - id: buildingInformation
-      label: Building Information
+      label: Building Information4
       widthPercent: 100
       parameters:
         - id: buildingName

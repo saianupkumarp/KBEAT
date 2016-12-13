@@ -51,6 +51,30 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
+
+    .directive('field', function () {
+      return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+          field: '='
+        },
+        template: '<div ng-include="getTemplateUrl()"></div>',
+        transclude: false,
+
+        link: function (scope, element, attrs) {
+          scope.field.type = scope.field.type || 'text';
+
+          scope.getTemplateUrl = function () {
+            return '/keec/assets/views/fields/' + scope.field.type + '.html';
+          };
+
+
+        }
+      }
+    });
+
+
     angular.element(document).ready(function () {
       angular.bootstrap(document, ['keec']);
     });
