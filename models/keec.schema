@@ -21,7 +21,7 @@ steps:
       parameters:
         - id: buildingType
           type: dropdown
-          options: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public 
+          options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic 
           values: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
           default: Office:Private
           label: Building Type
@@ -29,17 +29,19 @@ steps:
         - id: numberOfFloors
           type: number
           label: Number of Floors
+          label_suffix: story
           widthPercent: 50
         - id: buildingLocation
           type: dropdown
-          options: web, app, TUNIS
-          values: web, app, TUNIS
+          options: tunis 
+          values: TUNIS
           default: TUNIS
           label: Building Location
           widthPercent: 50  
         - id: airConditionedArea
           type: number
           label: Air-Conditioned Area
+          label_suffix: (%)
           widthPercent: 50  
     - id: buildingShape
       label: Building Shape
@@ -47,7 +49,7 @@ steps:
       parameters:
         - id: buildingShape
           type: dropdown
-          options: Rectangular, L-Shape, T-Shape, U-Shape 
+          options: rectangular, lshape, tshape, ushape 
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
@@ -55,103 +57,142 @@ steps:
         - id: buildingOrientation
           type: number
           label: Building Orientation
+          label_suffix: deg
+          label_below: (North 0deg. South 180 deg. West 135 deg)
           widthPercent: 50 
         - id: floorToFloorHeight
           type: number
           label: Floor to Floor Height
+          label_suffix: m
           widthPercent: 50 
-    - id: dimension
-      label: Dimension
-      widthPercent: 50
-      parameters:
         - id: x1
           type: number
           label: X1
-          widthPercent: 33                     
+          label_suffix:m
+          widthPercent: 33 
+        - id: Y1
+          type: number
+          label: Y1
+          label_suffix:m
+          widthPercent: 33  
+        - id: floorArea
+          type: number
+          label: Floor Area
+          label_suffix:m2
+          widthPercent: 33 
+    - id:shape
+      label: Shape
+      widthPercent: 50
+      heightPercent: 100                            
   - id: envelope
     label: Envelope
     containers: 
-    - id: buildingInformation
-      label: Building Information2
+    - id: exteriorConstructions
+      label: Exterior Constructions
       widthPercent: 100
       parameters:
-        - id: buildingName
-          type: text
-          label: Building Name
-          widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
-          widthPercent: 50
-    - id: buildingUse
-      label: Building Use
-      parameters:
-        - id: buildingType
+        - id: southWall
           type: dropdown
-          options: web, app
-          values: Web, Application
-          default: web
-          label: Building Type
+          options: ewallconsnolnsu
+          values: EWALL Cons-Nolnsu
+          default: EWALL Cons-Nolnsu 
+          label: South Wall
+          widthPercent: 33
+        - id: northWall
+          type: dropdown
+          options: ewallconsnolnsu
+          values: EWALL Cons-Nolnsu
+          default: EWALL Cons-Nolnsu 
+          label: North Wall
+          widthPercent: 33
+        - id: eastWall
+          type: dropdown
+          options: ewallconsnolnsu
+          values: EWALL Cons-Nolnsu
+          default: EWALL Cons-Nolnsu 
+          label: East Wall
+          widthPercent: 33 
+        - id: westWall
+          type: dropdown
+          options: ewallconsnolnsu
+          values: EWALL Cons-Nolnsu
+          default: EWALL Cons-Nolnsu 
+          label: West Wall
+          widthPercent: 33  
+        - id: roof
+          type: dropdown
+          options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm  
+          values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
+          default: Roof Cons-Nolnsu 
+          label: Roof
+          widthPercent: 33 
+        - id: 1stFloorContactCondition
+          type: dropdown
+          options: ground, conditionedspace, unconditionedspace
+          values: Ground, Conditioned Space, UnConditioned Space 
+          default: Ground 
+          label: 1st Floor Contact Condition
+          widthPercent: 33    
+    - id: windows
+      label: windows
+      label_suffix: (Conditioned space ONLY)
+      widthPercent: 100
+      parameters:
+        - id: windowWallRatio
+          type: radio
+          label: Window-Wall-Ratio
+          label_suffix: (%) 
           widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
+        - id: windowArea
+          type: radio
+          label: Window Area
+          label_suffix: (m2)
           widthPercent: 50
   - id: spacedhw
     label: Space/DHW
     containers: 
-    - id: buildingInformation
-      label: Building Information3
+    - id: spaceCondition
+      label: Space Condition
       widthPercent: 100
       parameters:
-        - id: buildingName
-          type: text
-          label: Building Name
+        - id: percentAreaSum
+          type: number
+          label: Percent Area Sum
+          label_suffix: (%)
           widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
-          widthPercent: 50
-    - id: buildingUse
-      label: Building Use
+    - id: domestichotwatersystem
+      label: Domestic Hot Water System
+      widthPercent: 100
       parameters:
-        - id: buildingType
+        - id: domestichotwatersystem
           type: dropdown
-          options: web, app
-          values: Web, Application
-          default: web
+          options: tanklesselectricdhwsystem
+          values: Tankless electric DHW system
+          default: Tankless electric DHW system
           label: Building Type
-          widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
           widthPercent: 50
   - id: hvac
     label: HVAC System
     containers: 
-    - id: buildingInformation
-      label: Building Information4
+    - id: hvacsystem
+      label: HVAC System
       widthPercent: 100
       parameters:
-        - id: buildingName
-          type: text
-          label: Building Name
-          widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
-          widthPercent: 50
-    - id: buildingUse
-      label: Building Use
-      parameters:
-        - id: buildingType
+        - id: hvacsystem
           type: dropdown
-          options: web, app
-          values: Web, Application
-          default: web
-          label: Building Type
-          widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
-          widthPercent: 50
+          label: HVAC System
+          options: packagedvariableairvolumesystem, variableairvolumesystem 
+          values: Packaged Variable Air Volume System, Variable Air Volume System  
+          default: Packaged Variable Air Volume System 
+          widthPercent: 100
+        - id: heatingsetpointtemperature
+          type: number
+          label: Heating setpoint temperature
+          label_suffix: degC
+          widthPercent: 100
+        - id: coolingsetpointtemperature
+          type: number
+          label: Cooling setpoint temperature
+          label_suffix: degC
+          widthPercent: 100
+    
