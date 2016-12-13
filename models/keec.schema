@@ -41,7 +41,7 @@ steps:
         - id: airConditionedArea
           type: number
           label: Air-Conditioned Area
-          label_suffix: (%)
+          label_suffix: (layout-padding)
           widthPercent: 50  
     - id: buildingShape
       label: Building Shape
@@ -68,22 +68,23 @@ steps:
         - id: x1
           type: number
           label: X1
-          label_suffix:m
+          label_suffix: m
           widthPercent: 33 
         - id: Y1
           type: number
           label: Y1
-          label_suffix:m
+          label_suffix: m
           widthPercent: 33  
         - id: floorArea
           type: number
           label: Floor Area
-          label_suffix:m2
+          label_suffix: m2
           widthPercent: 33 
-    - id:shape
-      label: Shape
-      widthPercent: 50
-      heightPercent: 100                            
+        - id: shape
+          type: shape
+          label: Shape
+          widthPercent: 50
+          heightPercent: 100                            
   - id: envelope
     label: Envelope
     containers: 
@@ -134,8 +135,7 @@ steps:
           label: 1st Floor Contact Condition
           widthPercent: 33    
     - id: windows
-      label: windows
-      label_suffix: (Conditioned space ONLY)
+      label: windows (Conditioned space ONLY)
       widthPercent: 100
       parameters:
         - id: windowWallRatio
