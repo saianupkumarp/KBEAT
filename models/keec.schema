@@ -5,7 +5,7 @@ steps:
     containers: 
     - id: buildingInformation
       label: Building Information
-      widthPercent: 100
+      widthPercent: 50
       parameters:
         - id: buildingName
           type: text
@@ -17,18 +17,57 @@ steps:
           widthPercent: 50
     - id: buildingUse
       label: Building Use
+      widthPercent: 50
       parameters:
         - id: buildingType
           type: dropdown
-          options: web, app
-          values: Web, Application
-          default: web
+          options: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public 
+          values: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
+          default: Office:Private
           label: Building Type
           widthPercent: 50
-        - id: buildingAddress
-          type: text
-          label: Building Address
+        - id: numberOfFloors
+          type: number
+          label: Number of Floors
           widthPercent: 50
+        - id: buildingLocation
+          type: dropdown
+          options: web, app, TUNIS
+          values: web, app, TUNIS
+          default: TUNIS
+          label: Building Location
+          widthPercent: 50  
+        - id: airConditionedArea
+          type: number
+          label: Air-Conditioned Area
+          widthPercent: 50  
+    - id: buildingShape
+      label: Building Shape
+      widthPercent: 50
+      parameters:
+        - id: buildingShape
+          type: dropdown
+          options: Rectangular, L-Shape, T-Shape, U-Shape 
+          values: Rectangular, L-Shape, T-Shape, U-Shape
+          default: Rectangular
+          label: Building Shape
+          widthPercent: 100 
+        - id: buildingOrientation
+          type: number
+          label: Building Orientation
+          widthPercent: 50 
+        - id: floorToFloorHeight
+          type: number
+          label: Floor to Floor Height
+          widthPercent: 50 
+    - id: dimension
+      label: Dimension
+      widthPercent: 50
+      parameters:
+        - id: x1
+          type: number
+          label: X1
+          widthPercent: 33                     
   - id: envelope
     label: Envelope
     containers: 
