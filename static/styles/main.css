@@ -88,6 +88,7 @@ header {
 .step-header > .clickable {
     cursor: pointer;
     margin-left: 20px;
+    margin-right: 20px;
     outline: none;
     display: flex;
 }
