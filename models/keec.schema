@@ -153,6 +153,12 @@ steps:
           label: Window Area
           label_suffix: (m2)
           widthPercent: 50
+        - id: windowTable
+          type: table
+          column_heading: (#1), (#2), (#3), (#4), (#5)
+          row_heading: South, North, East, West, Glazing Type
+          label: Window Table 
+          widthPercent: 100
     - id: constructionEdit
       label: Construction Edit
       widthPercent: 100

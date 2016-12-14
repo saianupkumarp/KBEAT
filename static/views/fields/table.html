@@ -1,0 +1,10 @@
+<div>
+	{{field|json}}
+</div>
+<table>
+  <tr ng-repeat="rowHeading in field.rowHeading">
+    <th>{{rowHeading}}</th>
+  </tr>
+  <tr ng-repeat="columnHeading in field.columnHeading">
+  <td>{{columnHeading}}</td>
+</table>
