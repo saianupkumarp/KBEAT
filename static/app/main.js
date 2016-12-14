@@ -83,6 +83,10 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               scope.field.options = scope.field.options.split(', '); 
               scope.field.values = scope.field.values.split(', '); 
               break;
+            case 'table':
+              scope.field.rowHeading = scope.field.row_heading.split(', ');
+              scope.field.rowHeading = scope.field.column_heading.split(', ');
+              break;
           }
 
         }
