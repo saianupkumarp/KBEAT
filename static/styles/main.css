@@ -234,14 +234,11 @@ header {
 }
 
 .step-footers {
-    padding: 40px;
+    padding: 20px;
     display: flex;
     justify-content: center;
 }
 
-.step-footers > input {
-
-}
 .shape {
     position: absolute;
     top: 50px;
@@ -284,20 +281,25 @@ footer {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #D62929;
 }
-.edit{
-	width: 5%;
+.edit {
+    width: 80px;
     color: #fff;
-    background-color: #61a659;
+    background-color: green;
     border: none;
-    outline-color: #61a659;
+    outline-color: green;
+    border-radius: 0;
+    margin-left: 3px;
+    cursor: pointer;
 }
+
 .edit:hover{
 	background-color:#fff;
 	color:#61a659;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	outline-color: #fff;
 }
-.button{
+
+.step-footers > .button{
 	width: 6%;
     height: 40px;
     font-size: 17px;
@@ -307,7 +309,7 @@ footer {
     border: none;
     outline-color: #61a659;
 }
-.button:hover{
+.step-footers > .button:hover{
 	background-color:#fff;
 	color:#61a659;
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
