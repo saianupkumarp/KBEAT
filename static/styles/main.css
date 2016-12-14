@@ -189,6 +189,20 @@ header {
     margin-bottom: 10px;
 }
 
+.input-container.error {
+    padding-bottom: 10px;
+    position: relative;
+
+}
+.input-container.error:after {
+    display: block;
+    font-size: 10px;
+    color: red;
+    content: "This field cannot be empty";
+    position: absolute;
+    top: 36px;
+}
+
 .input-container > label {
     margin: 0;
     border: 1px solid;
@@ -202,6 +216,9 @@ header {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.input-container > label.error {
+    background-color: red;
 }
 .input-container > input[type=number],.input-container > input[type=text] {
     color: green;
@@ -296,7 +313,7 @@ footer {
 }
 
 .step-footers > .button{
-	width: 6%;
+	width: 120px;
     height: 40px;
     font-size: 17px;
     margin: 5px;

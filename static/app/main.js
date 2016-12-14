@@ -46,6 +46,22 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 $scope.activeStepIndex = index;
               };
               $scope.stepNext = function() {
+                var isError = false;
+                
+                $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+                  container.parameters.forEach(function(parameter){
+                    parameter.error = false;
+                    if (parameter.type != 'shape' && (parameter.value===null || parameter.value===""))
+                    {
+                      parameter.error = true;
+                      isError = true;
+                    }
+                  });
+                });
+
+                if (isError)
+                  return;
+                
                 if ($scope.activeStepIndex < $scope.totalSteps - 1)
                   $scope.activeStepIndex += 1;
               };
@@ -73,6 +89,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
 
         link: function (scope, element, attrs) {
           scope.field.type = scope.field.type || 'text';
+          scope.field.value = null;
 
           scope.getTemplateUrl = function () {
             return '/keec/assets/views/fields/' + scope.field.type + '.html';
