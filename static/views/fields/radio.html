@@ -1,3 +1,6 @@
 <div class="input-container">
-	{{field|json}}
+	<md-radio-group  ng-model="field.id">
+      <md-radio-button  value="field.id" class="md-primary" ng-repeat="label in field.label">{{label}}</md-radio-button>
+    </md-radio-group>
 </div>
+
