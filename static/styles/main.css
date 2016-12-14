@@ -111,10 +111,6 @@ header {
     cursor: pointer;
     color:#fff;
 }
-.step-header .number:hover{
-    background: orange;
-    color:#fff;
-}
 .step-header  .label {
     line-height: 40px;
     margin-left: 10px;
