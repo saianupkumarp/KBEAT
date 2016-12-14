@@ -46,6 +46,7 @@ steps:
     - id: buildingShape
       label: Building Shape
       widthPercent: 100
+      hasShape: true
       parameters:
         - id: buildingShape
           type: dropdown

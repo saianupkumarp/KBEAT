@@ -128,10 +128,17 @@ header {
 .step-container > .body {
     background: rgba(255,255,255,0.9);
     box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+    position: relative;
 }
+
+.step-container > .body.shaped .input-area {
+    width: 50%;
+}
+
 .step-container {
     padding: 10px;
 }
+
 .step-container  .heading {
     background: #61a659;
     color: white;
@@ -144,7 +151,8 @@ header {
 }
 .step-container  .input-area {
     padding: 20px;
-    position: relative;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .step-container-wrapper {
@@ -192,7 +200,6 @@ header {
     top: 1px;
     flex: 1;
     min-width: 0;
-    max-width: 200px;
 }
 
 .input-container > select {
@@ -205,7 +212,6 @@ header {
     top: 1px;
     border: 1px solid green;
     color: green;
-    max-width: 200px;
     padding-left: 10px;
 }
 
@@ -219,7 +225,7 @@ header {
 }
 .shape {
     position: absolute;
-    top: 20px;
+    top: 50px;
     width: 50%;
     right: 20px;
     bottom: 20px;
@@ -259,4 +265,13 @@ footer {
     border-radius: 5px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #D62929;
+}
+
+.single-input-box.flex-33 {
+    flex: 1;
+    flex-basis: 33%; 
+}
+
+.single-input-box {
+    padding: 0 10px;
 }
