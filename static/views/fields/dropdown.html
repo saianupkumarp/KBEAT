@@ -1,4 +1,4 @@
-<div layout="row">
+<div class="input-container">
     <label for="{{field.id}}">{{field.label}}</label>
     <select id="{{field.id}}" ng-model="field.value">
     	<option ng-value="{{option.option}}" ng-repeat="option in field.options">{{field.values[$index]}}</option>
