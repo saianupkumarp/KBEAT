@@ -150,7 +150,7 @@ header {
     padding: 20px;
     position: relative;
     background-color: #f8f8f8;
-    opacity: 0.6;
+    opacity: 0.5;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s; 
 }

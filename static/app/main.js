@@ -86,9 +86,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             case 'table':
               scope.field.rowHeading = scope.field.row_heading.split(', ');
               scope.field.rowHeading = scope.field.column_heading.split(', ');
-              console.log(scope.field.column_heading);   
-                            
-              /*console.log(scope.field.columnHeading);*/
               break;
           }
 
