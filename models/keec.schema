@@ -156,6 +156,7 @@ steps:
     - id: constructionEdit
       label: Construction Edit
       widthPercent: 100
+      openOnEdit: yes
       parameters:
         - id: construction
           type: dropdown
@@ -204,6 +205,7 @@ steps:
     - id: windowEdit
       label: Window Edit
       widthPercent: 100
+      openOnEdit: yes
       parameters: 
         - id: name
           type: text
