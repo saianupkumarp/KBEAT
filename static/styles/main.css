@@ -58,33 +58,16 @@ html.md-default-theme, html, body.md-default-theme, body {
     flex-direction: column;
 }
 
-header {
-    background-color: #f8f8f8;
-    padding: 30px;
-}
-/*.header{
+header{
 	background-color:#f8f8f8;
     border-color: #f8f8f8;
-    height:90px;
-}*/
-.header__logo {
-    background-image: url("../img/logo/logo.svg");
+    height:90px;    
+    background-image: url("/keec/assets/img/logo/logo.svg");
+    background-size: 160px;
     background-repeat: no-repeat;
-    background-size: contain;
-    overflow: hidden;
-    position: absolute;
-    top: 1.11rem;
-    white-space: nowrap;
-    width: 20.45rem;
-   }
- .navbar-brand {
-    font-size: 24px;
-    font-weight: 800;
-    color: #ffffff !important;
-    text-transform: uppercase;
-    padding-bottom: 40px;
-    font-family: 'Open Sans', sans-serif;
+    background-position: 10px;
 }
+
 .content-area {
     flex: 1;
     background-image: url(/keec/assets/img/infographic.jpg);
@@ -288,10 +271,15 @@ header {
     background: white;
     width: auto;
 }
+
 footer {
     padding: 30px;
     background-color: #666;
     color: white;
+    background-image: url("/keec/assets/img/logo/logo-white.svg");
+    background-size: 160px;
+    background-repeat: no-repeat;
+    background-position: 10px;
 }
 
 .step-container-wrapper::-webkit-scrollbar-track
