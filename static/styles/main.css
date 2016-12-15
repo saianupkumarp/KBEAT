@@ -62,7 +62,29 @@ header {
     background-color: #f8f8f8;
     padding: 30px;
 }
-
+/*.header{
+	background-color:#f8f8f8;
+    border-color: #f8f8f8;
+    height:90px;
+}*/
+.header__logo {
+    background-image: url("../img/logo/logo.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    position: absolute;
+    top: 1.11rem;
+    white-space: nowrap;
+    width: 20.45rem;
+   }
+ .navbar-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    padding-bottom: 40px;
+    font-family: 'Open Sans', sans-serif;
+}
 .content-area {
     flex: 1;
     background-image: url(/keec/assets/img/infographic.jpg);
