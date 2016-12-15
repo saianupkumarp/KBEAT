@@ -111,10 +111,6 @@ header {
     cursor: pointer;
     color:#fff;
 }
-
-.step-header .number:hover {
-    background-color: orange;
-}
 .step-header  .label {
     line-height: 40px;
     margin-left: 10px;
@@ -334,21 +330,3 @@ footer {
     padding: 0 10px;
 }
 
-.footer-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-wrapper a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    margin-right: 20px;
-    transition: .3s color;
-}
-.footer-wrapper a:hover {
-    color: #aaa;
-}
-.footer-wrapper a.social {
-    font-size: 20px;
-}
