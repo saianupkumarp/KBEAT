@@ -102,7 +102,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               break;
             case 'table':
               scope.field.rowHeading = scope.field.row_heading.split(', ');
-              scope.field.rowHeading = scope.field.column_heading.split(', ');
+              scope.field.columnHeading = scope.field.column_heading.split(', ');
               break;
           }
 

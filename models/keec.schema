@@ -159,6 +159,8 @@ steps:
           column_heading: (#1), (#2), (#3), (#4), (#5)
           row_heading: South, North, East, West, Glazing Type
           label: Window Table 
+          row1: 30, 0, 30, 0, Single Clear
+          row2: 0, 30, 0, 30, Single Low-e 
           widthPercent: 100
     - id: constructionEdit
       label: Construction Edit
