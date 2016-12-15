@@ -85,11 +85,11 @@ steps:
           label: Floor Area
           label_suffix: m2
           hide: true
-          widthPercent: 33 
+          dimensionWidthPercent: 100
         - id: shape
           type: shape
           label: Shape
-          dimensionWidthPercent: 100
+          widthPercent: 50
   - id: envelope
     label: Envelope
     containers: 

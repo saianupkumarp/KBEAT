@@ -376,3 +376,10 @@ md-radio-button {
     display: inline-block;
     margin-right: 20px;
 }
+.dimension-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+.dimension-wrapper .flex-50 {
+    flex-basis: calc(50% - 20px)
+}

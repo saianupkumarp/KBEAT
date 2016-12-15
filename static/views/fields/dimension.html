@@ -1,15 +1,17 @@
-<div ng-class="{'input-container':true, error: field.error}">
-	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-	<input type="number" id="{{field.id}}" ng-model="field.value.x">
-	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-</div>
-<div ng-class="{'input-container':true, error: field.error}">
-	<label for="{{y.id}}" ng-class="{error: field.error}">{{y.label}}</label>
-	<input type="number" id="{{y.id}}" ng-model="field.value.y">
-	<div class="label-suffix" ng-if="y.label_suffix">{{y.label_suffix}}</div>
-</div>
-<div ng-class="{'input-container':true, error: field.error}">
-	<label for="{{area.id}}" ng-class="{error: field.error}">{{area.label}}</label>
-	<input type="number" id="{{area.id}}" ng-model="field.value.area" disabled>
-	<div class="label-suffix" ng-if="area.label_suffix">{{area.label_suffix}}</div>
+<div class="dimension-wrapper">
+	<div class="flex-{{field.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+		<input type="number" id="{{field.id}}" ng-model="field.value.x">
+		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+	</div>
+	<div style="margin-left: 20px;" class="flex-{{y.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{y.id}}" ng-class="{error: field.error}">{{y.label}}</label>
+		<input type="number" id="{{y.id}}" ng-model="field.value.y">
+		<div class="label-suffix" ng-if="y.label_suffix">{{y.label_suffix}}</div>
+	</div>
+	<div class="flex-{{area.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{area.id}}" ng-class="{error: field.error}">{{area.label}}</label>
+		<input type="number" id="{{area.id}}" ng-model="field.value.area" disabled>
+		<div class="label-suffix" ng-if="area.label_suffix">{{area.label_suffix}}</div>
+	</div>	
 </div>
