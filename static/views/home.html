@@ -1,0 +1,31 @@
+<div class="step-content">
+	<div class="step-headers">
+		<div class="step-header" ng-repeat="step in model.steps">
+			<div ng-class="{clickable:true, active:$index==activeStepIndex}" ng-click="activateStep($index)">
+				<div class="number">{{$index+1}}</div>
+				<div class="label">{{step.label}}</div>
+			</div>
+			<div class="line" ng-if="$index != model.steps.length-1"></div>
+		</div>	
+	</div>
+	<div class="step-area-wrapper">
+		<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
+			<div class="step-container-wrapper">
+				<div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers">
+					<div ng-class="{body:true, shaped: container.hasShape}">
+						<div class="heading">
+							{{container.label}}
+						</div>
+						<div class="input-area">
+							<field class="single-input-box flex-{{field.widthPercent}}" field="field" ng-repeat="field in container.parameters" />
+						</div>
+					</div>
+				</div>			
+			</div>
+		</div>			
+	</div>
+	<div class="step-footers">
+		<input class="button" type="button" ng-click="stepBack()" value="Prev">
+		<input class="button" type="button" ng-click="stepNext()" value="Next">
+	</div>
+</div>

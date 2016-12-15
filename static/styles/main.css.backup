@@ -58,14 +58,9 @@ html.md-default-theme, html, body.md-default-theme, body {
     flex-direction: column;
 }
 
-header{
-	background-color:#f8f8f8;
-    border-color: #f8f8f8;
-    height:90px;    
-    background-image: url("/keec/assets/img/logo/logo.svg");
-    background-size: 160px;
-    background-repeat: no-repeat;
-    background-position: 10px;
+header {
+    background-color: #f8f8f8;
+    padding: 30px;
 }
 
 .content-area {
@@ -115,10 +110,6 @@ header{
     font-weight: 500;
     cursor: pointer;
     color:#fff;
-}
-
-.step-header .number:hover {
-    background-color: orange;
 }
 .step-header  .label {
     line-height: 40px;
@@ -271,15 +262,10 @@ header{
     background: white;
     width: auto;
 }
-
 footer {
     padding: 30px;
     background-color: #666;
     color: white;
-    background-image: url("/keec/assets/img/logo/logo-white.svg");
-    background-size: 160px;
-    background-repeat: no-repeat;
-    background-position: 10px;
 }
 
 .step-container-wrapper::-webkit-scrollbar-track
@@ -343,25 +329,4 @@ footer {
 .single-input-box {
     padding: 0 10px;
 }
-.footer-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
 
-.footer-wrapper a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    margin-right: 20px;
-    transition: .3s color;
-}
-.footer-wrapper a:hover {
-    color: #aaa;
-}
-.footer-wrapper a.social {
-    font-size: 20px;
-}
-
-td {
-    border: 1px solid black;
-}

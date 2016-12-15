@@ -15,6 +15,8 @@ class ModelContainer(Entity):
     label = StringType(default='')
     widthPercent = StringType(default='')
     parameters = ListType(DictType(StringType), default=None)
+    openOnEdit = StringType(default='')
+    hasShape = StringType(default='')
     class Options:
         serialize_when_none = False
 

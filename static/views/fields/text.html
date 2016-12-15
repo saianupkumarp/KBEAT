@@ -1,0 +1,5 @@
+<div ng-class="{'input-container':true, error: field.error}">
+    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+    <input type="text" id="{{field.id}}" ng-model="field.value">
+     <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+</div>
