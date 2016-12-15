@@ -107,9 +107,13 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               scope.field.value = scope.field.options[0];
               break;
             case 'table':
-              scope.field.rowHeading = scope.field.row_heading.split(', ');
-              scope.field.columnHeading = scope.field.column_heading.split(', ');
-              scope.field.value = 1;
+              scope.field.row_heading = scope.field.row_heading.split(', ');
+              scope.field.column_heading = scope.field.column_heading.split(', ');
+              scope.field.value = scope.field.row_heading.map(function(){
+                return scope.field.column_heading.map(function(){
+                  return "";
+                });
+              });
               break;
             case 'dimension':
               scope.field.value={x:0,y:0,area:0};

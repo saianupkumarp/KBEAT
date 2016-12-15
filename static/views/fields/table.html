@@ -1,2 +1,17 @@
-<div>
+<div style="color:green;">
+	<div style="padding: 20px;padding-left: 40px;">{{field.label}}</div>
+	<table class="table-field">
+		<tr>
+			<th>&nbsp;</th>
+			<th style="padding:10px 0px;" ng-repeat="heading in field.column_heading track by $index">{{heading}}</th>
+		</tr>
+		<tr  ng-repeat="heading in field.row_heading track by $index">
+			<td style="padding:0px 5px;">
+				{{heading}}
+			</td>
+			<td ng-repeat="heading in field.column_heading track by $index">
+				<input type="text" ng-model="field.value[$index][$parent.$index]" style="outline: none; border: solid 1px green; color: green;padding: 0 15px;">
+			</td>
+		</tr>
+	</table>
 </div>
