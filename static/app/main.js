@@ -103,10 +103,12 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               break;
             case 'radio':
               scope.field.options = scope.field.options.split(', '); 
+              scope.field.value = scope.field.options[0];
               break;
             case 'table':
               scope.field.rowHeading = scope.field.row_heading.split(', ');
               scope.field.columnHeading = scope.field.column_heading.split(', ');
+              scope.field.value = 1;
               break;
           }
 
