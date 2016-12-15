@@ -119,7 +119,14 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               scope.area = scope.container.parameters.filter(function(p){
                 return p.id == scope.field.relatedArea;
               })[0];
-              console.log(scope.y,scope.area);
+
+              scope.$watch('field.value.x', function(){
+                scope.field.value.area = scope.field.value.x * scope.field.value.y;
+              });
+              scope.$watch('field.value.y', function(){
+                scope.field.value.area = scope.field.value.x * scope.field.value.y;
+              });
+
               break;
           }
           if (scope.field.type == 'text' || scope.field.type == 'number')
