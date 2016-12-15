@@ -329,4 +329,6 @@ footer {
 .single-input-box {
     padding: 0 10px;
 }
-
+ td {
+    border: 1px solid black;
+}
