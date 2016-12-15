@@ -111,7 +111,13 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               scope.field.value = 1;
               break;
           }
-
+          if (scope.field.type == 'text' || scope.field.type == 'number')
+            scope.$watch('field.value', function(newValue, oldValue){
+              if (scope.field.error && newValue!=oldValue)
+              {
+                scope.field.error = !newValue;
+              }
+            });
         }
       }
     });
