@@ -11,316 +11,316 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
-    display: block;
+	display: block;
 }
 body {
-    line-height: 1;
+	line-height: 1;
 }
 ol, ul {
-    list-style: none;
+	list-style: none;
 }
 blockquote, q {
-    quotes: none;
+	quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-    content: '';
-    content: none;
+	content: '';
+	content: none;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 html.md-default-theme, html, body.md-default-theme, body {
-    background-color: #fff;
-    color: #666;
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+	background-color: #fff;
+	color: #666;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
 }
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .main-container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 header{
 	background-color:#f8f8f8;
-    border-color: #f8f8f8;
-    height:90px;    
-    background-image: url("/keec/assets/img/logo/logo.svg");
-    background-size: 160px;
-    background-repeat: no-repeat;
-    background-position: 10px;
+	border-color: #f8f8f8;
+	height:90px;    
+	background-image: url("/keec/assets/img/logo/logo.svg");
+	background-size: 160px;
+	background-repeat: no-repeat;
+	background-position: 10px;
 }
 
 .content-area {
-    flex: 1;
-    background-image: url(/keec/assets/img/infographic.jpg);
-    background-size: cover;
+	flex: 1;
+	background-image: url(/keec/assets/img/infographic.jpg);
+	background-size: cover;
 }
 
 .step-content {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
 }
 
 .step-headers {
-    display: flex;
-    margin: 10px;
+	display: flex;
+	margin: 10px;
 }
 
 .step-header {
-    display: flex;
-    flex: 1;
+	display: flex;
+	flex: 1;
 }
 .step-header:last-of-type {
-    flex-grow: 0;
-    flex-basis: 175px;
+	flex-grow: 0;
+	flex-basis: 175px;
 }
 
 .step-header > .clickable {
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    padding: 10px 20px;
+	cursor: pointer;
+	outline: none;
+	display: flex;
+	padding: 10px 20px;
 }
 
 .step-header > .clickable.active, .step-header > .clickable:hover {
-    background-color: rgba(94, 101, 80, 0.25);
+	background-color: rgba(94, 101, 80, 0.25);
 }
 
 .step-header .number {
-    height: 40px;
-    width: 40px;
-    border-radius: 100%;
-    background: #61a659;
-    text-align: center;
-    line-height: 40px;
-    font-weight: 500;
-    cursor: pointer;
-    color:#fff;
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	background: #61a659;
+	text-align: center;
+	line-height: 40px;
+	font-weight: 500;
+	cursor: pointer;
+	color:#fff;
 }
 
 .step-header > .clickable:hover .number,  .step-header > .clickable.active .number{
-    background-color: orange;
+	background-color: orange;
 }
 .step-header  .label {
-    line-height: 40px;
-    margin-left: 10px;
+	line-height: 40px;
+	margin-left: 10px;
 }
 .step-header > .line {
-    background-color: #debdbd;
-    height: 3px;
-    align-self: center;
-    flex: 1;
-    margin: 0 4px;
+	background-color: #debdbd;
+	height: 3px;
+	align-self: center;
+	flex: 1;
+	margin: 0 4px;
 }
 .step-area-wrapper {
-    flex: 1;
+	flex: 1;
 }
 .step-container > .body {
-    background: rgba(255,255,255,0.9);
-    position: relative;
-    opacity: 0.8;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.6s; 
+	background: rgba(255,255,255,0.9);
+	position: relative;
+	opacity: 0.8;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.6s; 
 }
 .step-container > .body:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    opacity: 1;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	opacity: 1;
 }
 
 .step-container > .body.shaped .input-area {
-    width: 50%;
+	width: 50%;
 }
 
 .step-container {
-    padding: 10px;
+	padding: 10px;
 }
 
 .step-container  .heading {
-    background: #61a659;
-    color: white;
-    padding: 10px;
-    background-image: url(/keec/assets/img/building.svg);
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    padding-left: 40px;
-    background-position: 10px 5px;
+	background: #61a659;
+	color: white;
+	padding: 10px;
+	background-image: url(/keec/assets/img/building.svg);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	padding-left: 40px;
+	background-position: 10px 5px;
 }
 .step-container  .input-area {
-    padding: 20px;
-    display: flex;
-    flex-flow: row wrap;
-    background-color: #f8f8f8;
+	padding: 20px;
+	display: flex;
+	flex-flow: row wrap;
+	background-color: #f8f8f8;
 }
 
 .step-container-wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    max-height: calc(100vh - 325px);
-    overflow: auto;
-    padding: 20px;
-    margin-right: 7px;
+	display: flex;
+	flex-flow: row wrap;
+	max-height: calc(100vh - 325px);
+	overflow: auto;
+	padding: 20px;
+	margin-right: 7px;
 }
 .step-container.flex-50 {
-    flex-basis: calc(50% - 20px)
+	flex-basis: calc(50% - 20px)
 }
 .step-container.flex-100 {
-    flex-basis: calc(100% - 20px);
+	flex-basis: calc(100% - 20px);
 }
 
 .input-container {
-    display: flex;
-    margin-bottom: 10px;
+	display: flex;
+	margin-bottom: 10px;
 }
 
 .input-container.error {
-    padding-bottom: 10px;
-    position: relative;
+	padding-bottom: 10px;
+	position: relative;
 
 }
 .input-container.error:after {
-    display: block;
-    font-size: 10px;
-    color: red;
-    content: "This field cannot be empty";
-    position: absolute;
-    top: 36px;
+	display: block;
+	font-size: 10px;
+	color: red;
+	content: "This field cannot be empty";
+	position: absolute;
+	top: 36px;
 }
 
 .input-container > label {
-    margin: 0;
-    border: 1px solid;
-    line-height: 30px;
-    padding-left: 10px;
-    background: green;
-    color: white;
-    width: 45%;
-    padding-right: 10px;
-    max-width: 160px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+	margin: 0;
+	border: 1px solid;
+	line-height: 30px;
+	padding-left: 10px;
+	background: green;
+	color: white;
+	width: 45%;
+	padding-right: 10px;
+	max-width: 160px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .input-container > label.error {
-    background-color: red;
+	background-color: red;
 }
 .input-container > input[type=number],.input-container > input[type=text] {
-    color: green;
-    margin-left: -1px;
-    border: 1px solid green;
-    height: 30px;
-    outline: none;
-    padding: 10px;
-    position: relative;
-    top: 1px;
-    flex: 1;
-    min-width: 0;
+	color: green;
+	margin-left: -1px;
+	border: 1px solid green;
+	height: 30px;
+	outline: none;
+	padding: 10px;
+	position: relative;
+	top: 1px;
+	flex: 1;
+	min-width: 0;
 }
 
 .input-container > select {
-    flex: 1;
-    margin-left: -1px;
-    background: none;
-    outline: none;
-    height: 30px;
-    position: relative;
-    top: 1px;
-    border: 1px solid green;
-    color: green;
-    padding-left: 10px;
+	flex: 1;
+	margin-left: -1px;
+	background: none;
+	outline: none;
+	height: 30px;
+	position: relative;
+	top: 1px;
+	border: 1px solid green;
+	color: green;
+	padding-left: 10px;
 }
 
 .input-container > .label-suffix {
 	height: 30px;
-    line-height: 30px;
-    padding: 0 4px;
-    background-color: green;
-    color: #fff;
-    position: relative;
-    top: 1px;
-    opacity: 0.7;
+	line-height: 30px;
+	padding: 0 4px;
+	background-color: green;
+	color: #fff;
+	position: relative;
+	top: 1px;
+	opacity: 0.7;
 }
 
 .step-footers {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+	padding: 20px;
+	display: flex;
+	justify-content: center;
 }
 
 .shape {
-    position: absolute;
-    top: 50px;
-    width: 50%;
-    right: 20px;
-    bottom: 20px;
-    border: 1px solid #d2c7c7;
+	position: absolute;
+	top: 50px;
+	width: 50%;
+	right: 20px;
+	bottom: 20px;
+	border: 1px solid #d2c7c7;
 }
 
 .shape label {
-    position: relative;
-    top: -8px;
-    left: 10px;
-    font-size: 16px;
-    background: white;
-    width: auto;
+	position: relative;
+	top: -8px;
+	left: 10px;
+	font-size: 16px;
+	background: white;
+	width: auto;
 }
 
 footer {
-    padding: 30px;
-    background-color: #666;
-    color: white;
-    background-image: url("/keec/assets/img/logo/logo-white.svg");
-    background-size: 160px;
-    background-repeat: no-repeat;
-    background-position: 10px;
+	padding: 30px;
+	background-color: #666;
+	color: white;
+	background-image: url("/keec/assets/img/logo/logo-white.svg");
+	background-size: 160px;
+	background-repeat: no-repeat;
+	background-position: 10px;
 }
 
 .step-container-wrapper::-webkit-scrollbar-track
 {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 5px;
-    background-color: #F5F5F5;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	background-color: #F5F5F5;
 }
 
 .step-container-wrapper::-webkit-scrollbar
 {
-    width: 5px;
-    background-color: #F5F5F5;
+	width: 5px;
+	background-color: #F5F5F5;
 }
 
 .step-container-wrapper::-webkit-scrollbar-thumb
 {
-    border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #D62929;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
 }
 .edit {
-    width: 80px;
-    color: #fff;
-    background-color: green;
-    border: none;
-    outline-color: green;
-    border-radius: 0;
-    margin-left: 3px;
-    cursor: pointer;
+	width: 80px;
+	color: #fff;
+	background-color: green;
+	border: none;
+	outline-color: green;
+	border-radius: 0;
+	margin-left: 3px;
+	cursor: pointer;
 }
 
 .edit:hover{
@@ -332,13 +332,13 @@ footer {
 
 .step-footers > .button{
 	width: 120px;
-    height: 40px;
-    font-size: 17px;
-    margin: 5px;
-    color: #fff;
-    background-color: #61a659;
-    border: none;
-    outline-color: #61a659;
+	height: 40px;
+	font-size: 17px;
+	margin: 5px;
+	color: #fff;
+	background-color: #61a659;
+	border: none;
+	outline-color: #61a659;
 }
 .step-footers > .button:hover{
 	background-color:#fff;
@@ -347,39 +347,45 @@ footer {
 	outline-color: #fff;
 }
 .single-input-box.flex-33 {
-    flex: 1;
-    flex-basis: 33%; 
+	flex: 1;
+	flex-basis: 33%; 
 }
 
 .single-input-box {
-    padding: 0 10px;
+	padding: 0 10px;
 }
 .footer-wrapper {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .footer-wrapper a {
-    color: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    margin-right: 20px;
-    transition: .3s color;
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+	margin-right: 20px;
+	transition: .3s color;
 }
 .footer-wrapper a:hover {
-    color: #aaa;
+	color: #aaa;
 }
 .footer-wrapper a.social {
-    font-size: 20px;
+	font-size: 20px;
 }
 md-radio-button {
-    display: inline-block;
-    margin-right: 20px;
+	display: inline-block;
+	margin-right: 20px;
 }
 .dimension-wrapper {
-    display: flex;
-    flex-flow: row wrap;
+	display: flex;
+	flex-flow: row wrap;
 }
 .dimension-wrapper .flex-50 {
-    flex-basis: calc(50% - 20px)
+	flex-basis: calc(50% - 20px)
+}
+md-radio-group:not([disabled]) .md-primary .md-on{
+	background-color: #61a659;
+}
+md-radio-group:not([disabled]) .md-primary.md-checked .md-off{
+	border-color: #a4a29f;
 }
