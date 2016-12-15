@@ -361,7 +361,7 @@ footer {
 .footer-wrapper a.social {
     font-size: 20px;
 }
-
-td {
-    border: 1px solid black;
+md-radio-button {
+    display: inline-block;
+    margin-right: 20px;
 }

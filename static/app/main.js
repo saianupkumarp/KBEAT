@@ -99,6 +99,10 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             case 'dropdown':
               scope.field.options = scope.field.options.split(', '); 
               scope.field.values = scope.field.values.split(', '); 
+              scope.field.value = scope.field.values[0];
+              break;
+            case 'radio':
+              scope.field.options = scope.field.options.split(', '); 
               break;
             case 'table':
               scope.field.rowHeading = scope.field.row_heading.split(', ');

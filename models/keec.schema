@@ -144,15 +144,10 @@ steps:
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
       parameters:
-        - id: windowWallRatio
+        - id: windowWall
           type: radio
-          label: Window-Wall-Ratio
-          label_suffix: (%) 
-          widthPercent: 50
-        - id: windowArea
-          type: radio
-          label: Window Area
-          label_suffix: (m2)
+          label: Windows (Condtioned space ONLY)
+          options: Window Wall Ratio (%), Window Area (m2)
           widthPercent: 50
         - id: windowTable
           type: table
