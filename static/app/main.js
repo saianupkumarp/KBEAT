@@ -82,7 +82,8 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         restrict: 'E',
         replace: true,
         scope: {
-          field: '='
+          field: '=',
+          container: '='
         },
         template: '<div ng-include="getTemplateUrl()"></div>',
         transclude: false,
@@ -109,6 +110,16 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               scope.field.rowHeading = scope.field.row_heading.split(', ');
               scope.field.columnHeading = scope.field.column_heading.split(', ');
               scope.field.value = 1;
+              break;
+            case 'dimension':
+              scope.field.value={x:0,y:0,area:0};
+              scope.y = scope.container.parameters.filter(function(p){
+                return p.id == scope.field.relatedY;
+              })[0];
+              scope.area = scope.container.parameters.filter(function(p){
+                return p.id == scope.field.relatedArea;
+              })[0];
+              console.log(scope.y,scope.area);
               break;
           }
           if (scope.field.type == 'text' || scope.field.type == 'number')

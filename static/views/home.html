@@ -17,7 +17,7 @@
 							{{container.label}}
 						</div>
 						<div class="input-area">
-							<field class="single-input-box flex-{{field.widthPercent}}" field="field" ng-repeat="field in container.parameters" />
+							<field ng-if="!field.hide" class="single-input-box flex-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />
 						</div>
 					</div>
 				</div>			

@@ -67,25 +67,29 @@ steps:
           label_suffix: m
           widthPercent: 50 
         - id: x1
-          type: number
+          type: dimension
           label: X1
           label_suffix: m
-          widthPercent: 33 
+          relatedY: Y1
+          relatedArea: floorArea
+          dimensionWidthPercent: 50
+          widthPercent: 100 
         - id: Y1
-          type: number
+          type: dimension
           label: Y1
           label_suffix: m
-          widthPercent: 33  
+          hide: true
+          dimensionWidthPercent: 50
         - id: floorArea
-          type: number
+          type: dimension
           label: Floor Area
           label_suffix: m2
+          hide: true
           widthPercent: 33 
         - id: shape
           type: shape
           label: Shape
-          widthPercent: 50
-          heightPercent: 100                            
+          dimensionWidthPercent: 100
   - id: envelope
     label: Envelope
     containers: 
