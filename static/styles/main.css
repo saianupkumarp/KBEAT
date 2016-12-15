@@ -375,6 +375,7 @@ footer {
 md-radio-button {
 	display: inline-block;
 	margin-right: 20px;
+	color: green;
 }
 .dimension-wrapper {
 	display: flex;
@@ -383,9 +384,15 @@ md-radio-button {
 .dimension-wrapper .flex-50 {
 	flex-basis: calc(50% - 20px)
 }
+md-radio-button .md-off{
+	border-color: green;
+} 
 md-radio-group:not([disabled]) .md-primary .md-on{
-	background-color: #61a659;
+	background-color: green;
 }
 md-radio-group:not([disabled]) .md-primary.md-checked .md-off{
-	border-color: #a4a29f;
+	border-color: green;
+}
+td{
+	border:1px solid black;
 }
