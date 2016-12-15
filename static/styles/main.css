@@ -117,7 +117,7 @@ header{
     color:#fff;
 }
 
-.step-header .number:hover {
+.step-header > .clickable:hover .number,  .step-header > .clickable.active .number{
     background-color: orange;
 }
 .step-header  .label {
