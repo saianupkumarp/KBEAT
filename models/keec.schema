@@ -41,7 +41,7 @@ steps:
         - id: airConditionedArea
           type: number
           label: Air-Conditioned Area
-          label_suffix: (layout-padding)
+          label_suffix: (%)
           widthPercent: 50  
     - id: buildingShape
       label: Building Shape

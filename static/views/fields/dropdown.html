@@ -3,5 +3,6 @@
     <select id="{{field.id}}" ng-model="field.value">
     	<option ng-value="{{option.option}}" ng-repeat="option in field.options">{{field.values[$index]}}</option>
     </select>
+	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
     <input ng-if="field.edit" class="edit" type="button" value="Edit"/>
 </div>
