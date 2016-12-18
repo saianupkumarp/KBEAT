@@ -56,8 +56,21 @@ html.md-default-theme, html, body.md-default-theme, body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	background-image: url(/keec/assets/img/infographic.jpg);
-	background-size: cover;
+ 
+ /*image background
+ ..............*/
+
+	/*background-image: url(/keec/assets/img/infographic.jpg);
+	background-size: cover;*/
+/*....................*/
+
+/*video background
+..................*/
+	position:absolute;
+	width:100%;
+	min-height:100%;
+	z-index:1000;
+	/*..............*/
 }
 
 header{
@@ -395,14 +408,26 @@ md-radio-group:not([disabled]) .md-primary .md-on{
 md-radio-group:not([disabled]) .md-primary.md-checked .md-off{
 	border-color: green;
 }
+
+/*video background
+..............*/
 .background-wrap{
-	position: relative;
+	position: fixed;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	top:0;
+	left:0;
 }
  .my-video{
+ 	position: absolute;
+ 	top:0;
+	left:0;
 	min-width:100%;
 	min-height:100%;
 	width:auto;
 	height:auto;
 	background-size: cover;
-	background:url("/keec/assets/img/windtur.mp4");
 }
+
+/*............*/
