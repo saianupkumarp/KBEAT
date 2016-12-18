@@ -25,6 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-image: url(/keec/assets/img/infographic.jpg);
+	background-size: cover;
 }
 ol, ul {
 	list-style: none;
@@ -59,8 +61,8 @@ html.md-default-theme, html, body.md-default-theme, body {
 }
 
 header{
-	background-color:#f8f8f8;
-	border-color: #f8f8f8;
+	/*background-color:#f8f8f8;
+	border-color: #f8f8f8;*/
 	height:90px;    
 	background-image: url("/keec/assets/img/logo/logo.svg");
 	background-size: 160px;
@@ -70,8 +72,8 @@ header{
 
 .content-area {
 	flex: 1;
-	background-image: url(/keec/assets/img/infographic.jpg);
-	background-size: cover;
+	/*background-image: url(/keec/assets/img/infographic.jpg);
+	background-size: cover;*/
 }
 
 .step-content {
@@ -174,7 +176,7 @@ header{
 .step-container-wrapper {
 	display: flex;
 	flex-flow: row wrap;
-	max-height: calc(100vh - 325px);
+	max-height: calc(100vh - 300px);
 	overflow: auto;
 	padding: 20px;
 	margin-right: 7px;
@@ -283,7 +285,7 @@ header{
 	width: auto;
 }
 
-footer {
+/*footer {
 	padding: 30px;
 	background-color: #666;
 	color: white;
@@ -291,7 +293,7 @@ footer {
 	background-size: 160px;
 	background-repeat: no-repeat;
 	background-position: 10px;
-}
+}*/
 
 .step-container-wrapper::-webkit-scrollbar-track
 {
@@ -354,7 +356,7 @@ footer {
 .single-input-box {
 	padding: 0 10px;
 }
-.footer-wrapper {
+/*.footer-wrapper {
 	display: flex;
 	justify-content: space-between;
 }
@@ -371,7 +373,7 @@ footer {
 }
 .footer-wrapper a.social {
 	font-size: 20px;
-}
+}*/
 md-radio-button {
 	display: inline-block;
 	margin-right: 20px;
@@ -392,7 +394,4 @@ md-radio-group:not([disabled]) .md-primary .md-on{
 }
 md-radio-group:not([disabled]) .md-primary.md-checked .md-off{
 	border-color: green;
-}
-td{
-	border:1px solid black;
 }
