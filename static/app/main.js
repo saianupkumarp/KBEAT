@@ -138,6 +138,26 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 scope.field.error = !newValue;
               }
             });
+          scope.Dialog=function(ev){
+            $mdDialog.show( /*{
+              controller: function($scope, $mdDialog) {
+                $scope.hide = function() {
+                  $mdDialog.hide();
+                };
+              },
+              templateUrl: '/keec/static/dialog.html',
+              targetEvent: ev,
+              clickOutsideToClose:true
+            }*/
+        $mdDialog.alert()
+        .clickOutsideToClose(true)
+        .title('This is an alert title')
+        .textContent('You can specify some description text in here.')
+        .ariaLabel('Alert Dialog Demo')
+        .ok('Got it!')
+        .targetEvent(ev)
+        );
+          };
         }
       }
     });

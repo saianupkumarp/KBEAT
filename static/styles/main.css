@@ -463,12 +463,6 @@ font-size:11px;
 	}
 	
 }
-@media only screen and (max-width:1036px){
-	.responsive{
-		margin-left: 0px;
-	}
-}
-
 @media only screen and (max-width:830px){
 	.step-header  .label{
 		font-size:12px;
@@ -489,7 +483,16 @@ font-size:11px;
 		height:153vh;
 	}
 }
+@media only screen and (max-width:708px){
+	.single-input-box.flex-33 {
+		flex: 1;
+		flex-basis: 51%;
+	}
+}
 @media only screen and (max-width:700px){
+	.step-headers{
+		width:110%;
+	}
 	.step-header  .label{
 		font-size:11px;
 	}
@@ -499,9 +502,14 @@ font-size:11px;
 	.step-header > .line{
 		margin:2px;
 	}
-	
+	.step-header .number{
+		margin-left: 8px;
+		margin-right:4px;
+	}
 	.step-header > .clickable{
 		display:inline;
+		margin-top: 20px;
+		padding-top: 15px;
 	}
 	.step-header  .label{
 		margin-left: 0px;
@@ -510,6 +518,7 @@ font-size:11px;
 	.main-container {
 		height:158vh;
 	}
+
 }
 @media only screen and (max-width:695px){
 	.main-container {
@@ -526,10 +535,21 @@ font-size:11px;
 		width:50%;
 	}
 }
-@media only screen and (max-width:708px){
-	.single-input-box.flex-33 {
-		flex: 1;
-		flex-basis: 51%;
+@media only screen and (max-width:605px){
+	.main-container {
+		height:200vh;
+	}
+	.shape {
+		position: initial;
+		width:100%;
+		padding:95px;
+	}
+	.step-container > .body.shaped .input-area{
+		width:100%;
+	}
+	.shape label {
+		top: -102px;
+		left: -85px;
 	}
 }
 
