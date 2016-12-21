@@ -4,7 +4,7 @@
 		<input type="number" id="{{field.id}}" ng-model="field.value.x">
 		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
 	</div>
-	<div style="margin-left: 20px;" class="flex-{{y.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+	<div class="flex-{{y.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error, responsive:true}">
 		<label for="{{y.id}}" ng-class="{error: field.error}">{{y.label}}</label>
 		<input type="number" id="{{y.id}}" ng-model="field.value.y">
 		<div class="label-suffix" ng-if="y.label_suffix">{{y.label_suffix}}</div>

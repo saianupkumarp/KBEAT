@@ -1,4 +1,4 @@
-<div class="step-content">
+<div class="step-content" layout="column">
 	<div class="step-headers">
 		<div class="step-header" ng-repeat="step in model.steps">
 			<div ng-class="{clickable:true, active:$index==activeStepIndex}" ng-click="activateStep($index)">
@@ -12,7 +12,7 @@
 		<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
 			<div class="step-container-wrapper">
 				<div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers">
-					<div ng-class="{body:true, shaped: container.hasShape}">
+					<div ng-class="{body:true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
 						<div class="heading">
 							{{container.label}}
 						</div>
@@ -24,7 +24,7 @@
 			</div>
 		</div>			
 	</div>
-	<div class="step-footers">
+	<div class="step-footers" style="position:relative;bottom:0;">
 		<input class="button" type="button" ng-click="stepBack()" value="Prev">
 		<input class="button" type="button" ng-click="stepNext()" value="Next">
 	</div>

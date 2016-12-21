@@ -69,7 +69,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 if ($scope.activeStepIndex > 0)
                   $scope.activeStepIndex -= 1;
               };
-
             }}
           }
         })
@@ -77,7 +76,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         $urlRouterProvider.otherwise('/keec/');
       })
 
-    .directive('field', function () {
+    .directive('field', function ($mdDialog) {
       return {
         restrict: 'E',
         replace: true,
@@ -91,47 +90,46 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         link: function (scope, element, attrs) {
           scope.field.type = scope.field.type || 'text';
           scope.field.value = null;
-
           scope.getTemplateUrl = function () {
             return '/keec/assets/views/fields/' + scope.field.type + '.html';
           };
 
           switch(scope.field.type) {
             case 'dropdown':
-              scope.field.options = scope.field.options.split(', '); 
-              scope.field.values = scope.field.values.split(', '); 
-              scope.field.value = scope.field.values[0];
-              break;
+            scope.field.options = scope.field.options.split(', '); 
+            scope.field.values = scope.field.values.split(', '); 
+            scope.field.value = scope.field.values[0];
+            break;
             case 'radio':
-              scope.field.options = scope.field.options.split(', '); 
-              scope.field.value = scope.field.options[0];
-              break;
+            scope.field.options = scope.field.options.split(', '); 
+            scope.field.value = scope.field.options[0];
+            break;
             case 'table':
-              scope.field.row_heading = scope.field.row_heading.split(', ');
-              scope.field.column_heading = scope.field.column_heading.split(', ');
-              scope.field.value = scope.field.row_heading.map(function(){
-                return scope.field.column_heading.map(function(){
-                  return "";
-                });
+            scope.field.row_heading = scope.field.row_heading.split(', ');
+            scope.field.column_heading = scope.field.column_heading.split(', ');
+            scope.field.value = scope.field.row_heading.map(function(){
+              return scope.field.column_heading.map(function(){
+                return "";
               });
-              break;
+            });
+            break;
             case 'dimension':
-              scope.field.value={x:0,y:0,area:0};
-              scope.y = scope.container.parameters.filter(function(p){
-                return p.id == scope.field.relatedY;
-              })[0];
-              scope.area = scope.container.parameters.filter(function(p){
-                return p.id == scope.field.relatedArea;
-              })[0];
+            scope.field.value={x:0,y:0,area:0};
+            scope.y = scope.container.parameters.filter(function(p){
+              return p.id == scope.field.relatedY;
+            })[0];
+            scope.area = scope.container.parameters.filter(function(p){
+              return p.id == scope.field.relatedArea;
+            })[0];
 
-              scope.$watch('field.value.x', function(){
-                scope.field.value.area = scope.field.value.x * scope.field.value.y;
-              });
-              scope.$watch('field.value.y', function(){
-                scope.field.value.area = scope.field.value.x * scope.field.value.y;
-              });
+            scope.$watch('field.value.x', function(){
+              scope.field.value.area = scope.field.value.x * scope.field.value.y;
+            });
+            scope.$watch('field.value.y', function(){
+              scope.field.value.area = scope.field.value.x * scope.field.value.y;
+            });
 
-              break;
+            break;
           }
           if (scope.field.type == 'text' || scope.field.type == 'number')
             scope.$watch('field.value', function(newValue, oldValue){
@@ -143,7 +141,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         }
       }
     });
-
 
     angular.element(document).ready(function () {
       angular.bootstrap(document, ['keec']);

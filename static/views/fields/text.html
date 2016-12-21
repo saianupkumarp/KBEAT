@@ -2,5 +2,5 @@
 	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
 	<input type="text" id="{{field.id}}" ng-model="field.value">
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-	<input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+	<input ng-if="field.edit" class="Edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
 </div>
