@@ -451,7 +451,7 @@ font-size:11px;
 		max-width:100%;
 	}
 	.main-container {
-		height:138vh;
+		height:148vh;
 	}
 }
 @media only screen and (max-width:1140px){
@@ -462,11 +462,6 @@ font-size:11px;
 		margin-left: 1px;
 	}
 	
-}
-@media only screen and (max-width:1061px){
-	.main-container {
-		height:144vh;
-	}
 }
 @media only screen and (max-width:1036px){
 	.responsive{
@@ -491,7 +486,7 @@ font-size:11px;
 		width:100%;
 	}
 	.main-container {
-		height:150vh;
+		height:153vh;
 	}
 }
 @media only screen and (max-width:700px){
@@ -513,12 +508,12 @@ font-size:11px;
 		font-size:10px;
 	}
 	.main-container {
-		height:154vh;
+		height:158vh;
 	}
 }
 @media only screen and (max-width:695px){
 	.main-container {
-		height:161vh;
+		height:164vh;
 	}
 }
 @media only screen and (max-width:657px){
