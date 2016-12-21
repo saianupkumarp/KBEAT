@@ -222,7 +222,7 @@ header{
 padding-left: 10px;
 background: #61a659;
 color: white;
-width: 56%;
+width: 73%;
 padding-right: 10px;
 max-width: 160px;
 text-overflow: ellipsis;
@@ -454,16 +454,14 @@ font-size:11px;
 		height:138vh;
 	}
 }
-@media only screen and (max-width:1094px){
+@media only screen and (max-width:1140px){
+	.dimension-wrapper .flex-50{
+		flex-basis:50%;
+	}
 	.responsive{
-		margin-left: 10px;
+		margin-left: 1px;
 	}
 	
-}
-@media only screen and (max-width:1073px){
-	.responsive{
-		margin-left: 4px;
-	}
 }
 @media only screen and (max-width:1061px){
 	.main-container {
@@ -526,6 +524,17 @@ font-size:11px;
 @media only screen and (max-width:657px){
 	.input-container > label {
 		font-size:9px;
+	}
+}
+@media only screen and (max-width:625px){
+	.input-container > label {
+		width:50%;
+	}
+}
+@media only screen and (max-width:708px){
+	.single-input-box.flex-33 {
+		flex: 1;
+		flex-basis: 51%;
 	}
 }
 
