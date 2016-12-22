@@ -537,7 +537,7 @@ font-size:11px;
 }
 @media only screen and (max-width:605px){
 	.main-container {
-		height:200vh;
+		height:196vh;
 	}
 	.shape {
 		position: initial;

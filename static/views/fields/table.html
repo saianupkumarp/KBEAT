@@ -1,4 +1,4 @@
-<div style="color:green;">
+<!-- <div style="color:green;">
 	<div style="padding: 20px;padding-left: 40px;">{{field.label}}</div>
 	<table class="table-field">
 		<tr>
@@ -14,4 +14,23 @@
 			</td>
 		</tr>
 	</table>
-</div>
+</div> -->
+
+
+
+<md-table-container>
+  <table md-table md-row-select multiple md-progress="true">
+    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+      <tr md-row>
+        <th md-column><span>&nbsp;</span></th>
+        <th md-column md-numeric md-order-by="calories.value" ng-repeat="heading in field.column_heading track by $index"><span>{{heading}}</span></th>
+     </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row md-auto-select ng-repeat="heading in field.row_heading track by $index">
+        <td md-cell style="padding:0px 5px;">{{heading}}</td>
+        <td md-cell ng-repeat="heading in field.column_heading track by $index"></td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>

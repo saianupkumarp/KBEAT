@@ -8,7 +8,9 @@ requirejs.config({
     'angular-aria' :'vendor/angular-aria/angular-aria',
     'angular-messages':'vendor/angular-messages/angular-messages',
     'angular-material' :'vendor/angular-material/angular-material.min',
-    'md-steppers':'vendor/md-steppers/dist/md-steppers.min'
+    'md-steppers':'vendor/md-steppers/dist/md-steppers.min',
+    'angular-material-data-table':'vendor/angular-material-data-table/dist/md-data-table.min',
+    'md-data-table':'vendor/md-data-table/dist/md-data-table-templates',
   },
   shim: {
     'angular': {
@@ -23,13 +25,16 @@ requirejs.config({
     'angular-aria': {
       deps: ['angular']
     },
-     'angular-messages': {
+    'angular-messages': {
       deps: ['angular']
     },
-     'angular-material': {
+    'angular-material': {
       deps: ['angular']
     },
-     'md-steppers': {
+    'md-steppers': {
+      deps: ['angular']
+    },
+    'angular-material-data-table': {
       deps: ['angular']
     }
   }

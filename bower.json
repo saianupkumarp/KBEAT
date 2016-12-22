@@ -8,6 +8,7 @@
     "jquery": "latest",
     "requirejs": "^2.3.2",
     "md-steppers": "^0.3.4",
-    "angular-material": "^1.1.1"
+    "angular-material": "^1.1.1",
+    "angular-material-data-table": "^0.10.10"
   }
 }

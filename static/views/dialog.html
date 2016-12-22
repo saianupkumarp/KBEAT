@@ -1,4 +1,12 @@
- <md-card style="width:200px;height:200px">
-<label>Construction Edit</label>       
- </md-card>
-        
+ <div ng-class="{body:true}">
+ 	<div>
+ 		{{conDialog.label}}
+ 	</div>
+ 	<div ng-class="{'input-container':true}">
+ 		<label>{{conDialog.parameters[0].label}}</label>
+ 		<md-select id="{{conDialog.parameters[0].id}}" ng-model="conDialog.parameters[0].value">
+ 			<md-option ng-value="option" ng-repeat="option in conDialog.parameters[0].options" ng-selected="$first">{{conDialog.parameters[0].values[$index]}}</md-option>
+ 		</md-select>
+ 		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+ 		<input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
+ 	</div>
