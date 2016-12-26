@@ -175,7 +175,7 @@ header{
 	background-position: 10px 5px;
 }
 .step-container  .input-area {
-	padding: 20px;
+	padding: 15px;
 	display: flex;
 	flex-flow: row wrap;
 	background-color: #f8f8f8;
@@ -327,7 +327,7 @@ font-size:11px;
 		background-color: #D62929;
 	}
 	.edit {
-		width: 80px;
+		width: 40px;
 		color: #fff;
 		background-color: green;
 		border: none;
@@ -433,7 +433,7 @@ font-size:11px;
 /*Responsiveness
 ..............*/
 .buildInfo{
-	height:157px !important;
+	height:145px !important;
 }
 .responsive{
 	margin-left: 20px;
@@ -473,7 +473,12 @@ font-size:11px;
 	.step-header > .line{
 		margin:3px;
 	}
-	
+	.input-container > label {
+		font-size:9px;
+	}
+	.step-headers{
+		width:101%;
+	}
 }
 @media only screen and (max-width:723px){
 	md-select{
@@ -522,7 +527,7 @@ font-size:11px;
 }
 @media only screen and (max-width:695px){
 	.main-container {
-		height:164vh;
+		height:168vh;
 	}
 }
 @media only screen and (max-width:657px){
@@ -537,7 +542,7 @@ font-size:11px;
 }
 @media only screen and (max-width:605px){
 	.main-container {
-		height:196vh;
+		height:204vh;
 	}
 	.shape {
 		position: initial;
@@ -552,7 +557,24 @@ font-size:11px;
 		left: -85px;
 	}
 }
-
+@media only screen and (max-width:550px){
+	.step-headers{
+		width:115%;
+	}
+}
+@media only screen and (max-width:450px){
+	.step-headers{
+		width:120%;
+	}
+	.md-select-value>span:not(.md-select-icon) .md-text{
+		font-size:10px;
+	}
+}
+@media only screen and (max-width:375px){
+	.step-headers{
+		width:122%;
+	}
+}
 /*Changing in to material containers
 ................................*/
 md-select{
@@ -585,5 +607,21 @@ md-select:not([disabled]):focus .md-select-value {
 	border: 1px solid green !important;
 }
 .md-select-value>span:not(.md-select-icon){
-	padding-left:12px;
+	padding-left:5px;
+}
+
+/*Md-table
+.........*/
+
+table.md-table{
+	border:1px solid #c1bebd;
+}
+table.md-table td.md-cell>*, table.md-table th.md-column>*{
+	border: none;
+    background: none;
+    outline-color:transparent;
+    padding-left: 5px;
+}
+table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric{
+	text-align: center;
 }

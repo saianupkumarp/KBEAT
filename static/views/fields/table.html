@@ -15,21 +15,20 @@
 		</tr>
 	</table>
 </div> -->
-
-
-
 <md-table-container>
   <table md-table md-row-select multiple md-progress="true">
-    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+    <thead md-head md-order="query.order">
       <tr md-row>
-        <th md-column><span>&nbsp;</span></th>
-        <th md-column md-numeric md-order-by="calories.value" ng-repeat="heading in field.column_heading track by $index"><span>{{heading}}</span></th>
+        <th md-column style="border:1px solid #c1bebd;"><span>&nbsp;</span></th>
+        <th md-column md-numeric ng-repeat="heading in field.column_heading track by $index" style="border:1px solid #c1bebd;"><span>{{heading}}</span></th>
      </tr>
     </thead>
     <tbody md-body>
       <tr md-row md-auto-select ng-repeat="heading in field.row_heading track by $index">
         <td md-cell style="padding:0px 5px;">{{heading}}</td>
-        <td md-cell ng-repeat="heading in field.column_heading track by $index"></td>
+        <td style="border:1px solid #c1bebd;" md-cell ng-repeat="heading in field.column_heading track by $index">
+        	<input type="text" ng-model="field.value[$index][$parent.$index]">
+        </td>
       </tr>
     </tbody>
   </table>
