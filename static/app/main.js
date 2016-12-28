@@ -25,7 +25,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               return $http.get('/keec/api/model').then(function(response){
                 $rootScope.model = response.data;
                 $rootScope.constructionDialog=$rootScope.model.steps[1].containers[2];
-                $rootScope.windowDialog=$rootScope.model.steps[1].containers[2];
+                $rootScope.windowDialog=$rootScope.model.steps[1].containers[3];
                 return response.data;
               })
             }
@@ -76,16 +76,14 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                   controller: function($scope, $mdDialog) {
                     $scope.conDialog=$rootScope.constructionDialog;
                     $scope.winDialog=$rootScope.windowDialog; 
-                    $scope.conDialog.parameters[0].options = $scope.conDialog.parameters[0].options.split(', '); 
-                    $scope.conDialog.parameters[0].values = $scope.conDialog.parameters[0].values.split(', '); 
-                    $scope.conDialog.parameters[0].value = $scope.conDialog.parameters[0].values[0];
-                    console.log($scope.conDialog);
                     $scope.hide = function() {
                       $mdDialog.hide();
                     };
                   },
                   templateUrl: '/keec/assets/views/dialog.html',
                   targetEvent: ev,
+                  scope: $scope,
+                  preserveScope: true,
                   clickOutsideToClose:true
                 }
 
@@ -152,6 +150,8 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           });
 
           break;
+          case 'button':
+          
         }
         scope.dialogBox =function(ev){
           $rootScope.Dialog(ev);

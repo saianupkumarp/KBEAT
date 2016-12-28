@@ -53,7 +53,6 @@ html.md-default-theme, html, body.md-default-theme, body {
 }
 
 .main-container {
-	height: 105vh;
 	display: flex;
 	flex-direction: column;
 
@@ -155,8 +154,18 @@ header{
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 	opacity: 1;
 }
+.step-container > .body-button {
+	position: relative;
+	opacity: 0.8;
+}
+.step-container > .body-button:hover {
+	opacity: 1;
+}
 
 .step-container > .body.shaped .input-area {
+	width: 50%;
+}
+.step-container > .body-button.shaped .input-area-button{
 	width: 50%;
 }
 
@@ -174,11 +183,20 @@ header{
 	padding-left: 40px;
 	background-position: 10px 5px;
 }
+.step-container  .heading-button {
+	padding: 10px;
+	padding-left: 40px;
+}
 .step-container  .input-area {
 	padding: 15px;
 	display: flex;
 	flex-flow: row wrap;
 	background-color: #f8f8f8;
+}
+.step-container  .input-area-button {
+	padding: 15px;
+	display: flex;
+	flex-flow: row wrap;	
 }
 
 .step-container-wrapper {
@@ -450,10 +468,7 @@ font-size:11px;
 	.flex-50{
 		max-width:100%;
 	}
-	.main-container {
-		height:148vh;
 	}
-}
 @media only screen and (max-width:1140px){
 	.dimension-wrapper .flex-50{
 		flex-basis:50%;
@@ -484,10 +499,7 @@ font-size:11px;
 	md-select{
 		width:100%;
 	}
-	.main-container {
-		height:153vh;
 	}
-}
 @media only screen and (max-width:708px){
 	.single-input-box.flex-33 {
 		flex: 1;
@@ -496,40 +508,31 @@ font-size:11px;
 }
 @media only screen and (max-width:700px){
 	.step-headers{
-		width:110%;
+		width:108%;
 	}
 	.step-header  .label{
 		font-size:11px;
-	}
-	.step-header > .clickable{
-		padding:2px;
 	}
 	.step-header > .line{
 		margin:2px;
 	}
 	.step-header .number{
-		margin-left: 8px;
-		margin-right:4px;
+		margin-left: 14px;
+		margin-right:10px;
 	}
 	.step-header > .clickable{
 		display:inline;
 		margin-top: 20px;
-		padding-top: 15px;
+		padding: 15px;
 	}
 	.step-header  .label{
 		margin-left: 0px;
 		font-size:10px;
+		padding-left: 10px;
 	}
-	.main-container {
-		height:158vh;
-	}
+	
+}
 
-}
-@media only screen and (max-width:695px){
-	.main-container {
-		height:168vh;
-	}
-}
 @media only screen and (max-width:657px){
 	.input-container > label {
 		font-size:9px;
@@ -541,10 +544,7 @@ font-size:11px;
 	}
 }
 @media only screen and (max-width:605px){
-	.main-container {
-		height:204vh;
-	}
-	.shape {
+		.shape {
 		position: initial;
 		width:100%;
 		padding:95px;
@@ -560,6 +560,9 @@ font-size:11px;
 @media only screen and (max-width:550px){
 	.step-headers{
 		width:115%;
+	}
+	.step-header > .clickable{
+		padding: 15px 4px 0px 0px;
 	}
 }
 @media only screen and (max-width:450px){
@@ -612,16 +615,40 @@ md-select:not([disabled]):focus .md-select-value {
 
 /*Md-table
 .........*/
-
+md-table-container{
+	max-width:81%;
+}
+table.md-table thead.md-head>tr.md-row{
+	height:30px;
+}
+table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+     padding:0px; 
+}
+table.md-table tbody.md-body>tr.md-row{
+	height:25px;
+}
 table.md-table{
 	border:1px solid #c1bebd;
 }
 table.md-table td.md-cell>*, table.md-table th.md-column>*{
 	border: none;
-    background: none;
-    outline-color:transparent;
-    padding-left: 5px;
+	background: none;
+	outline-color:transparent;
+	padding-left: 5px;
 }
 table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric{
 	text-align: center;
 }
+/*md-dialog
+.........*/
+md-dialog{
+	width:inherit;
+	max-height: inherit;
+}
+.dialogLabel{
+	color: #fff;
+	background: green;
+	padding: 14px;
+	margin-bottom: 10px;
+}
+

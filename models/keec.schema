@@ -90,6 +90,14 @@ steps:
           type: shape
           label: Shape
           widthPercent: 50
+    - id: button
+      widthPercent: 100 
+      label: Button  
+      parameters:          
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 100
   - id: envelope
     label: Envelope
     containers: 
@@ -233,7 +241,19 @@ steps:
           type: number
           label: Visible Transmittance
           dialog: 2
-          widthPercent: 50                       
+          widthPercent: 50  
+    - id: button
+      widthPercent: 100 
+      label: Button  
+      parameters:          
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 50
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 50                            
   - id: spacedhw
     label: Space/DHW
     containers: 
@@ -257,6 +277,18 @@ steps:
           default: Tankless electric DHW system
           label: Building Type
           widthPercent: 50
+    - id: button
+      widthPercent: 100 
+      label: Button  
+      parameters:          
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 50
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 50      
   - id: hvac
     label: HVAC System
     containers: 
@@ -281,4 +313,15 @@ steps:
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 100
-    
+    - id: button
+      widthPercent: 100 
+      label: Button  
+      parameters:          
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 50
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 50
