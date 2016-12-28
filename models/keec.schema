@@ -246,14 +246,14 @@ steps:
       widthPercent: 100 
       label: Button  
       parameters:          
-        - id: next
-          type: button
-          label: Next
-          widthPercent: 50
         - id: prev
           type: button
           label: Previous
-          widthPercent: 50                            
+          widthPercent: 20   
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20                           
   - id: spacedhw
     label: Space/DHW
     containers: 
@@ -261,6 +261,13 @@ steps:
       label: Space Condition
       widthPercent: 100
       parameters:
+        - id: spaceTable
+          type: table
+          row1: Office, 70, 129, 0.3, 1.5, 0.93, (), () 
+          row2: Corridors Restrooms Stairs, 30, 269, 1, 0.93, 0, (), ()
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table 
+          widthPercent: 100     
         - id: percentAreaSum
           type: number
           label: Percent Area Sum
@@ -281,14 +288,14 @@ steps:
       widthPercent: 100 
       label: Button  
       parameters:          
-        - id: next
-          type: button
-          label: Next
-          widthPercent: 50
         - id: prev
           type: button
           label: Previous
-          widthPercent: 50      
+          widthPercent: 20 
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20       
   - id: hvac
     label: HVAC System
     containers: 
@@ -313,15 +320,20 @@ steps:
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 100
+        - id: figure
+          type: figure
+          label: Figure
+          widthPercent: 100  
     - id: button
       widthPercent: 100 
       label: Button  
       parameters:          
-        - id: next
-          type: button
-          label: Next
-          widthPercent: 50
         - id: prev
           type: button
           label: Previous
-          widthPercent: 50
+          widthPercent: 20
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20
+          

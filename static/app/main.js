@@ -47,7 +47,8 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               $scope.activateStep = function(index) {
                 $scope.activeStepIndex = index;
               };
-              $scope.stepNext = function() {
+              $rootScope.stepNext = function() {
+                console.log("hi");
                 var isError = false;
                 
                 $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
@@ -67,7 +68,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 if ($scope.activeStepIndex < $scope.totalSteps - 1)
                   $scope.activeStepIndex += 1;
               };
-              $scope.stepBack = function() {
+              $rootScope.stepBack = function() {
                 if ($scope.activeStepIndex > 0)
                   $scope.activeStepIndex -= 1;
               };
@@ -125,13 +126,22 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           scope.field.value = scope.field.options[0];
           break;
           case 'table':
-          scope.field.row_heading = scope.field.row_heading.split(', ');
+          if(scope.field.id=='windowTable'){
+            scope.field.row_heading = scope.field.row_heading.split(', ');
           scope.field.column_heading = scope.field.column_heading.split(', ');
           scope.field.value = scope.field.row_heading.map(function(){
             return scope.field.column_heading.map(function(){
               return "";
             });
           });
+          }
+          else if(scope.field.id=='spaceTable'){
+            console.log(scope.field);
+            scope.field.row1 = scope.field.row1.split(', ');
+            scope.field.row2 = scope.field.row2.split(', ');
+             scope.field.column_heading = scope.field.column_heading.split(', ');
+          }
+          
           break;
           case 'dimension':
           scope.field.value={x:0,y:0,area:0};
@@ -151,7 +161,12 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
 
           break;
           case 'button':
-          
+          scope.stepBack =function(){
+            $rootScope.stepBack();
+          }
+          scope.stepNext =function(){
+            $rootScope.stepNext();
+          }
         }
         scope.dialogBox =function(ev){
           $rootScope.Dialog(ev);

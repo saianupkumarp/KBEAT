@@ -196,7 +196,8 @@ header{
 .step-container  .input-area-button {
 	padding: 15px;
 	display: flex;
-	flex-flow: row wrap;	
+	flex-flow: row wrap;
+	justify-content: center;	
 }
 
 .step-container-wrapper {
@@ -211,17 +212,17 @@ header{
 	flex-basis: calc(50% - 20px)
 }
 
-.step-container.flex-button-50 {
+.step-container.flex-button-20 {
 	flex-basis: calc(50% - 20px)
 }
-.flex-button-50{
+.flex-button-20{
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 50%;
     flex: 1 1 50%;
     box-sizing: border-box;
 }
-.flex-button-50{
-    max-width: 50%;
+.flex-button-20{
+    max-width: 10%;
     max-height: 100%;
 }
 .step-container.flex-100 {
@@ -315,12 +316,12 @@ font-size:11px;
 	font-size:12px;
 }
 
-.step-footers {
-	padding: 20px;
+.step-footers-prev {
 	display: flex;
-	justify-content: center;
 }
-
+.step-footers-next {
+	display: flex;
+}
 .shape {
 	position: absolute;
 	top: 50px;
@@ -338,6 +339,12 @@ font-size:11px;
 	background: white;
 	width: auto;
 }
+	.figure {
+		position: initial;
+		width:100%;
+		padding:130px;
+		border:1px solid;
+	}
 
 /*footer {
 	padding: 30px;
@@ -386,7 +393,7 @@ font-size:11px;
 		outline-color: #fff;
 	}
 
-	.step-footers > .button{
+	.step-footers-prev > .button{
 		width: 120px;
 		height: 40px;
 		font-size: 17px;
@@ -396,7 +403,23 @@ font-size:11px;
 		border: none;
 		outline-color: #61a659;
 	}
-	.step-footers > .button:hover{
+	.step-footers-prev > .button:hover{
+		background-color:#fff;
+		color:#61a659;
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+		outline-color: #fff;
+	}
+	.step-footers-next > .button{
+		width: 120px;
+		height: 40px;
+		font-size: 17px;
+		margin: 5px;
+		color: #fff;
+		background-color: #61a659;
+		border: none;
+		outline-color: #61a659;
+	}
+	.step-footers-next > .button:hover{
 		background-color:#fff;
 		color:#61a659;
 		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -509,6 +532,10 @@ font-size:11px;
 	.responsive{
 		margin-left: 1px;
 	}
+	.flex-button-20{
+    max-width: 15%;
+    max-height: 100%;
+}
 	
 }
 @media only screen and (max-width:830px){
@@ -563,7 +590,10 @@ font-size:11px;
 		font-size:10px;
 		padding-left: 10px;
 	}
-	
+	.flex-button-20{
+    max-width: 22%;
+    max-height: 100%;
+}
 }
 
 @media only screen and (max-width:657px){
@@ -597,6 +627,10 @@ font-size:11px;
 	.step-header > .clickable{
 		padding: 15px 4px 0px 0px;
 	}
+	.flex-button-20{
+    max-width: 25%;
+    max-height: 100%;
+}
 }
 @media only screen and (max-width:450px){
 	.step-headers{
@@ -605,11 +639,19 @@ font-size:11px;
 	.md-select-value>span:not(.md-select-icon) .md-text{
 		font-size:10px;
 	}
+	.flex-button-20{
+    max-width: 30%;
+    max-height: 100%;
+}
 }
 @media only screen and (max-width:375px){
 	.step-headers{
 		width:122%;
 	}
+	.flex-button-20{
+    max-width: 35%;
+    max-height: 100%;
+}
 }
 /*Changing in to material containers
 ................................*/

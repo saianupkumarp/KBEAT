@@ -15,7 +15,7 @@
 		</tr>
 	</table>
 </div> -->
-<md-table-container>
+<md-table-container ng-if="field.id=='windowTable'">
   <table md-table md-row-select multiple md-progress="true">
     <thead md-head md-order="query.order">
       <tr md-row>
@@ -30,6 +30,25 @@
         	<input type="text" ng-model="field.value[$index][$parent.$index]">
         </td>
       </tr>
+    </tbody>
+  </table>
+</md-table-container>
+
+
+<md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
+  <table md-table md-row-select multiple md-progress="true">
+    <thead md-head md-order="query.order">
+      <tr md-row>
+        <th md-column md-numeric ng-repeat="heading in field.column_heading track by $index" style="border:1px solid #c1bebd;"><span>{{heading}}</span></th>
+     </tr>
+    </thead>
+    <tbody md-body>
+      <tr md-row md-auto-select >
+        <td style="border:1px solid #c1bebd;" ng-repeat="heading in field.row1 track by $index" md-cell style="padding:0px 5px;">{{heading}}</td>
+     </tr>
+      <tr md-row md-auto-select>
+        <td style="border:1px solid #c1bebd;" ng-repeat="heading in field.row2 track by $index" md-cell style="padding:0px 5px;">{{heading}}</td>
+     </tr>
     </tbody>
   </table>
 </md-table-container>
