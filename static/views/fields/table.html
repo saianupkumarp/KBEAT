@@ -27,6 +27,7 @@
       <tr md-row md-auto-select ng-repeat="heading in field.row_heading track by $index">
         <td md-cell style="padding:0px 5px;">{{heading}}</td>
         <td style="border:1px solid #c1bebd;" md-cell ng-repeat="heading in field.column_heading track by $index">
+        <md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon>
         	<input type="text" ng-model="field.value[$index][$parent.$index]">
         </td>
       </tr>

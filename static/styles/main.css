@@ -704,8 +704,8 @@ md-table-container{
 table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
-table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
-     padding:0px; 
+table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
+ padding: 0 10px 0 0;	
 }
 table.md-table tbody.md-body>tr.md-row{
 	height:25px;
@@ -721,6 +721,12 @@ table.md-table td.md-cell>*, table.md-table th.md-column>*{
 }
 table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric{
 	text-align: center;
+}
+md-icon{
+	height: 15px;
+    width: 15px;
+    min-height: 15px;
+    min-width: 15px;
 }
 /*md-dialog
 .........*/
