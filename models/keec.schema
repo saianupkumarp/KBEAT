@@ -263,8 +263,9 @@ steps:
       parameters:
         - id: spaceTable
           type: table
-          row1: Office, 70, 129, 0.3, 1.5, 0.93, (), () 
-          row2: Corridors Restrooms Stairs, 30, 269, 1, 0.93, 0, (), ()
+          row1: 70, 129, 0.3, 1.5, 0.93, (), () 
+          row2: 30, 269, 1, 0.93, 0, (), ()
+          row_heading: Office, Corridors Restrooms Stairs,
           column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
           label: Space Table 
           widthPercent: 100     

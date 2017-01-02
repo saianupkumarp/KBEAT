@@ -699,7 +699,7 @@ md-select:not([disabled]):focus .md-select-value {
 /*Md-table
 .........*/
 md-table-container{
-	max-width:81%;
+	max-width:90%;
 }
 table.md-table thead.md-head>tr.md-row{
 	height:30px;
@@ -721,6 +721,9 @@ table.md-table td.md-cell>*, table.md-table th.md-column>*{
 }
 table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric{
 	text-align: center;
+}
+table.md-table:not(.md-row-select) td.md-cell:first-child, table.md-table:not(.md-row-select) th.md-column:first-child {
+    padding: 0px 0px 0px 5px;
 }
 md-icon{
 	height: 15px;
