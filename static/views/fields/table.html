@@ -19,51 +19,49 @@
 	<table md-table>
 		<thead md-head md-order="default.order">
 			<tr md-row>
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column>&nbsp;</th> 
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="row1">{{windowTableData.column1}}</th>
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="row2">{{windowTableData.column2}}</th>
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="row3">{{windowTableData.column3}}</th>
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="row4">{{windowTableData.column4}}</th>
-				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="row5">{{windowTableData.column5}}</th>
+				<th  md-column>&nbsp;</th> 
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{windowTableData.row1}}</td>
-				<td style="border:1px solid #c1bebd;" md-cell ng-repeat="value in row1Values track by $index" ng-click="editInput($event,row1Values,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{value}}</span></td>
-			</tr>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{windowTableData.row2}}</td>
-				<td style="border:1px solid #c1bebd;" md-cell ng-repeat="value in row2Values track by $index" ng-click="editInput($event,row2Values,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{value}}</span></td>
-			</tr>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{windowTableData.row3}}</td>
-				<td style="border:1px solid #c1bebd;" md-cell ng-repeat="value in row3Values track by $index" ng-click="editInput($event,row3Values,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{value}}</span></td>
-			</tr>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{windowTableData.row4}}</td>
-				<td style="border:1px solid #c1bebd;" md-cell ng-repeat="value in row4Values track by $index" ng-click="editInput($event,row4Values,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{value}}</span></td>
+			<tr md-row ng-repeat="row in field.combine | orderBy : default.order">
+				<td md-cell><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,0)">{{row[0]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
 			</tr>
 		</tbody>
 	</table>
 </md-table-container>
 
-
 <md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
 	<table md-table>
-		<thead md-head md-order="query.order">
+		<thead md-head md-order="default.order">
 			<tr md-row>
-				<th md-column  ng-repeat="heading in field.column_heading track by $index" style="border:1px solid #c1bebd;text-align:center;" md-order-by="row[$index]"><span>{{heading}}</span></th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
+				<th style="border:1px solid #c1bebd;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{spaceTableData.row_heading1}}</td>
-				<td style="border:1px solid #c1bebd;padding:0px 5px;" ng-repeat="heading in field.row1 track by $index" md-cell ng-click="editInput($event,field.row1,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{heading}}</td>
-			</tr>
-			<tr md-row>
-				<td style="border:1px solid #c1bebd;" md-cell>{{spaceTableData.row_heading2}}</td>
-				<td style="border:1px solid #c1bebd;padding:0px 5px;" ng-repeat="heading in field.row2 track by $index" md-cell 				ng-click="editInput($event,field.row2,$index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon><span style="margin-left:15px;">{{heading}}</td>
+			<tr md-row ng-repeat="row in field.merge | orderBy : default.order">
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,0)">{{row[0]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
+				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,6)">{{row[6]}}</td>
 			</tr>
 		</tbody>
 	</table>

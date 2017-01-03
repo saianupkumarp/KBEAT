@@ -163,8 +163,9 @@ steps:
           widthPercent: 50
         - id: windowTable
           type: table
-          row_heading: (#1), (#2), (#3), (#4), (#5)
           column_heading: South, North, East, West, Glazing Type
+          row1: south.value, North.value, East.value, West.Value, Glazing.value
+          row2: south.value, North.value, East.value, West.value, Glazing.value
           label: Window Table 
           widthPercent: 100
     - id: constructionEdit

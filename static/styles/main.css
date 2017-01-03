@@ -705,7 +705,7 @@ table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
- padding: 0 10px 0 0;	
+ text-align:center;	
 }
 table.md-table tbody.md-body>tr.md-row{
 	height:25px;

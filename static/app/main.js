@@ -124,38 +124,37 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           scope.field.value = scope.field.options[0];
           break;
           case 'table':
-          if(scope.field.id=='windowTable'){
-            scope.windowTableData={};
-            scope.field.row_heading = scope.field.row_heading.split(', ');
+          if(scope.field.id =='windowTable'){
+            scope.field.row1 = scope.field.row1.split(', ');
+            scope.field.row2 = scope.field.row2.split(', ');
             scope.field.column_heading = scope.field.column_heading.split(', ');
-            scope.windowTableData.row1 =  scope.field.row_heading[0];
-            scope.windowTableData.row2 =  scope.field.row_heading[1];
-            scope.windowTableData.row3 =  scope.field.row_heading[2];
-            scope.windowTableData.row4 =  scope.field.row_heading[3];
-            scope.windowTableData.column1 =  scope.field.column_heading[0];
-            scope.windowTableData.column2 =  scope.field.column_heading[1];
-            scope.windowTableData.column3 =  scope.field.column_heading[2];
-            scope.windowTableData.column4 =  scope.field.column_heading[3];
-            scope.windowTableData.column5 =  scope.field.column_heading[4];
-            scope.field.value = scope.field.row_heading.map(function(){
+            scope.field.row = [];
+            scope.field.row.splice(0,0,scope.field.row1,scope.field.row2);
+            scope.field.value = scope.field.row.map(function()
+            {
               return scope.field.column_heading.map(function(){
                 return "";
               });
             });
-            scope.row1Values = scope.field.value[0];
-            scope.row2Values = scope.field.value[1];
-            scope.row3Values = scope.field.value[2];
-            scope.row4Values = scope.field.value[3];
-            scope.row5Values = scope.field.value[4];
+            scope.field.value1=scope.field.value[0].reduce(function(o,v,i){
+              o[i] = v;
+              return o;
+            },{});
+            scope.field.value2=scope.field.value[1].reduce(function(o,v,i){
+              o[i] = v;
+              return o;
+            },{});
+            scope.field.combine = [];
+            scope.field.combine.splice(0,0,scope.field.value1,scope.field.value2);
             scope.default = {
-              order: 'South'
+              order: '[0]'
             };
-            scope.editInput = function (event, value, $index) {
+            scope.editInput = function (event, value, index) {
               var editDialog = {
-                modelValue: value[$index],
+                modelValue: value[index],
                 placeholder: 'enter some Input',
                 save: function (input) {
-                  value[$index] = input.$modelValue;
+                  value[index] = input.$modelValue;
                 },
                 targetEvent: event,
                 title: 'Edit Field',
@@ -168,22 +167,31 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             };
           }
           else if(scope.field.id=='spaceTable'){
-             scope.spaceTableData={};
             scope.field.row_heading = scope.field.row_heading.split(', ');
-            scope.spaceTableData.row_heading1 = scope.field.row_heading[0];
-            scope.spaceTableData.row_heading2 = scope.field.row_heading[1];
             scope.field.row1 = scope.field.row1.split(', ');
+            scope.field.row1.splice(0,0, scope.field.row_heading[0]);
             scope.field.row2 = scope.field.row2.split(', ');
+            scope.field.row2.splice(0,0, scope.field.row_heading[1]);
             scope.field.column_heading = scope.field.column_heading.split(', ');
+            scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
+              o[i] = v;
+              return o;
+            },{});
+            scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
+              o[i] = v;
+              return o;
+            },{});
+            scope.field.merge = [];
+            scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
             scope.default = {
-              order: 'Present Area'
+              order: '[0]'
             };
-            scope.editInput = function (event, value, $index) {
+            scope.editInput = function (event, value, index) {
               var editDialog = {
-                modelValue: value[$index],
+                modelValue: value[index],
                 placeholder: 'enter some Input',
                 save: function (input) {
-                  value[$index] = input.$modelValue;
+                  value[index] = input.$modelValue;
                 },
                 targetEvent: event,
                 title: 'Edit Field',
