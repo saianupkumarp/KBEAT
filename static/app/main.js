@@ -165,6 +165,10 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               var promise;
               promise = $mdEditDialog.large(editDialog);
             };
+             scope.selectedTableRow = null;
+            scope.selectRow = function (index) {
+              scope.selectedTableRow = index;
+            }
           }
           else if(scope.field.id=='spaceTable'){
             scope.field.row_heading = scope.field.row_heading.split(', ');
