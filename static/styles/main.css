@@ -42,16 +42,15 @@ table {
 	border-spacing: 0;
 }
 html.md-default-theme, html, body.md-default-theme, body {
-	/*background-color: #fff;*/
 	color: #666;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
 	 /*image background
 	 ..............*/
-
 	 background-image: url(/keec/assets/img/infographic.jpg);
-	 background-size: 100% 107%;
+	 background-size: 100% 110%;
 	 background-repeat: no-repeat;
+	 /*background-position:center;*/
 	 /*....................*/
 	}
 
@@ -144,7 +143,7 @@ header{
 	flex: 1;
 }
 .step-container > .body {
-	background: rgba(255,255,255,0.9);
+	background: rgb(249, 249, 246);
 	position: relative;
 	opacity: 0.8;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -503,12 +502,64 @@ font-size:11px;
 .buildInfo{
 	height:145px !important;
 }
+md-select{
+	margin:0px;
+	width:100%;
+}
 .responsive{
 	margin-left: 20px;
+}
+@media only screen and (min-width: 1900px) {
+	.step-container {
+		padding: 35px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
+}
+@media only screen and (min-width: 1800px) {
+	.step-container {
+		padding: 30px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
+}
+@media only screen and (min-width: 1600px) {
+	.step-container {
+		padding: 25px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
 }
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
 		font-size:10px;
+	}
+}
+@media only screen and (max-width: 1280px) {
+	.step-container {
+		padding: 20px;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
 	}
 }
 @media only screen and (max-width: 1217px) {
@@ -521,6 +572,13 @@ font-size:11px;
 	.flex-button-50{
 		max-width:100%;
 	}
+	/*image background
+	..............*/
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 185%;
+		background-position:center;
+	}
+	/*.............*/
 }
 @media only screen and (max-width:1140px){
 	.dimension-wrapper .flex-50{
@@ -594,6 +652,13 @@ font-size:11px;
 		max-width: 22%;
 		max-height: 100%;
 	}
+	/*image background
+	..............*/
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 225%;
+		background-position:center;
+	}
+	/*............*/
 }
 
 @media only screen and (max-width:657px){
@@ -655,10 +720,7 @@ font-size:11px;
 }
 /*Changing in to material containers
 ................................*/
-md-select{
-	margin:0px;
-	width:100%;
-}
+
 @media only screen and (max-width:524px){
 	md-select{
 		width:64%;
