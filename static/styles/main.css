@@ -42,32 +42,37 @@ table {
 	border-spacing: 0;
 }
 html.md-default-theme, html, body.md-default-theme, body {
-	background-color: #fff;
 	color: #666;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
-}
+	 /*image background
+	 ..............*/
+	 background-image: url(/keec/assets/img/infographic.jpg);
+	 background-size: 100% 110%;
+	 background-repeat: no-repeat;
+	 /*background-position:center;*/
+	 /*....................*/
+	}
 
-* {
-	box-sizing: border-box;
-}
+	* {
+		box-sizing: border-box;
+	}
 
-.main-container {
-	display: flex;
-	flex-direction: column;
-
- /*image background
- ..............*/
-
+<<<<<<< HEAD
 	background-image: url(/keec/assets/img/infographic.jpg);
 	background-size: cover;
 	/*....................*/
+=======
+	.main-container {
+		display: flex;
+		flex-direction: column;
+>>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
 
 /*video background
 ..................*/
-position:absolute;
+/*position:absolute;
 width:100%;
-min-height:100%;
+min-height:100%;*/
 /*..............*/
 }
 
@@ -144,7 +149,7 @@ header{
 	flex: 1;
 }
 .step-container > .body {
-	background: rgba(255,255,255,0.9);
+	background: rgb(249, 249, 246);
 	position: relative;
 	opacity: 0.8;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -216,14 +221,14 @@ header{
 	flex-basis: calc(50% - 20px)
 }
 .flex-button-20{
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 1 50%;
-    flex: 1 1 50%;
-    box-sizing: border-box;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 50%;
+	flex: 1 1 50%;
+	box-sizing: border-box;
 }
 .flex-button-20{
-    max-width: 10%;
-    max-height: 100%;
+	max-width: 10%;
+	max-height: 100%;
 }
 .step-container.flex-100 {
 	flex-basis: calc(100% - 20px);
@@ -232,12 +237,12 @@ header{
 	flex-basis: calc(100% - 20px);
 }
 .flex-button-100 {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 1 100%;
-    flex: 1 1 100%;
-    max-width: 100%;
-    max-height: 100%;
-    box-sizing: border-box;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1 1 100%;
+	flex: 1 1 100%;
+	max-width: 100%;
+	max-height: 100%;
+	box-sizing: border-box;
 }
 .input-container {
 	display: flex;
@@ -339,12 +344,12 @@ font-size:11px;
 	background: white;
 	width: auto;
 }
-	.figure {
-		position: initial;
-		width:100%;
-		padding:130px;
-		border:1px solid;
-	}
+.figure {
+	position: initial;
+	width:100%;
+	padding:130px;
+	border:1px solid;
+}
 
 /*footer {
 	padding: 30px;
@@ -503,12 +508,64 @@ font-size:11px;
 .buildInfo{
 	height:145px !important;
 }
+md-select{
+	margin:0px;
+	width:100%;
+}
 .responsive{
 	margin-left: 20px;
+}
+@media only screen and (min-width: 1900px) {
+	.step-container {
+		padding: 35px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
+}
+@media only screen and (min-width: 1800px) {
+	.step-container {
+		padding: 30px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
+}
+@media only screen and (min-width: 1600px) {
+	.step-container {
+		padding: 25px;
+	}
+	md-select{
+		margin:0px;
+		width:100%;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
+	}
 }
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
 		font-size:10px;
+	}
+}
+@media only screen and (max-width: 1280px) {
+	.step-container {
+		padding: 20px;
+	}
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 100%;
+		background-position:center;
 	}
 }
 @media only screen and (max-width: 1217px) {
@@ -521,7 +578,14 @@ font-size:11px;
 	.flex-button-50{
 		max-width:100%;
 	}
+	/*image background
+	..............*/
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 185%;
+		background-position:center;
 	}
+	/*.............*/
+}
 @media only screen and (max-width:1140px){
 	.dimension-wrapper .flex-50{
 		flex-basis:50%;
@@ -533,10 +597,17 @@ font-size:11px;
 		margin-left: 1px;
 	}
 	.flex-button-20{
+<<<<<<< HEAD
     max-width: 15%;
     max-height: 100%;
 }
 
+=======
+		max-width: 15%;
+		max-height: 100%;
+	}
+	
+>>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
 }
 @media only screen and (max-width:830px){
 	.step-header  .label{
@@ -559,7 +630,7 @@ font-size:11px;
 	md-select{
 		width:100%;
 	}
-	}
+}
 @media only screen and (max-width:708px){
 	.single-input-box.flex-33 {
 		flex: 1;
@@ -591,9 +662,16 @@ font-size:11px;
 		padding-left: 10px;
 	}
 	.flex-button-20{
-    max-width: 22%;
-    max-height: 100%;
-}
+		max-width: 22%;
+		max-height: 100%;
+	}
+	/*image background
+	..............*/
+	html.md-default-theme, html, body.md-default-theme, body {
+		background-size: 100% 225%;
+		background-position:center;
+	}
+	/*............*/
 }
 
 @media only screen and (max-width:657px){
@@ -607,7 +685,7 @@ font-size:11px;
 	}
 }
 @media only screen and (max-width:605px){
-		.shape {
+	.shape {
 		position: initial;
 		width:100%;
 		padding:95px;
@@ -628,9 +706,9 @@ font-size:11px;
 		padding: 15px 4px 0px 0px;
 	}
 	.flex-button-20{
-    max-width: 25%;
-    max-height: 100%;
-}
+		max-width: 25%;
+		max-height: 100%;
+	}
 }
 @media only screen and (max-width:450px){
 	.step-headers{
@@ -640,25 +718,22 @@ font-size:11px;
 		font-size:10px;
 	}
 	.flex-button-20{
-    max-width: 30%;
-    max-height: 100%;
-}
+		max-width: 30%;
+		max-height: 100%;
+	}
 }
 @media only screen and (max-width:375px){
 	.step-headers{
 		width:122%;
 	}
 	.flex-button-20{
-    max-width: 35%;
-    max-height: 100%;
-}
+		max-width: 35%;
+		max-height: 100%;
+	}
 }
 /*Changing in to material containers
 ................................*/
-md-select{
-	margin:0px;
-	width:100%;
-}
+
 @media only screen and (max-width:524px){
 	md-select{
 		width:64%;
@@ -705,10 +780,14 @@ table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
+<<<<<<< HEAD
  text-align:center;
 }
 table.md-table tbody.md-body>tr.md-row{
 	height:25px;
+=======
+	text-align:center;	
+>>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
 }
 table.md-table{
 	border:1px solid #c1bebd;
@@ -723,13 +802,21 @@ table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric{
 	text-align: center;
 }
 table.md-table:not(.md-row-select) td.md-cell:first-child, table.md-table:not(.md-row-select) th.md-column:first-child {
-    padding: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 5px;
+}
+table.md-table tbody.md-body>tr.md-row, table.md-table tfoot.md-foot>tr.md-row :focus {
+	outline:green;
 }
 md-icon{
 	height: 15px;
-    width: 15px;
-    min-height: 15px;
-    min-width: 15px;
+	width: 15px;
+	min-height: 15px;
+	min-width: 15px;
+}
+.selectedTableRow{
+	background:green;
+	box-shadow: 3px 8px 5px #888;
+	outline-color: #fff;
 }
 /*md-dialog
 .........*/

@@ -28,8 +28,8 @@
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row ng-repeat="row in field.combine | orderBy : default.order">
-				<td md-cell><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
+			<tr md-row ng-repeat="row in field.combine | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
+				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></a></td>
 				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,0)">{{row[0]}}</td>
 				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
 				<td style="border:1px solid #c1bebd;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
