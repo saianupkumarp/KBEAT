@@ -58,15 +58,12 @@ html.md-default-theme, html, body.md-default-theme, body {
 		box-sizing: border-box;
 	}
 
-<<<<<<< HEAD
 	background-image: url(/keec/assets/img/infographic.jpg);
 	background-size: cover;
 	/*....................*/
-=======
 	.main-container {
 		display: flex;
 		flex-direction: column;
->>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
 
 /*video background
 ..................*/
@@ -601,13 +598,9 @@ md-select{
     max-width: 15%;
     max-height: 100%;
 }
-
-=======
 		max-width: 15%;
 		max-height: 100%;
 	}
-	
->>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
 }
 @media only screen and (max-width:830px){
 	.step-header  .label{
@@ -780,14 +773,11 @@ table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
-<<<<<<< HEAD
  text-align:center;
 }
 table.md-table tbody.md-body>tr.md-row{
 	height:25px;
-=======
-	text-align:center;	
->>>>>>> f6336d289011d18e3c726943eef6c015156d6bd6
+	text-align:center;
 }
 table.md-table{
 	border:1px solid #c1bebd;
