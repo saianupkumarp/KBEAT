@@ -518,7 +518,7 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 100%;
+		background-size: 100% 150%;
 		background-position:center;
 	}
 }
@@ -531,7 +531,7 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 100%;
+		background-size: 100% 150%;
 		background-position:center;
 	}
 }
@@ -544,7 +544,7 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 100%;
+		background-size: 100% 150%;
 		background-position:center;
 	}
 }
@@ -554,9 +554,6 @@ md-select{
 	}
 }
 @media only screen and (max-width: 1280px) {
-	.step-container {
-		padding: 20px;
-	}
 	html.md-default-theme, html, body.md-default-theme, body {
 		background-size: 100% 100%;
 		background-position:center;
@@ -656,7 +653,7 @@ md-select{
 	..............*/
 	html.md-default-theme, html, body.md-default-theme, body {
 		background-size: 100% 225%;
-		background-position:center;
+		background-position:inherit;
 	}
 	/*............*/
 }

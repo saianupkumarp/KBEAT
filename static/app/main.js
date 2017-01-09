@@ -112,7 +112,26 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
          scope.getTemplateUrl = function () {
           return '/keec/assets/views/fields/' + scope.field.type + '.html';
         };
-
+        scope.editInput = function (event, value, index) {
+          var editDialog = {
+            modelValue: value[index],
+            placeholder: 'enter some Input',
+            save: function (input) {
+              value[index] = input.$modelValue;
+            },
+            targetEvent: event,
+            title: 'Edit Field',
+            validators: {
+              'md-maxlength': 30
+            }
+          };
+          var promise;
+          promise = $mdEditDialog.large(editDialog);
+        };
+        scope.selectedTableRow = null;
+        scope.selectRow = function (index) {
+          scope.selectedTableRow = index;
+        }
         switch(scope.field.type) {
           case 'dropdown':
           scope.field.options = scope.field.options.split(', '); 
@@ -149,26 +168,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             scope.default = {
               order: '[0]'
             };
-            scope.editInput = function (event, value, index) {
-              var editDialog = {
-                modelValue: value[index],
-                placeholder: 'enter some Input',
-                save: function (input) {
-                  value[index] = input.$modelValue;
-                },
-                targetEvent: event,
-                title: 'Edit Field',
-                validators: {
-                  'md-maxlength': 30
-                }
-              };
-              var promise;
-              promise = $mdEditDialog.large(editDialog);
-            };
-             scope.selectedTableRow = null;
-            scope.selectRow = function (index) {
-              scope.selectedTableRow = index;
-            }
           }
           else if(scope.field.id=='spaceTable'){
             scope.field.row_heading = scope.field.row_heading.split(', ');
@@ -189,22 +188,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
             scope.default = {
               order: '[0]'
-            };
-            scope.editInput = function (event, value, index) {
-              var editDialog = {
-                modelValue: value[index],
-                placeholder: 'enter some Input',
-                save: function (input) {
-                  value[index] = input.$modelValue;
-                },
-                targetEvent: event,
-                title: 'Edit Field',
-                validators: {
-                  'md-maxlength': 30
-                }
-              };
-              var promise;
-              promise = $mdEditDialog.large(editDialog);
             };
           }
 
