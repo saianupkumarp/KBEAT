@@ -7,8 +7,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -19,7 +19,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
+article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -58,9 +58,6 @@ html.md-default-theme, html, body.md-default-theme, body {
 		box-sizing: border-box;
 	}
 
-	background-image: url(/keec/assets/img/infographic.jpg);
-	background-size: cover;
-	/*....................*/
 	.main-container {
 		display: flex;
 		flex-direction: column;
@@ -74,7 +71,7 @@ min-height:100%;*/
 }
 
 header{
-	height:60px;
+	height:60px;    
 	background-image: url("/keec/assets/img/logo/logo.svg");
 	background-size: 160px;
 	background-repeat: no-repeat;
@@ -150,7 +147,7 @@ header{
 	position: relative;
 	opacity: 0.8;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	transition: 0.6s;
+	transition: 0.6s; 
 }
 .step-container > .body:hover {
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -199,7 +196,7 @@ header{
 	padding: 15px;
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: center;
+	justify-content: center;	
 }
 
 .step-container-wrapper {
@@ -429,7 +426,7 @@ font-size:11px;
 	}
 	.single-input-box.flex-33 {
 		flex: 1;
-		flex-basis: 33%;
+		flex-basis: 33%; 
 	}
 
 	.single-input-box {
@@ -470,7 +467,7 @@ font-size:11px;
 	}
 	md-radio-button .md-off{
 		border-color: green;
-	}
+	} 
 	md-radio-group:not([disabled]) .md-primary .md-on{
 		background-color: green;
 	}
@@ -538,6 +535,20 @@ md-select{
 		background-position:center;
 	}
 }
+@media only screen and (min-width:1400px){
+	.step-container  .input-area{
+		padding: 50px 0 50px 0;
+	}
+	.input-container{
+		margin-bottom: 40px;
+	}
+	.buildInfo{
+		height:275px !important;
+	}
+	.shape{
+		right:1px;
+	}
+}
 @media only screen and (min-width: 1600px) {
 	.step-container {
 		padding: 25px;
@@ -550,6 +561,7 @@ md-select{
 		background-size: 100% 150%;
 		background-position:center;
 	}
+
 }
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
@@ -591,13 +603,10 @@ md-select{
 		margin-left: 1px;
 	}
 	.flex-button-20{
-<<<<<<< HEAD
-    max-width: 15%;
-    max-height: 100%;
-}
 		max-width: 15%;
 		max-height: 100%;
 	}
+	
 }
 @media only screen and (max-width:830px){
 	.step-header  .label{
@@ -754,6 +763,9 @@ md-select .md-select-value.md-select-placeholder {
 md-select .md-select-value {
 	border: 1px solid green;
 }
+md-select.md-table-select>.md-select-value {
+	border: 1px solid green !important;
+}
 md-select:not([disabled]):focus .md-select-value {
 	border: 1px solid green !important;
 }
@@ -770,11 +782,7 @@ table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
- text-align:center;
-}
-table.md-table tbody.md-body>tr.md-row{
-	height:25px;
-	text-align:center;
+	text-align:center;	
 }
 table.md-table{
 	border:1px solid #c1bebd;
@@ -801,7 +809,6 @@ md-icon{
 	min-width: 15px;
 }
 .selectedTableRow{
-	background:green;
 	box-shadow: 3px 8px 5px #888;
 	outline-color: #fff;
 }
@@ -817,3 +824,4 @@ md-dialog{
 	padding: 14px;
 	margin-bottom: 10px;
 }
+

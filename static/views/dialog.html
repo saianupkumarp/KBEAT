@@ -6,7 +6,7 @@
  		<div ng-class="{'input-container':true}" flex="50" flex-sm="100" flex-xs="100">
  			<label style="max-width:140px;">{{conDialog.parameters[0].label}}</label>
  			<md-select id="{{conDialog.parameters[0].id}}" ng-model="conDialog.parameters[0].value">
- 				<md-option ng-value="option" ng-repeat="option in conDialog.parameters[0].options track by $index" ng-selected="$first">{{conDialog.parameters[0].values[$index]}}</md-option>
+ 				<md-option ng-value="option" ng-repeat="option in conDialog.options0 track by $index" ng-selected="$first">{{conDialog.values0[$index]}}</md-option>
  			</md-select>
  			<div class="label-suffix" ng-if="conDialog.parameters[0].label_suffix">{{conDialog.parameters[0].label_suffix}}</div>
  			<input ng-if="conDialog.parameters[0].edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
@@ -14,7 +14,7 @@
  		<div ng-class="{'input-container':true}" flex="50" flex-sm="100" flex-xs="100">
  			<label style="max-width:140px;">{{conDialog.parameters[1].label}}</label>
  			<md-select id="{{conDialog.parameters[1].id}}" ng-model="conDialog.parameters[1].value">
- 				<md-option ng-value="option" ng-repeat="option in conDialog.parameters[1].options track by $index" ng-selected="$first">{{conDialog.parameters[1].values[$index]}}</md-option>
+ 				<md-option ng-value="option" ng-repeat="option in conDialog.options1 track by $index" ng-selected="$first">{{conDialog.values1[$index]}}</md-option>
  			</md-select>
  			<div class="label-suffix" ng-if="conDialog.parameters[1].label_suffix">{{conDialog.parameters[1].label_suffix}}</div>
  			<input ng-if="conDialog.parameters[1].edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
@@ -38,7 +38,7 @@
  		<div ng-class="{'input-container':true}" flex="50" flex-sm="100" flex-xs="100">
  			<label style="max-width:140px;">{{conDialog.parameters[4].label}}</label>
  			<md-select id="{{conDialog.parameters[4].id}}" ng-model="conDialog.parameters[4].value">
- 				<md-option ng-value="option" ng-repeat="option in conDialog.parameters[4].options" ng-selected="$first">{{conDialog.parameters[4].values[$index]}}</md-option>
+ 				<md-option ng-value="option" ng-repeat="option in conDialog.options4" ng-selected="$first">{{conDialog.values4[$index]}}</md-option>
  			</md-select>
  			<div class="label-suffix" ng-if="conDialog.parameters[4].label_suffix">{{conDialog.parameters[4].label_suffix}}</div>
  			<input ng-if="conDialog.parameters[4].edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
@@ -58,8 +58,12 @@
  			<input ng-if="conDialog.parameters[6].edit" class="Edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
  		</div>
  	</div>
- 	<div class="step-footers">
-		<input class="button" type="button" ng-click="stepBack()" value="Save">
-		<input class="button" type="button" ng-click="hide()" value="Cancel">
-	</div>
+ 	<div layout="row" layout-align="center center">
+ 		<div class="step-footers-prev" style="position:relative;bottom:0;">
+ 			<input class="button" type="button" ng-click="stepBack()" value="Save">		
+ 		</div>
+ 		<div class="step-footers-next" style="position:relative;bottom:0;">
+ 			<input class="button" type="button" ng-click="stepNext()" value="Cancel">		
+ 		</div>
+ 	</div>
  </div>

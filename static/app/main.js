@@ -54,6 +54,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                     parameter.error = false;
                     if (parameter.type != 'shape' && (parameter.value===null || parameter.value===""))
                     {
+                      console.log("first time working");
                       parameter.error = true;
                       isError = true;
                     }
@@ -64,17 +65,24 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                   return;
                 
                 if ($scope.activeStepIndex < $scope.totalSteps - 1)
-                  $scope.activeStepIndex += 1;
+                  console.log("working");
+                $scope.activeStepIndex += 1;
               };
               $rootScope.stepBack = function() {
                 if ($scope.activeStepIndex > 0)
                   $scope.activeStepIndex -= 1;
               };
-              $rootScope.Dialog=function(ev){
+              $rootScope.Dialog = function(ev){
                 $mdDialog.show( {
                   controller: function($scope, $mdDialog) {
-                    $scope.conDialog=$rootScope.constructionDialog;
-                    $scope.winDialog=$rootScope.windowDialog; 
+                    $scope.conDialog = $rootScope.constructionDialog;
+                    $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
+                    $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
+                    $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
+                    $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
+                    $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
+                    $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
+                    $scope.winDialog = $rootScope.windowDialog; 
                     $scope.hide = function() {
                       $mdDialog.hide();
                     };
@@ -115,12 +123,28 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         scope.editInput = function (event, value, index) {
           var editDialog = {
             modelValue: value[index],
-            placeholder: 'enter some Input',
+            placeholder: 'Enter Input',
             save: function (input) {
               value[index] = input.$modelValue;
             },
             targetEvent: event,
             title: 'Edit Field',
+            validators: {
+              'md-maxlength': 30
+            }
+          };
+          var promise;
+          promise = $mdEditDialog.large(editDialog);
+        };
+        scope.editInputValue = function (event, value) {
+          var editDialog = {
+            modelValue: value.item,
+            placeholder: 'Enter Value',
+            save: function (input) {
+              value.item = input.$modelValue;
+            },
+            targetEvent: event,
+            title: 'Edit Value',
             validators: {
               'md-maxlength': 30
             }
@@ -144,30 +168,29 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           break;
           case 'table':
           if(scope.field.id =='windowTable'){
-            scope.field.row1 = scope.field.row1.split(', ');
-            scope.field.row2 = scope.field.row2.split(', ');
-            scope.field.column_heading = scope.field.column_heading.split(', ');
-            scope.field.row = [];
-            scope.field.row.splice(0,0,scope.field.row1,scope.field.row2);
-            scope.field.value = scope.field.row.map(function()
-            {
-              return scope.field.column_heading.map(function(){
-                return "";
-              });
-            });
-            scope.field.value1=scope.field.value[0].reduce(function(o,v,i){
-              o[i] = v;
-              return o;
-            },{});
-            scope.field.value2=scope.field.value[1].reduce(function(o,v,i){
-              o[i] = v;
-              return o;
-            },{});
-            scope.field.combine = [];
-            scope.field.combine.splice(0,0,scope.field.value1,scope.field.value2);
-            scope.default = {
-              order: '[0]'
-            };
+            scope.count = 0;
+            scope.field0 = {};
+            scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
+            scope.field0.glazingValues = scope.field.glazingValues.split(', ');
+            scope.field0.glazingValue; 
+            scope.field0.options = scope.field.options.split(', ');
+            scope.field0.values = scope.field.values.split(', ');
+            scope.field0.value;
+            scope.combine = [];
+            scope.combine.splice(0,0,scope.field0);
+            scope.addRow = function(){
+              scope.count+=1;
+              if(scope.count<=3){
+                scope.field1 ={};
+                scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
+                scope.field1.glazingValues = scope.field.glazingValues.split(', ');
+                scope.field1.glazingValue; 
+                scope.field1.options = scope.field.options.split(', ');
+                scope.field1.values = scope.field.values.split(', ');
+                scope.field1.value;
+                scope.combine.splice(scope.count,0,scope.field1);
+              }
+            }
           }
           else if(scope.field.id=='spaceTable'){
             scope.field.row_heading = scope.field.row_heading.split(', ');
