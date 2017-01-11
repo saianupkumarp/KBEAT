@@ -1,8 +1,9 @@
 <div class="step-content" layout="column">
 	<div class="step-headers">
 		<div class="step-header" ng-repeat="step in model.steps">
-			<div ng-class="{clickable:true, active:$index==activeStepIndex}" ng-click="activateStep($index)">
-				<div class="number">{{$index+1}}</div>
+			<div ng-class="{clickable:true, active:$index==activeStepIndex}">
+<!-- 			ng-click="activateStep($index)"
+ -->				<div class="number">{{$index+1}}</div>
 				<div class="label">{{step.label}}</div>
 			</div>
 			<div class="line" ng-if="$index != model.steps.length-1"></div>

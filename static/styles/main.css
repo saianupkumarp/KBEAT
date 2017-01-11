@@ -781,11 +781,18 @@ md-table-container{
 table.md-table thead.md-head>tr.md-row{
 	height:30px;
 }
+table.md-table td.md-cell{
+	border-top: 1px solid green;
+}
+table.md-table th.md-column {
+	color: green;
+}
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
 	text-align:center;	
+	border:1px solid green !important;
 }
 table.md-table{
-	border:1px solid #c1bebd;
+	border:1px solid green;
 }
 table.md-table td.md-cell>*, table.md-table th.md-column>*{
 	border: none;

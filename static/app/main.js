@@ -44,13 +44,16 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             controller: function($scope, $rootScope, $mdDialog){
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
+              console.log($rootScope.model.steps);
               $scope.activateStep = function(index) {
                 $scope.activeStepIndex = index;
               };
               $rootScope.stepNext = function() {
-                var isError = false;
+               /* var isError = false;
                 $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+                  console.log(container);
                   container.parameters.forEach(function(parameter){
+                    console.log(parameter);
                     parameter.error = false;
                     if (parameter.type != 'shape' && (parameter.value===null || parameter.value===""))
                     {
@@ -58,14 +61,14 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                       parameter.error = true;
                       isError = true;
                     }
+                    console.log(isError);
                   });
                 });
 
                 if (isError)
-                  return;
+                return;*/
                 
                 if ($scope.activeStepIndex < $scope.totalSteps - 1)
-                  console.log("working");
                 $scope.activeStepIndex += 1;
               };
               $rootScope.stepBack = function() {
@@ -103,157 +106,158 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         $urlRouterProvider.otherwise('/keec/');
       })
 
-    .directive('field', function ($mdDialog,$rootScope,$mdEditDialog) {
-      return {
-        restrict: 'E',
-        replace: true,
-        scope: {
-          field: '=',
-          container: '=',
+.directive('field', function ($mdDialog,$rootScope,$mdEditDialog) {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      field: '=',
+      container: '=',
+    },
+    template: '<div ng-include="getTemplateUrl()"></div>',
+    transclude: false,
+
+    link: function (scope, element, attrs) {
+     scope.field.type = scope.field.type || 'text';
+     scope.field.value = null;
+     scope.getTemplateUrl = function () {
+      return '/keec/assets/views/fields/' + scope.field.type + '.html';
+    };
+    scope.editInput = function (event, value, index) {
+      var editDialog = {
+        modelValue: value[index],
+        placeholder: 'Enter Input',
+        save: function (input) {
+          value[index] = input.$modelValue;
         },
-        template: '<div ng-include="getTemplateUrl()"></div>',
-        transclude: false,
-
-        link: function (scope, element, attrs) {
-         scope.field.type = scope.field.type || 'text';
-         scope.field.value = null;
-         scope.getTemplateUrl = function () {
-          return '/keec/assets/views/fields/' + scope.field.type + '.html';
-        };
-        scope.editInput = function (event, value, index) {
-          var editDialog = {
-            modelValue: value[index],
-            placeholder: 'Enter Input',
-            save: function (input) {
-              value[index] = input.$modelValue;
-            },
-            targetEvent: event,
-            title: 'Edit Field',
-            validators: {
-              'md-maxlength': 30
-            }
-          };
-          var promise;
-          promise = $mdEditDialog.large(editDialog);
-        };
-        scope.editInputValue = function (event, value) {
-          var editDialog = {
-            modelValue: value.item,
-            placeholder: 'Enter Value',
-            save: function (input) {
-              value.item = input.$modelValue;
-            },
-            targetEvent: event,
-            title: 'Edit Value',
-            validators: {
-              'md-maxlength': 30
-            }
-          };
-          var promise;
-          promise = $mdEditDialog.large(editDialog);
-        };
-        scope.selectedTableRow = null;
-        scope.selectRow = function (index) {
-          scope.selectedTableRow = index;
+        targetEvent: event,
+        title: 'Edit Field',
+        validators: {
+          'md-maxlength': 30
         }
-        switch(scope.field.type) {
-          case 'dropdown':
-          scope.field.options = scope.field.options.split(', '); 
-          scope.field.values = scope.field.values.split(', '); 
-          scope.field.value = scope.field.values[0];
-          break;
-          case 'radio':
-          scope.field.options = scope.field.options.split(', '); 
-          scope.field.value = scope.field.options[0];
-          break;
-          case 'table':
-          if(scope.field.id =='windowTable'){
-            scope.count = 0;
-            scope.field0 = {};
-            scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
-            scope.field0.glazingValues = scope.field.glazingValues.split(', ');
-            scope.field0.glazingValue; 
-            scope.field0.options = scope.field.options.split(', ');
-            scope.field0.values = scope.field.values.split(', ');
-            scope.field0.value;
-            scope.combine = [];
-            scope.combine.splice(0,0,scope.field0);
-            scope.addRow = function(){
-              scope.count+=1;
-              if(scope.count<=3){
-                scope.field1 ={};
-                scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
-                scope.field1.glazingValues = scope.field.glazingValues.split(', ');
-                scope.field1.glazingValue; 
-                scope.field1.options = scope.field.options.split(', ');
-                scope.field1.values = scope.field.values.split(', ');
-                scope.field1.value;
-                scope.combine.splice(scope.count,0,scope.field1);
-              }
-            }
-          }
-          else if(scope.field.id=='spaceTable'){
-            scope.field.row_heading = scope.field.row_heading.split(', ');
-            scope.field.row1 = scope.field.row1.split(', ');
-            scope.field.row1.splice(0,0, scope.field.row_heading[0]);
-            scope.field.row2 = scope.field.row2.split(', ');
-            scope.field.row2.splice(0,0, scope.field.row_heading[1]);
-            scope.field.column_heading = scope.field.column_heading.split(', ');
-            scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
-              o[i] = v;
-              return o;
-            },{});
-            scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
-              o[i] = v;
-              return o;
-            },{});
-            scope.field.merge = [];
-            scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
-            scope.default = {
-              order: '[0]'
-            };
-          }
-
-          break;
-          case 'dimension':
-          scope.field.value={x:0,y:0,area:0};
-          scope.y = scope.container.parameters.filter(function(p){
-            return p.id == scope.field.relatedY;
-          })[0];
-          scope.area = scope.container.parameters.filter(function(p){
-            return p.id == scope.field.relatedArea;
-          })[0];
-
-          scope.$watch('field.value.x', function(){
-            scope.field.value.area = scope.field.value.x * scope.field.value.y;
-          });
-          scope.$watch('field.value.y', function(){
-            scope.field.value.area = scope.field.value.x * scope.field.value.y;
-          });
-
-          break;
-          case 'button':
-          scope.stepBack =function(){
-            $rootScope.stepBack();
-          }
-          scope.stepNext =function(){
-            $rootScope.stepNext();
+      };
+      var promise;
+      promise = $mdEditDialog.large(editDialog);
+    };
+    scope.editInputValue = function (event, value) {
+      var editDialog = {
+        modelValue: value.item,
+        placeholder: 'Enter Value',
+        save: function (input) {
+          value.item = input.$modelValue;
+        },
+        targetEvent: event,
+        title: 'Edit Value',
+        validators: {
+          'md-maxlength': 30
+        }
+      };
+      var promise;
+      promise = $mdEditDialog.large(editDialog);
+    };
+    scope.selectedTableRow = null;
+    scope.selectRow = function (index) {
+      scope.selectedTableRow = index;
+    }
+    switch(scope.field.type) {
+      case 'dropdown':
+      scope.field.options = scope.field.options.split(', '); 
+      scope.field.values = scope.field.values.split(', '); 
+      scope.field.value = scope.field.values[0];
+      break;
+      case 'radio':
+      scope.field.options = scope.field.options.split(', '); 
+      scope.field.value = scope.field.options[0];
+      break;
+      case 'table':
+      if(scope.field.id =='windowTable'){
+        scope.count = 0;
+        scope.field0 = {};
+        scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
+        scope.field0.glazingValues = scope.field.glazingValues.split(', ');
+        scope.field0.glazingValue; 
+        scope.field0.options = scope.field.options.split(', ');
+        scope.field0.values = scope.field.values.split(', ');
+        scope.field0.value;
+        scope.combine = [];
+        scope.combine.splice(0,0,scope.field0);
+        scope.addRow = function(){
+          scope.count+=1;
+          if(scope.count<=3){
+            scope.field1 ={};
+            scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
+            scope.field1.glazingValues = scope.field.glazingValues.split(', ');
+            scope.field1.glazingValue; 
+            scope.field1.options = scope.field.options.split(', ');
+            scope.field1.values = scope.field.values.split(', ');
+            scope.field1.value;
+            scope.combine.splice(scope.count,0,scope.field1);
           }
         }
-        scope.dialogBox =function(ev){
-          $rootScope.Dialog(ev);
-        }
-        if (scope.field.type == 'text' || scope.field.type == 'number')
-          scope.$watch('field.value', function(newValue, oldValue){
-            if (scope.field.error && newValue!=oldValue)
-            {
-              scope.field.error = !newValue;
-            }
-          });
+      }
+      else if(scope.field.id=='spaceTable'){
+        scope.field.row_heading = scope.field.row_heading.split(', ');
+        scope.field.row1 = scope.field.row1.split(', ');
+        scope.field.row1.splice(0,0, scope.field.row_heading[0]);
+        scope.field.row2 = scope.field.row2.split(', ');
+        scope.field.row2.splice(0,0, scope.field.row_heading[1]);
+        scope.field.column_heading = scope.field.column_heading.split(', ');
+        scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
+          o[i] = v;
+          return o;
+        },{});
+        scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
+          o[i] = v;
+          return o;
+        },{});
+        scope.field.merge = [];
+        scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
+        scope.default = {
+          order: '[0]'
+        };
+      }
 
+      break;
+      case 'dimension':
+      scope.field.value={x:0,y:0,area:0};
+      scope.y = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY;
+      })[0];
+      scope.area = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedArea;
+      })[0];
+
+      scope.$watch('field.value.x', function(){
+        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      });
+      scope.$watch('field.value.y', function(){
+        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      });
+
+      break;
+      case 'button':
+      scope.previous =function(){
+        $rootScope.stepBack();
+      }
+      scope.next =function(){
+        scope.field.value=1;
+        $rootScope.stepNext();
       }
     }
-  });
+    scope.dialogBox =function(ev){
+      $rootScope.Dialog(ev);
+    }
+    if (scope.field.type == 'text' || scope.field.type == 'number')
+      scope.$watch('field.value', function(newValue, oldValue){
+        if (scope.field.error && newValue!=oldValue)
+        {
+          scope.field.error = !newValue;
+        }
+      });
+
+  }
+}
+});
 
 angular.element(document).ready(function () {
   angular.bootstrap(document, ['keec']);
