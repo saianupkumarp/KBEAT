@@ -218,32 +218,6 @@ steps:
           label_suffix: (absorpt.)
           dialog: 1
           widthPercent: 50    
-    - id: windowEdit
-      label: Window Edit
-      widthPercent: 100
-      openOnEdit: yes
-      parameters: 
-        - id: name
-          type: text
-          label: Name
-          dialog: 2
-          widthPercent: 50 
-        - id: glassConductance
-          type: number
-          label: Glass Conductance
-          label_suffix: (W/m2.K)
-          dialog: 2
-          widthPercent: 50
-        - id: shadingCoefficient
-          type: number
-          label: Shading Coefficient
-          dialog: 2
-          widthPercent: 50   
-        - id: visibleTransmittance
-          type: number
-          label: Visible Transmittance
-          dialog: 2
-          widthPercent: 50  
     - id: button
       widthPercent: 100 
       label: Button  

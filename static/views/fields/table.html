@@ -40,7 +40,7 @@
 					</md-select>
 				</td>
 				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
-					{{row.item}}
+					{{row.item || 'Enter Value'}}
 				</td>
 				<td style="border:1px solid green;" md-cell>
 					<md-select ng-model="row.glazingValue" style="border:none;">

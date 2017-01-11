@@ -511,7 +511,7 @@ md-select{
 }
 @media only screen and (min-width: 1900px) {
 	.step-container {
-		padding: 35px;
+		padding: 20px !important;
 	}
 	md-select{
 		margin:0px;
@@ -535,20 +535,6 @@ md-select{
 		background-position:center;
 	}
 }
-@media only screen and (min-width:1400px){
-	.step-container  .input-area{
-		padding: 50px 0 50px 0;
-	}
-	.input-container{
-		margin-bottom: 40px;
-	}
-	.buildInfo{
-		height:275px !important;
-	}
-	.shape{
-		right:1px;
-	}
-}
 @media only screen and (min-width: 1600px) {
 	.step-container {
 		padding: 25px;
@@ -562,6 +548,20 @@ md-select{
 		background-position:center;
 	}
 
+}
+@media only screen and (min-width:1400px){
+	.step-container  .input-area{
+		padding: 20px 0 20px 0;
+	}
+	.input-container{
+		margin-bottom: 40px;
+	}
+	.buildInfo{
+		height:216px !important;
+	}
+	.shape{
+		right:1px;
+	}
 }
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
