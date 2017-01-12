@@ -177,8 +177,16 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
             scope.field0.options = scope.field.options.split(', ');
             scope.field0.values = scope.field.values.split(', ');
             scope.field0.value;
+            scope.field0.item = null;
             scope.combine = [];
             scope.combine.splice(0,0,scope.field0);
+/*            console.log(scope.combine);
+*/            scope.field.tableValues = scope.combine.map(function(c,i){
+/*              console.log(c);
+*/                        /* if ((v == 'glazingValue') || (v == 'value') || (v == 'item')){
+
+                         }*/
+            },[]);
             scope.addRow = function(){
               scope.count+=1;
               if(scope.count<=3){
@@ -189,11 +197,13 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 scope.field1.options = scope.field.options.split(', ');
                 scope.field1.values = scope.field.values.split(', ');
                 scope.field1.value;
+                scope.field1.item = null;
                 scope.combine.splice(scope.count,0,scope.field1);
               }
-            }
-            scope.field.value = scope.combine;
-          }
+/*              console.log(scope.combine);
+*/            }
+/*            console.log(scope.combine);
+*/          }
           else if(scope.field.id=='spaceTable'){
             scope.field.row_heading = scope.field.row_heading.split(', ');
             scope.field.row1 = scope.field.row1.split(', ');

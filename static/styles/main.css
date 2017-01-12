@@ -518,7 +518,8 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 150%;
+		/*background-size: 100% 150%;*/
+		background-size:100% 100%;
 		background-position:center;
 	}
 }
@@ -531,7 +532,8 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 150%;
+		/*background-size: 100% 150%;*/
+		background-size:100% 100%;
 		background-position:center;
 	}
 }
@@ -544,7 +546,8 @@ md-select{
 		width:100%;
 	}
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 150%;
+		/*background-size: 100% 150%;*/
+		background-size:100% 100%;
 		background-position:center;
 	}
 
@@ -570,7 +573,8 @@ md-select{
 }
 @media only screen and (max-width: 1280px) {
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 100%;
+		/*background-size: 100% 100%;*/
+		background-size:100% 100%;
 		background-position:center;
 	}
 }
@@ -587,7 +591,8 @@ md-select{
 	/*image background
 	..............*/
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 185%;
+		/*background-size: 100% 185%;*/
+		background-size:100% 100%;
 		background-position:center;
 	}
 	/*.............*/
@@ -667,7 +672,8 @@ md-select{
 	/*image background
 	..............*/
 	html.md-default-theme, html, body.md-default-theme, body {
-		background-size: 100% 225%;
+		/*background-size: 100% 225%;*/
+		background-size:100% 100%;
 		background-position:inherit;
 	}
 	/*............*/
@@ -817,6 +823,7 @@ md-icon{
 }
 .selectedTableRow{
 	box-shadow: 3px 8px 5px #888;
+	background: #fff;
 	outline-color: #fff;
 }
 /*md-dialog
