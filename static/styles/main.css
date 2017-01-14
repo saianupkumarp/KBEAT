@@ -47,8 +47,8 @@ html.md-default-theme, html, body.md-default-theme, body {
 	font-size: 13px;
 	 /*image background
 	 ..............*/
-	 background-image: url(/keec/assets/img/infographic.jpg);
-	 background-size: 100% 110%;
+/*	 background-image: url(/keec/assets/img/infographic.jpg);
+*/	 background-size: 100% 110%;
 	 background-repeat: no-repeat;
 	 /*background-position:center;*/
 	 /*....................*/
@@ -255,6 +255,20 @@ header{
 	content: "This field cannot be empty";
 	position: absolute;
 	top: 36px;
+}
+.errorTable {
+	padding-bottom: 10px;
+	position: relative;
+
+}
+.errorTable:after {
+	display: block;
+	font-size: 13px;
+	color: red;
+	content: "This field cannot be empty";
+	position: absolute;
+	top: 36px;
+	left:37%;
 }
 
 .input-container > label {
@@ -823,7 +837,7 @@ md-icon{
 }
 .selectedTableRow{
 	box-shadow: 3px 8px 5px #888;
-	background: #fff;
+	background: lightyellow;
 	outline-color: #fff;
 }
 /*md-dialog

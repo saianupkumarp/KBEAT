@@ -32,25 +32,26 @@
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr md-row ng-repeat="row in combine track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
+			<tr  md-row ng-repeat="row in field.combine track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
 				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
 				<td style="border:1px solid green;" md-cell>
 					<md-select ng-model="row.value" style="border:none;">
-						<md-option ng-value="option" ng-repeat="option in row.options" ng-selected="$first">{{row.values[$index]}}</md-option>
+						<md-option ng-value="option" ng-repeat="option in row.options">{{row.values[$index]}}</md-option>
 					</md-select>
 				</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
+				<td ng-class="{}" style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
 					{{row.item || 'Enter Value'}}
 				</td>
 				<td style="border:1px solid green;" md-cell>
 					<md-select ng-model="row.glazingValue" style="border:none;">
-						<md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index" ng-selected="$first">{{row.glazingValues[$index]}}</md-option>
+						<md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index">{{row.glazingValues[$index]}}</md-option>
 					</md-select>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </md-table-container>
+<div ng-class="{errorTable: field.error}"></div>
 
 <md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
 	<table md-table>
