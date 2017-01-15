@@ -23,7 +23,6 @@ def get_model():
     model_data = Models.find_one()
     return Model(model_data, strict=False) if model_data else None
 
-
 def load_model_data():
     hub = get_hub()
     watcher = hub.loop.stat(settings.DATA_ROOT)

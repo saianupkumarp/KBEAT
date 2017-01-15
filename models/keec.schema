@@ -1,8 +1,8 @@
-name: KEEC 
-steps: 
+name: KEEC
+steps:
   - id: buildingInfo
     label: Building Info
-    containers: 
+    containers:
     - id: buildingInformation
       label: Building Information
       widthPercent: 50
@@ -21,7 +21,7 @@ steps:
       parameters:
         - id: buildingType
           type: dropdown
-          options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic 
+          options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
           values: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
           default: Office:Private
           label: Building Type
@@ -33,16 +33,16 @@ steps:
           widthPercent: 50
         - id: buildingLocation
           type: dropdown
-          options: tunis 
+          options: tunis
           values: TUNIS
           default: TUNIS
           label: Building Location
-          widthPercent: 50  
+          widthPercent: 50
         - id: airConditionedArea
           type: number
           label: Air-Conditioned Area
           label_suffix: (%)
-          widthPercent: 50  
+          widthPercent: 50
     - id: buildingShape
       label: Building Shape
       widthPercent: 100
@@ -50,22 +50,22 @@ steps:
       parameters:
         - id: buildingShape
           type: dropdown
-          options: rectangular, lshape, tshape, ushape 
+          options: rectangular, lshape, tshape, ushape
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
-          widthPercent: 100 
+          widthPercent: 100
         - id: buildingOrientation
           type: number
           label: Building Orientation
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
-          widthPercent: 50 
+          widthPercent: 50
         - id: floorToFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
-          widthPercent: 50 
+          widthPercent: 50
         - id: x1
           type: dimension
           label: X1
@@ -73,7 +73,7 @@ steps:
           relatedY: Y1
           relatedArea: floorArea
           dimensionWidthPercent: 50
-          widthPercent: 100 
+          widthPercent: 100
         - id: Y1
           type: dimension
           label: Y1
@@ -91,16 +91,16 @@ steps:
           label: Shape
           widthPercent: 50
     - id: button
-      widthPercent: 100 
-      label: Button  
-      parameters:          
+      widthPercent: 100
+      label: Button
+      parameters:
         - id: next
           type: button
           label: Next
           widthPercent: 100
   - id: envelope
     label: Envelope
-    containers: 
+    containers:
     - id: exteriorConstructions
       label: Exterior Constructions
       widthPercent: 100
@@ -109,7 +109,7 @@ steps:
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu 
+          default: EWALL Cons-Nolnsu
           label: South Wall
           edit: yes
           widthPercent: 33
@@ -117,7 +117,7 @@ steps:
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu 
+          default: EWALL Cons-Nolnsu
           label: North Wall
           edit: yes
           widthPercent: 33
@@ -125,33 +125,33 @@ steps:
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu 
+          default: EWALL Cons-Nolnsu
           label: East Wall
           edit: yes
-          widthPercent: 33 
+          widthPercent: 33
         - id: westWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu 
+          default: EWALL Cons-Nolnsu
           label: West Wall
           edit: yes
-          widthPercent: 33  
+          widthPercent: 33
         - id: roof
           type: dropdown
-          options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm  
+          options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm
           values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
-          default: Roof Cons-Nolnsu 
+          default: Roof Cons-Nolnsu
           label: Roof
           edit: yes
-          widthPercent: 33 
+          widthPercent: 33
         - id: 1stFloorContactCondition
           type: dropdown
           options: ground, conditionedspace, unconditionedspace
-          values: Ground, Conditioned Space, UnConditioned Space 
-          default: Ground 
+          values: Ground, Conditioned Space, UnConditioned Space
+          default: Ground
           label: 1st Floor Contact Condition
-          widthPercent: 33    
+          widthPercent: 33
     - id: windows
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
@@ -167,7 +167,7 @@ steps:
           values: south, North, East, West
           glazingOptions: value1, value2, value3, value4
           glazingValues: Value1, Value2, Value3, Value4
-          label: Window Table 
+          label: Window Table
           widthPercent: 100
     - id: constructionEdit
       label: Construction Edit
@@ -178,7 +178,7 @@ steps:
           type: dropdown
           options: ewallconsnolnsu, roofconsnolnsu
           values: EWALL Cons-Nolnsu, Roof Cons-Nolnsu
-          default: EWALL Cons-Nolnsu 
+          default: EWALL Cons-Nolnsu
           label: Construction
           dialog: 1
           widthPercent: 50
@@ -186,65 +186,65 @@ steps:
           type: dropdown
           options: ewallconslayersnolnsu, roofconslayersnolnsu
           values: EWALL Cons Layers-Nolnsu, Roof Cons Layers-Nolnsu
-          default: EWALL Cons Layers-Nolnsu 
+          default: EWALL Cons Layers-Nolnsu
           label: Layers
           dialog: 1
-          widthPercent: 50   
+          widthPercent: 50
         - id: newConstructionName
           type: text
           label: New Construction Name
-          widthPercent: 50   
+          widthPercent: 50
         - id: newLayerName
           type: text
           label: New Layer Name
           dialog: 1
-          widthPercent: 50       
+          widthPercent: 50
         - id: specificationMethod
           type: dropdown
           options: layersinput
           values: Layers Input
-          default: Layers Input 
+          default: Layers Input
           label: Specification Method
           dialog: 1
-          widthPercent: 50   
+          widthPercent: 50
         - id: surfaceroughness
           type: number
           label: Surface Roughness
           dialog: 1
-          widthPercent: 50  
+          widthPercent: 50
         - id: extcolor
           type: number
           label: Ext.Color
           label_suffix: (absorpt.)
           dialog: 1
-          widthPercent: 50    
+          widthPercent: 50
     - id: button
-      widthPercent: 100 
-      label: Button  
-      parameters:          
+      widthPercent: 100
+      label: Button
+      parameters:
         - id: prev
           type: button
           label: Previous
-          widthPercent: 20   
+          widthPercent: 20
         - id: next
           type: button
           label: Next
-          widthPercent: 20                           
+          widthPercent: 20
   - id: spacedhw
     label: Space/DHW
-    containers: 
+    containers:
     - id: spaceCondition
       label: Space Condition
       widthPercent: 100
       parameters:
         - id: spaceTable
           type: table
-          row1: 70, 129, 0.3, 1.5, 0.93, (), () 
+          row1: 70, 129, 0.3, 1.5, 0.93, (), ()
           row2: 30, 269, 1, 0.93, 0, (), ()
           row_heading: Office, Corridors Restrooms Stairs,
           column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table 
-          widthPercent: 100     
+          label: Space Table
+          widthPercent: 100
         - id: percentAreaSum
           type: number
           label: Percent Area Sum
@@ -262,20 +262,20 @@ steps:
           label: Building Type
           widthPercent: 50
     - id: button
-      widthPercent: 100 
-      label: Button  
-      parameters:          
+      widthPercent: 100
+      label: Button
+      parameters:
         - id: prev
           type: button
           label: Previous
-          widthPercent: 20 
+          widthPercent: 20
         - id: next
           type: button
           label: Next
-          widthPercent: 20       
+          widthPercent: 20
   - id: hvac
     label: HVAC System
-    containers: 
+    containers:
     - id: hvacsystem
       label: HVAC System
       widthPercent: 100
@@ -283,9 +283,9 @@ steps:
         - id: hvacsystem
           type: dropdown
           label: HVAC System
-          options: packagedvariableairvolumesystem, variableairvolumesystem 
-          values: Packaged Variable Air Volume System, Variable Air Volume System  
-          default: Packaged Variable Air Volume System 
+          options: packagedvariableairvolumesystem, variableairvolumesystem
+          values: Packaged Variable Air Volume System, Variable Air Volume System
+          default: Packaged Variable Air Volume System
           widthPercent: 100
         - id: heatingsetpointtemperature
           type: number
@@ -300,17 +300,18 @@ steps:
         - id: figure
           type: figure
           label: Figure
-          widthPercent: 100  
+          widthPercent: 100
     - id: button
-      widthPercent: 100 
-      label: Button  
-      parameters:          
+      widthPercent: 100
+      label: Button
+      parameters:
         - id: prev
           type: button
           label: Previous
           widthPercent: 20
         - id: next
           type: button
-          label: Next
+          label: Run
           widthPercent: 20
-          
+  - id: result
+    label: Result
