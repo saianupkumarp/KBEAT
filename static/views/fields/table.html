@@ -39,7 +39,7 @@
 						<md-option ng-value="option" ng-repeat="option in row.options">{{row.values[$index]}}</md-option>
 					</md-select>
 				</td>
-				<td ng-class="{}" style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
+				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
 					{{row.item || 'Enter Value'}}
 				</td>
 				<td style="border:1px solid green;" md-cell>

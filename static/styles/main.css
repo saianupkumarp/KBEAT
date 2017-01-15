@@ -262,13 +262,13 @@ header{
 
 }
 .errorTable:after {
-	display: block;
+	display: inline;
 	font-size: 13px;
 	color: red;
 	content: "This field cannot be empty";
-	position: absolute;
-	top: 36px;
-	left:37%;
+	position: relative;
+	top: 8px;
+	left:38%;
 }
 
 .input-container > label {
@@ -444,7 +444,7 @@ font-size:11px;
 	}
 
 	.single-input-box {
-		padding: 0 10px;
+		padding: 0 10px 1px;
 	}
 /*.footer-wrapper {
 	display: flex;
@@ -836,8 +836,7 @@ md-icon{
 	min-width: 15px;
 }
 .selectedTableRow{
-	box-shadow: 3px 8px 5px #888;
-	background: lightyellow;
+	box-shadow: 1px 9px 5px #888,1px -7px 5px #888;
 	outline-color: #fff;
 }
 /*md-dialog
