@@ -246,6 +246,18 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
       });
 
       break;
+      case 'shape':
+      scope.shape = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
+     
+      break;
+      case 'figure':
+      scope.figure = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
+     
+      break;
       case 'button':
       scope.previous =function(){
         $rootScope.stepBack();

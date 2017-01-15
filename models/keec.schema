@@ -50,7 +50,7 @@ steps:
       parameters:
         - id: buildingShape
           type: dropdown
-          options: rect, lshape, tshape, ushape
+          options: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
@@ -296,7 +296,7 @@ steps:
         - id: hvacsystem
           type: dropdown
           label: HVAC System
-          options: packagedvariableairvolumesystem, variableairvolumesystem
+          options: PackagedVAV.jpg, VavSystem.jpg
           values: Packaged Variable Air Volume System, Variable Air Volume System
           default: Packaged Variable Air Volume System
           widthPercent: 100
@@ -313,6 +313,7 @@ steps:
         - id: figure
           type: figure
           label: Figure
+          related_id: hvacsystem
           widthPercent: 100
     - id: button
       widthPercent: 100
