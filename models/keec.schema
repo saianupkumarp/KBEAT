@@ -50,7 +50,7 @@ steps:
       parameters:
         - id: buildingShape
           type: dropdown
-          options: rectangular, lshape, tshape, ushape
+          options: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
@@ -89,6 +89,7 @@ steps:
         - id: shape
           type: shape
           label: Shape
+          related_id: buildingShape
           widthPercent: 50
     - id: button
       widthPercent: 100
@@ -111,7 +112,6 @@ steps:
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: South Wall
-          edit: yes
           widthPercent: 33
         - id: northWall
           type: dropdown
@@ -119,7 +119,6 @@ steps:
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: North Wall
-          edit: yes
           widthPercent: 33
         - id: eastWall
           type: dropdown
@@ -127,7 +126,6 @@ steps:
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: East Wall
-          edit: yes
           widthPercent: 33
         - id: westWall
           type: dropdown
@@ -135,7 +133,6 @@ steps:
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: West Wall
-          edit: yes
           widthPercent: 33
         - id: roof
           type: dropdown
@@ -143,7 +140,6 @@ steps:
           values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           default: Roof Cons-Nolnsu
           label: Roof
-          edit: yes
           widthPercent: 33
         - id: 1stFloorContactCondition
           type: dropdown

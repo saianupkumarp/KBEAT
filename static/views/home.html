@@ -1,13 +1,13 @@
 <div class="step-content" layout="column">
 	<div class="step-headers">
 		<div class="step-header" ng-repeat="step in model.steps">
-			<div ng-class="{clickable:true, active:$index==activeStepIndex}">
-<!-- 			ng-click="activateStep($index)"
- -->				<div class="number">{{$index+1}}</div>
-				<div class="label">{{step.label}}</div>
-			</div>
+			<!-- Stpper On click Disable <div ng-class="{clickable:true, active:$index==activeStepIndex}"> -->
+			<div ng-class="{clickable:true, active:$index==activeStepIndex}" 	ng-click="activateStep($index)">
+				<div class="number">{{$index+1}}</div>
+					<div class="label">{{step.label}}</div>
+				</div>
 			<div class="line" ng-if="$index != model.steps.length-1"></div>
-		</div>	
+		</div>
 	</div>
 	<div class="step-area-wrapper">
 		<div class="step-area" ng-show="$index == activeStepIndex" ng-repeat="step in model.steps">
@@ -20,15 +20,15 @@
 						<div class="input-area">
 							<field ng-if="!field.hide" class="single-input-box flex-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />
 						</div>
-						
+
 					</div>
 					<div  ng-if="container.id=='button'" ng-class="{'body-button':true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
 						<div class="input-area-button">
 							<field ng-if="!field.hide" class="single-input-box flex-button-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />
 						</div>
 					</div>
-				</div>			
+				</div>
 			</div>
-		</div>			
+		</div>
 	</div>
 </div>
