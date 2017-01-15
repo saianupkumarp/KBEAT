@@ -17,6 +17,7 @@ class ModelContainer(Entity):
     parameters = ListType(DictType(StringType), default=None)
     openOnEdit = StringType(default='')
     hasShape = StringType(default='')
+    shapeDetails = ListType(DictType(StringType), default=None)
     class Options:
         serialize_when_none = False
 
@@ -24,7 +25,7 @@ class ModelStep(Entity):
     id = StringType(required=True)
     label = StringType(required=True, default='')
     containers = ListType(ModelType(ModelContainer), default=None)
-    
+
     class Options:
         serialize_when_none = False
 

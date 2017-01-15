@@ -50,7 +50,7 @@ steps:
       parameters:
         - id: buildingShape
           type: dropdown
-          options: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
+          options: rect, lshape, tshape, ushape
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
@@ -91,6 +91,23 @@ steps:
           label: Shape
           related_id: buildingShape
           widthPercent: 50
+      shapeDetails:
+        - id: rect
+          axis: X1, Y1
+          image: Rectangular.jpg
+          related_id: buildingShape
+        - id: lshape
+          axis: X1, X2, Y1, Y2
+          image: L-Shape.jpg
+          related_id: buildingShape
+        - id: tshape
+          axis: X1, X2, X3, Y1, Y2
+          image: T-Shape.jpg
+          related_id: buildingShape
+        - id: ushape
+          axis: X1, X2, X3, Y1, Y2, Y3
+          image: U-Shape.jpg
+          related_id: buildingShape
     - id: button
       widthPercent: 100
       label: Button
