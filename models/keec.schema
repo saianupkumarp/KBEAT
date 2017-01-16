@@ -323,9 +323,18 @@ steps:
           type: button
           label: Previous
           widthPercent: 20
-        - id: next
+        - id: run
           type: button
           label: Run
           widthPercent: 20
   - id: result
     label: Result
+    containers:
+    - id: resultData
+      label: Result Data
+      widthPercent: 100
+      parameters: 
+        - id: display
+          type: result
+          label: Display
+          widthPercent: 100

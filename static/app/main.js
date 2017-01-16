@@ -51,25 +51,24 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 var isError = false;
                 $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
                  container.parameters.forEach(function(parameter){
-                   parameter.error = false;
-                   if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.value===null || parameter.value===""))
-                   {
-                     if(parameter.type == 'table'){
-                      parameter.combine.forEach(function(element){
-                       if((element.item == '')||(element.item == null)){
-                         parameter.error = true;
-                         isError = true;
-                       }
-                     })
-                      
-                    }
-                    else{
-                      parameter.error = true;
-                      isError = true;
-                    }
-                  }
+                  parameter.error = false;
+                  if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+                  {
+                   if(parameter.type == 'table'){
+                    parameter.combine.forEach(function(element){
+                     if((element.item == '')||(element.item == null)){
+                       parameter.error = true;
+                       isError = true;
+                     }
+                   })
 
-                });
+                  }
+                  else{
+                    parameter.error = true;
+                    isError = true;
+                  }
+                }
+              });
                });
 
                 if (isError)
@@ -250,34 +249,41 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
       scope.shape = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-     
+
       break;
       case 'figure':
       scope.figure = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-     
+
+      break;
+      case 'result':
+      scope.result = $rootScope.model.steps;
+
       break;
       case 'button':
       scope.previous =function(){
         $rootScope.stepBack();
       }
       scope.next =function(){
-        $rootScope.stepNext();
-      }
+       $rootScope.stepNext();
+     }
+     scope.run =function(){
+     $rootScope.stepNext();
     }
-    scope.dialogBox =function(ev){
-      $rootScope.Dialog(ev);
-    }
-    if (scope.field.type == 'text' || scope.field.type == 'number')
-      scope.$watch('field.value', function(newValue, oldValue){
-        if (scope.field.error && newValue!=oldValue)
-        {
-          scope.field.error = !newValue;
-        }
-      });
-
   }
+  scope.dialogBox =function(ev){
+    $rootScope.Dialog(ev);
+  }
+  if (scope.field.type == 'text' || scope.field.type == 'number')
+    scope.$watch('field.value', function(newValue, oldValue){
+      if (scope.field.error && newValue!=oldValue)
+      {
+        scope.field.error = !newValue;
+      }
+    });
+
+}
 }
 });
 
