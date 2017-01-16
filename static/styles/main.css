@@ -811,6 +811,9 @@ table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2)
 	text-align:center;	
 	border:1px solid green !important;
 }
+table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+    padding: 0 0px 0 0;
+}
 table.md-table{
 	border:1px solid green;
 }

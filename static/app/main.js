@@ -222,9 +222,6 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         scope.field.merge = [];
         scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
         scope.field.value = scope.field.merge;
-        scope.default = {
-          order: '[0]'
-        };
       }
 
       break;
