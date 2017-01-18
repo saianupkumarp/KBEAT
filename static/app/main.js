@@ -47,7 +47,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
               $scope.activateStep = function(index) {
                 $scope.activeStepIndex = index;
               };
-              
+
               $rootScope.postData = function(data){
                 api.postData('KEEC',data);
               };
@@ -78,7 +78,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
 
                 if (isError)
                   return;
-                
+
                 if ($scope.activeStepIndex < $scope.totalSteps - 1)
                   $scope.activeStepIndex += 1;
               };
@@ -96,7 +96,7 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                     $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
                     $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
                     $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
-                    $scope.winDialog = $rootScope.windowDialog; 
+                    $scope.winDialog = $rootScope.windowDialog;
                     $scope.hide = function() {
                       $mdDialog.hide();
                     };
@@ -134,8 +134,8 @@ return {
  postData: postData
 };
 function postData(name,data){
-  return  $http.post('/keec/api/model/' + name,data)
-  .then(function(response) {
+  return  $http.post('/keec/api/model/' + name,data).then(function(response) {
+    $rootScope.stepNext();
  })
 }
 })
@@ -199,36 +199,32 @@ function postData(name,data){
     };
 
     scope.run =function(){
-      var result =[];
+      var resJson = {}
       var ObjCount =0;
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          var obj3 = {id:obj2.id,value:obj2.value};
-          if ((obj2.combine)){
-            obj3.combine = obj2.combine;
+          if(obj2.id !='prev' && obj2.id != 'next'){
+            resJson[obj2.id] = obj2.value;
+            ObjCount=ObjCount+2;
           }
-          else if((obj2.merge)){
-           obj3.merge = obj2.merge;
-         }
-         result.splice(ObjCount,0,obj3);
-         ObjCount=ObjCount+2;
        });
       });
      });
-      scope.data = result;
+     console.log(JSON.stringify(resJson));
+      scope.data = JSON.stringify(resJson);
       $rootScope.postData(scope.data);
     }
 
     switch(scope.field.type) {
       case 'dropdown':
-      scope.field.options = scope.field.options.split(', '); 
-      scope.field.values = scope.field.values.split(', '); 
+      scope.field.options = scope.field.options.split(', ');
+      scope.field.values = scope.field.values.split(', ');
       scope.field.value = scope.field.values[0];
-      
+
       break;
       case 'radio':
-      scope.field.options = scope.field.options.split(', '); 
+      scope.field.options = scope.field.options.split(', ');
       scope.field.value = scope.field.options[0];
       break;
       case 'table':
@@ -237,11 +233,11 @@ function postData(name,data){
         scope.field0 = {};
         scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
         scope.field0.glazingValues = scope.field.glazingValues.split(', ');
-        scope.field0.glazingValue = scope.field0.glazingOptions[0]; 
+        scope.field0.glazingValue = scope.field0.glazingOptions[0];
         scope.field0.options = scope.field.options.split(', ');
         scope.field0.values = scope.field.values.split(', ');
         scope.field0.value = scope.field0.options[0];
-        scope.field0.item = null; 
+        scope.field0.item = null;
         scope.field.combine = [];
         scope.field.combine.splice(0,0,scope.field0);
 
