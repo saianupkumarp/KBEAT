@@ -41,12 +41,17 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           url: '/keec/',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
-            controller: function($scope, $rootScope, $mdDialog){
+            controller: function($scope, $rootScope, $mdDialog,api){
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
               $scope.activateStep = function(index) {
                 $scope.activeStepIndex = index;
               };
+              
+              $rootScope.postData = function(data){
+                api.postData('KEEC',data);
+              };
+
               $rootScope.stepNext = function() {
                 var isError = false;
                 $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
@@ -111,6 +116,29 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
+/* Backend API */
+.factory('api', function ($q, $http, $state, $timeout, $rootScope) {
+ var request = function (callback, timeout) {
+  var deferred = $q.defer();
+
+  $timeout(function () {
+    deferred.resolve(null);
+  }, typeof timeout !== 'undefined' ? timeout : 800);
+
+  callback(deferred);
+
+  return deferred.promise;
+};
+
+return {
+ postData: postData
+};
+function postData(name,data){
+  return  $http.post('/keec/api/model/' + name,data)
+  .then(function(response) {
+ })
+}
+})
 
 .directive('field', function ($mdDialog,$rootScope,$mdEditDialog) {
   return {
@@ -169,11 +197,11 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
     scope.data={
       a:[]
     };
-   
+
     scope.run =function(){
       var result =[];
-     var ObjCount =0;
-     $rootScope.model.steps.forEach(function(obj){
+      var ObjCount =0;
+      $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
           var obj3 = {id:obj2.id,value:obj2.value};
@@ -183,123 +211,123 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           else if((obj2.merge)){
            obj3.merge = obj2.merge;
          }
-        result.splice(ObjCount,0,obj3);
+         result.splice(ObjCount,0,obj3);
          ObjCount=ObjCount+2;
        });
       });
      });
-     scope.data = result;
-     console.log(scope.data);        
-     $rootScope.stepNext();
-   }
+      scope.data = result;
+      $rootScope.postData(scope.data);
+    }
 
-   switch(scope.field.type) {
-    case 'dropdown':
-    scope.field.options = scope.field.options.split(', '); 
-    scope.field.values = scope.field.values.split(', '); 
-    scope.field.value = scope.field.values[0];
-    break;
-    case 'radio':
-    scope.field.options = scope.field.options.split(', '); 
-    scope.field.value = scope.field.options[0];
-    break;
-    case 'table':
-    if(scope.field.id =='windowTable'){
-      scope.count = 0;
-      scope.field0 = {};
-      scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
-      scope.field0.glazingValues = scope.field.glazingValues.split(', ');
-      scope.field0.glazingValue = scope.field0.glazingOptions[0]; 
-      scope.field0.options = scope.field.options.split(', ');
-      scope.field0.values = scope.field.values.split(', ');
-      scope.field0.value = scope.field0.options[0];
-      scope.field0.item = null; 
-      scope.field.combine = [];
-      scope.field.combine.splice(0,0,scope.field0);
+    switch(scope.field.type) {
+      case 'dropdown':
+      scope.field.options = scope.field.options.split(', '); 
+      scope.field.values = scope.field.values.split(', '); 
+      scope.field.value = scope.field.values[0];
+      
+      break;
+      case 'radio':
+      scope.field.options = scope.field.options.split(', '); 
+      scope.field.value = scope.field.options[0];
+      break;
+      case 'table':
+      if(scope.field.id =='windowTable'){
+        scope.count = 0;
+        scope.field0 = {};
+        scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
+        scope.field0.glazingValues = scope.field.glazingValues.split(', ');
+        scope.field0.glazingValue = scope.field0.glazingOptions[0]; 
+        scope.field0.options = scope.field.options.split(', ');
+        scope.field0.values = scope.field.values.split(', ');
+        scope.field0.value = scope.field0.options[0];
+        scope.field0.item = null; 
+        scope.field.combine = [];
+        scope.field.combine.splice(0,0,scope.field0);
 
-      scope.addRow = function(){
-        scope.count+=1;
-        if(scope.count<=3){
-          scope.field1 ={};
-          scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
-          scope.field1.glazingValues = scope.field.glazingValues.split(', ');
-          scope.field1.glazingValue = scope.field1.glazingOptions[0];
-          scope.field1.options = scope.field.options.split(', ');
-          scope.field1.values = scope.field.values.split(', ');
-          scope.field1.value = scope.field1.options[0];
-          scope.field1.item = null;
-          scope.field.combine.splice(scope.count,0,scope.field1);
+        scope.addRow = function(){
+          scope.count+=1;
+          if(scope.count<=3){
+            scope.field1 ={};
+            scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
+            scope.field1.glazingValues = scope.field.glazingValues.split(', ');
+            scope.field1.glazingValue = scope.field1.glazingOptions[0];
+            scope.field1.options = scope.field.options.split(', ');
+            scope.field1.values = scope.field.values.split(', ');
+            scope.field1.value = scope.field1.options[0];
+            scope.field1.item = null;
+            scope.field.combine.splice(scope.count,0,scope.field1);
+          }
         }
       }
-    }
-    else if(scope.field.id=='spaceTable'){
-      scope.field.row_heading = scope.field.row_heading.split(', ');
-      scope.field.row1 = scope.field.row1.split(', ');
-      scope.field.row1.splice(0,0, scope.field.row_heading[0]);
-      scope.field.row2 = scope.field.row2.split(', ');
-      scope.field.row2.splice(0,0, scope.field.row_heading[1]);
-      scope.field.column_heading = scope.field.column_heading.split(', ');
-      scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
-        o[i] = v;
-        return o;
-      },{});
-      scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
-        o[i] = v;
-        return o;
-      },{});
-      scope.field.merge = [];
-      scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
-      scope.field.value = scope.field.merge;
-    }
+      else if(scope.field.id=='spaceTable'){
+        scope.field.row_heading = scope.field.row_heading.split(', ');
+        scope.field.row1 = scope.field.row1.split(', ');
+        scope.field.row1.splice(0,0, scope.field.row_heading[0]);
+        scope.field.row2 = scope.field.row2.split(', ');
+        scope.field.row2.splice(0,0, scope.field.row_heading[1]);
+        scope.field.column_heading = scope.field.column_heading.split(', ');
+        scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
+          o[i] = v;
+          return o;
+        },{});
+        scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
+          o[i] = v;
+          return o;
+        },{});
+        scope.field.merge = [];
+        scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
+        scope.field.value = scope.field.merge;
+      }
 
-    break;
-    case 'dimension':
-    scope.field.value={x:0,y:0,area:0};
-    scope.y = scope.container.parameters.filter(function(p){
-      return p.id == scope.field.relatedY;
-    })[0];
-    scope.area = scope.container.parameters.filter(function(p){
-      return p.id == scope.field.relatedArea;
-    })[0];
+      break;
+      case 'dimension':
+      scope.field.value={x:0,y:0,area:0};
+      scope.y = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY;
+      })[0];
+      scope.area = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedArea;
+      })[0];
 
-    scope.$watch('field.value.x', function(){
-      scope.field.value.area = scope.field.value.x * scope.field.value.y;
-    });
-    scope.$watch('field.value.y', function(){
-      scope.field.value.area = scope.field.value.x * scope.field.value.y;
-    });
+      scope.$watch('field.value.x', function(){
+        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      });
+      scope.$watch('field.value.y', function(){
+        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      });
 
-    break;
-    case 'shape':
-    scope.shape = scope.container.parameters.filter(function(p){
-      return p.id == scope.field.related_id;
-    })[0];
+      break;
+      case 'shape':
+      scope.shape = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
 
-    break;
-    case 'figure':
-    scope.figure = scope.container.parameters.filter(function(p){
-      return p.id == scope.field.related_id;
-    })[0];
+      break;
+      case 'figure':
+      scope.figure = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
 
-    break;
-    case 'button':
-    scope.previous =function(){
-      $rootScope.stepBack();
-    }
-    scope.next =function(){
-     $rootScope.stepNext();
+      break;
+      case 'button':
+      scope.previous =function(){
+        $rootScope.stepBack();
+      }
+      scope.next =function(){
+       $rootScope.stepNext();
+     }
    }
- }
- scope.dialogBox =function(ev){
-  $rootScope.Dialog(ev);
-}
-if (scope.field.type == 'text' || scope.field.type == 'number')
-  scope.$watch('field.value', function(newValue, oldValue){
-    if (scope.field.error && newValue!=oldValue)
-    {
-      scope.field.error = !newValue;
-    }
-  });
+   scope.dialogBox =function(ev){
+    $rootScope.Dialog(ev);
+  }
+  if (scope.field.type == 'text' || scope.field.type == 'number')
+    scope.$watch('field.value', function(newValue, oldValue){
+      if (scope.field.error && newValue!=oldValue)
+      {
+        scope.field.error = !newValue;
+      }
+    });
 
 }
 }

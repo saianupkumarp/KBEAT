@@ -268,7 +268,7 @@ header{
 	content: "This field cannot be empty";
 	position: relative;
 	top: 8px;
-	left:38%;
+	left:40%;
 }
 
 .input-container > label {
@@ -805,14 +805,24 @@ table.md-table td.md-cell{
 	border-top: 1px solid green;
 }
 table.md-table th.md-column {
-	color: green;
+	color: #fff;
+	background:green;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
 	text-align:center;	
 	border:1px solid green !important;
 }
 table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
-    padding: 0 0px 0 0;
+    padding: 0 0px 0 10px;
+}
+table.md-table th.md-column:last-child {
+    padding: 0 0px 0 10px;
+}
+table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2){
+	padding:0 10px 0 10px;
+}
+table.md-table td.md-cell:last-child{
+	padding:0 10px 0 10px;
 }
 table.md-table{
 	border:1px solid green;
