@@ -20,7 +20,7 @@
     color: #fff;
     height:30px;
     font-size:9px;
-    border: none;" type="button" ng-click="addRow()" value="Add Row" />
+    border: none;" ng-if="field.id=='windowTable'" type="button" ng-click="addRow()" value="Add Row" />
 <md-table-container ng-if="field.id=='windowTable'">
 	<table md-table>
 		<thead md-head>
