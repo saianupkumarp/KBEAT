@@ -842,6 +842,9 @@ table.md-table:not(.md-row-select) td.md-cell:first-child, table.md-table:not(.m
 table.md-table tbody.md-body>tr.md-row, table.md-table tfoot.md-foot>tr.md-row :focus {
 	outline:green;
 }
+table.md-table th.md-column.md-active{
+	color:#fff;
+}
 md-icon{
 	height: 15px;
 	width: 15px;

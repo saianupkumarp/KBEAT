@@ -318,7 +318,11 @@ function postData(name,data){
 
       break;
       case 'dimension':
+      console.log(scope.field);
       scope.field.value={x:0,y:0,area:0};
+      scope.building =scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
       scope.y = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY;
       })[0];
