@@ -2,7 +2,13 @@ requirejs.config({
   baseUrl: '/keec/assets',
   paths: {
     'angular': 'vendor/angular/angular',
+    'angular-cookies': 'vendor/angular-cookies/angular-cookies.min',
+    'angular-i18n': 'vendor/angular-i18n/angular-locale_es-ar',
     'jquery': 'vendor/jquery/dist/jquery.min',
+    'angular-translate': 'vendor/angular-translate/angular-translate.min',
+    'angular-translate-loader': 'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
+    'angular-translate-storage-cookie': 'vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.min',
+    'angular-translate-storage-local': 'vendor/angular-translate-storage-local/angular-translate-storage-local.min',
     'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
     'angular-animate' :'vendor/angular-animate/angular-animate',
     'angular-aria' :'vendor/angular-aria/angular-aria',
@@ -16,8 +22,26 @@ requirejs.config({
     'angular': {
       exports: 'angular'
     },
+    'angular-i18n': {
+      deps: ['angular']
+    },
+    'angular-cookies': {
+      deps: ['angular']
+    },
     'angular-ui-router': {
       deps: ['angular']
+    },
+    'angular-translate': {
+      deps: ['angular']
+    },
+    'angular-translate-loader': {
+      deps: ['angular-translate']
+    },
+    'angular-translate-storage-cookie': {
+      deps: ['angular-translate']
+    },
+    'angular-translate-storage-local': {
+      deps: ['angular-translate']
     },
     'angular-animate': {
       deps: ['angular']
