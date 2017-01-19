@@ -173,15 +173,39 @@ steps:
           type: radio
           label: Windows (Condtioned space ONLY)
           options: Window Wall Ratio (%), Window Area (m2)
-          widthPercent: 50
-        - id: windowTable
-          type: table
-          options: south, north, east, west
-          values: South, North, East, West
-          glazingOptions: value1, value2, value3, value4
-          glazingValues: Value1, Value2, Value3, Value4
-          label: Window Table
           widthPercent: 100
+        - id: northpercent
+          type: number
+          label: North
+          default: 10
+          widthPercent: 10
+        - id: southpercent
+          type: number
+          label: South
+          default: 10
+          widthPercent: 10
+        - id: eastpercent
+          type: number
+          label: East
+          default: 10
+          widthPercent: 10
+        - id: westpercent
+          type: number
+          label: West
+          default: 10
+          widthPercent: 10
+        - id: glasstype
+          type: dropdown
+          options: single glass, double glass
+          values: Single Glass, Double Glass
+          default: Single Glass
+          label: Glass Type
+          widthPercent: 10
+        - id: shape
+          type: shape
+          label: Shape
+          options: T-Shape.jpg
+          widthPercent: 50
     - id: constructionEdit
       label: Construction Edit
       widthPercent: 100
