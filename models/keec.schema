@@ -188,7 +188,7 @@ steps:
           type: number
           label: East
           default: 10
-          widthPercent: 10
+          widthPercent: 33
         - id: westpercent
           type: number
           label: West
@@ -286,6 +286,8 @@ steps:
           type: number
           label: Percent Area Sum
           label_suffix: (%)
+          default: 100
+          enabled: false
           widthPercent: 50
     - id: domestichotwatersystem
       label: Domestic Hot Water System

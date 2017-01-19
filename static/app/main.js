@@ -197,6 +197,14 @@ function postData(name,data){
      scope.getTemplateUrl = function () {
       return '/keec/assets/views/fields/' + scope.field.type + '.html';
     };
+
+    scope.blocked = function(){
+      if(scope.field.enabled == 'False'){
+        return true;
+      }
+      return false;
+    }
+
     scope.editInput = function (event, value, index) {
       var editDialog = {
         modelValue: value[index],
