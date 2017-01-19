@@ -1,4 +1,4 @@
-<div ng-if="building.value=='Rectangular.jpg'" class="dimension-wrapper">
+<div class="dimension-wrapper">
 	<div class="flex-{{field.dimensionWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
 		<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
 		<input type="number" id="{{field.id}}" ng-model="field.value.x">
