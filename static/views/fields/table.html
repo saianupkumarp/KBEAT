@@ -15,12 +15,12 @@
 		</tr>
 	</table>
 </div> -->
-<input style="margin-bottom: 4px;
+<!-- <input style="margin-bottom: 4px;
     background-color: green;
     color: #fff;
     height:30px;
     font-size:9px;
-    border: none;" ng-if="field.id=='windowTable'" type="button" ng-click="addRow()" value="Add Row" />
+    border: none;" ng-if="field.id=='windowTable'" type="button" ng-click="addRow()" value="Add Row" /> -->
 <md-table-container ng-if="field.id=='windowTable'">
 	<table md-table>
 		<thead md-head>
@@ -32,15 +32,15 @@
 			</tr>
 		</thead>
 		<tbody md-body>
-			<tr  md-row ng-repeat="row in field.combine track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
+			<tr  md-row ng-repeat="row in field.rowValues track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
 				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
 				<td style="border:1px solid green;" md-cell>
-					<md-select ng-model="row.value" style="border:none;">
-						<md-option ng-value="option" ng-repeat="option in row.options">{{row.values[$index]}}</md-option>
+					<md-select ng-model="row.directionValue" style="border:none;">
+						<md-option ng-value="option" ng-repeat="option in row.directionOptions track by $index">{{row.directionValues[$index]}}</md-option>
 					</md-select>
 				</td>
 				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
-					{{row.item || 'Enter Value'}}
+					{{row.fieldValue}}
 				</td>
 				<td style="border:1px solid green;" md-cell>
 					<md-select ng-model="row.glazingValue" style="border:none;">

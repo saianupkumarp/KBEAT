@@ -57,9 +57,9 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                 $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
                  container.parameters.forEach(function(parameter){
                   parameter.error = false;
-                  if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+                  if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
                   {
-                   if(parameter.type == 'table'){
+                  /* if(parameter.type == 'table'){
                     parameter.combine.forEach(function(element){
                      if((element.item == '')||(element.item == null)){
                        parameter.error = true;
@@ -71,7 +71,9 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
                   else{
                     parameter.error = true;
                     isError = true;
-                  }
+                  }*/
+                  parameter.error = true;
+                  isError = true;
                 }
               });
                });
@@ -136,7 +138,7 @@ return {
 function postData(name,data){
   return  $http.post('/keec/api/model/' + name,data).then(function(response) {
     $rootScope.stepNext();
- })
+  })
 }
 })
 
@@ -175,10 +177,10 @@ function postData(name,data){
     };
     scope.editInputValue = function (event, value) {
       var editDialog = {
-        modelValue: value.item,
+        modelValue: value.fieldValue,
         placeholder: 'Enter Value',
         save: function (input) {
-          value.item = input.$modelValue;
+          value.fieldValue = input.$modelValue;
         },
         targetEvent: event,
         title: 'Edit Value',
@@ -204,14 +206,15 @@ function postData(name,data){
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
+          console.log(obj2);
           if(obj2.id !='prev' && obj2.id != 'next'){
             resJson[obj2.id] = obj2.value;
             ObjCount=ObjCount+2;
           }
-       });
+        });
       });
      });
-     console.log(JSON.stringify(resJson));
+      console.log(JSON.stringify(resJson));
       scope.data = JSON.stringify(resJson);
       $rootScope.postData(scope.data);
     }
@@ -229,7 +232,38 @@ function postData(name,data){
       break;
       case 'table':
       if(scope.field.id =='windowTable'){
-        scope.count = 0;
+        scope.row1 = scope.container.parameters.filter(function(p){
+          return p.id == scope.field.related_id1;
+        })[0];
+        scope.row1.directionOptions = scope.row1.directionOptions.split(', ');
+        scope.row1.directionValues = scope.row1.directionValues.split(', ');
+        scope.row1.glazingOptions = scope.row1.glazingOptions.split(', ');
+        scope.row1.glazingValues = scope.row1.glazingValues.split(', ');
+        scope.row2 = scope.container.parameters.filter(function(p){
+          return p.id == scope.field.related_id2;
+        })[0];
+        scope.row2.directionOptions = scope.row2.directionOptions.split(', ');
+        scope.row2.directionValues = scope.row2.directionValues.split(', ');
+        scope.row2.glazingOptions = scope.row2.glazingOptions.split(', ');
+        scope.row2.glazingValues = scope.row2.glazingValues.split(', ');
+        scope.row3 = scope.container.parameters.filter(function(p){
+          return p.id == scope.field.related_id3;
+        })[0];
+        scope.row3.directionOptions = scope.row3.directionOptions.split(', ');
+        scope.row3.directionValues = scope.row3.directionValues.split(', ');
+        scope.row3.glazingOptions = scope.row3.glazingOptions.split(', ');
+        scope.row3.glazingValues = scope.row3.glazingValues.split(', ');
+        scope.row4 = scope.container.parameters.filter(function(p){
+          return p.id == scope.field.related_id4;
+        })[0];
+        scope.row4.directionOptions = scope.row4.directionOptions.split(', ');
+        scope.row4.directionValues = scope.row4.directionValues.split(', ');
+        scope.row4.glazingOptions = scope.row4.glazingOptions.split(', ');
+        scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
+        scope.field.rowValues = [];      
+        scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
+
+       /* scope.count = 0;
         scope.field0 = {};
         scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
         scope.field0.glazingValues = scope.field.glazingValues.split(', ');
@@ -254,7 +288,7 @@ function postData(name,data){
             scope.field1.item = null;
             scope.field.combine.splice(scope.count,0,scope.field1);
           }
-        }
+        }*/
       }
       else if(scope.field.id=='spaceTable'){
         scope.field.row_heading = scope.field.row_heading.split(', ');
@@ -289,6 +323,8 @@ function postData(name,data){
       scope.area = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
+
+      console.log( scope.area);
 
       scope.$watch('field.value.x', function(){
         scope.field.value.area = scope.field.value.x * scope.field.value.y;
