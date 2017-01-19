@@ -1,0 +1,25 @@
+{
+  "site": {
+    "title": "KAPSARC Building Stock Energy Efficiency Analysis",
+    "branding": "<small>KEEC</small>",
+    "languages": {
+      "en": "English"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "about": "About",
+    "models": "Models",
+    "toggle_nav": "Toggle navigation"
+  },
+  "sections": {
+    "about": {
+      "title": "About KEEC",
+      "subtitle": "KAPSARC Building Stock Energy Efficiency Analysis",
+      "phone": "",
+      "fax": "",
+      "close": "@:messages.close"
+    }
+  }
+}
