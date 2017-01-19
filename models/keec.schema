@@ -7,11 +7,11 @@ steps:
       label: Building Information
       widthPercent: 50
       parameters:
-        - id: buildingName
+        - id: txtBldgName
           type: text
           label: Building Name
           widthPercent: 50
-        - id: buildingAddress
+        - id: txtBldgAddress
           type: text
           label: Building Address
           widthPercent: 50
@@ -19,26 +19,26 @@ steps:
       label: Building Use
       widthPercent: 50
       parameters:
-        - id: buildingType
+        - id: cmbBldgType
           type: dropdown
           options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
           values: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
           default: Office:Private
           label: Building Type
           widthPercent: 50
-        - id: numberOfFloors
+        - id: txtBldgNumFloor
           type: number
           label: Number of Floors
           label_suffix: story
           widthPercent: 50
-        - id: buildingLocation
+        - id: cmbBldgLocation
           type: dropdown
           options: tunis
           values: TUNIS
           default: TUNIS
           label: Building Location
           widthPercent: 50
-        - id: airConditionedArea
+        - id: txtBldgCondArea
           type: number
           label: Air-Conditioned Area
           label_suffix: (%)
@@ -48,39 +48,39 @@ steps:
       widthPercent: 100
       hasShape: true
       parameters:
-        - id: buildingShape
+        - id: cmbBldgShape
           type: dropdown
           options: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
           values: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
           widthPercent: 100
-        - id: buildingOrientation
+        - id: txtBldgAzi
           type: number
           label: Building Orientation
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
           widthPercent: 50
-        - id: floorToFloorHeight
+        - id: txtFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
           widthPercent: 50
-        - id: x1
+        - id: txtLengX1
           type: dimension
           label: X1
           label_suffix: m
-          relatedY: Y1
+          relatedY: txtLengY1
           relatedArea: floorArea
           dimensionWidthPercent: 50
           widthPercent: 100
-        - id: Y1
+        - id: txtLengY1
           type: dimension
           label: Y1
           label_suffix: m
           hide: true
           dimensionWidthPercent: 50
-        - id: floorArea
+        - id: txtFloorArea
           type: dimension
           label: Floor Area
           label_suffix: m2
@@ -89,25 +89,25 @@ steps:
         - id: shape
           type: shape
           label: Shape
-          related_id: buildingShape
+          related_id: cmbBldgShape
           widthPercent: 50
       shapeDetails:
         - id: rect
           axis: X1, Y1
           image: Rectangular.jpg
-          related_id: buildingShape
+          related_id: cmbBldgShape
         - id: lshape
           axis: X1, X2, Y1, Y2
           image: L-Shape.jpg
-          related_id: buildingShape
+          related_id: cmbBldgShape
         - id: tshape
           axis: X1, X2, X3, Y1, Y2
           image: T-Shape.jpg
-          related_id: buildingShape
+          related_id: cmbBldgShape
         - id: ushape
           axis: X1, X2, X3, Y1, Y2, Y3
           image: U-Shape.jpg
-          related_id: buildingShape
+          related_id: cmbBldgShape
     - id: button
       widthPercent: 100
       label: Button
@@ -123,42 +123,42 @@ steps:
       label: Exterior Constructions
       widthPercent: 100
       parameters:
-        - id: southWall
+        - id: cmbSouthWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: South Wall
           widthPercent: 33
-        - id: northWall
+        - id: cmbNorthWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: North Wall
           widthPercent: 33
-        - id: eastWall
+        - id: cmbEastWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: East Wall
           widthPercent: 33
-        - id: westWall
+        - id: cmbWestWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: West Wall
           widthPercent: 33
-        - id: roof
+        - id: cmbRoof
           type: dropdown
           options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm
           values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           default: Roof Cons-Nolnsu
           label: Roof
           widthPercent: 33
-        - id: 1stFloorContactCondition
+        - id: cmbFirstFloorContact
           type: dropdown
           options: ground, conditionedspace, unconditionedspace
           values: Ground, Conditioned Space, UnConditioned Space
@@ -169,7 +169,7 @@ steps:
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
       parameters:
-        - id: windowWall
+        - id: txtWinSouthOverhang
           type: radio
           label: Windows (Condtioned space ONLY)
           options: Window Wall Ratio (%), Window Area (m2)
@@ -177,7 +177,7 @@ steps:
         - id: windowTable
           type: table
           options: south, north, east, west
-          values: south, North, East, West
+          values: South, North, East, West
           glazingOptions: value1, value2, value3, value4
           glazingValues: Value1, Value2, Value3, Value4
           label: Window Table
@@ -267,7 +267,7 @@ steps:
       label: Domestic Hot Water System
       widthPercent: 100
       parameters:
-        - id: domestichotwatersystem
+        - id: cmbHotWaterSystem
           type: dropdown
           options: tanklesselectricdhwsystem
           values: Tankless electric DHW system
@@ -293,19 +293,19 @@ steps:
       label: HVAC System
       widthPercent: 100
       parameters:
-        - id: hvacsystem
+        - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
           options: PackagedVAV.jpg, VavSystem.jpg
           values: Packaged Variable Air Volume System, Variable Air Volume System
           default: Packaged Variable Air Volume System
           widthPercent: 100
-        - id: heatingsetpointtemperature
+        - id: txtHeatSetTemp
           type: number
           label: Heating setpoint temperature
           label_suffix: degC
           widthPercent: 100
-        - id: coolingsetpointtemperature
+        - id: txtCoolSetTemp
           type: number
           label: Cooling setpoint temperature
           label_suffix: degC
@@ -313,7 +313,7 @@ steps:
         - id: figure
           type: figure
           label: Figure
-          related_id: hvacsystem
+          related_id: cmbBldgSystem
           widthPercent: 100
     - id: button
       widthPercent: 100
@@ -333,7 +333,7 @@ steps:
     - id: resultData
       label: Result Data
       widthPercent: 100
-      parameters: 
+      parameters:
         - id: display
           type: result
           label: Display

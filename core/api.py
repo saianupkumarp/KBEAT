@@ -15,10 +15,10 @@ def get_model():
 
 @rest_api.route('/model/<model_name>', methods=['POST'])
 def run_model(model_name):
-    # model = data.get_model(model_name)
+    print "start"
+    result = tasks.run_task(request.data)
     args = request.data if request.data else ''
-    print args
-    return
+    return "Done"
     # return jsonify(tasks.run_task(model=model, args=args))
 
 @rest_api.route('/runsim')
