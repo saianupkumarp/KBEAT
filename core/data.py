@@ -18,7 +18,10 @@ client = MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
 db = client[settings.MONGO_DBNAME]
 Models = db['model']
 
-
+def get_locales():
+    locales_path = path.join(settings.STATIC_ROOT, 'locales')
+    return [path.splitext(f)[0] for f in listdir(locales_path) if f.endswith('.json')]
+    
 def get_model():
     model_data = Models.find_one()
     return Model(model_data, strict=False) if model_data else None

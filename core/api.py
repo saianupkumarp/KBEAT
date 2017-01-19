@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, jsonify, request
+from flask import Blueprint, abort, jsonify, request, current_app
 
 from core import data, tasks
 
@@ -6,6 +6,9 @@ from core import data, tasks
 rest_api = Blueprint('rest_api', __name__)
 
 
+@rest_api.route('/config')
+def get_config():
+    return jsonify(app_name=current_app.config['APP_NAME'], locales=data.get_locales())
 
 @rest_api.route('/model')
 def get_model():
@@ -18,7 +21,7 @@ def run_model(model_name):
     print "start"
     result = tasks.run_task(request.data)
     args = request.data if request.data else ''
-    return "Done"
+    return result
     # return jsonify(tasks.run_task(model=model, args=args))
 
 @rest_api.route('/runsim')

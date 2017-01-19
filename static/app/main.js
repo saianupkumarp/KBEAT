@@ -1,13 +1,24 @@
-define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria','angular-messages',
+define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
+  'angular-animate','angular-aria','angular-messages','angular-cookies',
+  'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
   'angular-material','md-steppers','angular-material-data-table'],
 
   function ($, angular) {
 
     angular.module('keec', [
-      'ui.router','ngMaterial', 'md-steppers', 'md.data.table'
+      'ui.router','ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table'
       ])
 
-    .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
+      // Multi-language support
+      $translateProvider
+        .useLocalStorage()
+        .useStaticFilesLoader({prefix: '/keec/assets/locales/', suffix: '.json'})
+        .determinePreferredLanguage(function () {
+          var lang = navigator.language || navigator.userLanguage;
+          return lang && lang.substring(0, 2);
+        });
+      $translateProvider.useSanitizeValueStrategy('escape');
 
         // Enabling HTML 5 mode to remove the # prefix from URL's
         $locationProvider.html5Mode({
@@ -21,6 +32,14 @@ define(['jquery', 'angular', 'angular-ui-router','angular-animate','angular-aria
           abstract: true,
           url: '',
           resolve: {
+            // Gets app configuration
+              config: function ($http) {
+                return $http.get('/keec/api/config').then(function (response) {
+                  return response.data;
+                });
+              },
+
+            //Get model
             model: function($http, $rootScope){
               return $http.get('/keec/api/model').then(function(response){
                 $rootScope.model = response.data;
@@ -137,10 +156,31 @@ return {
 };
 function postData(name,data){
   return  $http.post('/keec/api/model/' + name,data).then(function(response) {
+    console.log(response.data);
     $rootScope.stepNext();
   })
 }
 })
+
+/* Configuration manager */
+  .factory('configStorage', function ($window, $cookieStore) {
+    return {
+      set: function (name, value) {
+        try {
+          $window.localStorage.setItem(name, value);
+        } catch (e) {
+          $cookieStore.put(name, value);
+        }
+      },
+      get: function (name) {
+        try {
+          return $window.localStorage.getItem(name);
+        } catch (e) {
+          return $cookieStore.get(name);
+        }
+      }
+    }
+  })
 
 .directive('field', function ($mdDialog,$rootScope,$mdEditDialog) {
   return {
