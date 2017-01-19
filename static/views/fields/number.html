@@ -1,6 +1,6 @@
 <div ng-class="{'input-container':true, error: field.error}">
 	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-	<input type="number" id="{{field.id}}" ng-model="field.value">
+	<input ng-disabled="blocked()" type="number" id="{{field.id}}" ng-model="field.value" ng-value="field.default">
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
 	<input ng-if="field.edit" class="Edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
 </div>

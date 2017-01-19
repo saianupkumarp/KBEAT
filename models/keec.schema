@@ -288,6 +288,8 @@ steps:
           type: number
           label: Percent Area Sum
           label_suffix: (%)
+          default: 100
+          enabled: false
           widthPercent: 50
     - id: domestichotwatersystem
       label: Domestic Hot Water System
