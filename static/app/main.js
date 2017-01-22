@@ -12,12 +12,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
       // Multi-language support
       $translateProvider
-        .useLocalStorage()
-        .useStaticFilesLoader({prefix: '/keec/assets/locales/', suffix: '.json'})
-        .determinePreferredLanguage(function () {
-          var lang = navigator.language || navigator.userLanguage;
-          return lang && lang.substring(0, 2);
-        });
+      .useLocalStorage()
+      .useStaticFilesLoader({prefix: '/keec/assets/locales/', suffix: '.json'})
+      .determinePreferredLanguage(function () {
+        var lang = navigator.language || navigator.userLanguage;
+        return lang && lang.substring(0, 2);
+      });
       $translateProvider.useSanitizeValueStrategy('escape');
 
         // Enabling HTML 5 mode to remove the # prefix from URL's
@@ -33,11 +33,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
           url: '',
           resolve: {
             // Gets app configuration
-              config: function ($http) {
-                return $http.get('/keec/api/config').then(function (response) {
-                  return response.data;
-                });
-              },
+            config: function ($http) {
+              return $http.get('/keec/api/config').then(function (response) {
+                return response.data;
+              });
+            },
 
             //Get model
             model: function($http, $rootScope){
@@ -163,24 +163,24 @@ function postData(name,data){
 })
 
 /* Configuration manager */
-  .factory('configStorage', function ($window, $cookieStore) {
-    return {
-      set: function (name, value) {
-        try {
-          $window.localStorage.setItem(name, value);
-        } catch (e) {
-          $cookieStore.put(name, value);
-        }
-      },
-      get: function (name) {
-        try {
-          return $window.localStorage.getItem(name);
-        } catch (e) {
-          return $cookieStore.get(name);
-        }
+.factory('configStorage', function ($window, $cookieStore) {
+  return {
+    set: function (name, value) {
+      try {
+        $window.localStorage.setItem(name, value);
+      } catch (e) {
+        $cookieStore.put(name, value);
+      }
+    },
+    get: function (name) {
+      try {
+        return $window.localStorage.getItem(name);
+      } catch (e) {
+        return $cookieStore.get(name);
       }
     }
-  })
+  }
+})
 
 .directive('field', function ($mdDialog,$rootScope,$mdEditDialog) {
   return {
@@ -245,27 +245,36 @@ function postData(name,data){
     }
 
     scope.data={
-      a:[]
     };
 
-    scope.run =function(){
+    scope.runData =function(){
       var resJson = {}
       var ObjCount =0;
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          console.log(obj2);
-          if(obj2.id !='prev' && obj2.id != 'next'){
+          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display'){
             resJson[obj2.id] = obj2.value;
             ObjCount=ObjCount+2;
           }
         });
       });
      });
-      console.log(JSON.stringify(resJson));
       scope.data = JSON.stringify(resJson);
-      $rootScope.postData(scope.data);
+      scope.showData();
     }
+
+    scope.showData = function(){
+       scope.resultData ={};
+      scope.resultData = JSON.parse(scope.data);
+      scope.resultHead = [];
+      scope.resultValue = [];
+      for(var key in scope.resultData){
+        scope.resultHead.push(key);
+        scope.resultValue.push(scope.resultData[key]);
+      }
+    };
+    scope.runData();
 
     switch(scope.field.type) {
       case 'dropdown':
@@ -277,8 +286,8 @@ function postData(name,data){
       case 'radio':
       scope.field.options = scope.field.options.split(', ');
       scope.field.value = scope.field.options[0];
-       case 'number':
-       scope.field.value = parseInt(scope.field.default);
+      case 'number':
+      scope.field.value = parseInt(scope.field.default);
       break;
       case 'table':
       if(scope.field.id =='windowTable'){
@@ -362,8 +371,7 @@ function postData(name,data){
 
       break;
       case 'dimension':
-      console.log(scope.field);
-      scope.field.value={x:0,y:0,area:0};
+      scope.field.value={x1:0,y1:0,area:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
@@ -373,9 +381,6 @@ function postData(name,data){
       scope.area = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-
-      console.log( scope.area);
-
       scope.$watch('field.value.x', function(){
         scope.field.value.area = scope.field.value.x * scope.field.value.y;
       });
@@ -396,6 +401,10 @@ function postData(name,data){
       })[0];
 
       break;
+     /* case 'result':
+      scope.runData();
+     
+      break;*/
       case 'button':
       scope.previous =function(){
         $rootScope.stepBack();
@@ -403,8 +412,12 @@ function postData(name,data){
       scope.next =function(){
        $rootScope.stepNext();
      }
-   }
-   scope.dialogBox =function(ev){
+     scope.run =function(){
+      scope.runData();
+      $rootScope.stepNext();
+    }
+  }
+  scope.dialogBox =function(ev){
     $rootScope.Dialog(ev);
   }
   if (scope.field.type == 'text' || scope.field.type == 'number')

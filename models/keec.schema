@@ -203,6 +203,17 @@ steps:
           default: Single Glass
           label: Glass Type
           widthPercent: 100
+        - id: overhang
+          type: number
+          label: Overhang
+          default: '0.3'
+          label_suffix: m(depth)
+          widthPercent: 100 
+        - id: fp
+          type: number
+          label: FP
+          default: '0.2'
+          widthPercent: 100    
         - id: shape
           type: shape
           label: Shape

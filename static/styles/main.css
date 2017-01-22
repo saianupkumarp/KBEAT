@@ -317,7 +317,7 @@ font-size:11px;
 }
 
 .input-container > .label-suffix {
-	width:33px;
+	width:54px;
 	height: 30px;
 	line-height: 30px;
 	padding: 0 4px;
@@ -868,3 +868,18 @@ md-dialog{
 	margin-bottom: 10px;
 }
 
+/*md-tab
+.............*/
+md-tabs .md-tab.md-active{
+	color:green;
+}
+md-tabs md-ink-bar {
+    color: green;
+    background: green;
+}
+md-tabs-canvas{
+	width:140%;
+}
+ md-tabs .md-tab{
+ 	min-width: 500px;
+ }
