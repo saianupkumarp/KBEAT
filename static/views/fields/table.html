@@ -64,6 +64,7 @@
 				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
 				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
 				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
+				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[7]}}</th>
 			</tr>
 		</thead>
 		<tbody md-body>
@@ -74,7 +75,12 @@
 				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
 				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
 				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,6)">{{row[6]}}</td>
+				<td style="border:1px solid green;" md-cell>
+					<input type="radio" name="groupName" ng-model="row[6]" ng-value="row[6]" disabled />
+				</td>
+				<td style="border:1px solid green;" md-cell>
+					<input type="radio" name="groupName1" ng-model="row[7]" ng-value="row[7]" disabled />
+				</td>
 			</tr>
 		</tbody>
 	</table>

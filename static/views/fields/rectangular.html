@@ -1,0 +1,17 @@
+<div class="dimension-wrapper" ng-if="building.value=='Rectangular.jpg'">
+	<div class="flex-{{field.rectangularWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+		<input type="number" id="{{field.id}}" ng-model="field.value.x1">
+		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+	</div>
+	<div class="flex-{{y1.rectangularWidthPercent}}" ng-class="{'input-container':true, error: field.error, responsive:true}">
+		<label for="{{y1.id}}" ng-class="{error: field.error}">{{y1.label}}</label>
+		<input type="number" id="{{y1.id}}" ng-model="field.value.y1">
+		<div class="label-suffix" ng-if="y1.label_suffix">{{y1.label_suffix}}</div>
+	</div>
+	<div class="flex-{{area.rectangularWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{area.id}}" ng-class="{error: field.error}">{{area.label}}</label>
+		<input type="number" id="{{area.id}}" ng-model="field.value.area" disabled>
+		<div class="label-suffix" ng-if="area.label_suffix">{{area.label_suffix}}</div>
+	</div>	
+</div>

@@ -1,0 +1,37 @@
+<div class="dimension-wrapper" ng-if="building.value=='U-Shape.jpg'">
+	<div class="flex-{{field.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+		<input type="number" id="{{field.id}}" ng-model="field.value.x1">
+		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+	</div>
+	<div class="flex-{{x2.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error, responsive:true}">
+		<label for="{{x2.id}}" ng-class="{error: field.error}">{{x2.label}}</label>
+		<input type="number" id="{{x2.id}}" ng-model="field.value.x2">
+		<div class="label-suffix" ng-if="x2.label_suffix">{{x2.label_suffix}}</div>
+	</div>
+	<div class="flex-{{x3.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{x3.id}}" ng-class="{error: field.error}">{{x3.label}}</label>
+		<input type="number" id="{{x3.id}}" ng-model="field.value.x3">
+		<div class="label-suffix" ng-if="x3.label_suffix">{{x3.label_suffix}}</div>
+	</div>
+	<div class="flex-{{y1.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error, responsive:true}">
+		<label for="{{y1.id}}" ng-class="{error: field.error}">{{y1.label}}</label>
+		<input type="number" id="{{y1.id}}" ng-model="field.value.y1">
+		<div class="label-suffix" ng-if="y1.label_suffix">{{y1.label_suffix}}</div>
+	</div>
+	<div class="flex-{{y2.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{y2.id}}" ng-class="{error: field.error}">{{y2.label}}</label>
+		<input type="number" id="{{y2.id}}" ng-model="field.value.y2">
+		<div class="label-suffix" ng-if="y2.label_suffix">{{y2.label_suffix}}</div>
+	</div>
+	<div class="flex-{{y3.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error, responsive:true}">
+		<label for="{{y3.id}}" ng-class="{error: field.error}">{{y3.label}}</label>
+		<input type="number" id="{{y3.id}}" ng-model="field.value.y3">
+		<div class="label-suffix" ng-if="y3.label_suffix">{{y3.label_suffix}}</div>
+	</div>
+	<div class="flex-{{area.ushapeWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
+		<label for="{{area.id}}" ng-class="{error: field.error}">{{area.label}}</label>
+		<input type="number" id="{{area.id}}" ng-model="field.value.area" disabled>
+		<div class="label-suffix" ng-if="area.label_suffix">{{area.label_suffix}}</div>
+	</div>	
+</div>

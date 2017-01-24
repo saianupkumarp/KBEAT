@@ -156,7 +156,6 @@ return {
 };
 function postData(name,data){
   return  $http.post('/keec/api/model/' + name,data).then(function(response) {
-    console.log(response.data);
     $rootScope.stepNext();
   })
 }
@@ -265,62 +264,62 @@ function postData(name,data){
     }
 
     scope.showData = function(){
-       scope.resultData ={};
-      scope.resultData = JSON.parse(scope.data);
-      scope.resultHead = [];
-      scope.resultValue = [];
-      for(var key in scope.resultData){
-        scope.resultHead.push(key);
-        scope.resultValue.push(scope.resultData[key]);
-      }
-    };
-    scope.runData();
+     scope.resultData ={};
+     scope.resultData = JSON.parse(scope.data);
+     scope.resultHead = [];
+     scope.resultValue = [];
+     for(var key in scope.resultData){
+      scope.resultHead.push(key);
+      scope.resultValue.push(scope.resultData[key]);
+    }
+  };
+  scope.runData();
 
-    switch(scope.field.type) {
-      case 'dropdown':
-      scope.field.options = scope.field.options.split(', ');
-      scope.field.values = scope.field.values.split(', ');
-      scope.field.value = scope.field.values[0];
+  switch(scope.field.type) {
+    case 'dropdown':
+    scope.field.options = scope.field.options.split(', ');
+    scope.field.values = scope.field.values.split(', ');
+    scope.field.value = scope.field.values[0];
 
-      break;
-      case 'radio':
-      scope.field.options = scope.field.options.split(', ');
-      scope.field.value = scope.field.options[0];
-      case 'number':
-      scope.field.value = parseInt(scope.field.default);
-      break;
-      case 'table':
-      if(scope.field.id =='windowTable'){
-        scope.row1 = scope.container.parameters.filter(function(p){
-          return p.id == scope.field.related_id1;
-        })[0];
-        scope.row1.directionOptions = scope.row1.directionOptions.split(', ');
-        scope.row1.directionValues = scope.row1.directionValues.split(', ');
-        scope.row1.glazingOptions = scope.row1.glazingOptions.split(', ');
-        scope.row1.glazingValues = scope.row1.glazingValues.split(', ');
-        scope.row2 = scope.container.parameters.filter(function(p){
-          return p.id == scope.field.related_id2;
-        })[0];
-        scope.row2.directionOptions = scope.row2.directionOptions.split(', ');
-        scope.row2.directionValues = scope.row2.directionValues.split(', ');
-        scope.row2.glazingOptions = scope.row2.glazingOptions.split(', ');
-        scope.row2.glazingValues = scope.row2.glazingValues.split(', ');
-        scope.row3 = scope.container.parameters.filter(function(p){
-          return p.id == scope.field.related_id3;
-        })[0];
-        scope.row3.directionOptions = scope.row3.directionOptions.split(', ');
-        scope.row3.directionValues = scope.row3.directionValues.split(', ');
-        scope.row3.glazingOptions = scope.row3.glazingOptions.split(', ');
-        scope.row3.glazingValues = scope.row3.glazingValues.split(', ');
-        scope.row4 = scope.container.parameters.filter(function(p){
-          return p.id == scope.field.related_id4;
-        })[0];
-        scope.row4.directionOptions = scope.row4.directionOptions.split(', ');
-        scope.row4.directionValues = scope.row4.directionValues.split(', ');
-        scope.row4.glazingOptions = scope.row4.glazingOptions.split(', ');
-        scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
-        scope.field.rowValues = [];      
-        scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
+    break;
+    case 'radio':
+    scope.field.options = scope.field.options.split(', ');
+    scope.field.value = scope.field.options[0];
+    case 'number':
+    scope.field.value = parseInt(scope.field.default);
+    break;
+    case 'table':
+    if(scope.field.id =='windowTable'){
+      scope.row1 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id1;
+      })[0];
+      scope.row1.directionOptions = scope.row1.directionOptions.split(', ');
+      scope.row1.directionValues = scope.row1.directionValues.split(', ');
+      scope.row1.glazingOptions = scope.row1.glazingOptions.split(', ');
+      scope.row1.glazingValues = scope.row1.glazingValues.split(', ');
+      scope.row2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id2;
+      })[0];
+      scope.row2.directionOptions = scope.row2.directionOptions.split(', ');
+      scope.row2.directionValues = scope.row2.directionValues.split(', ');
+      scope.row2.glazingOptions = scope.row2.glazingOptions.split(', ');
+      scope.row2.glazingValues = scope.row2.glazingValues.split(', ');
+      scope.row3 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id3;
+      })[0];
+      scope.row3.directionOptions = scope.row3.directionOptions.split(', ');
+      scope.row3.directionValues = scope.row3.directionValues.split(', ');
+      scope.row3.glazingOptions = scope.row3.glazingOptions.split(', ');
+      scope.row3.glazingValues = scope.row3.glazingValues.split(', ');
+      scope.row4 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id4;
+      })[0];
+      scope.row4.directionOptions = scope.row4.directionOptions.split(', ');
+      scope.row4.directionValues = scope.row4.directionValues.split(', ');
+      scope.row4.glazingOptions = scope.row4.glazingOptions.split(', ');
+      scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
+      scope.field.rowValues = [];      
+      scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
 
        /* scope.count = 0;
         scope.field0 = {};
@@ -370,22 +369,133 @@ function postData(name,data){
       }
 
       break;
-      case 'dimension':
-      scope.field.value={x1:0,y1:0,area:0};
+      case 'rectangular':
+      scope.field.value={x1:10,y1:10,area:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-      scope.y = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY;
+      scope.y1 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY1;
       })[0];
       scope.area = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-      scope.$watch('field.value.x', function(){
-        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      scope.$watch('field.value.x1', function(){
+        scope.field.value.area = scope.field.value.x1 * scope.field.value.y1;
       });
-      scope.$watch('field.value.y', function(){
-        scope.field.value.area = scope.field.value.x * scope.field.value.y;
+      scope.$watch('field.value.y1', function(){
+        scope.field.value.area = scope.field.value.x1 * scope.field.value.y1;
+      });
+
+      break;
+      case 'lshape':
+      scope.field.value={x1:10,x2:5,y1:10,y2:5,area:0};
+      scope.building =scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
+      scope.x2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedX2;
+      })[0];
+      scope.y1 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY1;
+      })[0];
+      scope.y2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY2;
+      })[0];
+      scope.area = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedArea;
+      })[0];
+      scope.$watch('field.value.x1', function(){
+        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      });
+      scope.$watch('field.value.x2', function(){
+        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      });
+      scope.$watch('field.value.y1', function(){
+        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      });
+      scope.$watch('field.value.y2', function(){
+        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      });
+
+      break;
+      case 'tshape':
+      scope.field.value={x1:10,x2:5,x3:5,y1:10,y2:5,area:0};
+      scope.building =scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
+      scope.x2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedX2;
+      })[0];
+      scope.x3 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedX3;
+      })[0];
+      scope.y1 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY1;
+      })[0];
+      scope.y2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY2;
+      })[0];
+      scope.area = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedArea;
+      })[0];
+      scope.$watch('field.value.x1', function(){
+        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      });
+      scope.$watch('field.value.x2', function(){
+        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      });
+      scope.$watch('field.value.x3', function(){
+        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      });
+      scope.$watch('field.value.y1', function(){
+        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      });
+      scope.$watch('field.value.y2', function(){
+        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      });
+
+      break;
+      case 'ushape':
+      scope.field.value={x1:10,x2:5,x3:5,y1:10,y2:5,y3:5,area:0};
+      scope.building =scope.container.parameters.filter(function(p){
+        return p.id == scope.field.related_id;
+      })[0];
+      scope.x2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedX2;
+      })[0];
+      scope.x3 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedX3;
+      })[0];
+      scope.y1 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY1;
+      })[0];
+      scope.y2 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY2;
+      })[0];
+      scope.y3 = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedY3;
+      })[0];
+      scope.area = scope.container.parameters.filter(function(p){
+        return p.id == scope.field.relatedArea;
+      })[0];
+      scope.$watch('field.value.x1', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      });
+      scope.$watch('field.value.x2', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      });
+      scope.$watch('field.value.x3', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      });
+      scope.$watch('field.value.y1', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      });
+      scope.$watch('field.value.y2', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      });
+      scope.$watch('field.value.y3', function(){
+        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
       });
 
       break;
