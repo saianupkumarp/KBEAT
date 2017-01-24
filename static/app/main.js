@@ -285,6 +285,8 @@ function postData(name,data){
     case 'radio':
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
+
+    break;
     case 'number':
     scope.field.value = parseInt(scope.field.default);
     break;
