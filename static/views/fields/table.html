@@ -21,67 +21,67 @@
     height:30px;
     font-size:9px;
     border: none;" ng-if="field.id=='windowTable'" type="button" ng-click="addRow()" value="Add Row" /> -->
-<md-table-container ng-if="field.id=='windowTable'">
-	<table md-table>
-		<thead md-head>
-			<tr md-row>
-				<th md-column>&nbsp;</th> 
-				<th style="border:1px solid green;text-align:center;" md-column>Direction</th>
-				<th style="border:1px solid green;text-align:center;" md-column>Value</th>
-				<th style="border:1px solid green;text-align:center;" md-column>Glazing Type</th>
-			</tr>
-		</thead>
-		<tbody md-body>
-			<tr  md-row ng-repeat="row in field.rowValues track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
-				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
-				<td style="border:1px solid green;" md-cell>
-					<md-select ng-model="row.directionValue" style="border:none;">
-						<md-option ng-value="option" ng-repeat="option in row.directionOptions track by $index">{{row.directionValues[$index]}}</md-option>
-					</md-select>
-				</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
-					{{row.fieldValue}}
-				</td>
-				<td style="border:1px solid green;" md-cell>
-					<md-select ng-model="row.glazingValue" style="border:none;">
-						<md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index">{{row.glazingValues[$index]}}</md-option>
-					</md-select>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</md-table-container>
-<div ng-class="{errorTable: field.error}"></div>
+    <md-table-container ng-if="field.id=='windowTable'">
+    	<table md-table>
+    		<thead md-head>
+    			<tr md-row>
+    				<th md-column>&nbsp;</th> 
+    				<th style="border:1px solid green;text-align:center;" md-column>Direction</th>
+    				<th style="border:1px solid green;text-align:center;" md-column>Value</th>
+    				<th style="border:1px solid green;text-align:center;" md-column>Glazing Type</th>
+    			</tr>
+    		</thead>
+    		<tbody md-body>
+    			<tr  md-row ng-repeat="row in field.rowValues track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
+    				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
+    				<td style="border:1px solid green;" md-cell>
+    					<md-select ng-model="row.directionValue" style="border:none;">
+    						<md-option ng-value="option" ng-repeat="option in row.directionOptions track by $index">{{row.directionValues[$index]}}</md-option>
+    					</md-select>
+    				</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
+    					{{row.fieldValue}}
+    				</td>
+    				<td style="border:1px solid green;" md-cell>
+    					<md-select ng-model="row.glazingValue" style="border:none;">
+    						<md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index">{{row.glazingValues[$index]}}</md-option>
+    					</md-select>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </md-table-container>
+    <div ng-class="{errorTable: field.error}"></div>
 
-<md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
-	<table md-table>
-		<thead md-head md-order="default.order">
-			<tr md-row>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
-				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[7]}}</th>
-			</tr>
-		</thead>
-		<tbody md-body>
-			<tr md-row ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
-				<td ng-click="selectRow($index)" style="border:1px solid green;" md-cell>{{row[0]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
-				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
-				<td style="border:1px solid green;" md-cell>
-					<input type="radio" name="groupName" ng-model="row[6]" ng-value="row[6]" disabled />
-				</td>
-				<td style="border:1px solid green;" md-cell>
-					<input type="radio" name="groupName1" ng-model="row[7]" ng-value="row[7]" disabled />
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</md-table-container>
+    <md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
+    	<table md-table>
+    		<thead md-head md-order="default.order">
+    			<tr md-row>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
+    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[7]}}</th>
+    			</tr>
+    		</thead>
+    		<tbody md-body>
+    			<tr md-row ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
+    				<td ng-click="selectRow($index)" style="border:1px solid green;" md-cell>{{row[0]}}</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
+    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
+    				<td style="border:1px solid green;" md-cell>
+    				<img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/selected.png"/>
+    				</td>
+    				<td style="border:1px solid green;" md-cell>
+    				<img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/deselected.png"/>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </md-table-container>

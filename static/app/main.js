@@ -61,23 +61,26 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope, $mdDialog,api){
+              $scope.count = 0;
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
               $scope.activateStep = function(index) {
+               if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
-              };
+              }
+            };
 
-              $rootScope.postData = function(data){
-                api.postData('KEEC',data);
-              };
+            $rootScope.postData = function(data){
+              api.postData('KEEC',data);
+            };
 
-              $rootScope.stepNext = function() {
-                var isError = false;
-                $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
-                 container.parameters.forEach(function(parameter){
-                  parameter.error = false;
-                  if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
-                  {
+            $rootScope.stepNext = function() {
+              var isError = false;
+              $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+               container.parameters.forEach(function(parameter){
+                parameter.error = false;
+                if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+                {
                   /* if(parameter.type == 'table'){
                     parameter.combine.forEach(function(element){
                      if((element.item == '')||(element.item == null)){
@@ -95,45 +98,46 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
                   isError = true;
                 }
               });
-               });
+             });
 
-                if (isError)
-                  return;
+              if (isError)
+                return;
 
-                if ($scope.activeStepIndex < $scope.totalSteps - 1)
-                  $scope.activeStepIndex += 1;
-              };
-              $rootScope.stepBack = function() {
-                if ($scope.activeStepIndex > 0)
-                  $scope.activeStepIndex -= 1;
-              };
-              $rootScope.Dialog = function(ev){
-                $mdDialog.show( {
-                  controller: function($scope, $mdDialog) {
-                    $scope.conDialog = $rootScope.constructionDialog;
-                    $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
-                    $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
-                    $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
-                    $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
-                    $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
-                    $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
-                    $scope.winDialog = $rootScope.windowDialog;
-                    $scope.hide = function() {
-                      $mdDialog.hide();
-                    };
-                  },
-                  templateUrl: '/keec/assets/views/dialog.html',
-                  targetEvent: ev,
-                  scope: $scope,
-                  preserveScope: true,
-                  clickOutsideToClose:true
-                }
+              if ($scope.activeStepIndex < $scope.totalSteps - 1)
+                $scope.activeStepIndex += 1;
+              $scope.count += 1;
+            };
+            $rootScope.stepBack = function() {
+              if ($scope.activeStepIndex > 0)
+                $scope.activeStepIndex -= 1;
+            };
+            $rootScope.Dialog = function(ev){
+              $mdDialog.show( {
+                controller: function($scope, $mdDialog) {
+                  $scope.conDialog = $rootScope.constructionDialog;
+                  $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
+                  $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
+                  $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
+                  $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
+                  $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
+                  $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
+                  $scope.winDialog = $rootScope.windowDialog;
+                  $scope.hide = function() {
+                    $mdDialog.hide();
+                  };
+                },
+                templateUrl: '/keec/assets/views/dialog.html',
+                targetEvent: ev,
+                scope: $scope,
+                preserveScope: true,
+                clickOutsideToClose:true
+              }
 
-                );
-              };
-            }}
-          }
-        })
+              );
+            };
+          }}
+        }
+      })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
@@ -252,7 +256,7 @@ function postData(name,data){
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display'){
+          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.id != 'display'){
             resJson[obj2.id] = obj2.value;
             ObjCount=ObjCount+2;
           }
@@ -260,20 +264,32 @@ function postData(name,data){
       });
      });
       scope.data = JSON.stringify(resJson);
+      console.log(scope.data);
+      $rootScope.postData();
       scope.showData();
     }
 
     scope.showData = function(){
-     scope.resultData ={};
-     scope.resultData = JSON.parse(scope.data);
+     var resultData = {}
+     var ObjCount =0;
+     $rootScope.model.steps.forEach(function(obj){
+       obj.containers.forEach(function(obj1){
+        obj1.parameters.forEach(function(obj2){
+          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display'){
+            resultData[obj2.id] = obj2.value;
+            ObjCount=ObjCount+2;
+          }
+        });
+      });
+     });
      scope.resultHead = [];
      scope.resultValue = [];
-     for(var key in scope.resultData){
+     for(var key in resultData){
       scope.resultHead.push(key);
-      scope.resultValue.push(scope.resultData[key]);
+      scope.resultValue.push(resultData[key]);
     }
   };
-  scope.runData();
+  scope.showData();
 
   switch(scope.field.type) {
     case 'dropdown':
@@ -505,18 +521,12 @@ function postData(name,data){
       scope.shape = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-
       break;
       case 'figure':
       scope.figure = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-
       break;
-     /* case 'result':
-      scope.runData();
-     
-      break;*/
       case 'button':
       scope.previous =function(){
         $rootScope.stepBack();

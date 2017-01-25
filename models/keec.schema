@@ -30,6 +30,7 @@ steps:
           type: number
           label: Number of Floors
           label_suffix: story
+          default: 3
           widthPercent: 50
         - id: cmbBldgLocation
           type: dropdown
@@ -42,6 +43,7 @@ steps:
           type: number
           label: Air-Conditioned Area
           label_suffix: (%)
+          default: 50
           widthPercent: 50
     - id: buildingShape
       label: Building Shape
@@ -60,33 +62,35 @@ steps:
           label: Building Orientation
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
+          default: 0
           widthPercent: 50
         - id: txtFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
+          default: 3
           widthPercent: 50
-        - id: txtLengX1
+        - id: rectangleshape
           type: rectangular
           label: X1
           label_suffix: m
           related_id: cmbBldgShape
-          relatedY1: txtLengY1
-          relatedArea: txtFloorArea
+          relatedY1: rectY1
+          relatedArea: rectFloorArea
           rectangularWidthPercent: 50
-        - id: txtLengY1
+        - id: rectY1
           type: rectangular
           label: Y1
           label_suffix: m
           hide: true
           rectangularWidthPercent: 50
-        - id: txtFloorArea
+        - id: rectFloorArea
           type: rectangular
           label: Floor Area
           label_suffix: m2
           hide: true
           rectangularWidthPercent: 100
-        - id: lshapeX1
+        - id: lshape
           type: lshape
           label: X1
           label_suffix: m
@@ -120,7 +124,7 @@ steps:
           label_suffix: m2
           hide: true
           lshapeWidthPercent: 100 
-        - id: tshapeX1
+        - id: tshape
           type: tshape
           label: X1
           label_suffix: m
@@ -161,7 +165,7 @@ steps:
           label_suffix: m2
           hide: true
           tshapeWidthPercent: 100   
-        - id: ushapeX1
+        - id: ushape
           type: ushape
           label: X1
           label_suffix: m
@@ -297,6 +301,7 @@ steps:
           type: radio
           label: Windows (Condtioned space ONLY)
           options: Window Wall Ratio (%), Window Area (m2)
+          default: fp.jpg
           widthPercent: 100
         - id: northpercent
           type: number
@@ -339,7 +344,7 @@ steps:
         - id: shape
           type: shape
           label: Shape
-          options: T-Shape.jpg
+          related_id: txtWinSouthOverhang
           widthPercent: 50
     - id: constructionEdit
       label: Construction Edit
@@ -463,11 +468,13 @@ steps:
           widthPercent: 100
         - id: txtHeatSetTemp
           type: number
+          default: 20
           label: Heating setpoint temperature
           label_suffix: degC
           widthPercent: 100
         - id: txtCoolSetTemp
           type: number
+          default: 26
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 100

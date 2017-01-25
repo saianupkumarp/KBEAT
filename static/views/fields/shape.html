@@ -1,5 +1,10 @@
-<div class="shape">
+<div class="shape" ng-if="shape.id=='cmbBldgShape'">
 	<!-- <label>{{field.label}}</label> -->
 	<img  width="400" height="180" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.value}}"/>
+	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+</div>
+<div class="shape" ng-if="shape.id=='txtWinSouthOverhang'">
+	<!-- <label>{{field.label}}</label> -->
+	<img  width="400" height="180" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.default}}"/>
 	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
