@@ -108,16 +108,21 @@ header{
 	display: flex;
 	padding: 10px 20px;
 }
-
+/*
 .step-header > .clickable.active, .step-header > .clickable:hover {
 	background-color: rgba(94, 101, 80, 0.25);
+}*/
+
+ .step-header .visited{
+	background-color:green !important;
 }
 
 .step-header .number {
 	height: 40px;
 	width: 40px;
 	border-radius: 100%;
-	background: #61a659;
+	background:#dcdbdc;
+	/*background: #61a659;*/
 	text-align: center;
 	line-height: 40px;
 	font-weight: 500;
@@ -125,7 +130,9 @@ header{
 	color:#fff;
 }
 
-.step-header > .clickable:hover .number,  .step-header > .clickable.active .number{
+
+
+/*.step-header > .clickable:hover .number,*/  .step-header > .clickable.active .number{
 	background-color: orange;
 }
 .step-header  .label {
