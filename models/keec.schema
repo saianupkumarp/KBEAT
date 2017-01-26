@@ -22,7 +22,7 @@ steps:
         - id: cmbBldgType
           type: dropdown
           options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
-          values: villa, apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
+          values: Villa, Apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
           default: Office:Private
           label: Building Type
           widthPercent: 50
@@ -31,6 +31,7 @@ steps:
           label: Number of Floors
           label_suffix: story
           widthPercent: 50
+          default: 3
         - id: cmbBldgLocation
           type: dropdown
           options: tunis
@@ -43,6 +44,7 @@ steps:
           label: Air-Conditioned Area
           label_suffix: (%)
           widthPercent: 50
+          default: 50
     - id: buildingShape
       label: Building Shape
       widthPercent: 100
@@ -61,11 +63,13 @@ steps:
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
           widthPercent: 50
+          default: 0
         - id: txtFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
           widthPercent: 50
+          default: 3
         - id: txtLengX1
           type: rectangular
           label: X1
@@ -101,25 +105,25 @@ steps:
           label: X2
           label_suffix: m
           hide: true
-          lshapeWidthPercent: 50  
+          lshapeWidthPercent: 50
         - id: lshapeY1
           type: lshape
           label: Y1
           label_suffix: m
           hide: true
-          lshapeWidthPercent: 50 
+          lshapeWidthPercent: 50
         - id: lshapeY2
           type: lshape
           label: Y2
           label_suffix: m
           hide: true
-          lshapeWidthPercent: 50  
+          lshapeWidthPercent: 50
         - id: lshapeFloorArea
           type: lshape
           label: Floor Area
           label_suffix: m2
           hide: true
-          lshapeWidthPercent: 100 
+          lshapeWidthPercent: 100
         - id: tshapeX1
           type: tshape
           label: X1
@@ -142,25 +146,25 @@ steps:
           label: X3
           label_suffix: m
           hide: true
-          tshapeWidthPercent: 100    
+          tshapeWidthPercent: 100
         - id: tshapeY1
           type: tshape
           label: Y1
           label_suffix: m
           hide: true
-          tshapeWidthPercent: 50 
+          tshapeWidthPercent: 50
         - id: tshapeY2
           type: tshape
           label: Y2
           label_suffix: m
           hide: true
-          tshapeWidthPercent: 50  
+          tshapeWidthPercent: 50
         - id: tshapeFloorArea
           type: tshape
           label: Floor Area
           label_suffix: m2
           hide: true
-          tshapeWidthPercent: 100   
+          tshapeWidthPercent: 100
         - id: ushapeX1
           type: ushape
           label: X1
@@ -184,31 +188,31 @@ steps:
           label: X3
           label_suffix: m
           hide: true
-          ushapeWidthPercent: 50    
+          ushapeWidthPercent: 50
         - id: ushapeY1
           type: ushape
           label: Y1
           label_suffix: m
           hide: true
-          ushapeWidthPercent: 50 
+          ushapeWidthPercent: 50
         - id: ushapeY2
           type: ushape
           label: Y2
           label_suffix: m
           hide: true
-          ushapeWidthPercent: 50 
+          ushapeWidthPercent: 50
         - id: ushapeY3
           type: ushape
           label: Y3
           label_suffix: m
           hide: true
-          ushapeWidthPercent: 50   
+          ushapeWidthPercent: 50
         - id: ushapeFloorArea
           type: ushape
           label: Floor Area
           label_suffix: m2
           hide: true
-          ushapeWidthPercent: 100     
+          ushapeWidthPercent: 100
         - id: shape
           type: shape
           label: Shape
@@ -330,12 +334,12 @@ steps:
           label: Overhang
           default: '0.3'
           label_suffix: m(depth)
-          widthPercent: 100 
+          widthPercent: 100
         - id: fp
           type: number
           label: FP
           default: '0.2'
-          widthPercent: 100    
+          widthPercent: 100
         - id: shape
           type: shape
           label: Shape
