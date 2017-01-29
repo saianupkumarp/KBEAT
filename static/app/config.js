@@ -15,6 +15,7 @@ requirejs.config({
     'angular-messages':'vendor/angular-messages/angular-messages',
     'angular-material' :'vendor/angular-material/angular-material.min',
     'md-steppers':'vendor/md-steppers/dist/md-steppers.min',
+    'material-steppers':'vendor/material-steppers/dist/material-steppers.min',
     'angular-material-data-table':'vendor/angular-material-data-table/dist/md-data-table.min',
     'md-data-table':'vendor/md-data-table/dist/md-data-table-templates',
   },
@@ -56,6 +57,9 @@ requirejs.config({
       deps: ['angular']
     },
     'md-steppers': {
+      deps: ['angular']
+    },
+    'material-steppers': {
       deps: ['angular']
     },
     'angular-material-data-table': {
