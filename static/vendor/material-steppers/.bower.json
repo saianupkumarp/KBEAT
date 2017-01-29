@@ -1,0 +1,41 @@
+{
+  "name": "material-steppers",
+  "description": "Angular Steppers directive for Angular Material",
+  "main": [
+    "dist/material-steppers.js",
+    "dist/material-steppers.css"
+  ],
+  "authors": [
+    "Eduardo Eidelwein Berlitz <eberlitz@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "steppers",
+    "md-steppers",
+    "angular",
+    "angular-material",
+    "material"
+  ],
+  "homepage": "https://github.com/eberlitz/material-steppers",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "demo",
+    "typings",
+    "lib",
+    "test",
+    "tests"
+  ],
+  "version": "1.0.3",
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.3",
+    "commit": "febce407b00299565f1e9ddf9e943b922702187f"
+  },
+  "_source": "https://github.com/eberlitz/material-steppers.git",
+  "_target": "^1.0.3",
+  "_originalSource": "material-steppers",
+  "_direct": true
+}
