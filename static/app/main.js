@@ -256,9 +256,17 @@ function postData(name,data){
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.id != 'shape' && obj2.id != 'rectangleshape' && obj2.id != 'lshape' && obj2.id != 'tshape'&& obj2.id != 'ushape'){
-            resJson[obj2.id] = obj2.value;
+          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape'){
+            if(obj2.id == 'lshape' || obj2.id == 'tshape' || obj2.id == 'ushape'){
+              if(obj2.value.x1 !=10){
+                resJson[obj2.id] = obj2.value;
+                ObjCount=ObjCount+2;
+              }
+            }
+            else{
+               resJson[obj2.id] = obj2.value;
             ObjCount=ObjCount+2;
+            }
           }
         });
       });
