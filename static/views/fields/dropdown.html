@@ -1,19 +1,11 @@
-<!-- <div ng-class="{'input-container':true, error: field.error}">
-    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-    <select id="{{field.id}}" ng-model="field.value">
-    	<option ng-value="{{option.option}}" ng-repeat="option in field.options">{{field.values[$index]}}</option>
-    </select>
-	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-    <input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
-</div> -->
-
-
 <div ng-class="{'input-container':true, error: field.error}">
 	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-	<md-select id="{{field.id}}" ng-model="field.value">
-		<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.values[$index]}}</md-option>
-
-	</md-select>
+		<md-select id="{{field.id}}"  ng-if="field.url" ng-model="field.url">
+			<md-option ng-value="option" ng-repeat="option in field.url" ng-selected="$first">{{field.options[$index]}}</md-option>
+		</md-select>
+		<md-select id="{{field.id}}" ng-if="!field.url" ng-model="field.value">
+			<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.values[$index]}}</md-option>
+		</md-select>
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
 	<input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
 </div>

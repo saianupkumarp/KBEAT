@@ -54,10 +54,13 @@ steps:
       parameters:
         - id: cmbBldgShape
           type: dropdown
-          options: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
+          url: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
           values: Rectangular, L-Shape, T-Shape, U-Shape
+          options: Rectangular, L-Shape, T-Shape, U-Shape
           default: Rectangular
           label: Building Shape
+          span_width: 400
+          span_height: 180
           widthPercent: 100
         - id: txtBldgAzi
           type: number
@@ -66,13 +69,24 @@ steps:
           label_below: (North 0deg. South 180 deg. West 135 deg)
           default: 0
           widthPercent: 50
-          default: 0
         - id: txtFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
           default: 3
           widthPercent: 50
+        - id: txlenx1
+          type: number
+          label: Number x by AK
+          hidden: yes
+          default: 0
+          widthPercent: 50
+        - id: txleny1
+          type: number
+          label: Number y by AK
+          default: 0
+          widthPercent: 50
+          hidden: yes
         - id: rectangleshape
           type: rectangular
           label: X1
@@ -216,12 +230,17 @@ steps:
           label_suffix: m2
           hide: true
           ushapeWidthPercent: 100
-        - id: shape
+        - id: biShape
           type: shape
           label: Shape
           related_id: cmbBldgShape
           widthPercent: 50
       shapeDetails:
+        - id: Rectangular.jpg
+          txlenx1: true
+          txleny1: true
+          axis: txlenx1, txleny1
+          related_id: cmbBldgShape
         - id: rect
           axis: X1, Y1
           image: Rectangular.jpg
@@ -300,11 +319,13 @@ steps:
       widthPercent: 100
       hasShape: true
       parameters:
-        - id: window
+        - id: rdbtnWinWwr
           type: radio
           label: Windows (Condtioned space ONLY)
           options: Window Wall Ratio (%), Window Area (m2)
-          default: fp.jpg
+          url: fp.jpg
+          span_width: 400
+          span_height: 180
           widthPercent: 100
         - id: northpercent
           type: number
@@ -344,10 +365,10 @@ steps:
           label: FP
           default: '0.2'
           widthPercent: 100
-        - id: shape
+        - id: windowShape
           type: shape
           label: Shape
-          related_id: txtWinSouthOverhang
+          related_id: rdbtnWinWwr
           widthPercent: 50
     - id: constructionEdit
       label: Construction Edit
@@ -465,9 +486,12 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          options: packagedVariableAirVolumeSystem.jpg, variableAirVolumeSystem.jpg
+          url: packagedVariableAirVolumeSystem.jpg, variableAirVolumeSystem.jpg
           values: packagedVariableAirVolumeSystem, variableAirVolumeSystem
+          options: Packaged Variable Air Volume System, Variable Air Volume System
           default: Packaged Variable Air Volume System
+          span_width: 800
+          span_height: 180
           widthPercent: 100
         - id: txtHeatSetTemp
           type: number
@@ -481,8 +505,8 @@ steps:
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 100
-        - id: figure
-          type: figure
+        - id: hvacShape
+          type: shape
           label: Figure
           related_id: cmbBldgSystem
           widthPercent: 100

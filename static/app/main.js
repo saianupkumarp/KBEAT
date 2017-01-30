@@ -303,11 +303,17 @@ function postData(name,data){
     case 'dropdown':
     scope.field.options = scope.field.options.split(', ');
     scope.field.values = scope.field.values.split(', ');
+    if(scope.field.url){
+      scope.field.url = scope.field.url.split(', ')
+      scope.field.value = scope.field.values[0]
+    }
     break;
     case 'radio':
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
-
+    if(scope.field.url){
+      scope.field.url = scope.field.url
+    }
     break;
     case 'number':
     scope.field.value = parseInt(scope.field.default);

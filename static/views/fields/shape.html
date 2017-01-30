@@ -1,10 +1,4 @@
-<div class="shape" ng-if="shape.id=='cmbBldgShape'">
-	<!-- <label>{{field.label}}</label> -->
-	<img  width="400" height="180" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.value + '.jpg'}}"/>
-	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
-</div>
-<div class="shape" ng-if="shape.id=='window'">
-	<!-- <label>{{field.label}}</label> -->
-	<img  width="400" height="180" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.default}}"/>
+<div class="shape">
+	<img width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
 	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
