@@ -285,6 +285,8 @@ function postData(name,data){
         });
       });
      });
+      resJson.txtSkylttype = 'flat';
+      resJson.txtSkyltcvr = 13;
       scope.data = JSON.stringify(resJson);
       console.log(scope.data);
       $rootScope.postData();
