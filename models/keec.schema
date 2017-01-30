@@ -300,7 +300,7 @@ steps:
       widthPercent: 100
       hasShape: true
       parameters:
-        - id: txtWinSouthOverhang
+        - id: window
           type: radio
           label: Windows (Condtioned space ONLY)
           options: Window Wall Ratio (%), Window Area (m2)
@@ -333,13 +333,13 @@ steps:
           default: Single Glass
           label: Glass Type
           widthPercent: 100
-        - id: overhang
+        - id: txtWinSouthOverhang
           type: number
           label: Overhang
           default: '0.3'
           label_suffix: m(depth)
           widthPercent: 100
-        - id: fp
+        - id: txtWinSouthFp
           type: number
           label: FP
           default: '0.2'
@@ -465,8 +465,8 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          options: PackagedVAV.jpg, VavSystem.jpg
-          values: Packaged Variable Air Volume System, Variable Air Volume System
+          options: packagedVariableAirVolumeSystem.jpg, variableAirVolumeSystem.jpg
+          values: packagedVariableAirVolumeSystem, variableAirVolumeSystem
           default: Packaged Variable Air Volume System
           widthPercent: 100
         - id: txtHeatSetTemp

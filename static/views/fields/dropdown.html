@@ -11,7 +11,7 @@
 <div ng-class="{'input-container':true, error: field.error}">
 	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
 	<md-select id="{{field.id}}" ng-model="field.value">
-		<md-option ng-value="option" ng-repeat="option in field.options" ng-selected="$first">{{field.values[$index]}}</md-option>
+		<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.values[$index]}}</md-option>
 
 	</md-select>
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
