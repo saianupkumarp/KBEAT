@@ -256,17 +256,31 @@ function postData(name,data){
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          if(obj2.id !='prev' && obj2.id != 'next' && obj2.id != 'window' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape'){
+          if(obj2.id !='prev' && obj2.id != 'next'  && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape'){
             /*if(obj2.id == 'lshape' || obj2.id == 'tshape' || obj2.id == 'ushape'){
               if(obj2.value.x1 !=10){
                 resJson[obj2.id] = obj2.value;
                 ObjCount=ObjCount+2;
               }
             }*/
-            
-            resJson[obj2.id] = obj2.value;
-            ObjCount=ObjCount+2;
-            
+            if( obj2.id == 'window'){
+              if(obj2.rdbtnWinArea){
+                console.log(obj2.rdbtnWinArea);
+                resJson.rdbtnWinArea =obj2.rdbtnWinArea;
+                ObjCount=ObjCount+2;
+              }
+              else if(obj2.rdbtnWinWwr){
+                console.log(obj2.rdbtnWinWwr);
+                resJson.rdbtnWinWwr =obj2.rdbtnWinWwr;
+                ObjCount=ObjCount+2;
+              }
+            }
+            else{
+              resJson[obj2.id] = obj2.value;
+              ObjCount=ObjCount+2;
+            }
+
+
           }
         });
       });
@@ -305,9 +319,20 @@ function postData(name,data){
     scope.field.values = scope.field.values.split(', ');
     break;
     case 'radio':
+    console.log(scope.field);
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
+    scope.field.rdbtnWinWwr = true;
 
+    scope.$watch('field.value', function(){
+     if(scope.field.value == 'Window Area (m2)'){
+      scope.field.rdbtnWinArea = true;
+      scope.field.rdbtnWinWwr = false;
+    }
+    else{
+     scope.field.rdbtnWinWwr = true;
+   }
+ });
     break;
     case 'number':
     scope.field.value = parseInt(scope.field.default);
@@ -527,6 +552,7 @@ function postData(name,data){
       scope.shape = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
+      console.log(scope.shape);
       break;
       case 'figure':
       scope.figure = scope.container.parameters.filter(function(p){

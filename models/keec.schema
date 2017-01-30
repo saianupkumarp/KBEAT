@@ -347,7 +347,7 @@ steps:
         - id: shape
           type: shape
           label: Shape
-          related_id: txtWinSouthOverhang
+          related_id: window
           widthPercent: 50
     - id: constructionEdit
       label: Construction Edit
