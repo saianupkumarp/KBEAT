@@ -325,7 +325,6 @@ function postData(name,data){
     }
     break;
     case 'radio':
-    console.log(scope.field);
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
     if(scope.field.url){
@@ -559,7 +558,6 @@ function postData(name,data){
       scope.shape = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-      console.log(scope.shape);
       break;
       case 'figure':
       scope.figure = scope.container.parameters.filter(function(p){
