@@ -267,7 +267,7 @@ function postData(name,data){
                 ObjCount=ObjCount+2;
               }
             }
-            if( obj2.id == 'window'){
+            if( obj2.id == 'rdbtnWinWwr'){
               if(obj2.rdbtnWinArea){
                 resJson.rdbtnWinArea =obj2.rdbtnWinArea;
                 ObjCount=ObjCount+2;
