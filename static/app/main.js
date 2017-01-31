@@ -256,14 +256,14 @@ function postData(name,data){
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
-          if(obj2.id !='prev' && obj2.id != 'next'  && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape'){
-            /*if(obj2.id == 'lshape' || obj2.id == 'tshape' || obj2.id == 'ushape'){
+          if(obj2.id !='prev' && obj2.id != 'next'  && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.type != 'shape'){
+           /* if(obj2.id == 'rectangleshape' || obj2.id == 'lshape' || obj2.id == 'tshape' || obj2.id == 'ushape'){
               if(obj2.value.x1 !=10){
                 resJson[obj2.id] = obj2.value;
                 ObjCount=ObjCount+2;
               }
             }*/
-            if( obj2.id == 'window'){
+            if( obj2.id == 'rdbtnWinWwr'){
               if(obj2.rdbtnWinArea){
                 console.log(obj2.rdbtnWinArea);
                 resJson.rdbtnWinArea =obj2.rdbtnWinArea;
@@ -320,10 +320,14 @@ function postData(name,data){
     scope.field.options = scope.field.options.split(', ');
     scope.field.values = scope.field.values.split(', ');
     if(scope.field.url){
-      scope.field.urls = scope.field.url.split(', ')
-      scope.field.value = scope.field.values[0]
+      scope.field.urls = scope.field.url.split(', ');
+          scope.field.url = scope.field.values[0];
+          scope.field.value = scope.field.values[0];
     }
-    break;
+    scope.$watch('field.url', function(){
+     scope.field.value = scope.field.url;
+    });
+   break;
     case 'radio':
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
