@@ -1,4 +1,4 @@
-<div ng-class="{'input-container':true, error: field.error}">
+<div ng-class="{'input-container':true, error: field.error}" ng-if="!field.hidden">
 	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
 	<input ng-disabled="blocked()" type="number" id="{{field.id}}" ng-model="field.value" ng-value="field.default">
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>

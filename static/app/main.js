@@ -253,24 +253,26 @@ function postData(name,data){
     scope.runData =function(){
       var resJson = {}
       var ObjCount =0;
+      var RelDimId;
       $rootScope.model.steps.forEach(function(obj){
        obj.containers.forEach(function(obj1){
         obj1.parameters.forEach(function(obj2){
           if(obj2.id !='prev' && obj2.id != 'next'  && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape'){
-            /*if(obj2.id == 'lshape' || obj2.id == 'tshape' || obj2.id == 'ushape'){
-              if(obj2.value.x1 !=10){
-                resJson[obj2.id] = obj2.value;
+            if(obj2.id == 'cmbBldgShape'){
+              RelDimId = obj2.value;
+            }
+            if(typeof RelDimId != "undefined" && obj2.id == RelDimId + 'Data'){
+              for(var key in obj2.value){
+                resJson[key] = obj2.value[key];
                 ObjCount=ObjCount+2;
               }
-            }*/
+            }
             if( obj2.id == 'window'){
               if(obj2.rdbtnWinArea){
-                console.log(obj2.rdbtnWinArea);
                 resJson.rdbtnWinArea =obj2.rdbtnWinArea;
                 ObjCount=ObjCount+2;
               }
               else if(obj2.rdbtnWinWwr){
-                console.log(obj2.rdbtnWinWwr);
                 resJson.rdbtnWinWwr =obj2.rdbtnWinWwr;
                 ObjCount=ObjCount+2;
               }
@@ -279,15 +281,19 @@ function postData(name,data){
               resJson[obj2.id] = obj2.value;
               ObjCount=ObjCount+2;
             }
-
-
           }
         });
       });
      });
       resJson.txtSkylttype = 'flat';
       resJson.txtSkyltcvr = 13;
-      scope.data = JSON.stringify(resJson);
+      var nonObjJson = {};
+      for (var prop in resJson) {
+        if (resJson.hasOwnProperty(prop) && typeof resJson[prop] !== "object") {
+          nonObjJson[prop] = resJson[prop];
+        }
+      }
+      scope.data = JSON.stringify(nonObjJson);
       console.log(scope.data);
       $rootScope.postData();
       scope.showData();
@@ -321,25 +327,29 @@ function postData(name,data){
     scope.field.values = scope.field.values.split(', ');
     if(scope.field.url){
       scope.field.urls = scope.field.url.split(', ')
+      scope.field.url = scope.field.values[0]
       scope.field.value = scope.field.values[0]
     }
+    scope.$watch('field.url', function(){
+      scope.field.value = scope.field.url.slice(0, -4)
+    })
     break;
     case 'radio':
-    console.log(scope.field);
+    scope.field.rdbtnWinWwr = true;
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
     if(scope.field.url){
       scope.field.url = scope.field.url
     }
-    scope.$watch('field.value', function(){
+    scope.$watch('scope.field.value', function(){
      if(scope.field.value == 'Window Area (m2)'){
       scope.field.rdbtnWinArea = true;
       scope.field.rdbtnWinWwr = false;
-    }
-    else{
-     scope.field.rdbtnWinWwr = true;
-   }
- });
+      }
+      else{
+       scope.field.rdbtnWinWwr = true;
+     }
+    });
     break;
     case 'number':
     scope.field.value = parseInt(scope.field.default);
@@ -376,33 +386,6 @@ function postData(name,data){
       scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
       scope.field.rowValues = [];      
       scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
-
-       /* scope.count = 0;
-        scope.field0 = {};
-        scope.field0.glazingOptions = scope.field.glazingOptions.split(', ');
-        scope.field0.glazingValues = scope.field.glazingValues.split(', ');
-        scope.field0.glazingValue = scope.field0.glazingOptions[0];
-        scope.field0.options = scope.field.options.split(', ');
-        scope.field0.values = scope.field.values.split(', ');
-        scope.field0.value = scope.field0.options[0];
-        scope.field0.item = null;
-        scope.field.combine = [];
-        scope.field.combine.splice(0,0,scope.field0);
-
-        scope.addRow = function(){
-          scope.count+=1;
-          if(scope.count<=3){
-            scope.field1 ={};
-            scope.field1.glazingOptions = scope.field.glazingOptions.split(', ');
-            scope.field1.glazingValues = scope.field.glazingValues.split(', ');
-            scope.field1.glazingValue = scope.field1.glazingOptions[0];
-            scope.field1.options = scope.field.options.split(', ');
-            scope.field1.values = scope.field.values.split(', ');
-            scope.field1.value = scope.field1.options[0];
-            scope.field1.item = null;
-            scope.field.combine.splice(scope.count,0,scope.field1);
-          }
-        }*/
       }
       else if(scope.field.id=='spaceTable'){
         scope.field.row_heading = scope.field.row_heading.split(', ');
@@ -426,52 +409,53 @@ function postData(name,data){
 
       break;
       case 'rectangular':
-      scope.field.value={x1:10,y1:10,area:0};
+      scope.field.value={txtLengX1:10,txtLengY1:10,txtFloorArea:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-      scope.y1 = scope.container.parameters.filter(function(p){
+      scope.txtLengY1 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY1;
       })[0];
-      scope.area = scope.container.parameters.filter(function(p){
+      scope.txtFloorArea = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-      scope.$watch('field.value.x1', function(){
-        scope.field.value.area = scope.field.value.x1 * scope.field.value.y1;
+      scope.$watch('field.value.txtLengX1', function(){
+        scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
       });
-      scope.$watch('field.value.y1', function(){
-        scope.field.value.area = scope.field.value.x1 * scope.field.value.y1;
+      scope.$watch('field.value.txtLengY1', function(){
+        scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
       });
 
       break;
       case 'lshape':
-      scope.field.value={x1:10,x2:5,y1:10,y2:5,area:0};
+      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-      scope.x2 = scope.container.parameters.filter(function(p){
+      scope.field.relDimId = scope.building.url + 'Data'
+      scope.txtLengX2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX2;
       })[0];
-      scope.y1 = scope.container.parameters.filter(function(p){
+      scope.txtLengY1 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY1;
       })[0];
-      scope.y2 = scope.container.parameters.filter(function(p){
+      scope.txtLengY2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY2;
       })[0];
-      scope.area = scope.container.parameters.filter(function(p){
+      scope.txtFloorArea = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-      scope.$watch('field.value.x1', function(){
-        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      scope.$watch('field.value.txtLengX1', function(){
+        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
       });
-      scope.$watch('field.value.x2', function(){
-        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      scope.$watch('field.value.txtLengX2', function(){
+        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
       });
-      scope.$watch('field.value.y1', function(){
-        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      scope.$watch('field.value.txtLengY1', function(){
+        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
       });
-      scope.$watch('field.value.y2', function(){
-        scope.field.value.area = (scope.field.value.x1 * scope.field.value.y1) - ((scope.field.value.x1 - scope.field.value.x2) * (scope.field.value.y1 - scope.field.value.y2));
+      scope.$watch('field.value.txtLengY2', function(){
+        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
       });
 
       break;
@@ -480,6 +464,7 @@ function postData(name,data){
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
+      scope.selected = scope.building.selected
       scope.x2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX2;
       })[0];
@@ -517,6 +502,7 @@ function postData(name,data){
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
+      scope.selected = scope.building.selected
       scope.x2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX2;
       })[0];
@@ -560,11 +546,6 @@ function postData(name,data){
         return p.id == scope.field.related_id;
       })[0];
       console.log(scope.shape);
-      break;
-      case 'figure':
-      scope.figure = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
       break;
       case 'button':
       scope.previous =function(){

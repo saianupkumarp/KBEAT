@@ -75,19 +75,7 @@ steps:
           label_suffix: m
           default: 3
           widthPercent: 50
-        - id: txlenx1
-          type: number
-          label: Number x by AK
-          hidden: yes
-          default: 0
-          widthPercent: 50
-        - id: txleny1
-          type: number
-          label: Number y by AK
-          default: 0
-          widthPercent: 50
-          hidden: yes
-        - id: rectangleshape
+        - id: RectangularData
           type: rectangular
           label: X1
           label_suffix: m
@@ -107,7 +95,7 @@ steps:
           label_suffix: m2
           hide: true
           rectangularWidthPercent: 100
-        - id: lshape
+        - id: L-ShapeData
           type: lshape
           label: X1
           label_suffix: m
@@ -116,7 +104,11 @@ steps:
           relatedY1: lshapeY1
           relatedY2: lshapeY2
           relatedArea: lshapeFloorArea
+          relatedSelected: selected
           lshapeWidthPercent: 50
+        - id: selected
+          dimSelected: 0
+          hide: yes
         - id: lshapeX2
           type: lshape
           label: X2
@@ -141,7 +133,7 @@ steps:
           label_suffix: m2
           hide: true
           lshapeWidthPercent: 100
-        - id: tshape
+        - id: T-ShapeData
           type: tshape
           label: X1
           label_suffix: m
@@ -182,7 +174,7 @@ steps:
           label_suffix: m2
           hide: true
           tshapeWidthPercent: 100
-        - id: ushape
+        - id: U-ShapeData
           type: ushape
           label: X1
           label_suffix: m
@@ -236,11 +228,10 @@ steps:
           related_id: cmbBldgShape
           widthPercent: 50
       shapeDetails:
-        - id: Rectangular.jpg
+        - id: Rectangular
           txlenx1: true
           txleny1: true
           axis: txlenx1, txleny1
-          related_id: cmbBldgShape
         - id: rect
           axis: X1, Y1
           image: Rectangular.jpg
