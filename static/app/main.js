@@ -327,15 +327,15 @@ function postData(name,data){
     scope.field.values = scope.field.values.split(', ');
     if(scope.field.url){
       scope.field.urls = scope.field.url.split(', ')
-      scope.field.url = scope.field.values[0]
       scope.field.value = scope.field.values[0]
     }
     scope.$watch('field.url', function(){
-      scope.field.value = scope.field.url.slice(0, -4)
+      if(scope.field.url){
+        scope.field.value = scope.field.url.slice(0, -4)
+      }
     })
     break;
     case 'radio':
-    scope.field.rdbtnWinWwr = true;
     scope.field.options = scope.field.options.split(', ');
     scope.field.value = scope.field.options[0];
     if(scope.field.url){
@@ -545,7 +545,6 @@ function postData(name,data){
       scope.shape = scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
-      console.log(scope.shape);
       break;
       case 'button':
       scope.previous =function(){

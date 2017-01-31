@@ -49,18 +49,18 @@ html.md-default-theme, html, body.md-default-theme, body {
 	 ..............*/
 /*	 background-image: url(/keec/assets/img/infographic.jpg);
 */	 background-size: 100% 110%;
-	 background-repeat: no-repeat;
-	 /*background-position:center;*/
-	 /*....................*/
-	}
+background-repeat: no-repeat;
+/*background-position:center;*/
+/*....................*/
+}
 
-	* {
-		box-sizing: border-box;
-	}
+* {
+	box-sizing: border-box;
+}
 
-	.main-container {
-		display: flex;
-		flex-direction: column;
+.main-container {
+	display: flex;
+	flex-direction: column;
 
 /*video background
 ..................*/
@@ -111,105 +111,105 @@ header{
 /*
 .step-header > .clickable.active, .step-header > .clickable:hover {
 	background-color: rgba(94, 101, 80, 0.25);
-}*/
+	}*/
 
- .step-header .visited{
-	background-color:green !important;
-}
+	.step-header .visited{
+		background-color:green !important;
+	}
 
-.step-header .number {
-	height: 40px;
-	width: 40px;
-	border-radius: 100%;
-	background:#dcdbdc;
-	/*background: #61a659;*/
-	text-align: center;
-	line-height: 40px;
-	font-weight: 500;
-	cursor: pointer;
-	color:#fff;
-}
+	.step-header .number {
+		height: 40px;
+		width: 40px;
+		border-radius: 100%;
+		background:#dcdbdc;
+		/*background: #61a659;*/
+		text-align: center;
+		line-height: 40px;
+		font-weight: 500;
+		cursor: pointer;
+		color:#fff;
+	}
 
 
 
-/*.step-header > .clickable:hover .number,*/  .step-header > .clickable.active .number{
-	background-color: orange;
-}
-.step-header  .label {
-	line-height: 40px;
-	margin-left: 10px;
-}
-.step-header > .line {
-	background-color: #debdbd;
-	height: 3px;
-	align-self: center;
-	flex: 1;
-	margin: 0 4px;
-}
-.step-area-wrapper {
-	flex: 1;
-}
-.step-container > .body {
-	background: rgb(249, 249, 246);
-	position: relative;
-	opacity: 0.8;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	transition: 0.6s; 
-}
-.step-container > .body:hover {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-	opacity: 1;
-}
-.step-container > .body-button {
-	position: relative;
-	opacity: 0.8;
-}
-.step-container > .body-button:hover {
-	opacity: 1;
-}
+	/*.step-header > .clickable:hover .number,*/  .step-header > .clickable.active .number{
+		background-color: orange;
+	}
+	.step-header  .label {
+		line-height: 40px;
+		margin-left: 10px;
+	}
+	.step-header > .line {
+		background-color: #debdbd;
+		height: 3px;
+		align-self: center;
+		flex: 1;
+		margin: 0 4px;
+	}
+	.step-area-wrapper {
+		flex: 1;
+	}
+	.step-container > .body {
+		background: rgb(249, 249, 246);
+		position: relative;
+		opacity: 0.8;
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		transition: 0.6s; 
+	}
+	.step-container > .body:hover {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+		opacity: 1;
+	}
+	.step-container > .body-button {
+		position: relative;
+		opacity: 0.8;
+	}
+	.step-container > .body-button:hover {
+		opacity: 1;
+	}
 
-.step-container > .body.shaped .input-area {
-	width: 50%;
-}
-.step-container > .body-button.shaped .input-area-button{
-	width: 50%;
-}
+	.step-container > .body.shaped .input-area {
+		width: 50%;
+	}
+	.step-container > .body-button.shaped .input-area-button{
+		width: 50%;
+	}
 
-.step-container {
-	padding: 5px;
-}
+	.step-container {
+		padding: 5px;
+	}
 
-.step-container  .heading {
-	background: green;
-	color: white;
-	padding: 10px;
-	background-image: url(/keec/assets/img/building.svg);
-	background-size: 20px 20px;
-	background-repeat: no-repeat;
-	padding-left: 40px;
-	background-position: 10px 5px;
-}
-.step-container  .heading-button {
-	padding: 10px;
-	padding-left: 40px;
-}
-.step-container  .input-area {
-	padding: 15px;
-	display: flex;
-	flex-flow: row wrap;
-	background-color: #f8f8f8;
-}
-.step-container  .input-area-button {
-	padding: 15px;
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;	
-}
+	.step-container  .heading {
+		background: green;
+		color: white;
+		padding: 10px;
+		background-image: url(/keec/assets/img/building.svg);
+		background-size: 20px 20px;
+		background-repeat: no-repeat;
+		padding-left: 40px;
+		background-position: 10px 5px;
+	}
+	.step-container  .heading-button {
+		padding: 10px;
+		padding-left: 40px;
+	}
+	.step-container  .input-area {
+		padding: 15px;
+		display: flex;
+		flex-flow: row wrap;
+		background-color: #f8f8f8;
+	}
+	.step-container  .input-area-button {
+		padding: 15px;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;	
+	}
 
-.step-container-wrapper {
-	display: flex;
-	flex-flow: row wrap;
-	max-height: calc(100vh - 325px);
+	.step-container-wrapper {
+		display: flex;
+		flex-flow: row wrap;
+		max-height: calc(100vh - 325px);
 	/*overflow: auto;
 	padding: 20px;*/
 	margin-right: 7px;
@@ -344,27 +344,27 @@ font-size:11px;
 }
 .shape {
 	position: absolute;
-	top: 40px;
+	top: 80px;
 	width: 40%;
-	right: 20px;
+	right: 70px;
 	bottom: 20px;
 	/*border: 1px solid #d2c7c7;*/
 }
 
-.shape label {
+/*.shape label {
 	position: relative;
 	top: -8px;
 	left: 5px;
 	font-size: 16px;
 	background: white;
 	width: auto;
-}
-.figure {
-	position: initial;
-	width:100%;
-	padding:25px;
-	border:1px solid;
-}
+	}*/
+	.figure {
+		position: initial;
+		width:100%;
+		padding:25px;
+		border:1px solid;
+	}
 
 /*footer {
 	padding: 30px;
@@ -634,6 +634,21 @@ md-select{
 	}
 	
 }
+@media only screen and (max-width:1050px){
+	.shape {
+		position: absolute;
+		width: 40%;
+		bottom: 20px;
+	}
+}
+@media only screen and (max-width:950px){
+	.image{
+		width:350px !important;
+	}
+	.hvacImage{
+		width:700px;
+	}
+}
 @media only screen and (max-width:830px){
 	.step-header  .label{
 		font-size:12px;
@@ -650,10 +665,24 @@ md-select{
 	.step-headers{
 		width:101%;
 	}
+	.hvacImage{
+		width:600px;
+	}
+}
+@media only screen and (max-width:800px){
+	.image{
+		width:300px !important;
+	}
+	.shape{
+		top:100px;
+	}
 }
 @media only screen and (max-width:723px){
 	md-select{
 		width:100%;
+	}
+	.hvacImage{
+		width:500px;
 	}
 }
 @media only screen and (max-width:708px){
@@ -704,17 +733,23 @@ md-select{
 	.input-container > label {
 		font-size:9px;
 	}
+	.image{
+		width:250px !important;
+	}
 }
 @media only screen and (max-width:625px){
 	.input-container > label {
 		width:50%;
+	}
+	.hvacImage{
+		width:400px;
 	}
 }
 @media only screen and (max-width:605px){
 	.shape {
 		position: initial;
 		width:100%;
-		padding:95px;
+		padding:0px;
 	}
 	.step-container > .body.shaped .input-area{
 		width:100%;
@@ -722,6 +757,9 @@ md-select{
 	.shape label {
 		top: -102px;
 		left: -85px;
+	}
+	.image{
+		width:330px !important;
 	}
 }
 @media only screen and (max-width:550px){
@@ -735,6 +773,12 @@ md-select{
 		max-width: 25%;
 		max-height: 100%;
 	}
+	.hvacImage{
+		width:350px;
+	}
+	.figure{
+		padding:5px;
+	}
 }
 @media only screen and (max-width:450px){
 	.step-headers{
@@ -746,6 +790,9 @@ md-select{
 	.flex-button-20{
 		max-width: 30%;
 		max-height: 100%;
+	}
+	.hvacImage{
+		width:300px;
 	}
 }
 @media only screen and (max-width:375px){
@@ -820,10 +867,10 @@ table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2)
 	border:1px solid green !important;
 }
 table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
-    padding: 0 0px 0 10px;
+	padding: 0 0px 0 10px;
 }
 table.md-table th.md-column:last-child {
-    padding: 0 0px 0 10px;
+	padding: 0 0px 0 10px;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2){
 	padding:0 10px 0 10px;
@@ -881,12 +928,12 @@ md-tabs .md-tab.md-active{
 	color:green;
 }
 md-tabs md-ink-bar {
-    color: green;
-    background: green;
+	color: green;
+	background: green;
 }
 md-tabs-canvas{
 	width:140%;
 }
- md-tabs .md-tab{
- 	min-width: 500px;
- }
+md-tabs .md-tab{
+	min-width: 500px;
+}

@@ -1,4 +1,8 @@
-<div class="shape">
-	<img width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
+<div ng-if="field.id!='hvacShape'" class="shape">
+	<img class="image" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
+	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+</div>
+<div ng-if="field.id =='hvacShape'" class="figure">
+	<img class="hvacImage" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
 	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
