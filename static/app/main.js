@@ -460,84 +460,84 @@ function postData(name,data){
 
       break;
       case 'tshape':
-      scope.field.value={x1:10,x2:5,x3:5,y1:10,y2:5,area:0};
+      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
       scope.selected = scope.building.selected
-      scope.x2 = scope.container.parameters.filter(function(p){
+      scope.txtLengX2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX2;
       })[0];
-      scope.x3 = scope.container.parameters.filter(function(p){
+      scope.txtLengX3 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX3;
       })[0];
-      scope.y1 = scope.container.parameters.filter(function(p){
+      scope.txtLengY1 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY1;
       })[0];
-      scope.y2 = scope.container.parameters.filter(function(p){
+      scope.txtLengY2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY2;
       })[0];
-      scope.area = scope.container.parameters.filter(function(p){
+      scope.txtFloorArea = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-      scope.$watch('field.value.x1', function(){
-        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      scope.$watch('field.value.txtLengX1', function(){
+        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
       });
-      scope.$watch('field.value.x2', function(){
-        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      scope.$watch('field.value.txtLengX2', function(){
+        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
       });
-      scope.$watch('field.value.x3', function(){
-        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      scope.$watch('field.value.txtLengX3', function(){
+        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
       });
-      scope.$watch('field.value.y1', function(){
-        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      scope.$watch('field.value.txtLengY1', function(){
+        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
       });
-      scope.$watch('field.value.y2', function(){
-        scope.field.value.area = 2 * (scope.field.value.x2 * (scope.field.value.y1-scope.field.value.y2)) + (scope.field.value.x3 * scope.field.value.y1);
+      scope.$watch('field.value.txtLengY2', function(){
+        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
       });
 
       break;
       case 'ushape':
-      scope.field.value={x1:10,x2:5,x3:5,y1:10,y2:5,y3:5,area:0};
+      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtLengY3:5,txtFloorArea:0};
       scope.building =scope.container.parameters.filter(function(p){
         return p.id == scope.field.related_id;
       })[0];
       scope.selected = scope.building.selected
-      scope.x2 = scope.container.parameters.filter(function(p){
+      scope.txtLengX2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX2;
       })[0];
-      scope.x3 = scope.container.parameters.filter(function(p){
+      scope.txtLengX3 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedX3;
       })[0];
-      scope.y1 = scope.container.parameters.filter(function(p){
+      scope.txtLengY1 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY1;
       })[0];
-      scope.y2 = scope.container.parameters.filter(function(p){
+      scope.txtLengY2 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY2;
       })[0];
-      scope.y3 = scope.container.parameters.filter(function(p){
+      scope.txtLengY3 = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedY3;
       })[0];
-      scope.area = scope.container.parameters.filter(function(p){
+      scope.txtFloorArea = scope.container.parameters.filter(function(p){
         return p.id == scope.field.relatedArea;
       })[0];
-      scope.$watch('field.value.x1', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengX1', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
-      scope.$watch('field.value.x2', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengX2', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
-      scope.$watch('field.value.x3', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengX3', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
-      scope.$watch('field.value.y1', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengY1', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
-      scope.$watch('field.value.y2', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengY2', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
-      scope.$watch('field.value.y3', function(){
-        scope.field.value.area =  (scope.field.value.x2 * scope.field.value.y1) + (scope.field.value.x1 - (scope.field.value.x2 + scope.field.value.x3)) + (scope.field.value.x3 * scope.field.value.y2);
+      scope.$watch('field.value.txtLengY3', function(){
+        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
       });
 
       break;
