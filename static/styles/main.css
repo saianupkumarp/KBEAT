@@ -71,11 +71,12 @@ min-height:100%;*/
 }
 
 header{
-	height:60px;    
+	height:75px;    
 	background-image: url("/keec/assets/img/logo/logo.svg");
 	background-size: 160px;
 	background-repeat: no-repeat;
 	background-position: 10px;
+	background-color: #f3f3f5;
 }
 
 .content-area {
@@ -344,7 +345,7 @@ font-size:11px;
 }
 .shape {
 	position: absolute;
-	top: 80px;
+	top: 45px;
 	width: 40%;
 	right: 70px;
 	bottom: 20px;
