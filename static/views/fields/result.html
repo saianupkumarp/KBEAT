@@ -3,16 +3,85 @@
 		<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Performance Output">
 				<md-content class="md-padding">
+					<h2 style="font-size:20px;color:green;">Result data</h2>
 					<md-table-container style="margin-bottom:20px;">
 						<table md-table>
 							<thead md-head>
 								<tr md-row>
-									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;" ng-repeat="heading in resultHead track by $index">{{heading}}</th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;" ng-repeat="heading in resultHeading track by $index">{{heading}}</th>
 								</tr>
 							</thead>
 							<tbody md-body>
+								<tr md-row ng-repeat="value in resultValues track by $index">
+									<td ng-repeat="v in value track by $index" style="border:1px solid green;" md-cell>{{v}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<h2 style="font-size:20px;color:green;">Glass Type</h2>
+					<md-table-container style="margin-bottom:20px;">
+						<table md-table>
+							<thead md-head>
 								<tr md-row>
-									<td ng-repeat="value in resultValue track by $index" style="border:1px solid green;" md-cell>{{value}}</td>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr ng-if="$even" md-row ng-repeat="value in glassType track by $index">
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{glassType[$index]}}</td>
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{glassType[$index+1]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<h2 style="font-size:20px;color:green;">Building Details</h2>
+					<md-table-container style="margin-bottom:20px;">
+						<table md-table>
+							<thead md-head>
+								<tr md-row>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr ng-if="$even" md-row ng-repeat="value in buildingDetails track by $index">
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{buildingDetails[$index]}}</td>
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{buildingDetails[$index+1]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<h2 style="font-size:20px;color:green;">Misc</h2>
+					<md-table-container style="margin-bottom:20px;">
+						<table md-table>
+							<thead md-head>
+								<tr md-row>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr ng-if="$even" md-row ng-repeat="value in misc track by $index">
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{misc[$index]}}</td>
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{misc[$index+1]}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</md-table-container>
+					<h2 style="font-size:20px;color:green;">Input Data</h2>
+					<md-table-container style="margin-bottom:20px;">
+						<table md-table>
+							<thead md-head>
+								<tr md-row>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+								</tr>
+							</thead>
+							<tbody md-body>
+								<tr ng-if="$even" md-row ng-repeat="value in inputData track by $index">
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{inputData[$index]}}</td>
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{inputData[$index+1]}}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -21,16 +90,19 @@
 			</md-tab>
 			<md-tab label="Calibration Data">
 				<md-content class="md-padding">
+					<h2 style="font-size:20px;color:green;">Input Data</h2>
 					<md-table-container style="margin-bottom:20px;">
 						<table md-table>
 							<thead md-head>
 								<tr md-row>
-									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;" ng-repeat="heading in resultHead track by $index">{{heading}}</th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
+									<th style="border:1px solid green;text-align:center;color:#fff;background:green;padding:10px;"></th>
 								</tr>
 							</thead>
 							<tbody md-body>
-								<tr md-row>
-									<td ng-repeat="value in resultValue track by $index" style="border:1px solid green;" md-cell>{{value}}</td>
+								<tr ng-if="$even" md-row ng-repeat="value in inputData track by $index">
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{inputData[$index]}}</td>
+									<td style="border:1px solid green;padding-left:10px;" md-cell>{{inputData[$index+1]}}</td>
 								</tr>
 							</tbody>
 						</table>

@@ -70,17 +70,94 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
               }
             };
 
-            $rootScope.postData = function(data){
-              api.postData('KEEC',data);
-            };
 
-            $rootScope.stepNext = function() {
-              var isError = false;
-              $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
-               container.parameters.forEach(function(parameter){
-                parameter.error = false;
-                if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
-                {
+
+            /*  Result Tab.......................*/
+
+            $rootScope.out={"results":[{"classValue":90,"classBldg":0.0,"className":"Class 1"},{"classValue":100,"classBldg":0.0,"className":"Class 2"},{"classValue":110,"classBldg":0.0,"className":"Class 3"},{"classValue":120,"classBldg":0.0,"className":"Class 4"},{"classValue":135,"classBldg":0.0,"className":"Class 5"},{"classValue":160,"classBldg":0.0,"className":"Class 6"},{"classValue":190,"classBldg":0.0,"className":"Class 7"},{"classValue":500,"classBldg":522.7,"className":"Class 8"}],"input":{"txtBldgName":"Anup","txtBldgAddress":"Tunisia","cmbBldgType":"Hôtel, 3 Etoiles","cmbBldgLocation":"GAFSA","txtBldgNumFloor":1,"txtBldgCondArea":100,"cmbBldgShape":"Hexagon","txtBldgAzi":0,"txtFloorHeight":2,"txtLengX1":10,"txtLengY1":10,"txtLengX2":10,"txtLengY2":10,"txtLengX3":10,"txtLengY3":10,"txtFloorArea":100,"cmbSouthWall":"Mur Pas d’Isolation","cmbNorthWall":"Mur Pas d’Isolation","cmbEastWall":"Mur Pas d’Isolation","cmbWestWall":"Mur Pas d’Isolation","cmbRoof":"Toit Pas d’Isolation","cmbFirstFloorContact":"Sol","txtWinSouthOverhang":0.5,"txtWinSouthFp":0.5,"cmbHotWaterSystem":"Réservoir système DHW au gaz","cmbBldgSystem":"Systeme Monobloc Volume d’Air Variable","txtHeatSetTemp":20,"txtCoolSetTemp":24,"rdbtnWinWwr":true,"southpercent":30,"northpercent":30,"eastpercent":30,"westpercent":30,"glasstype":"Simple Claire","txtSkyltType":"Flat","txtSkyltCvr":13},"generalParams":{"extWallConstEastU":"1.63","glassType4U":"","REPORT_CONNECTION":"org.sqlite.SQLiteConnection@4372567c","extWallConstSouthU":"1.63","JASPER_REPORT":"net.sf.jasperreports.engine.JasperReport@6d57dff5","REPORT_TIME_ZONE":"sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null]","logoDir":"D:\\dev\\elf\\conf\\workingdir\\image","bldgAddress":"Tunisia","cEnergy":"121.9","extWallConstWestU":"1.63","glassType2U":"","result":"Pas Conforme","hEnergy":"802.7","REPORT_PARAMETERS_MAP":"{extWallConstEastU=1.63, glassType4U=, REPORT_CONNECTION=org.sqlite.SQLiteConnection@4372567c, extWallConstSouthU=1.63, JASPER_REPORT=net.sf.jasperreports.engine.JasperReport@6d57dff5, REPORT_TIME_ZONE=sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null], logoDir=D:\\dev\\elf\\conf\\workingdir\\image, bldgAddress=Tunisia, cEnergy=121.9, extWallConstWestU=1.63, glassType2U=, result=Pas Conforme, hEnergy=802.7, REPORT_PARAMETERS_MAP=(this Map), aLoad=522.7, bldgSector=Private, glassType2SC=, glassType5U=, minClass=Class 3, IS_IGNORE_PAGINATION=false, glassType3SC=, glassType4SC=, glassType5SC=, roofConstU=3.17, aSrcEnergy=1168.2, glassType1SC=0.95, REPORT_LOCALE=en_US, aCO2=389.3, bldgType=Hôtel, bldgLoc=GAFSA, glassType1U=1.89, bldgClass=Class 8, glassType3U=, JASPER_REPORTS_CONTEXT=net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8, bldgName=Anup, aEnergy=924.6, extWallConstNorthU=1.63, bldgBecTh=522.7, hLoad=322.1, bldgStar=ThreeStar, REPORT_FORMAT_FACTORY=net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654, minBecTh=110.0, bldgCategory=Commercial, extWallConstU=1.63, cLoad=200.7}","aLoad":"522.7","bldgSector":"Private","glassType2SC":"","glassType5U":"","minClass":"Class 3","IS_IGNORE_PAGINATION":"false","glassType3SC":"","glassType4SC":"","glassType5SC":"","roofConstU":"3.17","aSrcEnergy":"1168.2","glassType1SC":"0.95","REPORT_LOCALE":"en_US","aCO2":"389.3","bldgType":"Hôtel","bldgLoc":"GAFSA","glassType1U":"1.89","bldgClass":"Class 8","glassType3U":"","JASPER_REPORTS_CONTEXT":"net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8","bldgName":"Anup","aEnergy":"924.6","extWallConstNorthU":"1.63","bldgBecTh":"522.7","hLoad":"322.1","bldgStar":"ThreeStar","REPORT_FORMAT_FACTORY":"net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654","minBecTh":"110.0","bldgCategory":"Commercial","extWallConstU":"1.63","cLoad":"200.7"}};
+
+            /* Result Data table..................*/
+
+            $rootScope.heading = Object.keys($rootScope.out.results[0]);
+            $rootScope.values = [];
+            $rootScope.out.results.forEach(function(obj,i){
+              $rootScope.values[i] = Object.values(obj);
+            });
+            /*..............................*/
+
+
+            /* GeneralParams data table................*/
+
+            $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
+            $rootScope.filteredgeneralParams = [];
+            $rootScope.filteredGeneralKeys = [];
+            $rootScope.glasstype = [];
+            $rootScope.buildingDetails = [];
+            $rootScope.misc = [];
+            $rootScope.generalKeys.forEach(function(obj,i){
+              if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
+                $rootScope.filteredGeneralKeys[i] = obj;
+              }
+            });
+            $rootScope.filteredGeneralKeys.forEach(function(fkey){
+              $rootScope.generalKeys.forEach(function(gkey,i){
+                if(fkey == gkey){
+                 $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
+               }
+             }) 
+            });
+            $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
+            $rootScope.filteredgeneralParamsKeys.forEach(function(key){
+              if(key.charAt(0) == 'g'){
+                $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
+              }
+              else  if(key.charAt(0) == 'b'){
+                $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
+              }
+              else{
+               $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+             }
+           });
+            $rootScope.glassArray = [];
+            for (var key in $rootScope.glasstype) {
+             $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
+           }
+           $rootScope.buildingDetailsArray = [];
+           for (var key in $rootScope.buildingDetails) {
+
+             $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
+           }
+           $rootScope.miscArray = [];
+           for (var key in $rootScope.misc) {
+
+             $rootScope.miscArray.push(key,$rootScope.misc[key]);
+           }
+
+           /* .......................*/
+
+           /*  Input Data Table............*/
+
+           $rootScope.inputArray = [];
+           for(var key in $rootScope.out.input){
+            $rootScope.inputArray.push(key,$rootScope.out.input[key]);
+          }
+
+          /*  ............................*/
+
+
+          /*...........................*/
+
+          $rootScope.postData = function(data){
+            api.postData('KEEC',data);
+          };
+
+          $rootScope.stepNext = function() {
+            var isError = false;
+            $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+             container.parameters.forEach(function(parameter){
+              parameter.error = false;
+              if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+              {
                   /* if(parameter.type == 'table'){
                     parameter.combine.forEach(function(element){
                      if((element.item == '')||(element.item == null)){
@@ -98,46 +175,46 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
                   isError = true;
                 }
               });
-             });
+           });
 
-              if (isError)
-                return;
+            if (isError)
+              return;
 
-              if ($scope.activeStepIndex < $scope.totalSteps - 1)
-                $scope.activeStepIndex += 1;
-              $scope.count += 1;
-            };
-            $rootScope.stepBack = function() {
-              if ($scope.activeStepIndex > 0)
-                $scope.activeStepIndex -= 1;
-            };
-            $rootScope.Dialog = function(ev){
-              $mdDialog.show( {
-                controller: function($scope, $mdDialog) {
-                  $scope.conDialog = $rootScope.constructionDialog;
-                  $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
-                  $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
-                  $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
-                  $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
-                  $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
-                  $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
-                  $scope.winDialog = $rootScope.windowDialog;
-                  $scope.hide = function() {
-                    $mdDialog.hide();
-                  };
-                },
-                templateUrl: '/keec/assets/views/dialog.html',
-                targetEvent: ev,
-                scope: $scope,
-                preserveScope: true,
-                clickOutsideToClose:true
-              }
+            if ($scope.activeStepIndex < $scope.totalSteps - 1)
+              $scope.activeStepIndex += 1;
+            $scope.count += 1;
+          };
+          $rootScope.stepBack = function() {
+            if ($scope.activeStepIndex > 0)
+              $scope.activeStepIndex -= 1;
+          };
+          $rootScope.Dialog = function(ev){
+            $mdDialog.show( {
+              controller: function($scope, $mdDialog) {
+                $scope.conDialog = $rootScope.constructionDialog;
+                $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
+                $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
+                $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
+                $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
+                $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
+                $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
+                $scope.winDialog = $rootScope.windowDialog;
+                $scope.hide = function() {
+                  $mdDialog.hide();
+                };
+              },
+              templateUrl: '/keec/assets/views/dialog.html',
+              targetEvent: ev,
+              scope: $scope,
+              preserveScope: true,
+              clickOutsideToClose:true
+            }
 
-              );
-            };
-          }}
-        }
-      })
+            );
+          };
+        }}
+      }
+    })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
@@ -247,6 +324,17 @@ function postData(name,data){
       scope.selectedTableRow = index;
     }
 
+    /*Result tab tables ........*/
+    scope.resultValues =  $rootScope.values;
+    scope.resultHeading = $rootScope.heading;
+
+    scope.glassType = $rootScope.glassArray;
+    scope.buildingDetails = $rootScope.buildingDetailsArray;
+    scope.misc = $rootScope.miscArray;
+    scope.inputData = $rootScope.inputArray;
+
+    /*.....................*/
+
     scope.data={
     };
 
@@ -294,7 +382,6 @@ function postData(name,data){
         }
       }
       scope.data = JSON.stringify(nonObjJson);
-      console.log(scope.data);
       $rootScope.postData();
       scope.showData();
     }
@@ -345,11 +432,11 @@ function postData(name,data){
      if(scope.field.value == 'Window Area (m2)'){
       scope.field.rdbtnWinArea = true;
       scope.field.rdbtnWinWwr = false;
-      }
-      else{
-       scope.field.rdbtnWinWwr = true;
-     }
-    });
+    }
+    else{
+     scope.field.rdbtnWinWwr = true;
+   }
+ });
     break;
     case 'number':
     scope.field.value = parseInt(scope.field.default);
@@ -386,189 +473,189 @@ function postData(name,data){
       scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
       scope.field.rowValues = [];      
       scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
-      }
-      else if(scope.field.id=='spaceTable'){
-        scope.field.row_heading = scope.field.row_heading.split(', ');
-        scope.field.row1 = scope.field.row1.split(', ');
-        scope.field.row1.splice(0,0, scope.field.row_heading[0]);
-        scope.field.row2 = scope.field.row2.split(', ');
-        scope.field.row2.splice(0,0, scope.field.row_heading[1]);
-        scope.field.column_heading = scope.field.column_heading.split(', ');
-        scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
-          o[i] = v;
-          return o;
-        },{});
-        scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
-          o[i] = v;
-          return o;
-        },{});
-        scope.field.merge = [];
-        scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
-        scope.field.value = scope.field.merge;
-      }
-
-      break;
-      case 'rectangular':
-      scope.field.value={txtLengX1:10,txtLengY1:10,txtFloorArea:0};
-      scope.building =scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
-      scope.txtLengY1 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY1;
-      })[0];
-      scope.txtFloorArea = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedArea;
-      })[0];
-      scope.$watch('field.value.txtLengX1', function(){
-        scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
-      });
-      scope.$watch('field.value.txtLengY1', function(){
-        scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
-      });
-
-      break;
-      case 'lshape':
-      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
-      scope.building =scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
-      scope.field.relDimId = scope.building.url + 'Data'
-      scope.txtLengX2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedX2;
-      })[0];
-      scope.txtLengY1 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY1;
-      })[0];
-      scope.txtLengY2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY2;
-      })[0];
-      scope.txtFloorArea = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedArea;
-      })[0];
-      scope.$watch('field.value.txtLengX1', function(){
-        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
-      });
-      scope.$watch('field.value.txtLengX2', function(){
-        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
-      });
-      scope.$watch('field.value.txtLengY1', function(){
-        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
-      });
-      scope.$watch('field.value.txtLengY2', function(){
-        scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
-      });
-
-      break;
-      case 'tshape':
-      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
-      scope.building =scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
-      scope.selected = scope.building.selected
-      scope.txtLengX2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedX2;
-      })[0];
-      scope.txtLengX3 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedX3;
-      })[0];
-      scope.txtLengY1 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY1;
-      })[0];
-      scope.txtLengY2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY2;
-      })[0];
-      scope.txtFloorArea = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedArea;
-      })[0];
-      scope.$watch('field.value.txtLengX1', function(){
-        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
-      });
-      scope.$watch('field.value.txtLengX2', function(){
-        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
-      });
-      scope.$watch('field.value.txtLengX3', function(){
-        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
-      });
-      scope.$watch('field.value.txtLengY1', function(){
-        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
-      });
-      scope.$watch('field.value.txtLengY2', function(){
-        scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
-      });
-
-      break;
-      case 'ushape':
-      scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtLengY3:5,txtFloorArea:0};
-      scope.building =scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
-      scope.selected = scope.building.selected
-      scope.txtLengX2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedX2;
-      })[0];
-      scope.txtLengX3 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedX3;
-      })[0];
-      scope.txtLengY1 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY1;
-      })[0];
-      scope.txtLengY2 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY2;
-      })[0];
-      scope.txtLengY3 = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedY3;
-      })[0];
-      scope.txtFloorArea = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.relatedArea;
-      })[0];
-      scope.$watch('field.value.txtLengX1', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-      scope.$watch('field.value.txtLengX2', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-      scope.$watch('field.value.txtLengX3', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-      scope.$watch('field.value.txtLengY1', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-      scope.$watch('field.value.txtLengY2', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-      scope.$watch('field.value.txtLengY3', function(){
-        scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
-      });
-
-      break;
-      case 'shape':
-      scope.shape = scope.container.parameters.filter(function(p){
-        return p.id == scope.field.related_id;
-      })[0];
-      break;
-      case 'button':
-      scope.previous =function(){
-        $rootScope.stepBack();
-      }
-      scope.next =function(){
-       $rootScope.stepNext();
-     }
-     scope.run =function(){
-      scope.runData();
-      $rootScope.stepNext();
     }
+    else if(scope.field.id=='spaceTable'){
+      scope.field.row_heading = scope.field.row_heading.split(', ');
+      scope.field.row1 = scope.field.row1.split(', ');
+      scope.field.row1.splice(0,0, scope.field.row_heading[0]);
+      scope.field.row2 = scope.field.row2.split(', ');
+      scope.field.row2.splice(0,0, scope.field.row_heading[1]);
+      scope.field.column_heading = scope.field.column_heading.split(', ');
+      scope.field.row1 = scope.field.row1.reduce(function(o,v,i){
+        o[i] = v;
+        return o;
+      },{});
+      scope.field.row2 = scope.field.row2.reduce(function(o,v,i){
+        o[i] = v;
+        return o;
+      },{});
+      scope.field.merge = [];
+      scope.field.merge.splice(0,0,scope.field.row1,scope.field.row2);
+      scope.field.value = scope.field.merge;
+    }
+
     break;
-  }
-  scope.dialogBox =function(ev){
-    $rootScope.Dialog(ev);
-  }
-  if (scope.field.type == 'text' || scope.field.type == 'number')
-    scope.$watch('field.value', function(newValue, oldValue){
-      if (scope.field.error && newValue!=oldValue)
-      {
-        scope.field.error = !newValue;
-      }
+    case 'rectangular':
+    scope.field.value={txtLengX1:10,txtLengY1:10,txtFloorArea:0};
+    scope.building =scope.container.parameters.filter(function(p){
+      return p.id == scope.field.related_id;
+    })[0];
+    scope.txtLengY1 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY1;
+    })[0];
+    scope.txtFloorArea = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedArea;
+    })[0];
+    scope.$watch('field.value.txtLengX1', function(){
+      scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
     });
+    scope.$watch('field.value.txtLengY1', function(){
+      scope.field.value.txtFloorArea = scope.field.value.txtLengX1 * scope.field.value.txtLengY1;
+    });
+
+    break;
+    case 'lshape':
+    scope.field.value={txtLengX1:10,txtLengX2:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
+    scope.building =scope.container.parameters.filter(function(p){
+      return p.id == scope.field.related_id;
+    })[0];
+    scope.field.relDimId = scope.building.url + 'Data'
+    scope.txtLengX2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedX2;
+    })[0];
+    scope.txtLengY1 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY1;
+    })[0];
+    scope.txtLengY2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY2;
+    })[0];
+    scope.txtFloorArea = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedArea;
+    })[0];
+    scope.$watch('field.value.txtLengX1', function(){
+      scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
+    });
+    scope.$watch('field.value.txtLengX2', function(){
+      scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
+    });
+    scope.$watch('field.value.txtLengY1', function(){
+      scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
+    });
+    scope.$watch('field.value.txtLengY2', function(){
+      scope.field.value.txtFloorArea = (scope.field.value.txtLengX1 * scope.field.value.txtLengY1) - ((scope.field.value.txtLengX1 - scope.field.value.txtLengX2) * (scope.field.value.txtLengY1 - scope.field.value.txtLengY2));
+    });
+
+    break;
+    case 'tshape':
+    scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtFloorArea:0};
+    scope.building =scope.container.parameters.filter(function(p){
+      return p.id == scope.field.related_id;
+    })[0];
+    scope.selected = scope.building.selected
+    scope.txtLengX2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedX2;
+    })[0];
+    scope.txtLengX3 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedX3;
+    })[0];
+    scope.txtLengY1 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY1;
+    })[0];
+    scope.txtLengY2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY2;
+    })[0];
+    scope.txtFloorArea = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedArea;
+    })[0];
+    scope.$watch('field.value.txtLengX1', function(){
+      scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
+    });
+    scope.$watch('field.value.txtLengX2', function(){
+      scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
+    });
+    scope.$watch('field.value.txtLengX3', function(){
+      scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
+    });
+    scope.$watch('field.value.txtLengY1', function(){
+      scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
+    });
+    scope.$watch('field.value.txtLengY2', function(){
+      scope.field.value.txtFloorArea = 2 * (scope.field.value.txtLengX2 * (scope.field.value.txtLengY1-scope.field.value.txtLengY2)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY1);
+    });
+
+    break;
+    case 'ushape':
+    scope.field.value={txtLengX1:10,txtLengX2:5,txtLengX3:5,txtLengY1:10,txtLengY2:5,txtLengY3:5,txtFloorArea:0};
+    scope.building =scope.container.parameters.filter(function(p){
+      return p.id == scope.field.related_id;
+    })[0];
+    scope.selected = scope.building.selected
+    scope.txtLengX2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedX2;
+    })[0];
+    scope.txtLengX3 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedX3;
+    })[0];
+    scope.txtLengY1 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY1;
+    })[0];
+    scope.txtLengY2 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY2;
+    })[0];
+    scope.txtLengY3 = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedY3;
+    })[0];
+    scope.txtFloorArea = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.relatedArea;
+    })[0];
+    scope.$watch('field.value.txtLengX1', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+    scope.$watch('field.value.txtLengX2', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+    scope.$watch('field.value.txtLengX3', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+    scope.$watch('field.value.txtLengY1', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+    scope.$watch('field.value.txtLengY2', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+    scope.$watch('field.value.txtLengY3', function(){
+      scope.field.value.txtFloorArea =  (scope.field.value.txtLengX2 * scope.field.value.txtLengY1) + (scope.field.value.txtLengX1 - (scope.field.value.txtLengX2 + scope.field.value.txtLengX3)) + (scope.field.value.txtLengX3 * scope.field.value.txtLengY2);
+    });
+
+    break;
+    case 'shape':
+    scope.shape = scope.container.parameters.filter(function(p){
+      return p.id == scope.field.related_id;
+    })[0];
+    break;
+    case 'button':
+    scope.previous =function(){
+      $rootScope.stepBack();
+    }
+    scope.next =function(){
+     $rootScope.stepNext();
+   }
+   scope.run =function(){
+    scope.runData();
+    $rootScope.stepNext();
+  }
+  break;
+}
+scope.dialogBox =function(ev){
+  $rootScope.Dialog(ev);
+}
+if (scope.field.type == 'text' || scope.field.type == 'number')
+  scope.$watch('field.value', function(newValue, oldValue){
+    if (scope.field.error && newValue!=oldValue)
+    {
+      scope.field.error = !newValue;
+    }
+  });
 
 }
 }
