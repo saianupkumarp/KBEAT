@@ -10,6 +10,7 @@ requirejs.config({
     'angular-translate-storage-cookie': 'vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.min',
     'angular-translate-storage-local': 'vendor/angular-translate-storage-local/angular-translate-storage-local.min',
     'angular-ui-router': 'vendor/angular-ui-router/release/angular-ui-router.min',
+    'angular-underscore': 'vendor/angular-underscore/angular-underscore.min',
     'angular-animate' :'vendor/angular-animate/angular-animate',
     'angular-aria' :'vendor/angular-aria/angular-aria',
     'angular-messages':'vendor/angular-messages/angular-messages',
@@ -17,6 +18,7 @@ requirejs.config({
     'md-steppers':'vendor/md-steppers/dist/md-steppers.min',
     'angular-material-data-table':'vendor/angular-material-data-table/dist/md-data-table.min',
     'md-data-table':'vendor/md-data-table/dist/md-data-table-templates',
+    'underscore': 'vendor/underscore/underscore-min'
   },
   shim: {
     'angular': {
@@ -30,6 +32,9 @@ requirejs.config({
     },
     'angular-ui-router': {
       deps: ['angular']
+    },
+    'angular-underscore': {
+      deps: ['angular', 'underscore']
     },
     'angular-translate': {
       deps: ['angular']
