@@ -75,7 +75,7 @@ steps:
           label_suffix: m
           default: 3
           widthPercent: 50
-        - id: RectangularData
+        - id: RectangulaireData
           type: rectangular
           label: X1
           label_suffix: m
@@ -266,36 +266,36 @@ steps:
         - id: cmbSouthWall
           type: dropdown
           options: ewallconsnolnsu
-          values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu
+          values: EWall Cons-NoInsu
+          default: EWall Cons-NoInsu
           label: South Wall
           widthPercent: 33
         - id: cmbNorthWall
           type: dropdown
           options: ewallconsnolnsu
-          values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu
+          values: EWall Cons-NoInsu
+          default: EWall Cons-NoInsu
           label: North Wall
           widthPercent: 33
         - id: cmbEastWall
           type: dropdown
           options: ewallconsnolnsu
-          values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu
+          values: EWall Cons-NoInsu
+          default: EWall Cons-NoInsu
           label: East Wall
           widthPercent: 33
         - id: cmbWestWall
           type: dropdown
           options: ewallconsnolnsu
-          values: EWALL Cons-Nolnsu
-          default: EWALL Cons-Nolnsu
+          values: EWall Cons-NoInsu
+          default: EWall Cons-NoInsu
           label: West Wall
           widthPercent: 33
         - id: cmbRoof
           type: dropdown
           options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm
-          values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
-          default: Roof Cons-Nolnsu
+          values: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
+          default: Roof Cons-NoInsu
           label: Roof
           widthPercent: 33
         - id: cmbFirstFloorContact
