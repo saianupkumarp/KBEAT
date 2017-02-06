@@ -1,4 +1,4 @@
-define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
+define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
   'angular-animate','angular-aria','angular-messages','angular-cookies',
   'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
   'angular-material','md-steppers','angular-material-data-table'],
@@ -160,6 +160,7 @@ return {
 };
 function postData(name,data){
   return  $http.post('/keec/api/model/' + name,data).then(function(response) {
+    console.log(response.data)
     $rootScope.stepNext();
   })
 }
@@ -295,7 +296,7 @@ function postData(name,data){
       }
       scope.data = JSON.stringify(nonObjJson);
       console.log(scope.data);
-      $rootScope.postData();
+      $rootScope.postData(scope.data);
       scope.showData();
     }
 
