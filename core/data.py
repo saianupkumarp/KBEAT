@@ -21,10 +21,14 @@ Models = db['model']
 def get_locales():
     locales_path = path.join(settings.STATIC_ROOT, 'locales')
     return [path.splitext(f)[0] for f in listdir(locales_path) if f.endswith('.json')]
-    
-def get_model():
-    model_data = Models.find_one()
+
+def get_model(model_name):
+    model_data = Models.find_one({"name": model_name})
+    print model_data
     return Model(model_data, strict=False) if model_data else None
+
+def get_models(count=0):
+    return [Model(model, strict=False) for model in Models.find().limit(count)]
 
 def load_model_data():
     hub = get_hub()
