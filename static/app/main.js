@@ -68,7 +68,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
                 var someElement = angular.element(document.getElementById(index));
-                $document.scrollToElementAnimated(someElement,90,1000);
+                $document.scrollToElementAnimated(someElement,115,1000);
               }
             };
 
@@ -194,14 +194,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
               $scope.activeStepIndex = index;
             $scope.count += 1;
             var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,100,1000);
+            $document.scrollToElementAnimated(someElement,115,1000);
           };
 
           $rootScope.stepBack = function(index) {
             if ($scope.activeStepIndex > 0)
               $scope.activeStepIndex = index;
             var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,100,1000);
+            $document.scrollToElementAnimated(someElement,115,1000);
           };
           $rootScope.Dialog = function(ev){
             $mdDialog.show( {
