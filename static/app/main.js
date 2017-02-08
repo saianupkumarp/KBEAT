@@ -1,12 +1,12 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
   'angular-animate','angular-aria','angular-messages','angular-cookies',
   'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-  'angular-material','md-steppers','angular-material-data-table'],
+  'angular-material','md-steppers','angular-material-data-table','angular-scroll'],
 
   function ($, angular) {
 
     angular.module('keec', [
-      'ui.router','ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table'
+      'ui.router','ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll'
       ])
 
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
@@ -60,16 +60,24 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
           url: '/keec/',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
-            controller: function($scope, $rootScope, $mdDialog,api){
+            controller: function($scope, $rootScope, $mdDialog,api,$location,$anchorScroll,$document){
               $scope.count = 0;
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
               $scope.activateStep = function(index) {
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
+                var someElement = angular.element(document.getElementById(index));
+                $document.scrollToElementAnimated(someElement,90,1000);
               }
             };
 
+            $scope.Next = function(index) {
+              console.log(index);
+              index +=1;
+              var someElement = angular.element(document.getElementById(index));
+              $document.scrollToElement(someElement,0,5000);
+            }
 
 
             /*  Result Tab.......................*/
@@ -151,7 +159,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
             api.postData('KEEC',data);
           };
 
-          $rootScope.stepNext = function() {
+          $rootScope.num =0;
+
+          $rootScope.stepNext = function(index) {
             var isError = false;
             $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
              container.parameters.forEach(function(parameter){
@@ -181,12 +191,17 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
               return;
 
             if ($scope.activeStepIndex < $scope.totalSteps - 1)
-              $scope.activeStepIndex += 1;
+              $scope.activeStepIndex = index;
             $scope.count += 1;
+            var someElement = angular.element(document.getElementById(index));
+            $document.scrollToElementAnimated(someElement,100,1000);
           };
-          $rootScope.stepBack = function() {
+
+          $rootScope.stepBack = function(index) {
             if ($scope.activeStepIndex > 0)
-              $scope.activeStepIndex -= 1;
+              $scope.activeStepIndex = index;
+            var someElement = angular.element(document.getElementById(index));
+            $document.scrollToElementAnimated(someElement,100,1000);
           };
           $rootScope.Dialog = function(ev){
             $mdDialog.show( {
@@ -637,25 +652,26 @@ function postData(name,data){
     scope.previous =function(){
       $rootScope.stepBack();
     }
+
     scope.next =function(){
-     $rootScope.stepNext();
-   }
-   scope.run =function(){
-    scope.runData();
-    $rootScope.stepNext();
-  }
-  break;
-}
-scope.dialogBox =function(ev){
-  $rootScope.Dialog(ev);
-}
-if (scope.field.type == 'text' || scope.field.type == 'number')
-  scope.$watch('field.value', function(newValue, oldValue){
-    if (scope.field.error && newValue!=oldValue)
-    {
-      scope.field.error = !newValue;
+      $rootScope.stepNext();
     }
-  });
+    scope.run =function(){
+      scope.runData();
+      $rootScope.stepNext();
+    }
+    break;
+  }
+  scope.dialogBox =function(ev){
+    $rootScope.Dialog(ev);
+  }
+  if (scope.field.type == 'text' || scope.field.type == 'number')
+    scope.$watch('field.value', function(newValue, oldValue){
+      if (scope.field.error && newValue!=oldValue)
+      {
+        scope.field.error = !newValue;
+      }
+    });
 
 }
 }

@@ -1,6 +1,6 @@
 name: KEEC
 steps:
-  - id: buildingInfo
+  - id: infographic.jpg
     label: Building Info
     containers:
     - id: buildingInformation
@@ -256,7 +256,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: envelope
+  - id: fotolia_82154542.jpg
     label: Envelope
     containers:
     - id: exteriorConstructions
@@ -422,7 +422,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: spacedhw
+  - id: fotolia_73779603.jpg
     label: Space/DHW
     containers:
     - id: spaceCondition
@@ -467,7 +467,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: hvac
+  - id: fotolia_106113329.jpg
     label: HVAC System
     containers:
     - id: hvacsystem
@@ -513,7 +513,7 @@ steps:
           type: button
           label: Run
           widthPercent: 20
-  - id: result
+  - id: infographic.jpg
     label: Result
     containers:
     - id: resultData
