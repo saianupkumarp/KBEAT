@@ -1,4 +1,4 @@
-name: KEEC
+name: tunisia
 title: Tunisia
 steps:
   - id: buildingInfo
@@ -22,8 +22,8 @@ steps:
       parameters:
         - id: cmbBldgType
           type: dropdown
-          options: Villa, Apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
-          values: Villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
+          options: "Villa, Apartment, Office: Public, Office: Private, Hotel: ThreeStar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
+          values: "Villa, Apartment, Office: Public, Office: Private, hotelthreestar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
           default: Office:Private
           label: Building Type
           widthPercent: 50
@@ -31,13 +31,13 @@ steps:
           type: number
           label: Number of Floors
           label_suffix: story
-          default: 3
+          default: 1
           widthPercent: 50
-          default: 3
+          default: 1
         - id: cmbBldgLocation
           type: dropdown
-          options: Tunis
-          values: TUNIS
+          options: TUNIS, BIZERTE, ARIANA, NABEUL, MAHDIA, SOUSSE, SFAX, MEDENINE, BEJA, JENDOUBA, KAIROUAN, GAFSA, SILIANA, SIDI_BOUZID, KEBILI, TOZEUR, TATAOUINE, MATMATA
+          values: TUNIS, BIZERTE, ARIANA, NABEUL, MAHDIA, SOUSSE, SFAX, MEDENINE, BEJA, JENDOUBA, KAIROUAN, GAFSA, SILIANA, SIDI_BOUZID, KEBILI, TOZEUR, TATAOUINE, MATMATA
           default: TUNIS
           label: Building Location
           widthPercent: 50
