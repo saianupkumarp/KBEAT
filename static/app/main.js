@@ -1,12 +1,12 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
   'angular-animate','angular-aria','angular-messages','angular-cookies',
   'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-  'angular-material','md-steppers','angular-material-data-table'],
+  'angular-material','md-steppers','angular-material-data-table','angular-scroll'],
 
   function ($, angular) {
 
     angular.module('keec', [
-      'ui.router','ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table'
+      'ui.router','ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll'
       ])
 
     .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
@@ -30,12 +30,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         $stateProvider
 
         /* Intro Page */
-          .state('app.intro', {
-            url: '/keec/',
-            views: {
-              'content@': {templateUrl: '/keec/assets/views/intro.html'}
-            }
-          })
+        .state('app.intro', {
+          url: '/keec/',
+          views: {
+            'content@': {templateUrl: '/keec/assets/views/intro.html'}
+          }
+        })
 
         .state('app', {
           abstract: true,
@@ -50,13 +50,13 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
             //Get model - By Anup Kumar - 
             models: function ($http, $rootScope, $translate, $sce) {
-                var locale = $translate.use() || $translate.proposedLanguage();
-                return $http.get('/keec/api/models', {params: {locale: locale}}).then(function (response) {
-                  var models = response.data['objects'] || [];
-                  $rootScope.models = models
-                  return $rootScope.models;
-                });
-              }
+              var locale = $translate.use() || $translate.proposedLanguage();
+              return $http.get('/keec/api/models', {params: {locale: locale}}).then(function (response) {
+                var models = response.data['objects'] || [];
+                $rootScope.models = models
+                return $rootScope.models;
+              });
+            }
           },
           views: {
             'header': {templateUrl: '/keec/assets/views/header.html'},
@@ -68,35 +68,43 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         .state('app.home', {
           url: '/keec/model/{model_name}',
           resolve: {
-              model: function ($stateParams, models) {
-                return _(models).findWhere({name: $stateParams['model_name']});
-              }
-            },
+            model: function ($stateParams, models) {
+              return _(models).findWhere({name: $stateParams['model_name']});
+            }
+          },
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
-            controller: function($scope, $rootScope, $mdDialog,api, model){
-              $rootScope.model = model;
-              $scope.count = 0;
-              $scope.activeStepIndex = 0;
-              $scope.totalSteps = $rootScope.model.steps.length;
-              $scope.activateStep = function(index) {
+             controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document){
+             $rootScope.model = model;
+             $scope.count = 0;
+             $scope.activeStepIndex = 0;
+             $scope.totalSteps = $rootScope.model.steps.length;
+             $scope.activateStep = function(index) {
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
+                var someElement = angular.element(document.getElementById(index));
+                $document.scrollToElementAnimated(someElement,115,1000);
               }
-              console.log($scope.activateStep)
+            };
+            $rootScope.postData = function(data){
+              api.postData(model.name,data);
             };
 
-          $rootScope.postData = function(data){
-            api.postData(model.name,data);
-          };
+            $rootScope.num =0;
 
-          $rootScope.stepNext = function() {
-            var isError = false;
-            $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
-             container.parameters.forEach(function(parameter){
-              parameter.error = false;
-              if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
-              {
+            $rootScope.stepNext = function(index) {
+              if($scope.count >=4){
+               $scope.activeStepIndex = index;
+               var someElement = angular.element(document.getElementById(index));
+               $document.scrollToElementAnimated(someElement,115,1000);
+             }
+             else{
+              var isError = false;
+              $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+               container.parameters.forEach(function(parameter){
+                parameter.error = false;
+                if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+                {
                   /* if(parameter.type == 'table'){
                     parameter.combine.forEach(function(element){
                      if((element.item == '')||(element.item == null)){
@@ -114,18 +122,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   isError = true;
                 }
               });
-           });
+             });
+            }
 
             if (isError)
               return;
-
             if ($scope.activeStepIndex < $scope.totalSteps - 1)
-              $scope.activeStepIndex += 1;
+              $scope.activeStepIndex = index;
             $scope.count += 1;
+            var someElement = angular.element(document.getElementById(index));
+            $document.scrollToElementAnimated(someElement,115,1000);
           };
-          $rootScope.stepBack = function() {
+
+
+
+          $rootScope.stepBack = function(index) {
             if ($scope.activeStepIndex > 0)
-              $scope.activeStepIndex -= 1;
+              $scope.activeStepIndex = index;
+            var someElement = angular.element(document.getElementById(index));
+            $document.scrollToElementAnimated(someElement,115,1000);
           };
           $rootScope.Dialog = function(ev){
             $mdDialog.show( {
@@ -180,8 +195,8 @@ function postData(name,data){
     if(response.data){
       $rootScope.$broadcast('resultData', response.data)
       setTimeout(function(){ 
-          $rootScope.stepNext()}
-      , 5000);
+        $rootScope.stepNext()}
+        , 5000);
     }
   })
 }
@@ -269,7 +284,7 @@ function postData(name,data){
       scope.selectedTableRow = index;
     }
 
-        /*.....................*/
+    /*.....................*/
 
     scope.data={
     };
@@ -573,110 +588,111 @@ function postData(name,data){
     /*Result tab tables ........*/
     scope.$on('resultData', function(event, data){
       /*  Result Tab.......................*/
-            $rootScope.out = data
+      $rootScope.out = data
 
-            /* Result Data table..................*/
+      /* Result Data table..................*/
 
-            $rootScope.heading = Object.keys($rootScope.out.results[0]);
-            $rootScope.values = [];
-            $rootScope.out.results.forEach(function(obj,i){
-              $rootScope.values[i] = Object.values(obj);
-            });
-            /*..............................*/
-
-
-            /* GeneralParams data table................*/
-
-            $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
-            $rootScope.filteredgeneralParams = [];
-            $rootScope.filteredGeneralKeys = [];
-            $rootScope.glasstype = [];
-            $rootScope.buildingDetails = [];
-            $rootScope.misc = [];
-            $rootScope.generalKeys.forEach(function(obj,i){
-              if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
-                $rootScope.filteredGeneralKeys[i] = obj;
-              }
-            });
-            $rootScope.filteredGeneralKeys.forEach(function(fkey){
-              $rootScope.generalKeys.forEach(function(gkey,i){
-                if(fkey == gkey){
-                 $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
-               }
-             }) 
-            });
-            $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
-            $rootScope.filteredgeneralParamsKeys.forEach(function(key){
-              if(key.charAt(0) == 'g'){
-                $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else  if(key.charAt(0) == 'b'){
-                $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else{
-               $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
-             }
-           });
-            $rootScope.glassArray = [];
-            for (var key in $rootScope.glasstype) {
-             $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
-           }
-           $rootScope.buildingDetailsArray = [];
-           for (var key in $rootScope.buildingDetails) {
-
-             $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
-           }
-           $rootScope.miscArray = [];
-           for (var key in $rootScope.misc) {
-
-             $rootScope.miscArray.push(key,$rootScope.misc[key]);
-           }
-
-           /* .......................*/
-
-           /*  Input Data Table............*/
-
-           $rootScope.inputArray = [];
-           for(var key in $rootScope.out.input){
-            $rootScope.inputArray.push(key,$rootScope.out.input[key]);
-          }
+      $rootScope.heading = Object.keys($rootScope.out.results[0]);
+      $rootScope.values = [];
+      $rootScope.out.results.forEach(function(obj,i){
+        $rootScope.values[i] = Object.values(obj);
+      });
+      /*..............................*/
 
 
-            scope.resultValues =  $rootScope.values;
-            scope.resultHeading = $rootScope.heading;
+      /* GeneralParams data table................*/
 
-            scope.glassType = $rootScope.glassArray;
+      $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
+      $rootScope.filteredgeneralParams = [];
+      $rootScope.filteredGeneralKeys = [];
+      $rootScope.glasstype = [];
+      $rootScope.buildingDetails = [];
+      $rootScope.misc = [];
+      $rootScope.generalKeys.forEach(function(obj,i){
+        if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
+          $rootScope.filteredGeneralKeys[i] = obj;
+        }
+      });
+      $rootScope.filteredGeneralKeys.forEach(function(fkey){
+        $rootScope.generalKeys.forEach(function(gkey,i){
+          if(fkey == gkey){
+           $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
+         }
+       }) 
+      });
+      $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
+      $rootScope.filteredgeneralParamsKeys.forEach(function(key){
+        if(key.charAt(0) == 'g'){
+          $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
+        }
+        else  if(key.charAt(0) == 'b'){
+          $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
+        }
+        else{
+         $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+       }
+     });
+      $rootScope.glassArray = [];
+      for (var key in $rootScope.glasstype) {
+       $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
+     }
+     $rootScope.buildingDetailsArray = [];
+     for (var key in $rootScope.buildingDetails) {
+
+       $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
+     }
+     $rootScope.miscArray = [];
+     for (var key in $rootScope.misc) {
+
+       $rootScope.miscArray.push(key,$rootScope.misc[key]);
+     }
+
+     /* .......................*/
+
+     /*  Input Data Table............*/
+
+     $rootScope.inputArray = [];
+     for(var key in $rootScope.out.input){
+      $rootScope.inputArray.push(key,$rootScope.out.input[key]);
+    }
+
+
+    scope.resultValues =  $rootScope.values;
+    scope.resultHeading = $rootScope.heading;
+
+    scope.glassType = $rootScope.glassArray;
     scope.buildingDetails = $rootScope.buildingDetailsArray;
     scope.misc = $rootScope.miscArray;
     scope.inputData = $rootScope.inputArray;
     /* --- SIM File ---*/
-          scope.simFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.simFile;
-          scope.bepsFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.beps
-    })
+    scope.simFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.simFile;
+    scope.bepsFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.beps
+  })
     break;
     case 'button':
     scope.previous =function(){
       $rootScope.stepBack();
     }
+
     scope.next =function(){
-     $rootScope.stepNext();
-   }
-   scope.run =function(){
-    scope.runData();
-    $rootScope.stepNext();
-  }
-  break;
-}
-scope.dialogBox =function(ev){
-  $rootScope.Dialog(ev);
-}
-if (scope.field.type == 'text' || scope.field.type == 'number')
-  scope.$watch('field.value', function(newValue, oldValue){
-    if (scope.field.error && newValue!=oldValue)
-    {
-      scope.field.error = !newValue;
+      $rootScope.stepNext();
     }
-  });
+    scope.run =function(){
+      scope.runData();
+      $rootScope.stepNext();
+    }
+    break;
+  }
+  scope.dialogBox =function(ev){
+    $rootScope.Dialog(ev);
+  }
+  if (scope.field.type == 'text' || scope.field.type == 'number')
+    scope.$watch('field.value', function(newValue, oldValue){
+      if (scope.field.error && newValue!=oldValue)
+      {
+        scope.field.error = !newValue;
+      }
+    });
 
 }
 }

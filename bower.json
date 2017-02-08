@@ -15,6 +15,7 @@
     "angular-translate-storage-cookie": "latest",
     "angular-translate-storage-local": "latest",
     "angular-material": "^1.1.1",
-    "angular-material-data-table": "^0.10.10"
+    "angular-material-data-table": "^0.10.10",
+    "angular-scroll": "^1.0.0"
   }
 }
