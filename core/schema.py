@@ -31,6 +31,7 @@ class ModelStep(Entity):
 
 class Model(Entity):
     name = StringType(required=True)
+    title = StringType(required=True)
     steps = ListType(ModelType(ModelStep), default=None)
 
     class Options:

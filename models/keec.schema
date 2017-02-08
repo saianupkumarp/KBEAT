@@ -1,4 +1,5 @@
 name: KEEC
+title: Tunisia
 steps:
   - id: buildingInfo
     label: Building Info
@@ -21,8 +22,8 @@ steps:
       parameters:
         - id: cmbBldgType
           type: dropdown
-          options: villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
-          values: Villa, Apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
+          options: Villa, Apartment, Office:Public, Office:Private, Hotel:Three Star, Hotel:Four Star, Hotel:Five Star, Hospital:Private, Hospital:Public
+          values: Villa, apartment, officepublic, officeprivate, hotelthreestar, hotelfourstar, hotelfivestar, hospitalprivate, hospitalpublic
           default: Office:Private
           label: Building Type
           widthPercent: 50
@@ -35,7 +36,7 @@ steps:
           default: 3
         - id: cmbBldgLocation
           type: dropdown
-          options: tunis
+          options: Tunis
           values: TUNIS
           default: TUNIS
           label: Building Location
@@ -75,7 +76,7 @@ steps:
           label_suffix: m
           default: 3
           widthPercent: 50
-        - id: RectangulaireData
+        - id: RectangularData
           type: rectangular
           label: X1
           label_suffix: m
@@ -265,28 +266,28 @@ steps:
       parameters:
         - id: cmbSouthWall
           type: dropdown
-          options: ewallconsnolnsu
+          options: EWall Cons-NoInsu
           values: EWall Cons-NoInsu
           default: EWall Cons-NoInsu
           label: South Wall
           widthPercent: 33
         - id: cmbNorthWall
           type: dropdown
-          options: ewallconsnolnsu
+          options: EWall Cons-NoInsu
           values: EWall Cons-NoInsu
           default: EWall Cons-NoInsu
           label: North Wall
           widthPercent: 33
         - id: cmbEastWall
           type: dropdown
-          options: ewallconsnolnsu
+          options: EWall Cons-NoInsu
           values: EWall Cons-NoInsu
           default: EWall Cons-NoInsu
           label: East Wall
           widthPercent: 33
         - id: cmbWestWall
           type: dropdown
-          options: ewallconsnolnsu
+          options: EWall Cons-NoInsu
           values: EWall Cons-NoInsu
           default: EWall Cons-NoInsu
           label: West Wall
@@ -300,9 +301,9 @@ steps:
           widthPercent: 33
         - id: cmbFirstFloorContact
           type: dropdown
-          options: ground, conditionedspace, unconditionedspace
-          values: Ground, Conditioned Space, UnConditioned Space
-          default: Ground
+          options: Ground, Conditioned Space, UnConditioned Space
+          values: ground, conditionedspace, unconditionedspace
+          default: ground
           label: 1st Floor Contact Condition
           widthPercent: 33
     - id: windows
@@ -340,9 +341,9 @@ steps:
           widthPercent: 50
         - id: glasstype
           type: dropdown
-          options: single glass, double glass
-          values: Single Glass, Double Glass
-          default: Single Glass
+          options: Single Clear, Double Glass
+          values: Single Clear, double glass
+          default: Single Clear
           label: Glass Type
           widthPercent: 100
         - id: txtWinSouthOverhang
@@ -450,7 +451,7 @@ steps:
       parameters:
         - id: cmbHotWaterSystem
           type: dropdown
-          options: tanklesselectricdhwsystem
+          options: Tankless electric DHW system
           values: Tankless electric DHW system
           default: Tankless electric DHW system
           label: Building Type
@@ -477,8 +478,8 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          url: packagedVariableAirVolumeSystem.jpg, variableAirVolumeSystem.jpg
-          values: packagedVariableAirVolumeSystem, variableAirVolumeSystem
+          url: Packaged Variable Air Volume System.jpg, Variable Air Volume System.jpg
+          values: Packaged Variable Air Volume System, Variable Air Volume System
           options: Packaged Variable Air Volume System, Variable Air Volume System
           default: Packaged Variable Air Volume System
           span_width: 800

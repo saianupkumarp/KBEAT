@@ -4,7 +4,7 @@
 			<md-option ng-value="url" ng-repeat="url in field.urls" ng-selected="$first">{{field.options[$index]}}</md-option>
 		</md-select>
 		<md-select id="{{field.id}}" ng-if="!field.url" ng-model="field.value">
-			<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.values[$index]}}</md-option>
+			<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}</md-option>
 		</md-select>
 	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
 	<input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
