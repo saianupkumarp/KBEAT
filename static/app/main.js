@@ -79,83 +79,16 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               console.log($scope.activateStep)
             };
 
-
-
-            /*  Result Tab.......................*/
-
-            $rootScope.out={"results":[{"classValue":90,"classBldg":0.0,"className":"Class 1"},{"classValue":100,"classBldg":0.0,"className":"Class 2"},{"classValue":110,"classBldg":0.0,"className":"Class 3"},{"classValue":120,"classBldg":0.0,"className":"Class 4"},{"classValue":135,"classBldg":0.0,"className":"Class 5"},{"classValue":160,"classBldg":0.0,"className":"Class 6"},{"classValue":190,"classBldg":0.0,"className":"Class 7"},{"classValue":500,"classBldg":522.7,"className":"Class 8"}],"input":{"txtBldgName":"Anup","txtBldgAddress":"Tunisia","cmbBldgType":"Hôtel, 3 Etoiles","cmbBldgLocation":"GAFSA","txtBldgNumFloor":1,"txtBldgCondArea":100,"cmbBldgShape":"Hexagon","txtBldgAzi":0,"txtFloorHeight":2,"txtLengX1":10,"txtLengY1":10,"txtLengX2":10,"txtLengY2":10,"txtLengX3":10,"txtLengY3":10,"txtFloorArea":100,"cmbSouthWall":"Mur Pas d’Isolation","cmbNorthWall":"Mur Pas d’Isolation","cmbEastWall":"Mur Pas d’Isolation","cmbWestWall":"Mur Pas d’Isolation","cmbRoof":"Toit Pas d’Isolation","cmbFirstFloorContact":"Sol","txtWinSouthOverhang":0.5,"txtWinSouthFp":0.5,"cmbHotWaterSystem":"Réservoir système DHW au gaz","cmbBldgSystem":"Systeme Monobloc Volume d’Air Variable","txtHeatSetTemp":20,"txtCoolSetTemp":24,"rdbtnWinWwr":true,"southpercent":30,"northpercent":30,"eastpercent":30,"westpercent":30,"glasstype":"Simple Claire","txtSkyltType":"Flat","txtSkyltCvr":13},"generalParams":{"extWallConstEastU":"1.63","glassType4U":"","REPORT_CONNECTION":"org.sqlite.SQLiteConnection@4372567c","extWallConstSouthU":"1.63","JASPER_REPORT":"net.sf.jasperreports.engine.JasperReport@6d57dff5","REPORT_TIME_ZONE":"sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null]","logoDir":"D:\\dev\\elf\\conf\\workingdir\\image","bldgAddress":"Tunisia","cEnergy":"121.9","extWallConstWestU":"1.63","glassType2U":"","result":"Pas Conforme","hEnergy":"802.7","REPORT_PARAMETERS_MAP":"{extWallConstEastU=1.63, glassType4U=, REPORT_CONNECTION=org.sqlite.SQLiteConnection@4372567c, extWallConstSouthU=1.63, JASPER_REPORT=net.sf.jasperreports.engine.JasperReport@6d57dff5, REPORT_TIME_ZONE=sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null], logoDir=D:\\dev\\elf\\conf\\workingdir\\image, bldgAddress=Tunisia, cEnergy=121.9, extWallConstWestU=1.63, glassType2U=, result=Pas Conforme, hEnergy=802.7, REPORT_PARAMETERS_MAP=(this Map), aLoad=522.7, bldgSector=Private, glassType2SC=, glassType5U=, minClass=Class 3, IS_IGNORE_PAGINATION=false, glassType3SC=, glassType4SC=, glassType5SC=, roofConstU=3.17, aSrcEnergy=1168.2, glassType1SC=0.95, REPORT_LOCALE=en_US, aCO2=389.3, bldgType=Hôtel, bldgLoc=GAFSA, glassType1U=1.89, bldgClass=Class 8, glassType3U=, JASPER_REPORTS_CONTEXT=net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8, bldgName=Anup, aEnergy=924.6, extWallConstNorthU=1.63, bldgBecTh=522.7, hLoad=322.1, bldgStar=ThreeStar, REPORT_FORMAT_FACTORY=net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654, minBecTh=110.0, bldgCategory=Commercial, extWallConstU=1.63, cLoad=200.7}","aLoad":"522.7","bldgSector":"Private","glassType2SC":"","glassType5U":"","minClass":"Class 3","IS_IGNORE_PAGINATION":"false","glassType3SC":"","glassType4SC":"","glassType5SC":"","roofConstU":"3.17","aSrcEnergy":"1168.2","glassType1SC":"0.95","REPORT_LOCALE":"en_US","aCO2":"389.3","bldgType":"Hôtel","bldgLoc":"GAFSA","glassType1U":"1.89","bldgClass":"Class 8","glassType3U":"","JASPER_REPORTS_CONTEXT":"net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8","bldgName":"Anup","aEnergy":"924.6","extWallConstNorthU":"1.63","bldgBecTh":"522.7","hLoad":"322.1","bldgStar":"ThreeStar","REPORT_FORMAT_FACTORY":"net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654","minBecTh":"110.0","bldgCategory":"Commercial","extWallConstU":"1.63","cLoad":"200.7"}};
-
-            /* Result Data table..................*/
-
-            $rootScope.heading = Object.keys($rootScope.out.results[0]);
-            $rootScope.values = [];
-            $rootScope.out.results.forEach(function(obj,i){
-              $rootScope.values[i] = Object.values(obj);
-            });
-            /*..............................*/
-
-
-            /* GeneralParams data table................*/
-
-            $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
-            $rootScope.filteredgeneralParams = [];
-            $rootScope.filteredGeneralKeys = [];
-            $rootScope.glasstype = [];
-            $rootScope.buildingDetails = [];
-            $rootScope.misc = [];
-            $rootScope.generalKeys.forEach(function(obj,i){
-              if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
-                $rootScope.filteredGeneralKeys[i] = obj;
-              }
-            });
-            $rootScope.filteredGeneralKeys.forEach(function(fkey){
-              $rootScope.generalKeys.forEach(function(gkey,i){
-                if(fkey == gkey){
-                 $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
-               }
-             }) 
-            });
-            $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
-            $rootScope.filteredgeneralParamsKeys.forEach(function(key){
-              if(key.charAt(0) == 'g'){
-                $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else  if(key.charAt(0) == 'b'){
-                $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else{
-               $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
-             }
-           });
-            $rootScope.glassArray = [];
-            for (var key in $rootScope.glasstype) {
-             $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
-           }
-           $rootScope.buildingDetailsArray = [];
-           for (var key in $rootScope.buildingDetails) {
-
-             $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
-           }
-           $rootScope.miscArray = [];
-           for (var key in $rootScope.misc) {
-
-             $rootScope.miscArray.push(key,$rootScope.misc[key]);
-           }
-
-           /* .......................*/
-
-           /*  Input Data Table............*/
-
-           $rootScope.inputArray = [];
-           for(var key in $rootScope.out.input){
-            $rootScope.inputArray.push(key,$rootScope.out.input[key]);
-          }
-
           $rootScope.postData = function(data){
-            api.postData(model.name,data);
+            api.postData(model.name,data, model.url);
           };
 
-          $rootScope.stepNext = function() {
+          $rootScope.stepNext = function(resData) {
+            if (resData){
+              console.log(resData)
+              var compiledeHTML = $compile("<div result></div>")($scope);
+                  $("#d").append(compiledeHTML);
+            }
             var isError = false;
             $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
              container.parameters.forEach(function(parameter){
@@ -239,10 +172,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 return {
  postData: postData
 };
-function postData(name,data){
-  return  $http.post('/keec/api/models/' + name,data).then(function(response) {
+function postData(name,data, countryUrl){
+  return  $http.post('/keec/api/models/' + name,data,countryUrl).then(function(response) {
     console.log(response.data)
-    $rootScope.stepNext();
+    $rootScope.$broadcast('resultData', response.data)
+    $rootScope.stepNext(response.data);
   })
 }
 })
@@ -329,16 +263,7 @@ function postData(name,data){
       scope.selectedTableRow = index;
     }
 
-    /*Result tab tables ........*/
-    scope.resultValues =  $rootScope.values;
-    scope.resultHeading = $rootScope.heading;
-
-    scope.glassType = $rootScope.glassArray;
-    scope.buildingDetails = $rootScope.buildingDetailsArray;
-    scope.misc = $rootScope.miscArray;
-    scope.inputData = $rootScope.inputArray;
-
-    /*.....................*/
+        /*.....................*/
 
     scope.data={
     };
@@ -638,6 +563,86 @@ function postData(name,data){
     scope.shape = scope.container.parameters.filter(function(p){
       return p.id == scope.field.related_id;
     })[0];
+    break;
+    case 'result':
+    /*Result tab tables ........*/
+    scope.$on('resultData', function(event, data){
+      /*  Result Tab.......................*/
+            $rootScope.out = data
+
+            /* Result Data table..................*/
+
+            $rootScope.heading = Object.keys($rootScope.out.results[0]);
+            $rootScope.values = [];
+            $rootScope.out.results.forEach(function(obj,i){
+              $rootScope.values[i] = Object.values(obj);
+            });
+            /*..............................*/
+
+
+            /* GeneralParams data table................*/
+
+            $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
+            $rootScope.filteredgeneralParams = [];
+            $rootScope.filteredGeneralKeys = [];
+            $rootScope.glasstype = [];
+            $rootScope.buildingDetails = [];
+            $rootScope.misc = [];
+            $rootScope.generalKeys.forEach(function(obj,i){
+              if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
+                $rootScope.filteredGeneralKeys[i] = obj;
+              }
+            });
+            $rootScope.filteredGeneralKeys.forEach(function(fkey){
+              $rootScope.generalKeys.forEach(function(gkey,i){
+                if(fkey == gkey){
+                 $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
+               }
+             }) 
+            });
+            $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
+            $rootScope.filteredgeneralParamsKeys.forEach(function(key){
+              if(key.charAt(0) == 'g'){
+                $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
+              }
+              else  if(key.charAt(0) == 'b'){
+                $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
+              }
+              else{
+               $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+             }
+           });
+            $rootScope.glassArray = [];
+            for (var key in $rootScope.glasstype) {
+             $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
+           }
+           $rootScope.buildingDetailsArray = [];
+           for (var key in $rootScope.buildingDetails) {
+
+             $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
+           }
+           $rootScope.miscArray = [];
+           for (var key in $rootScope.misc) {
+
+             $rootScope.miscArray.push(key,$rootScope.misc[key]);
+           }
+
+           /* .......................*/
+
+           /*  Input Data Table............*/
+
+           $rootScope.inputArray = [];
+           for(var key in $rootScope.out.input){
+            $rootScope.inputArray.push(key,$rootScope.out.input[key]);
+          }
+              scope.resultValues =  $rootScope.values;
+    scope.resultHeading = $rootScope.heading;
+
+    scope.glassType = $rootScope.glassArray;
+    scope.buildingDetails = $rootScope.buildingDetailsArray;
+    scope.misc = $rootScope.miscArray;
+    scope.inputData = $rootScope.inputArray;
+    })
     break;
     case 'button':
     scope.previous =function(){
