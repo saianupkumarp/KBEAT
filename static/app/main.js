@@ -39,15 +39,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               });
             },
 
-            //Get model
-            model: function($http, $rootScope){
-              return $http.get('/keec/api/model').then(function(response){
-                $rootScope.model = response.data;
-                $rootScope.constructionDialog=$rootScope.model.steps[1].containers[2];
-                $rootScope.windowDialog=$rootScope.model.steps[1].containers[3];
-                return response.data;
-              })
-            }
+            //Get model - By Anup Kumar - 
+            models: function ($http, $rootScope, $translate, $sce) {
+                var locale = $translate.use() || $translate.proposedLanguage();
+                return $http.get('/keec/api/models', {params: {locale: locale}}).then(function (response) {
+                  var models = response.data['objects'] || [];
+                  $rootScope.models = models
+                  return $rootScope.models;
+                });
+              }
           },
           views: {
             'header': {templateUrl: '/keec/assets/views/header.html'},
@@ -57,10 +57,18 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
         /* Home */
         .state('app.home', {
-          url: '/keec/',
+          url: '/keec/model/{model_name}',
+          resolve: {
+              model: function ($stateParams, models) {
+                console.log(_(models).findWhere({name: $stateParams['model_name']}))
+                return _(models).findWhere({name: $stateParams['model_name']});
+              }
+            },
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
-            controller: function($scope, $rootScope, $mdDialog,api){
+            controller: function($scope, $rootScope, $mdDialog,api, model){
+              $rootScope.model = model;
+              console.log(model.steps.length)
               $scope.count = 0;
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
@@ -68,6 +76,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
               }
+              console.log($scope.activateStep)
             };
 
 
@@ -142,13 +151,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             $rootScope.inputArray.push(key,$rootScope.out.input[key]);
           }
 
-          /*  ............................*/
-
-
-          /*...........................*/
-
           $rootScope.postData = function(data){
-            api.postData('KEEC',data);
+            api.postData(model.name,data);
           };
 
           $rootScope.stepNext = function() {
@@ -236,7 +240,7 @@ return {
  postData: postData
 };
 function postData(name,data){
-  return  $http.post('/keec/api/model/' + name,data).then(function(response) {
+  return  $http.post('/keec/api/models/' + name,data).then(function(response) {
     console.log(response.data)
     $rootScope.stepNext();
   })
@@ -374,8 +378,8 @@ function postData(name,data){
         });
       });
      });
-      resJson.txtSkylttype = 'flat';
-      resJson.txtSkyltcvr = 13;
+      resJson.txtSkyltType = 'flat';
+      resJson.txtSkyltCvr = 13;
       var nonObjJson = {};
       for (var prop in resJson) {
         if (resJson.hasOwnProperty(prop) && typeof resJson[prop] !== "object") {
@@ -383,6 +387,7 @@ function postData(name,data){
         }
       }
       scope.data = JSON.stringify(nonObjJson);
+      console.log(scope.data)
       $rootScope.postData(scope.data);
       scope.showData();
     }
@@ -440,7 +445,7 @@ function postData(name,data){
  });
     break;
     case 'number':
-    scope.field.value = parseInt(scope.field.default);
+    scope.field.value = parseFloat(scope.field.default);
     break;
     case 'table':
     if(scope.field.id =='windowTable'){
