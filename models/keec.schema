@@ -36,7 +36,7 @@ steps:
           default: 1
         - id: cmbBldgLocation
           type: dropdown
-          options: TUNIS, BIZERTE, ARIANA, NABEUL, MAHDIA, SOUSSE, SFAX, MEDENINE, BEJA, JENDOUBA, KAIROUAN, GAFSA, SILIANA, SIDI_BOUZID, KEBILI, TOZEUR, TATAOUINE, MATMATA
+          options: Tunis, Bizerte, Ariana, Nabeul, Mahdia, Sousse, Sfax, Medenine, Beja, Jendouba, Kairouan, Gafsa, Siliana, Sidi_Bouzid, Kebili, Tozeur, Tataouine, Matmata
           values: TUNIS, BIZERTE, ARIANA, NABEUL, MAHDIA, SOUSSE, SFAX, MEDENINE, BEJA, JENDOUBA, KAIROUAN, GAFSA, SILIANA, SIDI_BOUZID, KEBILI, TOZEUR, TATAOUINE, MATMATA
           default: TUNIS
           label: Building Location
@@ -266,35 +266,35 @@ steps:
       parameters:
         - id: cmbSouthWall
           type: dropdown
-          options: EWall Cons-NoInsu
-          values: EWall Cons-NoInsu
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: South Wall
           widthPercent: 33
         - id: cmbNorthWall
           type: dropdown
-          options: EWall Cons-NoInsu
-          values: EWall Cons-NoInsu
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: North Wall
           widthPercent: 33
         - id: cmbEastWall
           type: dropdown
-          options: EWall Cons-NoInsu
-          values: EWall Cons-NoInsu
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: East Wall
           widthPercent: 33
         - id: cmbWestWall
           type: dropdown
-          options: EWall Cons-NoInsu
-          values: EWall Cons-NoInsu
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: West Wall
           widthPercent: 33
         - id: cmbRoof
           type: dropdown
-          options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm
+          options: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           values: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           default: Roof Cons-NoInsu
           label: Roof
@@ -302,7 +302,7 @@ steps:
         - id: cmbFirstFloorContact
           type: dropdown
           options: Ground, Conditioned Space, UnConditioned Space
-          values: ground, conditionedspace, unconditionedspace
+          values: ground, condition, uncondition
           default: ground
           label: 1st Floor Contact Condition
           widthPercent: 33
@@ -341,8 +341,8 @@ steps:
           widthPercent: 50
         - id: glasstype
           type: dropdown
-          options: Single Clear, Double Glass
-          values: Single Clear, double glass
+          options: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
+          values: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
           default: Single Clear
           label: Glass Type
           widthPercent: 100
@@ -451,8 +451,8 @@ steps:
       parameters:
         - id: cmbHotWaterSystem
           type: dropdown
-          options: Tankless electric DHW system
-          values: Tankless electric DHW system
+          options: Tankless electric DHW system, Tank gas-fired DHW system
+          values: Tankless electric DHW system, Tank gas-fired DHW system
           default: Tankless electric DHW system
           label: Building Type
           widthPercent: 50
@@ -478,10 +478,10 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          url: Packaged Variable Air Volume System.jpg, Variable Air Volume System.jpg
-          values: Packaged Variable Air Volume System, Variable Air Volume System
-          options: Packaged Variable Air Volume System, Variable Air Volume System
-          default: Packaged Variable Air Volume System
+          url: Residential System.jpg, Packaged Variable Air Volume System.jpg, Split System with Baseboard.jpg, Fan Coil System.jpg, Variable Air Volume System.jpg
+          values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
+          options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
+          default: Residential System
           span_width: 800
           span_height: 180
           widthPercent: 100
