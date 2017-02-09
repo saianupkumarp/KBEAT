@@ -85,7 +85,7 @@ header{
 .content-area {
 	flex: 1;
 	margin:auto;
-	width:90%;
+	width:80%;
 	padding:10px;
 }
 
@@ -100,7 +100,7 @@ header{
 	display: flex;
 	margin-top: 10px;
 	position:fixed;
-	width:90%;
+	width:80%;
 	background-color: #fafafa;
 	z-index: 100;
 	top:65px;
@@ -128,14 +128,14 @@ header{
 	}*/
 
 	.step-header .visited{
-		background-color:green !important;
+		background-color:#dcdbdc !important;
 	}
 
 	.step-header .number {
 		height: 40px;
 		width: 40px;
 		border-radius: 100%;
-		background:#dcdbdc;
+		background:green;
 		/*background: #61a659;*/
 		text-align: center;
 		line-height: 40px;
@@ -165,7 +165,7 @@ header{
 		background-position: center;
 		background-repeat: repeat;
 		background-size: cover;
-		height:630px;
+		height:650px;
 	}
 	.step-container > .body {
 		/*background: rgb(249, 249, 246);*/
@@ -188,7 +188,7 @@ header{
 }
 
 .step-container > .body.shaped .input-area {
-	width: 50%;
+	width: 60%;
 }
 .step-container > .body-button.shaped .input-area-button{
 	width: 50%;
@@ -228,9 +228,9 @@ header{
 .step-container-wrapper {
 	display: flex;
 	flex-flow: row wrap;
-	max-height: calc(100vh - 180px);
+	max-height: calc(100vh - 165px);
 	overflow: auto;
-	padding: 20px;
+	padding: 15px;
 	margin-right: 7px;
 }
 .step-container.flex-50 {
@@ -301,12 +301,12 @@ header{
 	margin: 0;
 /*	border: 1px solid;
 */	line-height: 30px;
-padding-left: 10px;
+padding-left: 4px;
 background-color: #c3c3c2;
 color: #000;
 width: 70%;
-padding-right: 10px;
-max-width: 160px;
+/*padding-right: 10px;
+*/max-width: 165px;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
@@ -353,8 +353,8 @@ font-size:12px;
 	color: #000;
 	position: relative;
 	/*top: 1px;*/
-	opacity: 0.7;
-	font-size:12px;
+/*	opacity: 0.7;
+*/	font-size:12px;
 }
 
 .step-footers-prev {
@@ -366,7 +366,7 @@ font-size:12px;
 .shape {
 	position: absolute;
 	top: 45px;
-	width: 40%;
+	width: 35%;
 	right: 70px;
 	bottom: 20px;
 	/*border: 1px solid #d2c7c7;*/
@@ -412,7 +412,7 @@ font-size:12px;
 
 	.step-container-wrapper::-webkit-scrollbar-thumb
 	{
-		border-radius: 5px;
+		border-radius: 4px;
 		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 		background-color: green;
 	}
@@ -547,7 +547,7 @@ font-size:12px;
 /*Responsiveness
 ..............*/
 .buildInfo{
-	height:145px !important;
+	height:147px !important;
 }
 md-select{
 	margin:0px;
@@ -877,7 +877,10 @@ md-select:not([disabled]):focus .md-select-value {
 /*Md-table
 .........*/
 md-table-container{
-	max-width:90%;
+	max-width:100%;
+}
+table.md-table th.md-column {
+    font-weight: 400;
 }
 table.md-table thead.md-head>tr.md-row{
 	height:30px;
@@ -962,5 +965,5 @@ md-tabs-canvas{
 	width:140%;
 }
 md-tabs .md-tab{
-	min-width: 500px;
+	min-width: 375px;
 }

@@ -3,7 +3,7 @@
 		<div ng-class="{'step-header':true}" ng-repeat="step in model.steps">
 			<!-- Stpper On click Disable <div ng-class="{clickable:true, active:$index==activeStepIndex}"> -->
 			<div ng-class="{clickable:true, active:$index==activeStepIndex}" 	ng-click="activateStep($index)">
-				<div ng-class="{number:true, visited:$index < activeStepIndex}">{{$index+1}}</div>
+				<div ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
 				<div class="label">{{step.label}}</div>
 			</div>
 			<div class="line" ng-if="$index != model.steps.length-1"></div>

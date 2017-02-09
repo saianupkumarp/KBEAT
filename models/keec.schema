@@ -5,19 +5,19 @@ steps:
     containers:
     - id: buildingInformation
       label: Building Information
-      widthPercent: 50
+      widthPercent: 40
       parameters:
         - id: txtBldgName
           type: text
           label: Building Name
-          widthPercent: 50
+          widthPercent: 100
         - id: txtBldgAddress
           type: text
           label: Building Address
-          widthPercent: 50
+          widthPercent: 100
     - id: buildingUse
       label: Building Use
-      widthPercent: 50
+      widthPercent: 60
       parameters:
         - id: cmbBldgType
           type: dropdown
@@ -269,42 +269,42 @@ steps:
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: South Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbNorthWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: North Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbEastWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: East Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbWestWall
           type: dropdown
           options: ewallconsnolnsu
           values: EWALL Cons-Nolnsu
           default: EWALL Cons-Nolnsu
           label: West Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbRoof
           type: dropdown
           options: roofconsnolnsu, roofconsoutside2cm, roofconsoutside4cm, roofconsoutside6cm, roofconsinside2cm, roofconsinside4cm, roofconsinside6cm, roofconsmiddle2cm, roofconsmiddle4cm, roofconsmiddle6cm
           values: Roof Cons-Nolnsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           default: Roof Cons-Nolnsu
           label: Roof
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbFirstFloorContact
           type: dropdown
           options: ground, conditionedspace, unconditionedspace
           values: Ground, Conditioned Space, UnConditioned Space
           default: Ground
           label: 1st Floor Contact Condition
-          widthPercent: 33
+          widthPercent: 50
     - id: windows
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
@@ -489,13 +489,13 @@ steps:
           default: 20
           label: Heating setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: txtCoolSetTemp
           type: number
           default: 26
           label: Cooling setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: hvacShape
           type: shape
           label: Figure
