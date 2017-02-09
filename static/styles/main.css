@@ -938,3 +938,17 @@ md-tabs-canvas{
 md-tabs .md-tab{
 	min-width: 500px;
 }
+md-menu-item>.md-button{
+	font-weight: 600;
+}
+
+/* Intro CSS */
+
+.intro-page, .intro-page{
+    margin: 30px 0;
+    text-align: center;
+}
+
+.intro-page{
+    display: initial!important;
+}
