@@ -28,6 +28,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
         // URL States (routes)
         $stateProvider
+
+        /* Intro Page */
+          .state('app.intro', {
+            url: '/keec/',
+            views: {
+              'content@': {templateUrl: '/keec/assets/views/intro.html'}
+            }
+          })
+
         .state('app', {
           abstract: true,
           url: '',
@@ -60,7 +69,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           url: '/keec/model/{model_name}',
           resolve: {
               model: function ($stateParams, models) {
-                console.log(_(models).findWhere({name: $stateParams['model_name']}))
                 return _(models).findWhere({name: $stateParams['model_name']});
               }
             },
@@ -68,7 +76,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope, $mdDialog,api, model){
               $rootScope.model = model;
-              console.log(model.steps.length)
               $scope.count = 0;
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
@@ -80,15 +87,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             };
 
           $rootScope.postData = function(data){
-            api.postData(model.name,data, model.url);
+            api.postData(model.name,data);
           };
 
-          $rootScope.stepNext = function(resData) {
-            if (resData){
-              console.log(resData)
-              var compiledeHTML = $compile("<div result></div>")($scope);
-                  $("#d").append(compiledeHTML);
-            }
+          $rootScope.stepNext = function() {
             var isError = false;
             $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
              container.parameters.forEach(function(parameter){
@@ -172,11 +174,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 return {
  postData: postData
 };
-function postData(name,data, countryUrl){
-  return  $http.post('/keec/api/models/' + name,data,countryUrl).then(function(response) {
-    console.log(response.data)
-    $rootScope.$broadcast('resultData', response.data)
-    $rootScope.stepNext(response.data);
+function postData(name,data){
+  return  $http.post('/keec/api/models/' + name,data).then(function(response) {
+    if(response.data){
+      $rootScope.$broadcast('resultData', response.data)
+      setTimeout(function(){ 
+          $rootScope.stepNext()}
+      , 5000);
+    }
   })
 }
 })
@@ -312,7 +317,6 @@ function postData(name,data, countryUrl){
         }
       }
       scope.data = JSON.stringify(nonObjJson);
-      console.log(scope.data)
       $rootScope.postData(scope.data);
       scope.showData();
     }
@@ -635,13 +639,17 @@ function postData(name,data, countryUrl){
            for(var key in $rootScope.out.input){
             $rootScope.inputArray.push(key,$rootScope.out.input[key]);
           }
-              scope.resultValues =  $rootScope.values;
-    scope.resultHeading = $rootScope.heading;
 
-    scope.glassType = $rootScope.glassArray;
+
+            scope.resultValues =  $rootScope.values;
+            scope.resultHeading = $rootScope.heading;
+
+            scope.glassType = $rootScope.glassArray;
     scope.buildingDetails = $rootScope.buildingDetailsArray;
     scope.misc = $rootScope.miscArray;
     scope.inputData = $rootScope.inputArray;
+    /* --- SIM File ---*/
+          scope.simFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.simFile;
     })
     break;
     case 'button':
