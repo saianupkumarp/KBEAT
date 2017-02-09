@@ -24,17 +24,12 @@ def get_models():
 @rest_api.route('/model/<model_name>')
 def get_model(model_name):
     model = data.get_model(model_name)
-    print model
     i18n = request.args.get('locale', 'en')
     return jsonify(model.to_primitive()) if model else abort(404)
 
 @rest_api.route('/models/<model_name>', methods=['POST'])
 def run_model(model_name):
-    print "start"
-    result = tasks.run_task(request.data, model_name)
-    args = request.data if request.data else ''
-    return result
-    # return jsonify(tasks.run_task(model=model, args=args))
+    return tasks.run_task(request.data, model_name)
 
 @rest_api.route('/runsim')
 def get_sim():
