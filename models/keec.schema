@@ -481,7 +481,7 @@ steps:
           values: packagedVariableAirVolumeSystem, variableAirVolumeSystem
           options: Packaged Variable Air Volume System, Variable Air Volume System
           default: Packaged Variable Air Volume System
-          span_width: 800
+          span_width: 600
           span_height: 180
           widthPercent: 100
         - id: txtHeatSetTemp

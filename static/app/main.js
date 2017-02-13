@@ -64,110 +64,108 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
               $scope.count = 0;
               $scope.activeStepIndex = 0;
               $scope.totalSteps = $rootScope.model.steps.length;
-              $scope.activateStep = function(index) {
-               if((index <= $scope.count)){
-                $scope.activeStepIndex = index;
-                var someElement = angular.element(document.getElementById(index));
-                $document.scrollToElementAnimated(someElement,115,1000);
-              }
-            };
 
-            $scope.Next = function(index) {
-              console.log(index);
-              index +=1;
-              var someElement = angular.element(document.getElementById(index));
-              $document.scrollToElement(someElement,0,5000);
+              $scope.Next = function(index) {
+                index +=1;
+                var someElement = angular.element(document.getElementById(index));
+                $document.scrollToElement(someElement,0,5000);
+              }
+
+
+              /*  Result Tab.......................*/
+
+              $rootScope.out={"results":[{"classValue":90,"classBldg":0.0,"className":"Class 1"},{"classValue":100,"classBldg":0.0,"className":"Class 2"},{"classValue":110,"classBldg":0.0,"className":"Class 3"},{"classValue":120,"classBldg":0.0,"className":"Class 4"},{"classValue":135,"classBldg":0.0,"className":"Class 5"},{"classValue":160,"classBldg":0.0,"className":"Class 6"},{"classValue":190,"classBldg":0.0,"className":"Class 7"},{"classValue":500,"classBldg":522.7,"className":"Class 8"}],"input":{"txtBldgName":"Anup","txtBldgAddress":"Tunisia","cmbBldgType":"Hôtel, 3 Etoiles","cmbBldgLocation":"GAFSA","txtBldgNumFloor":1,"txtBldgCondArea":100,"cmbBldgShape":"Hexagon","txtBldgAzi":0,"txtFloorHeight":2,"txtLengX1":10,"txtLengY1":10,"txtLengX2":10,"txtLengY2":10,"txtLengX3":10,"txtLengY3":10,"txtFloorArea":100,"cmbSouthWall":"Mur Pas d’Isolation","cmbNorthWall":"Mur Pas d’Isolation","cmbEastWall":"Mur Pas d’Isolation","cmbWestWall":"Mur Pas d’Isolation","cmbRoof":"Toit Pas d’Isolation","cmbFirstFloorContact":"Sol","txtWinSouthOverhang":0.5,"txtWinSouthFp":0.5,"cmbHotWaterSystem":"Réservoir système DHW au gaz","cmbBldgSystem":"Systeme Monobloc Volume d’Air Variable","txtHeatSetTemp":20,"txtCoolSetTemp":24,"rdbtnWinWwr":true,"southpercent":30,"northpercent":30,"eastpercent":30,"westpercent":30,"glasstype":"Simple Claire","txtSkyltType":"Flat","txtSkyltCvr":13},"generalParams":{"extWallConstEastU":"1.63","glassType4U":"","REPORT_CONNECTION":"org.sqlite.SQLiteConnection@4372567c","extWallConstSouthU":"1.63","JASPER_REPORT":"net.sf.jasperreports.engine.JasperReport@6d57dff5","REPORT_TIME_ZONE":"sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null]","logoDir":"D:\\dev\\elf\\conf\\workingdir\\image","bldgAddress":"Tunisia","cEnergy":"121.9","extWallConstWestU":"1.63","glassType2U":"","result":"Pas Conforme","hEnergy":"802.7","REPORT_PARAMETERS_MAP":"{extWallConstEastU=1.63, glassType4U=, REPORT_CONNECTION=org.sqlite.SQLiteConnection@4372567c, extWallConstSouthU=1.63, JASPER_REPORT=net.sf.jasperreports.engine.JasperReport@6d57dff5, REPORT_TIME_ZONE=sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null], logoDir=D:\\dev\\elf\\conf\\workingdir\\image, bldgAddress=Tunisia, cEnergy=121.9, extWallConstWestU=1.63, glassType2U=, result=Pas Conforme, hEnergy=802.7, REPORT_PARAMETERS_MAP=(this Map), aLoad=522.7, bldgSector=Private, glassType2SC=, glassType5U=, minClass=Class 3, IS_IGNORE_PAGINATION=false, glassType3SC=, glassType4SC=, glassType5SC=, roofConstU=3.17, aSrcEnergy=1168.2, glassType1SC=0.95, REPORT_LOCALE=en_US, aCO2=389.3, bldgType=Hôtel, bldgLoc=GAFSA, glassType1U=1.89, bldgClass=Class 8, glassType3U=, JASPER_REPORTS_CONTEXT=net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8, bldgName=Anup, aEnergy=924.6, extWallConstNorthU=1.63, bldgBecTh=522.7, hLoad=322.1, bldgStar=ThreeStar, REPORT_FORMAT_FACTORY=net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654, minBecTh=110.0, bldgCategory=Commercial, extWallConstU=1.63, cLoad=200.7}","aLoad":"522.7","bldgSector":"Private","glassType2SC":"","glassType5U":"","minClass":"Class 3","IS_IGNORE_PAGINATION":"false","glassType3SC":"","glassType4SC":"","glassType5SC":"","roofConstU":"3.17","aSrcEnergy":"1168.2","glassType1SC":"0.95","REPORT_LOCALE":"en_US","aCO2":"389.3","bldgType":"Hôtel","bldgLoc":"GAFSA","glassType1U":"1.89","bldgClass":"Class 8","glassType3U":"","JASPER_REPORTS_CONTEXT":"net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8","bldgName":"Anup","aEnergy":"924.6","extWallConstNorthU":"1.63","bldgBecTh":"522.7","hLoad":"322.1","bldgStar":"ThreeStar","REPORT_FORMAT_FACTORY":"net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654","minBecTh":"110.0","bldgCategory":"Commercial","extWallConstU":"1.63","cLoad":"200.7"}};
+
+              /* Result Data table..................*/
+
+              $rootScope.heading = Object.keys($rootScope.out.results[0]);
+              $rootScope.values = [];
+              $rootScope.out.results.forEach(function(obj,i){
+                $rootScope.values[i] = Object.values(obj);
+              });
+              /*..............................*/
+
+
+              /* GeneralParams data table................*/
+
+              $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
+              $rootScope.filteredgeneralParams = [];
+              $rootScope.filteredGeneralKeys = [];
+              $rootScope.glasstype = [];
+              $rootScope.buildingDetails = [];
+              $rootScope.misc = [];
+              $rootScope.generalKeys.forEach(function(obj,i){
+                if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
+                  $rootScope.filteredGeneralKeys[i] = obj;
+                }
+              });
+              $rootScope.filteredGeneralKeys.forEach(function(fkey){
+                $rootScope.generalKeys.forEach(function(gkey,i){
+                  if(fkey == gkey){
+                   $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
+                 }
+               }) 
+              });
+              $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
+              $rootScope.filteredgeneralParamsKeys.forEach(function(key){
+                if(key.charAt(0) == 'g'){
+                  $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
+                }
+                else  if(key.charAt(0) == 'b'){
+                  $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
+                }
+                else{
+                 $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+               }
+             });
+              $rootScope.glassArray = [];
+              for (var key in $rootScope.glasstype) {
+               $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
+             }
+             $rootScope.buildingDetailsArray = [];
+             for (var key in $rootScope.buildingDetails) {
+
+               $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
+             }
+             $rootScope.miscArray = [];
+             for (var key in $rootScope.misc) {
+
+               $rootScope.miscArray.push(key,$rootScope.misc[key]);
+             }
+
+             /* .......................*/
+
+             /*  Input Data Table............*/
+
+             $rootScope.inputArray = [];
+             for(var key in $rootScope.out.input){
+              $rootScope.inputArray.push(key,$rootScope.out.input[key]);
             }
 
-
-            /*  Result Tab.......................*/
-
-            $rootScope.out={"results":[{"classValue":90,"classBldg":0.0,"className":"Class 1"},{"classValue":100,"classBldg":0.0,"className":"Class 2"},{"classValue":110,"classBldg":0.0,"className":"Class 3"},{"classValue":120,"classBldg":0.0,"className":"Class 4"},{"classValue":135,"classBldg":0.0,"className":"Class 5"},{"classValue":160,"classBldg":0.0,"className":"Class 6"},{"classValue":190,"classBldg":0.0,"className":"Class 7"},{"classValue":500,"classBldg":522.7,"className":"Class 8"}],"input":{"txtBldgName":"Anup","txtBldgAddress":"Tunisia","cmbBldgType":"Hôtel, 3 Etoiles","cmbBldgLocation":"GAFSA","txtBldgNumFloor":1,"txtBldgCondArea":100,"cmbBldgShape":"Hexagon","txtBldgAzi":0,"txtFloorHeight":2,"txtLengX1":10,"txtLengY1":10,"txtLengX2":10,"txtLengY2":10,"txtLengX3":10,"txtLengY3":10,"txtFloorArea":100,"cmbSouthWall":"Mur Pas d’Isolation","cmbNorthWall":"Mur Pas d’Isolation","cmbEastWall":"Mur Pas d’Isolation","cmbWestWall":"Mur Pas d’Isolation","cmbRoof":"Toit Pas d’Isolation","cmbFirstFloorContact":"Sol","txtWinSouthOverhang":0.5,"txtWinSouthFp":0.5,"cmbHotWaterSystem":"Réservoir système DHW au gaz","cmbBldgSystem":"Systeme Monobloc Volume d’Air Variable","txtHeatSetTemp":20,"txtCoolSetTemp":24,"rdbtnWinWwr":true,"southpercent":30,"northpercent":30,"eastpercent":30,"westpercent":30,"glasstype":"Simple Claire","txtSkyltType":"Flat","txtSkyltCvr":13},"generalParams":{"extWallConstEastU":"1.63","glassType4U":"","REPORT_CONNECTION":"org.sqlite.SQLiteConnection@4372567c","extWallConstSouthU":"1.63","JASPER_REPORT":"net.sf.jasperreports.engine.JasperReport@6d57dff5","REPORT_TIME_ZONE":"sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null]","logoDir":"D:\\dev\\elf\\conf\\workingdir\\image","bldgAddress":"Tunisia","cEnergy":"121.9","extWallConstWestU":"1.63","glassType2U":"","result":"Pas Conforme","hEnergy":"802.7","REPORT_PARAMETERS_MAP":"{extWallConstEastU=1.63, glassType4U=, REPORT_CONNECTION=org.sqlite.SQLiteConnection@4372567c, extWallConstSouthU=1.63, JASPER_REPORT=net.sf.jasperreports.engine.JasperReport@6d57dff5, REPORT_TIME_ZONE=sun.util.calendar.ZoneInfo[id=\"Asia/Riyadh\",offset=10800000,dstSavings=0,useDaylight=false,transitions=3,lastRule=null], logoDir=D:\\dev\\elf\\conf\\workingdir\\image, bldgAddress=Tunisia, cEnergy=121.9, extWallConstWestU=1.63, glassType2U=, result=Pas Conforme, hEnergy=802.7, REPORT_PARAMETERS_MAP=(this Map), aLoad=522.7, bldgSector=Private, glassType2SC=, glassType5U=, minClass=Class 3, IS_IGNORE_PAGINATION=false, glassType3SC=, glassType4SC=, glassType5SC=, roofConstU=3.17, aSrcEnergy=1168.2, glassType1SC=0.95, REPORT_LOCALE=en_US, aCO2=389.3, bldgType=Hôtel, bldgLoc=GAFSA, glassType1U=1.89, bldgClass=Class 8, glassType3U=, JASPER_REPORTS_CONTEXT=net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8, bldgName=Anup, aEnergy=924.6, extWallConstNorthU=1.63, bldgBecTh=522.7, hLoad=322.1, bldgStar=ThreeStar, REPORT_FORMAT_FACTORY=net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654, minBecTh=110.0, bldgCategory=Commercial, extWallConstU=1.63, cLoad=200.7}","aLoad":"522.7","bldgSector":"Private","glassType2SC":"","glassType5U":"","minClass":"Class 3","IS_IGNORE_PAGINATION":"false","glassType3SC":"","glassType4SC":"","glassType5SC":"","roofConstU":"3.17","aSrcEnergy":"1168.2","glassType1SC":"0.95","REPORT_LOCALE":"en_US","aCO2":"389.3","bldgType":"Hôtel","bldgLoc":"GAFSA","glassType1U":"1.89","bldgClass":"Class 8","glassType3U":"","JASPER_REPORTS_CONTEXT":"net.sf.jasperreports.engine.DefaultJasperReportsContext@51eb59b8","bldgName":"Anup","aEnergy":"924.6","extWallConstNorthU":"1.63","bldgBecTh":"522.7","hLoad":"322.1","bldgStar":"ThreeStar","REPORT_FORMAT_FACTORY":"net.sf.jasperreports.engine.util.DefaultFormatFactory@4200654","minBecTh":"110.0","bldgCategory":"Commercial","extWallConstU":"1.63","cLoad":"200.7"}};
-
-            /* Result Data table..................*/
-
-            $rootScope.heading = Object.keys($rootScope.out.results[0]);
-            $rootScope.values = [];
-            $rootScope.out.results.forEach(function(obj,i){
-              $rootScope.values[i] = Object.values(obj);
-            });
-            /*..............................*/
+            /*  ............................*/
 
 
-            /* GeneralParams data table................*/
+            /*...........................*/
 
-            $rootScope.generalKeys =Object.keys($rootScope.out.generalParams);
-            $rootScope.filteredgeneralParams = [];
-            $rootScope.filteredGeneralKeys = [];
-            $rootScope.glasstype = [];
-            $rootScope.buildingDetails = [];
-            $rootScope.misc = [];
-            $rootScope.generalKeys.forEach(function(obj,i){
-              if(obj.charAt(0) == obj.charAt(0).toLowerCase()){
-                $rootScope.filteredGeneralKeys[i] = obj;
-              }
-            });
-            $rootScope.filteredGeneralKeys.forEach(function(fkey){
-              $rootScope.generalKeys.forEach(function(gkey,i){
-                if(fkey == gkey){
-                 $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
-               }
-             }) 
-            });
-            $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
-            $rootScope.filteredgeneralParamsKeys.forEach(function(key){
-              if(key.charAt(0) == 'g'){
-                $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else  if(key.charAt(0) == 'b'){
-                $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
-              }
-              else{
-               $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+            $rootScope.postData = function(data){
+              api.postData('KEEC',data);
+            };
+
+            $rootScope.num =0;
+
+            $rootScope.stepNext = function(index) {
+              if($scope.count >=4){
+               $scope.activeStepIndex = index;
+               var someElement = angular.element(document.getElementById(index));
+               $document.scrollToElementAnimated(someElement,115,1000);
              }
-           });
-            $rootScope.glassArray = [];
-            for (var key in $rootScope.glasstype) {
-             $rootScope.glassArray.push(key,$rootScope.glasstype[key]);
-           }
-           $rootScope.buildingDetailsArray = [];
-           for (var key in $rootScope.buildingDetails) {
-
-             $rootScope.buildingDetailsArray.push(key,$rootScope.buildingDetails[key]);
-           }
-           $rootScope.miscArray = [];
-           for (var key in $rootScope.misc) {
-
-             $rootScope.miscArray.push(key,$rootScope.misc[key]);
-           }
-
-           /* .......................*/
-
-           /*  Input Data Table............*/
-
-           $rootScope.inputArray = [];
-           for(var key in $rootScope.out.input){
-            $rootScope.inputArray.push(key,$rootScope.out.input[key]);
-          }
-
-          /*  ............................*/
-
-
-          /*...........................*/
-
-          $rootScope.postData = function(data){
-            api.postData('KEEC',data);
-          };
-
-          $rootScope.num =0;
-
-          $rootScope.stepNext = function(index) {
-            var isError = false;
-            $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
-             container.parameters.forEach(function(parameter){
-              parameter.error = false;
-              if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
-              {
+             else{
+              var isError = false;
+              $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+               container.parameters.forEach(function(parameter){
+                parameter.error = false;
+                if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+                {
                   /* if(parameter.type == 'table'){
                     parameter.combine.forEach(function(element){
                      if((element.item == '')||(element.item == null)){
@@ -185,11 +183,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
                   isError = true;
                 }
               });
-           });
+             });
+            }
 
             if (isError)
               return;
-
             if ($scope.activeStepIndex < $scope.totalSteps - 1)
               $scope.activeStepIndex = index;
             $scope.count += 1;
@@ -197,39 +195,47 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router',
             $document.scrollToElementAnimated(someElement,115,1000);
           };
 
-          $rootScope.stepBack = function(index) {
-            if ($scope.activeStepIndex > 0)
-              $scope.activeStepIndex = index;
+          $scope.activateStep = function(index) {
+           if((index <= $scope.count)){
+            $scope.activeStepIndex = index;
             var someElement = angular.element(document.getElementById(index));
             $document.scrollToElementAnimated(someElement,115,1000);
-          };
-          $rootScope.Dialog = function(ev){
-            $mdDialog.show( {
-              controller: function($scope, $mdDialog) {
-                $scope.conDialog = $rootScope.constructionDialog;
-                $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
-                $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
-                $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
-                $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
-                $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
-                $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
-                $scope.winDialog = $rootScope.windowDialog;
-                $scope.hide = function() {
-                  $mdDialog.hide();
-                };
-              },
-              templateUrl: '/keec/assets/views/dialog.html',
-              targetEvent: ev,
-              scope: $scope,
-              preserveScope: true,
-              clickOutsideToClose:true
-            }
+          }
+        };
 
-            );
-          };
-        }}
-      }
-    })
+        $rootScope.stepBack = function(index) {
+          if ($scope.activeStepIndex > 0)
+            $scope.activeStepIndex = index;
+          var someElement = angular.element(document.getElementById(index));
+          $document.scrollToElementAnimated(someElement,115,1000);
+        };
+        $rootScope.Dialog = function(ev){
+          $mdDialog.show( {
+            controller: function($scope, $mdDialog) {
+              $scope.conDialog = $rootScope.constructionDialog;
+              $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
+              $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
+              $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
+              $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
+              $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
+              $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
+              $scope.winDialog = $rootScope.windowDialog;
+              $scope.hide = function() {
+                $mdDialog.hide();
+              };
+            },
+            templateUrl: '/keec/assets/views/dialog.html',
+            targetEvent: ev,
+            scope: $scope,
+            preserveScope: true,
+            clickOutsideToClose:true
+          }
+
+          );
+        };
+      }}
+    }
+  })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })

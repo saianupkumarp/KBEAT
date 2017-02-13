@@ -6,11 +6,11 @@
 				<div ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
 				<div class="label">{{step.label}}</div>
 			</div>
-			<div class="line" ng-if="$index != model.steps.length-1"></div>
-		</div>
+<!-- 			<div class="line" ng-if="$index != model.steps.length-1"></div>
+ -->		</div>
 	</div>
 <div class="step-content" layout="column">
-	<div ng-class="{'step-area-wrapper':true}" style="background-image:url(/keec/assets/img/infographic.jpg);" ng-repeat="step in model.steps">
+	<div ng-class="{'step-area-wrapper':true}" style="background-image:url(/keec/assets/img/infographic-png.png);" ng-repeat="step in model.steps">
 		<div id="{{$index}}" class="step-area">
 			<div class="step-container-wrapper">
 				<div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers">
