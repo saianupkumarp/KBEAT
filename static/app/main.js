@@ -176,6 +176,7 @@ return {
 };
 function postData(name,data){
   return  $http.post('/keec/api/models/' + name,data).then(function(response) {
+    console.log(response.data)
     if(response.data){
       $rootScope.$broadcast('resultData', response.data)
       setTimeout(function(){ 
@@ -650,6 +651,7 @@ function postData(name,data){
     scope.inputData = $rootScope.inputArray;
     /* --- SIM File ---*/
           scope.simFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.simFile;
+          scope.bepsFile = location.protocol+'//'+location.hostname+ ':' + '8080'+ $rootScope.out.beps
     })
     break;
     case 'button':
