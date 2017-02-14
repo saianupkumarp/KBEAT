@@ -76,7 +76,7 @@ header{
 	background-size: 160px;
 	background-repeat: no-repeat;
 	background-position: 135px;
-	background-color: #f3f3f5;
+	background-color: #e7e7e7;
 	position: fixed;
 	width:100%;
 	z-index:100;
@@ -86,6 +86,7 @@ header{
 	flex: 1;
 	margin:auto;
 	width:80%;
+	max-width:1100px;
 }
 
 .step-content {
@@ -97,13 +98,14 @@ header{
 
 .step-headers {
 	display: flex;
-/*	margin-top: 10px;
-*/	position:fixed;
-width:80%;
-background-color: #fafafa;
-z-index: 100;
-top:60px;
-padding-bottom:3px;
+	padding-top: 5px;
+	position:fixed;
+	width:80%;
+	max-width:1100px;
+	background-color: #fafafa;
+	z-index: 100;
+	top:60px;
+	padding-bottom:3px;
 }
 
 .step-header {
@@ -147,7 +149,6 @@ padding-bottom:3px;
 		width: 40px;
 		border-radius: 100%;
 		background:green;
-		/*background: #61a659;*/
 		text-align: center;
 		line-height: 40px;
 		font-weight: 500;
@@ -180,11 +181,9 @@ padding-bottom:3px;
 		height:650px;
 	}
 	.step-container > .body {
-		/*background: rgb(249, 249, 246);*/
 		background:#f8f8f8;
 		position: relative;
-/*		opacity: 0.9;
-*/		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 transition: 0.6s; 
 }
 .step-container > .body:hover {
@@ -242,7 +241,7 @@ transition: 0.6s;
 	flex-flow: row wrap;
 	max-height: calc(100vh - 165px);
 	overflow: auto;
-	padding: 15px;
+	padding: 2px 15px 15px 15px;
 	margin-right: 7px;
 }
 .step-container.flex-50 {
@@ -252,65 +251,195 @@ transition: 0.6s;
 .step-container.flex-button-20 {
 	flex-basis: calc(50% - 20px)
 }
-.flex-button-20{
-	-webkit-box-flex: 1;
-	-webkit-flex: 1 1 50%;
-	flex: 1 1 50%;
-	box-sizing: border-box;
+
+.step-headers > .breadcrumb{
+	width:100%;
 }
-.flex-button-20{
-	max-width: 10%;
-	max-height: 100%;
+
+/*Breadcrumb stepper css ..............................*/
+
+.breadcrumb { 
+	list-style: none; 
+	overflow: hidden; 
+	font-size: 15px;
+	
 }
-.step-container.flex-100 {
-	flex-basis: calc(100% - 20px);
-}
-.step-container.flex-button-100 {
-	flex-basis: calc(100% - 20px);
-}
-.flex-button-100 {
-	-webkit-box-flex: 1;
-	-webkit-flex: 1 1 100%;
-	flex: 1 1 100%;
-	max-width: 100%;
-	max-height: 100%;
-	box-sizing: border-box;
-}
-.input-container {
+.breadcrumb li { 
+	float: left; 
 	display: flex;
-	margin-bottom: 10px;
+	flex: 1;
+	background: green;
+}
+.breadcrumb .number{
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	background-image: url(/keec/assets/img/complete.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	/*background: #61a659;*/
+	text-align: center;
+	line-height: 40px;
+	font-weight: 500;
+	cursor: pointer;
+	color:#e7e7e7;
+	margin:5px 5px 5px 55px;
+	
 }
 
-.input-container.error {
-	padding-bottom: 10px;
-	position: relative;
-
-}
-.input-container.error:after {
+.breadcrumb li .label {
+	color: white;
+	text-decoration: none; 
+	position: relative; 
 	display: block;
-	font-size: 10px;
-	color: red;
-	content: "This field cannot be empty";
+	float: left;
+	padding:18px;
+}
+.breadcrumb li .label::after { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent; 
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid green;
 	position: absolute;
-	top: 36px;
+	top: 50%;
+	margin-top: -50px; 
+	left: 100%;
+	z-index: 2; 
 }
-.errorTable {
-	padding-bottom: 10px;
-	position: relative;
+.breadcrumb li .label::before { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;       
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid white;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	margin-left: 1px;
+	left: 100%;
+	z-index: 1; 
+}
+.breadcrumb li:first-child .number{
+	margin-left: 20px;
+}
+.breadcrumb li:last-child .label{ 
+	padding-left: 30px;
+	padding-right: 45px;
+}
+.breadcrumb li:nth-child(4) .label{ 
+	padding-left: 20px;
+}
 
+/*.breadcrumb li:nth-child(2) .label{ 
+	padding-left: 60px;
 }
-.errorTable:after {
-	display: inline;
-	font-size: 13px;
-	color: red;
-	content: "This field cannot be empty";
-	position: relative;
-	top: 8px;
-	left:40%;
+.breadcrumb li:nth-child(3) .label{ 
+	padding-left: 50px;
 }
+.breadcrumb li:nth-child(4) .label{ 
+	padding-left: 60px;
+}
+.breadcrumb li:nth-child(5) .label{ 
+	padding-left: 60px;
+}
+.breadcrumb li:last-child .label{ 
+	padding-left: 110px;
+	}*/
 
-.input-container > label {
-	margin: 0;
+	.breadcrumb > .clickable.active .number{
+		background:  #fff;
+		color:rgb(255, 210, 0);
+	}
+	.breadcrumb > .clickable.active{
+		background:  rgb(255, 210, 0);
+	}
+	.breadcrumb > .clickable.active .label::after{
+		border-left: 30px solid rgb(255, 210, 0);
+	}
+	.breadcrumb .visited{
+		background:#fff !important;
+	}
+	.breadcrumb .complete{
+		background:#c3c3c2;
+	}
+	.breadcrumb > .complete .label::after{
+		border-left: 30px solid #c3c3c2;
+	}
+
+	.breadcrumb > .clickable {
+		cursor: pointer;
+		outline: none;
+		display: flex;
+
+	}
+
+/*Breadcrumb stepper css Ends ..............................*/
+
+
+	.flex-button-20{
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 50%;
+		flex: 1 1 50%;
+		box-sizing: border-box;
+	}
+	.flex-button-20{
+		max-width: 10%;
+		max-height: 100%;
+	}
+	.step-container.flex-100 {
+		flex-basis: calc(100% - 20px);
+	}
+	.step-container.flex-button-100 {
+		flex-basis: calc(100% - 20px);
+	}
+	.flex-button-100 {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 100%;
+		flex: 1 1 100%;
+		max-width: 100%;
+		max-height: 100%;
+		box-sizing: border-box;
+	}
+	.input-container {
+		display: flex;
+		margin-bottom: 10px;
+	}
+
+	.input-container.error {
+		padding-bottom: 10px;
+		position: relative;
+
+	}
+	.input-container.error:after {
+		display: block;
+		font-size: 10px;
+		color: red;
+		content: "This field cannot be empty";
+		position: absolute;
+		top: 36px;
+	}
+	.errorTable {
+		padding-bottom: 10px;
+		position: relative;
+
+	}
+	.errorTable:after {
+		display: inline;
+		font-size: 13px;
+		color: red;
+		content: "This field cannot be empty";
+		position: relative;
+		top: 8px;
+		left:40%;
+	}
+
+	.input-container > label {
+		margin: 0;
 /*	border: 1px solid;
 */	line-height: 30px;
 padding-left: 4px;
@@ -568,63 +697,8 @@ md-select{
 .responsive{
 	margin-left: 20px;
 }
-@media only screen and (min-width: 1900px) {
-	.step-container {
-		padding: 20px !important;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
-}
-@media only screen and (min-width: 1800px) {
-	.step-container {
-		padding: 30px;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
-}
-@media only screen and (min-width: 1600px) {
-	.step-container {
-		padding: 25px;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
 
-}
-@media only screen and (min-width:1400px){
-	.step-container  .input-area{
-		padding: 20px 0 20px 0;
-	}
-	.input-container{
-		margin-bottom: 40px;
-	}
-	.buildInfo{
-		height:216px !important;
-	}
-	.shape{
-		right:1px;
-	}
-}
+
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
 		font-size:10px;
