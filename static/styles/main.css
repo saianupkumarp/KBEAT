@@ -275,7 +275,7 @@ transition: 0.6s;
 	width: 40px;
 	border-radius: 100%;
 	background-image: url(/keec/assets/img/complete.png);
-	background-size: 100%;
+	background-size: 90%;
 	background-repeat: no-repeat;
 	/*background: #61a659;*/
 	text-align: center;
