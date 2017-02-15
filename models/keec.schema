@@ -1,24 +1,24 @@
 name: tunisia
 title: Tunisia
 steps:
-  - id: buildingInfo
+  - id: infographic.jpg
     label: Building Info
     containers:
     - id: buildingInformation
       label: Building Information
-      widthPercent: 50
+      widthPercent: 40
       parameters:
         - id: txtBldgName
           type: text
           label: Building Name
-          widthPercent: 50
+          widthPercent: 100
         - id: txtBldgAddress
           type: text
           label: Building Address
-          widthPercent: 50
+          widthPercent: 100
     - id: buildingUse
       label: Building Use
-      widthPercent: 50
+      widthPercent: 60
       parameters:
         - id: cmbBldgType
           type: dropdown
@@ -257,7 +257,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: envelope
+  - id: fotolia_82154542.jpg
     label: Envelope
     containers:
     - id: exteriorConstructions
@@ -270,42 +270,42 @@ steps:
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: South Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbNorthWall
           type: dropdown
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: North Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbEastWall
           type: dropdown
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: East Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbWestWall
           type: dropdown
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
           label: West Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbRoof
           type: dropdown
           options: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           values: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
           default: Roof Cons-NoInsu
           label: Roof
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbFirstFloorContact
           type: dropdown
           options: Ground, Conditioned Space, UnConditioned Space
           values: ground, condition, uncondition
           default: ground
           label: 1st Floor Contact Condition
-          widthPercent: 33
+          widthPercent: 50
     - id: windows
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
@@ -423,7 +423,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: spacedhw
+  - id: fotolia_73779603.jpg
     label: Space/DHW
     containers:
     - id: spaceCondition
@@ -468,7 +468,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: hvac
+  - id: fotolia_106113329.jpg
     label: HVAC System
     containers:
     - id: hvacsystem
@@ -482,7 +482,7 @@ steps:
           values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           default: Residential System
-          span_width: 800
+          span_width: 600
           span_height: 180
           widthPercent: 100
         - id: txtHeatSetTemp
@@ -490,13 +490,13 @@ steps:
           default: 20
           label: Heating setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: txtCoolSetTemp
           type: number
           default: 26
           label: Cooling setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: hvacShape
           type: shape
           label: Figure
@@ -514,7 +514,7 @@ steps:
           type: button
           label: Run
           widthPercent: 20
-  - id: result
+  - id: infographic.jpg
     label: Result
     containers:
     - id: resultData

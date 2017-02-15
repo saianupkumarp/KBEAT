@@ -71,33 +71,50 @@ min-height:100%;*/
 }
 
 header{
-	height:75px;    
+	height:60px;    
 	background-image: url("/keec/assets/img/logo/logo.svg");
 	background-size: 160px;
 	background-repeat: no-repeat;
-	background-position: 10px;
+	background-position: 135px;
 	background-color: #e7e7e7;
+	position: fixed;
+	width:100%;
+	z-index:100;
 }
 
 .content-area {
 	flex: 1;
+	margin:auto;
+	width:80%;
+	max-width:1100px;
 }
 
 .step-content {
 	display: flex;
 	flex-flow: column;
 	height: 100%;
+	margin-top:108px;
 }
 
 .step-headers {
 	display: flex;
-	margin: 10px;
+	padding-top: 5px;
+	position:fixed;
+	width:80%;
+	max-width:1100px;
+	background-color: #fafafa;
+	z-index: 100;
+	top:60px;
+	padding-bottom:3px;
 }
 
 .step-header {
 	display: flex;
 	flex: 1;
-}
+	padding-top: 3px;
+
+/*	border-right: 1px solid #807f83;
+*/}
 .step-header:last-of-type {
 	flex-grow: 0;
 	flex-basis: 175px;
@@ -108,6 +125,15 @@ header{
 	outline: none;
 	display: flex;
 	padding: 10px 20px;
+	background-color: #807f83;
+}
+.step-header:after{
+	content:'';
+	width:0px;
+	height:0px;
+	border-style:solid;
+	border-width:30px 0px 30px 30px;
+	border-color: transparent transparent transparent #807f83;
 }
 /*
 .step-header > .clickable.active, .step-header > .clickable:hover {
@@ -115,30 +141,28 @@ header{
 	}*/
 
 	.step-header .visited{
-		background-color:green !important;
+		background-color:#dcdbdc !important;
 	}
 
 	.step-header .number {
 		height: 40px;
 		width: 40px;
 		border-radius: 100%;
-		background:#dcdbdc;
-		/*background: #61a659;*/
+		background:green;
 		text-align: center;
 		line-height: 40px;
 		font-weight: 500;
 		cursor: pointer;
 		color:#fff;
 	}
-
-
-
+	
 	/*.step-header > .clickable:hover .number,*/  .step-header > .clickable.active .number{
-		background-color: orange;
+		background-color:  rgb(255, 210, 0);
 	}
 	.step-header  .label {
 		line-height: 40px;
 		margin-left: 10px;
+		color:#fff;
 	}
 	.step-header > .line {
 		background-color: #debdbd;
@@ -147,72 +171,77 @@ header{
 		flex: 1;
 		margin: 0 4px;
 	}
+
 	.step-area-wrapper {
 		flex: 1;
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: repeat;
+		background-size: cover;
+		height:650px;
 	}
 	.step-container > .body {
-		background: rgb(249, 249, 246);
+		background:#f8f8f8;
 		position: relative;
-		opacity: 0.8;
 		box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-		transition: 0.6s; 
-	}
-	.step-container > .body:hover {
-		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-		opacity: 1;
-	}
-	.step-container > .body-button {
-		position: relative;
-		opacity: 0.8;
-	}
-	.step-container > .body-button:hover {
-		opacity: 1;
-	}
+transition: 0.6s; 
+}
+.step-container > .body:hover {
+/*		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+*/		opacity: 1;
+}
+.step-container > .body-button {
+	position: relative;
+	opacity: 0.8;
+}
+.step-container > .body-button:hover {
+	opacity: 1;
+}
 
-	.step-container > .body.shaped .input-area {
-		width: 50%;
-	}
-	.step-container > .body-button.shaped .input-area-button{
-		width: 50%;
-	}
+.step-container > .body.shaped .input-area {
+	width: 60%;
+}
+.step-container > .body-button.shaped .input-area-button{
+	width: 50%;
+}
 
-	.step-container {
-		padding: 5px;
-	}
+.step-container {
+	padding: 5px;
+}
 
-	.step-container  .heading {
-		background: green;
-		color: white;
-		padding: 10px;
-		background-image: url(/keec/assets/img/building.svg);
-		background-size: 20px 20px;
-		background-repeat: no-repeat;
-		padding-left: 40px;
-		background-position: 10px 5px;
-	}
-	.step-container  .heading-button {
-		padding: 10px;
-		padding-left: 40px;
-	}
-	.step-container  .input-area {
-		padding: 15px;
-		display: flex;
-		flex-flow: row wrap;
-		background-color: #f8f8f8;
-	}
-	.step-container  .input-area-button {
-		padding: 15px;
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: center;	
-	}
+.step-container  .heading {
+	background: #61a659;
+	color: white;
+	padding: 10px;
+	background-image: url(/keec/assets/img/building.svg);
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	padding-left: 50px;
+	background-position: 25px 7px;
+}
+.step-container  .heading-button {
+	padding: 10px;
+	padding-left: 40px;
+}
+.step-container  .input-area {
+	padding: 15px;
+	display: flex;
+	flex-flow: row wrap;
+/*		background-color: #f8f8f8;
+*/	}
+.step-container  .input-area-button {
+	padding: 15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;	
+}
 
-	.step-container-wrapper {
-		display: flex;
-		flex-flow: row wrap;
-		max-height: calc(100vh - 325px);
-	/*overflow: auto;
-	padding: 20px;*/
+.step-container-wrapper {
+	display: flex;
+	flex-flow: row wrap;
+	max-height: calc(100vh - 165px);
+	overflow: auto;
+	padding: 2px 15px 15px 15px;
 	margin-right: 7px;
 }
 .step-container.flex-50 {
@@ -222,94 +251,226 @@ header{
 .step-container.flex-button-20 {
 	flex-basis: calc(50% - 20px)
 }
-.flex-button-20{
-	-webkit-box-flex: 1;
-	-webkit-flex: 1 1 50%;
-	flex: 1 1 50%;
-	box-sizing: border-box;
+
+.step-headers > .breadcrumb{
+	width:100%;
 }
-.flex-button-20{
-	max-width: 10%;
-	max-height: 100%;
+
+/*Breadcrumb stepper css ..............................*/
+
+.breadcrumb { 
+	list-style: none; 
+	overflow: hidden; 
+	font-size: 15px;
+	
 }
-.step-container.flex-100 {
-	flex-basis: calc(100% - 20px);
-}
-.step-container.flex-button-100 {
-	flex-basis: calc(100% - 20px);
-}
-.flex-button-100 {
-	-webkit-box-flex: 1;
-	-webkit-flex: 1 1 100%;
-	flex: 1 1 100%;
-	max-width: 100%;
-	max-height: 100%;
-	box-sizing: border-box;
-}
-.input-container {
+.breadcrumb li { 
+	float: left; 
 	display: flex;
-	margin-bottom: 10px;
+	flex: 1;
+	background: green;
+}
+.breadcrumb .number{
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+	background-image: url(/keec/assets/img/complete.png);
+	background-size: 90%;
+	background-repeat: no-repeat;
+	/*background: #61a659;*/
+	text-align: center;
+	line-height: 40px;
+	font-weight: 500;
+	cursor: pointer;
+	color:#e7e7e7;
+	margin:5px 5px 5px 55px;
+	
 }
 
-.input-container.error {
-	padding-bottom: 10px;
-	position: relative;
-
-}
-.input-container.error:after {
+.breadcrumb li .label {
+	color: white;
+	text-decoration: none; 
+	position: relative; 
 	display: block;
-	font-size: 10px;
-	color: red;
-	content: "This field cannot be empty";
+	float: left;
+	padding:18px;
+}
+.breadcrumb li .label::after { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent; 
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid green;
 	position: absolute;
-	top: 36px;
+	top: 50%;
+	margin-top: -50px; 
+	left: 100%;
+	z-index: 2; 
 }
-.errorTable {
-	padding-bottom: 10px;
-	position: relative;
+.breadcrumb li .label::before { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;       
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid white;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	margin-left: 1px;
+	left: 100%;
+	z-index: 1; 
+}
+.breadcrumb li:first-child .number{
+	margin-left: 20px;
+}
+.breadcrumb li:last-child .label{ 
+	padding-left: 30px;
+	padding-right: 45px;
+}
+.breadcrumb li:nth-child(4) .label{ 
+	padding-left: 20px;
+}
 
+/*.breadcrumb li:nth-child(2) .label{ 
+	padding-left: 60px;
 }
-.errorTable:after {
-	display: inline;
-	font-size: 13px;
-	color: red;
-	content: "This field cannot be empty";
-	position: relative;
-	top: 8px;
-	left:40%;
+.breadcrumb li:nth-child(3) .label{ 
+	padding-left: 50px;
 }
+.breadcrumb li:nth-child(4) .label{ 
+	padding-left: 60px;
+}
+.breadcrumb li:nth-child(5) .label{ 
+	padding-left: 60px;
+}
+.breadcrumb li:last-child .label{ 
+	padding-left: 110px;
+	}*/
 
-.input-container > label {
-	margin: 0;
+	.breadcrumb > .clickable.active .number{
+		background:  #fff;
+		color:rgb(255, 210, 0);
+	}
+	.breadcrumb > .clickable.active{
+		background:  rgb(255, 210, 0);
+	}
+	.breadcrumb > .clickable.active .label::after{
+		border-left: 30px solid rgb(255, 210, 0);
+	}
+	.breadcrumb .visited{
+		background:#fff !important;
+	}
+	.breadcrumb .complete{
+		background:#c3c3c2;
+	}
+	.breadcrumb > .complete .label::after{
+		border-left: 30px solid #c3c3c2;
+	}
+
+	.breadcrumb > .clickable {
+		cursor: pointer;
+		outline: none;
+		display: flex;
+
+	}
+
+/*Breadcrumb stepper css Ends ..............................*/
+
+
+	.flex-button-20{
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 50%;
+		flex: 1 1 50%;
+		box-sizing: border-box;
+	}
+	.flex-button-20{
+		max-width: 10%;
+		max-height: 100%;
+	}
+	.step-container.flex-100 {
+		flex-basis: calc(100% - 20px);
+	}
+	.step-container.flex-button-100 {
+		flex-basis: calc(100% - 20px);
+	}
+	.flex-button-100 {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 1 100%;
+		flex: 1 1 100%;
+		max-width: 100%;
+		max-height: 100%;
+		box-sizing: border-box;
+	}
+	.input-container {
+		display: flex;
+		margin-bottom: 10px;
+	}
+
+	.input-container.error {
+		padding-bottom: 10px;
+		position: relative;
+
+	}
+	.input-container.error:after {
+		display: block;
+		font-size: 10px;
+		color: red;
+		content: "This field cannot be empty";
+		position: absolute;
+		top: 36px;
+	}
+	.errorTable {
+		padding-bottom: 10px;
+		position: relative;
+
+	}
+	.errorTable:after {
+		display: inline;
+		font-size: 13px;
+		color: red;
+		content: "This field cannot be empty";
+		position: relative;
+		top: 8px;
+		left:40%;
+	}
+
+	.input-container > label {
+		margin: 0;
 /*	border: 1px solid;
 */	line-height: 30px;
-padding-left: 10px;
-background: #61a659;
-color: white;
-width: 73%;
-padding-right: 10px;
-max-width: 160px;
+padding-left: 4px;
+background-color: #c3c3c2;
+color: #000;
+width: 70%;
+/*padding-right: 10px;
+*/max-width: 165px;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
-font-size:11px;
+font-size:12px;
 }
 
 .input-container > label.error {
 	background-color: red;
+	color:#fff;
 }
 .input-container > input[type=number],.input-container > input[type=text] {
 	color: green;
-	margin-left: -1px;
-	border: 1px solid green;
+	margin-left: 0px;
+	border: 1px solid #c3c3c2;
 	height: 30px;
 	outline: none;
-	padding: 10px;
+	padding-left: 5px;
 	position: relative;
 	/*top: 1px;*/
 	flex: 1;
 	min-width: 0;
-}
+/*	background:#fff;
+*/}
 
 .input-container > select {
 	flex: 1;
@@ -329,12 +490,12 @@ font-size:11px;
 	height: 30px;
 	line-height: 30px;
 	padding: 0 4px;
-	background-color: green;
-	color: #fff;
+	background-color: #c3c3c2;
+	color: #000;
 	position: relative;
 	/*top: 1px;*/
-	opacity: 0.7;
-	font-size:12px;
+/*	opacity: 0.7;
+*/	font-size:12px;
 }
 
 .step-footers-prev {
@@ -346,7 +507,7 @@ font-size:11px;
 .shape {
 	position: absolute;
 	top: 45px;
-	width: 40%;
+	width: 35%;
 	right: 70px;
 	bottom: 20px;
 	/*border: 1px solid #d2c7c7;*/
@@ -392,9 +553,9 @@ font-size:11px;
 
 	.step-container-wrapper::-webkit-scrollbar-thumb
 	{
-		border-radius: 5px;
+		border-radius: 4px;
 		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-		background-color: #D62929;
+		background-color: green;
 	}
 	.edit {
 		width: 40px;
@@ -420,7 +581,7 @@ font-size:11px;
 		font-size: 17px;
 		margin: 5px;
 		color: #fff;
-		background-color: #61a659;
+		background-color: green;
 		border: none;
 		outline-color: #61a659;
 	}
@@ -436,7 +597,7 @@ font-size:11px;
 		font-size: 17px;
 		margin: 5px;
 		color: #fff;
-		background-color: #61a659;
+		background-color: green;
 		border: none;
 		outline-color: #61a659;
 	}
@@ -445,6 +606,11 @@ font-size:11px;
 		color:#61a659;
 		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 		outline-color: #fff;
+	}
+	.buttonGroup{
+		display:flex;
+		flex-direction:row;
+		justify-content: center;
 	}
 	.single-input-box.flex-33 {
 		flex: 1;
@@ -522,72 +688,17 @@ font-size:11px;
 /*Responsiveness
 ..............*/
 .buildInfo{
-	height:145px !important;
+	height:147px !important;
 }
 md-select{
 	margin:0px;
-	width:100%;
+	width:90%;
 }
 .responsive{
 	margin-left: 20px;
 }
-@media only screen and (min-width: 1900px) {
-	.step-container {
-		padding: 20px !important;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
-}
-@media only screen and (min-width: 1800px) {
-	.step-container {
-		padding: 30px;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
-}
-@media only screen and (min-width: 1600px) {
-	.step-container {
-		padding: 25px;
-	}
-	md-select{
-		margin:0px;
-		width:100%;
-	}
-	html.md-default-theme, html, body.md-default-theme, body {
-		/*background-size: 100% 150%;*/
-		background-size:100% 100%;
-		background-position:center;
-	}
 
-}
-@media only screen and (min-width:1400px){
-	.step-container  .input-area{
-		padding: 20px 0 20px 0;
-	}
-	.input-container{
-		margin-bottom: 40px;
-	}
-	.buildInfo{
-		height:216px !important;
-	}
-	.shape{
-		right:1px;
-	}
-}
+
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
 		font-size:10px;
@@ -836,22 +947,27 @@ md-select .md-select-value.md-select-placeholder {
 	color:green;
 }
 md-select .md-select-value {
-	border: 1px solid green;
+	border: 1px solid #c3c3c2;
+	background-color: #fff;
 }
 md-select.md-table-select>.md-select-value {
-	border: 1px solid green !important;
+	border: 1px solid  #c3c3c2 !important;
 }
 md-select:not([disabled]):focus .md-select-value {
-	border: 1px solid green !important;
+	border: 1px solid  #c3c3c2 !important;
 }
 .md-select-value>span:not(.md-select-icon){
 	padding-left:5px;
+	padding-bottom:5px;
 }
 
 /*Md-table
 .........*/
 md-table-container{
-	max-width:90%;
+	max-width:100%;
+}
+table.md-table th.md-column {
+	font-weight: 400;
 }
 table.md-table thead.md-head>tr.md-row{
 	height:30px;
@@ -860,8 +976,8 @@ table.md-table td.md-cell{
 	border-top: 1px solid green;
 }
 table.md-table th.md-column {
-	color: #fff;
-	background:green;
+	color: #000;
+	background:#c3c3c2;
 }
 table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2), table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2){
 	text-align:center;	
@@ -936,7 +1052,7 @@ md-tabs-canvas{
 	width:140%;
 }
 md-tabs .md-tab{
-	min-width: 500px;
+	min-width: 375px;
 }
 md-menu-item>.md-button{
 	font-weight: 600;

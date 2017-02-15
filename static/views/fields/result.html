@@ -1,14 +1,28 @@
 <div ng-cloak>
 	<md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
 		<span flex></span>
-      	<md-button style="border: 0px solid #CCC !important; border-radius:0 !important; -webkit-border-radius:0 !important;background-color: #CCC;" class="md-raised .md-cornered" href="{{simFile}}">
-      		Download SIM File
-      	</md-button>
+		<md-menu>
+			<md-button class="md-raised .md-cornered"  md-menu-origin style="border: 0px solid #CCC !important; border-radius:0 !important; -webkit-border-radius:0 !important;background-color: #CCC;"  ng-click="$mdOpenMenu()">
+				Download
+			</md-button>
+	 		<md-menu-content>
+	 			<md-menu-item>
+      				<md-button href="{{simFile}}">
+      					SIM File
+      				</md-button>
+  				</md-menu-item>
+  				<md-menu-item>
+      				<md-button href="{{bepsFile}}">
+      					BEPS File
+      				</md-button>
+  				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
     </md-nav-bar>
 	<md-content>
 		<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Performance Output">
-				<md-content class="md-padding">
+				<md-content class="md-padding" style="background-color:transparent;">
 					<h2 style="font-size:20px;color:green;">Result data</h2>
 					<md-table-container style="margin-bottom:20px;">
 						<table md-table>
