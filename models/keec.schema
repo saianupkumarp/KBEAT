@@ -1,7 +1,7 @@
 name: tunisia
 title: Tunisia
 steps:
-  - id: infographic.jpg
+  - id: buildingInfo
     label: Building Info
     containers:
     - id: buildingInformation
@@ -257,7 +257,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: fotolia_82154542.jpg
+  - id: envelope
     label: Envelope
     containers:
     - id: exteriorConstructions
@@ -423,7 +423,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: fotolia_73779603.jpg
+  - id: spacedhw
     label: Space/DHW
     containers:
     - id: spaceCondition
@@ -468,7 +468,7 @@ steps:
           type: button
           label: Next
           widthPercent: 20
-  - id: fotolia_106113329.jpg
+  - id: hvac
     label: HVAC System
     containers:
     - id: hvacsystem
