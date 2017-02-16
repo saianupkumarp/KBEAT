@@ -2,9 +2,8 @@
 <div ng-class="{'step-headers':true}">
 
 	<!-- Breadcrumb stepper .................. -->
-
-	<ul class="breadcrumb">
-		<li ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count}" ng-repeat="step in model.steps" ng-click="activateStep($index)">
+	<div class="breadcrumbParent">
+		<div  ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
 			<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
 			<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}">
 				<span class="checkmark">
@@ -14,8 +13,8 @@
 				</span>
 			</div>
 			<div class="label">{{step.label}}</div>
-		</li>
-	</ul>
+		</div>
+	</div>
 	<!-- ............................................ -->
 
 
@@ -38,14 +37,14 @@
 					<!-- <div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers" 	onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"> -->
 					<div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers">
 						<div  ng-if="container.id!='button'" ng-class="{body:true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
-<div class="heading">
-	{{container.label}}
-</div>
-<div class="input-area">
-	<field ng-if="!field.hide" class="single-input-box flex-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />
-</div>
+							<div class="heading">
+								{{container.label}}
+							</div>
+							<div class="input-area">
+								<field ng-if="!field.hide" class="single-input-box flex-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />
+							</div>
 
-</div>
+						</div>
 					<!-- <div  ng-if="container.id=='button'" ng-class="{'body-button':true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
 						<div class="input-area-button">
 							<field ng-if="!field.hide" class="single-input-box flex-button-{{field.widthPercent}}" field="field" container="container" ng-repeat="field in container.parameters" />

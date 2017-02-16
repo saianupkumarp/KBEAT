@@ -45,6 +45,7 @@ html.md-default-theme, html, body.md-default-theme, body {
 	color: #666;
 	font-family: 'Roboto', sans-serif;
 	font-size: 13px;
+	background-color: #fff;
 	 /*image background
 	 ..............*/
 /*	 background-image: url(/keec/assets/img/infographic.jpg);
@@ -56,6 +57,19 @@ background-repeat: no-repeat;
 
 * {
 	box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: green;
+  outline: 1px solid slategrey;
 }
 
 .main-container {
@@ -76,7 +90,8 @@ header{
 	background-size: 160px;
 	background-repeat: no-repeat;
 	background-position: 160px;
-	background-color: #e7e7e7;
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
 	position: fixed;
 	width:100%;
 	z-index:100;
@@ -93,19 +108,20 @@ header{
 	display: flex;
 	flex-flow: column;
 	height: 100%;
-	margin-top:108px;
+	margin-top:110px;
 }
 
 .step-headers {
 	display: flex;
 	padding-top: 5px;
 	position:fixed;
-	width:80%;
+	width:82%;
 	max-width:1100px;
-	background-color: #fafafa;
+	background-color: #fff;
 	z-index: 100;
 	top:60px;
 	padding-bottom:3px;
+	padding-left:20px;
 }
 
 .step-header {
@@ -259,136 +275,91 @@ header{
 
 /*Breadcrumb stepper css ..............................*/
 
-.breadcrumb { 
-	list-style: none; 
-	overflow: hidden; 
-	font-size: 15px;
-	
-}
-.breadcrumb li { 
-	float: left; 
-	display: flex;
-	flex: 1;
-	background: green;
-}
-.breadcrumb .number{
-	height: 40px;
-	width: 40px;
-	border-radius: 100%;
-	/*background: #61a659;*/
-	text-align: center;
-	line-height: 40px;
-	font-weight: 500;
-	cursor: pointer;
-	color:#c3c3c2;
-	margin:5px 5px 5px 50px;
-	
-}
-
-.breadcrumb li .label {
-	color: white;
-	text-decoration: none; 
-	position: relative; 
-	display: block;
-	float: left;
-	padding:18px;
-}
-.breadcrumb li .label::after { 
-	content: " "; 
-	display: block; 
-	width: 0; 
-	height: 0;
-	border-top: 50px solid transparent; 
-	border-bottom: 50px solid transparent;
-	border-left: 30px solid green;
-	position: absolute;
-	top: 50%;
-	margin-top: -50px; 
-	left: 100%;
-	z-index: 2; 
-}
-.breadcrumb li .label::before { 
-	content: " "; 
-	display: block; 
-	width: 0; 
-	height: 0;
-	border-top: 50px solid transparent;       
-	border-bottom: 50px solid transparent;
-	border-left: 30px solid white;
-	position: absolute;
-	top: 50%;
-	margin-top: -50px; 
-	margin-left: 1px;
-	left: 100%;
-	z-index: 1; 
-}
-.breadcrumb li:first-child .number{
-	margin-left: 20px;
-}
-.breadcrumb li:last-child .label{ 
-	padding-left: 20px;
-	padding-right:35px;
-}
-.breadcrumb li:nth-child(4) .label{ 
-	padding-left: 10px;
-}
-
-/*.breadcrumb li:nth-child(2) .label{ 
-	padding-left: 60px;
-}
-.breadcrumb li:nth-child(3) .label{ 
-	padding-left: 50px;
-}
-.breadcrumb li:nth-child(4) .label{ 
-	padding-left: 60px;
-}
-.breadcrumb li:nth-child(5) .label{ 
-	padding-left: 60px;
-}
-.breadcrumb li:last-child .label{ 
-	padding-left: 110px;
-	}*/
-
-	.breadcrumb > .clickable.active .number{
-		background:  #fff;
-		color:rgb(255, 210, 0);
-		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-	}
-	.breadcrumb > .clickable.active{
-		background:  rgb(255, 210, 0);
-	}
-	.breadcrumb > .clickable.active .label::after{
-		border-left: 30px solid rgb(255, 210, 0);
-	}
-	.breadcrumb .visited{
-		background:#fff !important;
-	}
-	.breadcrumb .complete{
-		background:#c3c3c2;
-	}
-	.breadcrumb > .complete .label::after{
-		border-left: 30px solid #c3c3c2;
+.breadcrumbParent{
+		width: 100%;
+		height: 45px;
+		background: #fff;
+		display: flex;
+		flex: 1;
 	}
 
-	.breadcrumb > .clickable {
+	.breadcrumbChild1{
+		background-color:#c3c3c2;
+		height:45px;
+		width:24%;
+		clip-path: polygon(75% 0%, 83% 49%, 75% 100%, 0% 100%, 0 49%, 0% 0%);
+	}
+	.breadcrumbChild2{
+		margin-left: -61px;
+		background-color:#c3c3c2;
+		height:45px;
+		width:24%;
+		clip-path: polygon(75% 0%, 83% 49%, 75% 100%, 0% 100%, 8% 49%, 0% 0%);
+	}
+
+	.breadcrumbParent .breadcrumbChild1,.breadcrumbParent .breadcrumbChild2{
+		float:left;
+		display: flex;
+		flex: 1;
+		background: green;
+	}
+
+	.breadcrumbParent .breadcrumbChild1 .label,.breadcrumbParent .breadcrumbChild2 .label{
+		color: white;
+		text-decoration: none; 
+		position: relative; 
+		display: block;
+		float: left;
+		padding:18px;
+		font-size:15px;
+	}
+
+	.breadcrumbParent .number {
+		height: 36px;
+		width: 36px;
+		border-radius: 100%;
+		background:green;
+		text-align: center;
+		line-height: 40px;
+		font-weight: 500;
+		cursor: pointer;
+		color:#fff;
+		margin-left:25px;
+		margin-top:5px;
+	}
+
+	.breadcrumbParent > .clickable {
 		cursor: pointer;
 		outline: none;
 		display: flex;
-
 	}
 
+	.breadcrumbParent .complete{
+		background:#c3c3c2;
+	}
+	
+	.breadcrumbParent .visited{
+		background-color:#dcdbdc !important;
+	}
 
+	.breadcrumbParent > .clickable.active .number{
+		background:  #fff;
+		color:rgb(255, 210, 0);
+	}
+	.breadcrumbParent > .clickable.active{
+		background:  rgb(255, 210, 0);
+	}
+	
 	.checkmark{
-		width:39px;
-		height:39px;
+		width:36px;
+		height:36px;
 		display:inline-block;
 		transform: rotate(45deg);
 	}
 	.checkmark_circle{
 		position:absolute;
-		margin:0px 0px 0px 2px;
-		width:38px;
-		height:38px;
+		width:36px;
+		height:36px;
 		background:#fff;
 		border-radius:100%;
 		left:0;
@@ -399,21 +370,21 @@ header{
 		width:4px;
 		height:20px;
 		background-color:#c3c3c2;
-		left:24px;
-		top:8px;
+		left:20px;
+		top:6px;
 	}
 	.checkmark_tick{
 		position:absolute;
 		background:#c3c3c2;
 		height:4px;
 		width:11px;
-		left:16px;
-		top:25px;
+		left:13px;
+		top:22px;
+		
 	}
 
 
 	/*Breadcrumb stepper css Ends ..............................*/
-
 
 	.flex-button-20{
 		-webkit-box-flex: 1;
@@ -1101,4 +1072,10 @@ md-menu-item>.md-button{
 
 .intro-page{
 	display: initial!important;
+}
+
+/*Header css..................*/
+
+md-menu-item>.md-button{
+	width:30%;
 }

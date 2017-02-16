@@ -83,7 +83,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
                 var someElement = angular.element(document.getElementById(index));
-                $document.scrollToElementAnimated(someElement,115,1000);
+                $document.scrollToElementAnimated(someElement,110,1000);
               }
             };
             $rootScope.postData = function(data){
@@ -96,7 +96,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               if($scope.count >=4){
                $scope.activeStepIndex = index;
                var someElement = angular.element(document.getElementById(index));
-               $document.scrollToElementAnimated(someElement,115,1000);
+               $document.scrollToElementAnimated(someElement,110,1000);
              }
              else{
               var isError = false;
@@ -131,7 +131,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               $scope.activeStepIndex = index;
             $scope.count += 1;
             var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,115,1000);
+            $document.scrollToElementAnimated(someElement,110,1000);
           };
 
 
@@ -140,7 +140,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             if ($scope.activeStepIndex > 0)
               $scope.activeStepIndex = index;
             var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,115,1000);
+            $document.scrollToElementAnimated(someElement,110,1000);
           };
           $rootScope.Dialog = function(ev){
             $mdDialog.show( {
