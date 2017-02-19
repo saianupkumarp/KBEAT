@@ -1,0 +1,37 @@
+{
+  "name": "angular-intro.js",
+  "version": "3.0.1",
+  "description": "Angular directive to wrap intro.js",
+  "main": "src/angular-intro.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mendhak/angular-intro.js.git"
+  },
+  "keywords": [
+    "angular",
+    "intro.js",
+    "angular-intro"
+  ],
+  "author": "mendhak",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mendhak/angular-intro.js/issues"
+  },
+  "homepage": "https://github.com/mendhak/angular-intro.js",
+  "devDependencies": {
+    "bower": "~1.7.9",
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-uglify": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "load-grunt-tasks": "~3.5.2"
+  }
+}
