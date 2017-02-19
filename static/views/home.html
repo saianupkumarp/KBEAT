@@ -1,19 +1,24 @@
 
 <div ng-class="{'step-headers':true}">
 
-<!-- Breadcrumb stepper .................. -->
-
-<ul class="breadcrumb">
-		<li ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count}" ng-repeat="step in model.steps" ng-click="activateStep($index)">
-		<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
-		<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}"></div>
+	<!-- Breadcrumb stepper .................. -->
+	<div class="breadcrumbParent">
+		<div  ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
+			<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
+			<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}">
+				<span class="checkmark">
+					<div class="checkmark_circle"></div>
+					<div class="checkmark_stem"></div>
+					<div class="checkmark_tick"></div>
+				</span>
+			</div>
 			<div class="label">{{step.label}}</div>
-		</li>
-	</ul>
-<!-- ............................................ -->
+		</div>
+	</div>
+	<!-- ............................................ -->
 
 
-<!-- Horizontal stepper............... -->
+	<!-- Horizontal stepper............... -->
 
   <!-- <div ng-class="{'step-header':true}" ng-repeat="step in model.steps">
 			<div ng-class="{clickable:true, active:$index==activeStepIndex}" 	ng-click="activateStep($index)">
@@ -21,16 +26,17 @@
 				<div class="label">{{step.label}}</div>
 			</div>
 		</div -->
-<!-- .................................... -->
+		<!-- .................................... -->
 
 	</div>
 	<div class="step-content" layout="column">
-		<div ng-class="{'step-area-wrapper':true}" style="background-image:url(/keec/assets/img/infographic.jpg);" ng-repeat="step in model.steps">
+		<!-- <div ng-class="{'step-area-wrapper':true}" style="background-image:url(/keec/assets/img/infographic.jpg);" ng-repeat="step in model.steps"> -->
+		<div ng-class="{'step-area-wrapper':true}" ng-repeat="step in model.steps">
 			<div id="{{$index}}" class="step-area">
 				<div class="step-container-wrapper">
+					<!-- <div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers" 	onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"> -->
 					<div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers">
-<!-- 					onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"
- -->						<div  ng-if="container.id!='button'" ng-class="{body:true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
+						<div  ng-if="container.id!='button'" ng-class="{body:true, shaped: container.hasShape, buildInfo: container.id=='buildingInformation'}">
 							<div class="heading">
 								{{container.label}}
 							</div>
