@@ -89,7 +89,7 @@ header{
 	background-image: url("/keec/assets/img/logo/logo.svg");
 	background-size: 160px;
 	background-repeat: no-repeat;
-	background-position: 160px;
+	background-position: 13.5%;
 	background-color: #f8f8f8;
 	border-color: #e7e7e7;
 	position: fixed;
@@ -102,6 +102,7 @@ header{
 	padding-left: 5%;
 	display: block;
 	padding-top: 8%;
+	 height: 60px;
 }
 .headerOption  .selectCountry{
 	text-decoration:none;
@@ -115,9 +116,8 @@ header{
 	border-bottom: 4px solid;
     border-bottom-color: #ffd200;
     background: #e7e7e7;
-    height: 60px;
-}
-.headerOption.active:after{
+  }
+.active.headerOption:after{
 	position: absolute;
     display: block;
     width: 0;
@@ -128,7 +128,8 @@ header{
     border-top-width: 0;
     border-bottom-color: #FFD200;
     content: "";
-    margin: 11px 0px 4px 17px;
+    margin: 0px 0px 0px 17px;
+    top:51px;
 }
 
 .content-area {
@@ -289,7 +290,7 @@ header{
 .step-container-wrapper {
 	display: flex;
 	flex-flow: row wrap;
-	max-height: calc(100vh - 165px);
+	max-height: calc(100vh - 200px);
 	overflow: auto;
 	padding: 2px 15px 15px 15px;
 	margin-right: 7px;
@@ -687,7 +688,7 @@ font-size:12px;
 		flex-flow: row wrap;
 	}
 	.dimension-wrapper .flex-50 {
-		flex-basis: calc(50% - 20px)
+		flex-basis: calc(50% - 20px);
 	}
 	.dimension-wrapper .flex-button-50 {
 		flex-basis: calc(50% - 20px)
@@ -740,7 +741,10 @@ md-select{
 
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
-		font-size:10px;
+		font-size:11px;
+	}
+	.input-container > label{
+		width:55%;
 	}
 }
 @media only screen and (max-width: 1280px) {
@@ -751,15 +755,16 @@ md-select{
 	}
 }
 @media only screen and (max-width: 1217px) {
-	.step-container-wrapper{
-		display:block;
+	.content-area{
+		width:90%;
 	}
-	.flex-50{
-		max-width:100%;
+	.step-headers{
+		width:92%;
 	}
-	.flex-button-50{
-		max-width:100%;
+	header{
+		background-position: 8.5%;
 	}
+
 	/*image background
 	..............*/
 	html.md-default-theme, html, body.md-default-theme, body {
@@ -770,14 +775,11 @@ md-select{
 	/*.............*/
 }
 @media only screen and (max-width:1140px){
-	.dimension-wrapper .flex-50{
-		flex-basis:50%;
-	}
 	.dimension-wrapper .flex-button-50{
 		flex-basis:50%;
 	}
 	.responsive{
-		margin-left: 1px;
+		margin-left: 20px;
 	}
 	.flex-button-20{
 		max-width: 15%;
@@ -793,10 +795,35 @@ md-select{
 	}
 	
 }
+@media only screen and (max-width:1100px){
+	.shape{
+		width:30%;
+	}
+	.shape img{
+		width:300px;
+	}
+	
+}
+@media only screen and (max-width:1075px){
+	.content-area{
+		width:92%;
+	}
+	.step-headers{
+		width:94%;
+	}
+	.step-container  .input-area{
+		padding:15px 5px 15px 5px;
+	}
+	md-select{
+	width:70%;
+}
+header{
+		background-position: 7.5%;
+	}
+}
 @media only screen and (max-width:1050px){
 	.shape {
 		position: absolute;
-		width: 40%;
 		bottom: 20px;
 	}
 }
@@ -804,19 +831,47 @@ md-select{
 	.breadcrumbParent .number{
 		height:34px;
 		width:34px;
-		margin-left:20px;
+		margin-left:19px;
+	}
+}
+@media only screen and (max-width:947px){
+	.dimension-wrapper .flex-50{
+		max-width:100%;
 	}
 }
 
-
 @media only screen and (max-width:950px){
-	.image{
-		width:350px !important;
-	}
 	.hvacImage{
 		width:700px;
 	}
+	.breadcrumbParent .breadcrumbChild1 .label,.breadcrumbParent .breadcrumbChild2 .label{
+		padding-left:5px;
+		font-size:12px;
+	}
 }
+
+@media only screen and (max-width:920px){
+	.content-area{
+		width:100%;
+	}
+	.step-headers{
+		width:100%;
+	}
+	.input-container > label{
+		width:50%;
+	}
+	header{
+		background-position: 3%;
+	}
+}
+
+@media only screen and (max-width:871px){
+	.dimension-wrapper .flex-50{
+		margin-left:1px;
+	}
+}
+
+
 @media only screen and (max-width:830px){
 	.step-header  .label{
 		font-size:12px;
@@ -828,18 +883,17 @@ md-select{
 		margin:3px;
 	}
 	.input-container > label {
-		font-size:9px;
-	}
-	.step-headers{
-		width:101%;
+		font-size:10px;
 	}
 	.hvacImage{
 		width:600px;
+		margin-left:40px !important;
 	}
 }
 @media only screen and (max-width:800px){
 	.image{
-		width:300px !important;
+		width:270px !important;
+		height:150px;
 	}
 	.shape{
 		top:100px;
@@ -905,6 +959,7 @@ md-select{
 		width:250px !important;
 	}
 }
+
 @media only screen and (max-width:625px){
 	.input-container > label {
 		width:50%;
