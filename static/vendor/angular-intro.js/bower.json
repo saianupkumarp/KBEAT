@@ -1,0 +1,19 @@
+{
+  "name": "angular-intro.js",
+  "version": "3.0.1",
+  "main": "src/angular-intro.js",
+  "description": "Angular directive to wrap intro.js",
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/*.html",
+    "README.md",
+    "assets"
+  ],
+  "dependencies": {
+    "angular": "^1.4.0",
+    "intro.js": "~2.4.0"
+  },
+  "devDependencies": {}
+}
