@@ -75,10 +75,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window){
-              $rootScope.selectedCountry = $window.localStorage.getItem("token",0);
+                 $rootScope.selectedCountry =$window.localStorage.getItem("token");
               $rootScope.onClick = function(index){
                $window.localStorage.setItem("token",index);
-                $rootScope.selectedCountry = $window.localStorage.getItem("token"); //returns "xxx"
+                $rootScope.selectedCountry = $window.localStorage.getItem("token");
               };
               $rootScope.model = model;
               $scope.count = 0;

@@ -898,6 +898,21 @@ header{
 	.shape{
 		top:100px;
 	}
+	.step-container-wrapper{
+		display:block;
+	}
+	.flex-40 {
+		max-width:100%;
+	}
+	.flex-40 .flex-100{
+		max-width:50%;
+	}
+	.flex-60{
+		max-width:100%;
+	}
+	.flex-50{
+		max-width:100%;
+	}
 }
 @media only screen and (max-width:723px){
 	md-select{
