@@ -98,11 +98,11 @@ header{
 }
 .headerOption{
 	float:left;
-	padding-right: 5%;
-	padding-left: 5%;
+	width:28%;
 	display: block;
-	padding-top: 8%;
-	 height: 60px;
+	padding-top: 20px;
+	height: 60px;
+	text-align:center;
 }
 .headerOption  .selectCountry{
 	text-decoration:none;
@@ -114,22 +114,22 @@ header{
 }
 .headerOption.active{
 	border-bottom: 4px solid;
-    border-bottom-color: #ffd200;
-    background: #e7e7e7;
-  }
+	border-bottom-color: #ffd200;
+	background: #e7e7e7;
+}
 .active.headerOption:after{
 	position: absolute;
-    display: block;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px;
-    border-top-width: 0;
-    border-bottom-color: #FFD200;
-    content: "";
-    margin: 0px 0px 0px 17px;
-    top:51px;
+	display: block;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 5px;
+	border-top-width: 0;
+	border-bottom-color: #FFD200;
+	content: "";
+	top:51px;
+	margin:0px 0px 0px 3%;
 }
 
 .content-area {
@@ -143,19 +143,19 @@ header{
 	display: flex;
 	flex-flow: column;
 	height: 100%;
-	margin-top:110px;
+	margin-top:13%;
 }
 
 .step-headers {
 	display: flex;
-	padding-top: 5px;
+	padding-top: 2%;
 	position:fixed;
 	width:82%;
 	max-width:1100px;
 	background-color: #fff;
 	z-index: 100;
 	top:60px;
-	padding-bottom:3px;
+	padding-bottom:1%;
 	padding-left:20px;
 }
 
@@ -737,7 +737,14 @@ md-select{
 .responsive{
 	margin-left: 20px;
 }
-
+@media only screen and (min-width: 1600px) {
+	.step-area-wrapper{
+		height:800px;
+	}
+	.step-container-wrapper{
+		max-height:calc(100vh - 100px)
+	}
+}
 
 @media only screen and (max-width: 1296px) {
 	.input-container > label {
@@ -815,9 +822,9 @@ md-select{
 		padding:15px 5px 15px 5px;
 	}
 	md-select{
-	width:70%;
-}
-header{
+		width:70%;
+	}
+	header{
 		background-position: 7.5%;
 	}
 }
@@ -825,6 +832,9 @@ header{
 	.shape {
 		position: absolute;
 		bottom: 20px;
+	}
+	.headerOption{
+		width:35%;
 	}
 }
 @media only screen and (max-width:1000px){
@@ -901,6 +911,9 @@ header{
 	.step-container-wrapper{
 		display:block;
 	}
+	.buildInfo{
+		height:100px !important;
+	}
 	.flex-40 {
 		max-width:100%;
 	}
@@ -929,9 +942,6 @@ header{
 	}
 }
 @media only screen and (max-width:700px){
-	.step-headers{
-		width:108%;
-	}
 	.step-header  .label{
 		font-size:11px;
 	}
@@ -999,11 +1009,62 @@ header{
 	.image{
 		width:330px !important;
 	}
+	.input-container > label{
+		width:48%;
+	}
+	.step-headers{
+		padding-top:3%;
+	}
+	.step-content{
+		margin-top:28%;
+		margin-left:5px;
+	}
+	.breadcrumbParent .number {
+		height: 28px;
+		width: 28px;
+		margin-left: 20px;
+		margin-top:3px;
+	}
+	.breadcrumbParent .number{
+		line-height:30px;
+	}
+	.breadcrumbParent > .clickable,.breadcrumbParent .breadcrumbChild1, .breadcrumbParent .breadcrumbChild2{
+		display:block;
+	}
+	.breadcrumbParent .breadcrumbChild1 .label, .breadcrumbParent .breadcrumbChild2 .label{
+		padding: 2px 0px 0px 12px;
+		font-size: 10px;
+	}
+	.step-container-wrapper{
+		padding:0px;
+	}
+	.step-headers{
+		width:103%;
+		padding-left: 10px;
+	}
+	.checkmark_circle{
+		width: 28px;
+		height: 28px;
+	}
+	.checkmark_stem {
+		width: 4px;
+		height: 15px;
+		left: 15px;
+		top: 6px;
+	}
+	.checkmark_tick {
+		position: absolute;
+		height: 4px;
+		width: 8px;
+		left: 10px;
+		top: 18px;
+	}
+	.hvacImage{
+		margin-left:10px;
+	}
 }
 @media only screen and (max-width:550px){
-	.step-headers{
-		width:115%;
-	}
+	
 	.step-header > .clickable{
 		padding: 15px 4px 0px 0px;
 	}
@@ -1019,9 +1080,6 @@ header{
 	}
 }
 @media only screen and (max-width:450px){
-	.step-headers{
-		width:120%;
-	}
 	.md-select-value>span:not(.md-select-icon) .md-text{
 		font-size:10px;
 	}
@@ -1034,9 +1092,22 @@ header{
 	}
 }
 @media only screen and (max-width:375px){
-	.step-headers{
-		width:122%;
+	.step-content {
+		margin-top: 33%;
 	}
+	.buildInfo {
+		height: 135px !important;
+	}
+	.image {
+		width: 300px !important;
+	}
+	.hvacImage {
+		margin-left: 0px !important;
+	}
+	.flex-40 .flex-100{
+		max-width:100%;
+	}
+	
 	.flex-button-20{
 		max-width: 35%;
 		max-height: 100%;
@@ -1083,8 +1154,8 @@ md-select:not([disabled]):focus .md-select-value {
 	border: 1px solid  #c3c3c2 !important;
 }
 .md-select-value>span:not(.md-select-icon){
-	padding-left:5px;
-	padding-bottom:5px;
+	padding-left:2px;
+	padding-bottom:1px;
 }
 
 /*Md-table
