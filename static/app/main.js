@@ -75,16 +75,21 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window){
-                 $rootScope.selectedCountry =$window.localStorage.getItem("token");
-              $rootScope.onClick = function(index){
+              console.log($window.localStorage.getItem("token"));
+              if($window.localStorage.getItem("token") == null){
+               $rootScope.selectedCountry = 0 ;
+             }
+             else{
+              $rootScope.selectedCountry = $window.localStorage.getItem("token");
+             }
+             $rootScope.onClick = function(index){
                $window.localStorage.setItem("token",index);
-                $rootScope.selectedCountry = $window.localStorage.getItem("token");
-              };
-              $rootScope.model = model;
-              $scope.count = 0;
-              $scope.activeStepIndex = 0;
-              $scope.totalSteps = $rootScope.model.steps.length;
-              $scope.activateStep = function(index) {
+             };
+             $rootScope.model = model;
+             $scope.count = 0;
+             $scope.activeStepIndex = 0;
+             $scope.totalSteps = $rootScope.model.steps.length;
+             $scope.activateStep = function(index) {
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
                 var someElement = angular.element(document.getElementById(index));
