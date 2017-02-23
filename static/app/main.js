@@ -75,7 +75,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           views: {
             'content@': {templateUrl: '/keec/assets/views/home.html',
             controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window){
-              console.log($window.localStorage.getItem("token"));
               if($window.localStorage.getItem("token") == null){
                $rootScope.selectedCountry = 0 ;
              }
@@ -89,11 +88,30 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
              $scope.count = 0;
              $scope.activeStepIndex = 0;
              $scope.totalSteps = $rootScope.model.steps.length;
+             $rootScope.screenWidth = $window.innerWidth;
+             console.log($rootScope.screenWidth);
              $scope.activateStep = function(index) {
                if((index <= $scope.count)){
                 $scope.activeStepIndex = index;
+                var screenHeight = screen.height;
+                var screenWidth = screen.width;
+                if(screenHeight <= 800 && screenWidth <= 1280){
+                  var screenOffset = screenHeight * (21/100);
+                }
+                else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
+                  var screenOffset = screenHeight * (29/100);
+                }
+                else if(screenHeight >= 1050 && screenHeight < 1200){
+                  var screenOffset =screenHeight * (28/100);
+                }
+                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                  var screenOffset = screenHeight * (30/100)
+                }
+                else{
+                 var screenOffset = screenHeight * (18/100);
+                 }
                 var someElement = angular.element(document.getElementById(index));
-                $document.scrollToElementAnimated(someElement,148,1000);
+                $document.scrollToElementAnimated(someElement,screenOffset,1000);
               }
             };
 
@@ -106,8 +124,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             $rootScope.stepNext = function(index) {
               if($scope.count >=4){
                $scope.activeStepIndex = index;
+                var screenHeight = screen.height;
+                var screenWidth = screen.width;
+                if(screenHeight <= 800 && screenWidth <= 1280){
+                  var screenOffset = screenHeight * (21/100);
+                }
+                else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
+                  var screenOffset = screenHeight * (29/100);
+                }
+                else if(screenHeight >= 1050 && screenHeight < 1200){
+                  var screenOffset =screenHeight * (28/100);
+                }
+                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                  var screenOffset = screenHeight * (30/100)
+                }
+                else{
+                 var screenOffset = screenHeight * (18/100);
+                 }
                var someElement = angular.element(document.getElementById(index));
-               $document.scrollToElementAnimated(someElement,148,1000);
+               $document.scrollToElementAnimated(someElement,screenOffset,1000);
              }
              else{
               var isError = false;
@@ -141,8 +176,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             if ($scope.activeStepIndex < $scope.totalSteps - 1)
               $scope.activeStepIndex = index;
             $scope.count += 1;
-            var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,148,1000);
+             var screenHeight = screen.height;
+                var screenWidth = screen.width;
+                if(screenHeight <= 800 && screenWidth <= 1280){
+                  var screenOffset = screenHeight * (21/100);
+                }
+                else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
+                  var screenOffset = screenHeight * (29/100);
+                }
+                else if(screenHeight >= 1050 && screenHeight < 1200){
+                  var screenOffset =screenHeight * (28/100);
+                }
+                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                  var screenOffset = screenHeight * (30/100)
+                }
+                else{
+                 var screenOffset = screenHeight * (18/100);
+                 }
+               var someElement = angular.element(document.getElementById(index));
+               $document.scrollToElementAnimated(someElement,screenOffset,1000);
           };
 
 
@@ -150,8 +202,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           $rootScope.stepBack = function(index) {
             if ($scope.activeStepIndex > 0)
               $scope.activeStepIndex = index;
-            var someElement = angular.element(document.getElementById(index));
-            $document.scrollToElementAnimated(someElement,148,1000);
+            var screenHeight = screen.height;
+                var screenWidth = screen.width;
+                if(screenHeight <= 800 && screenWidth <= 1280){
+                  var screenOffset = screenHeight * (21/100);
+                }
+                else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
+                  var screenOffset = screenHeight * (29/100);
+                }
+                else if(screenHeight >= 1050 && screenHeight < 1200){
+                  var screenOffset =screenHeight * (28/100);
+                }
+                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                  var screenOffset = screenHeight * (30/100)
+                }
+                else{
+                 var screenOffset = screenHeight * (18/100);
+                 }
+               var someElement = angular.element(document.getElementById(index));
+               $document.scrollToElementAnimated(someElement,screenOffset,1000);
           };
           $rootScope.Dialog = function(ev){
             $mdDialog.show( {

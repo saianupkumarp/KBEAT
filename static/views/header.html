@@ -4,7 +4,18 @@
 				<md-button ng-repeat="model in models | orderBy : title" href="/keec/model/{{model.name}}" target="_self" value="{{model.name}}"><b><center>{{ model.title }}</center></b></md-button>
 			</md-menu-item>
 		</md-menu-bar> -->
-		<div ng-class="{headerOption:true,active:$index == selectedCountry}" ng-repeat="model in models | orderBy : title">
+		<div ng-if="screenWidth > 860" ng-class="{headerOption:true,active:$index == selectedCountry}" ng-repeat="model in models | orderBy : title">
 			<a class="selectCountry"  href="/keec/model/{{model.name}}" ng-click="onClick($index)" target="_self" value="{{model.name}}">{{ model.title }}</a> 
 		</div>
+		<md-menu style="margin-left:25%;" ng-if="screenWidth <= 860">
+			<md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-click="$mdOpenMenu()">
+				<md-icon md-menu-origin md-svg-icon="/keec/assets/img/menu.svg"></md-icon>
+			</md-button>
+			<md-menu-content width="4">
+				<md-menu-item>
+					<md-button ng-repeat="model in models | orderBy : title" href="/keec/model/{{model.name}}" target="_self" value="{{model.name}}"><b><center>{{ model.title }}</center></b></md-button>
+				</md-menu-item>
+			</md-menu-item>
+		</md-menu>
 	</div>
+	

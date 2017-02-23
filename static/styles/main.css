@@ -257,7 +257,7 @@ header{
 	}
 
 	.step-container {
-		padding: 5px;
+		padding: 0.7%;
 	}
 
 	.step-container  .heading {
@@ -290,7 +290,7 @@ header{
 .step-container-wrapper {
 	display: flex;
 	flex-flow: row wrap;
-	max-height: calc(100vh - 200px);
+	max-height: calc(100vh - 230px);
 	overflow: auto;
 	padding: 2px 15px 15px 15px;
 	margin-right: 7px;
@@ -737,12 +737,9 @@ md-select{
 .responsive{
 	margin-left: 20px;
 }
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1300px) {
 	.step-area-wrapper{
-		height:800px;
-	}
-	.step-container-wrapper{
-		max-height:calc(100vh - 100px)
+		height:850px !important;
 	}
 }
 
@@ -781,6 +778,43 @@ md-select{
 	}
 	/*.............*/
 }
+
+@media only screen and (min-height:800px) and (min-width:1280px) {
+	.content-area{
+		margin:3% auto;
+	}
+	.step-headers{
+		padding-top: 4%;
+	}
+	.step-area-wrapper{
+		height:800px;
+	}
+	.step-container-wrapper{
+		max-height:calc(100vh - 200px)
+	}
+}
+@media only screen and (min-height:900px) and (min-width:1440px) {
+	.content-area{
+		margin:8% auto;
+	}
+	.step-headers{
+		padding-top: 9%;
+	}
+}
+@media only screen and (min-height:1200px) and (min-width:1920px) {
+	.step-area-wrapper{
+		height:850px;
+	}
+	.content-area{
+		margin:16% auto;
+	}
+	.step-headers{
+		padding-top: 12%;
+	}
+	.step-content{
+		margin-top:6%;
+	}
+}
 @media only screen and (max-width:1140px){
 	.dimension-wrapper .flex-button-50{
 		flex-basis:50%;
@@ -814,6 +848,7 @@ md-select{
 @media only screen and (max-width:1075px){
 	.content-area{
 		width:92%;
+		margin:3% auto;
 	}
 	.step-headers{
 		width:94%;
@@ -1032,8 +1067,10 @@ md-select{
 		display:block;
 	}
 	.breadcrumbParent .breadcrumbChild1 .label, .breadcrumbParent .breadcrumbChild2 .label{
-		padding: 2px 0px 0px 12px;
-		font-size: 10px;
+		padding: 2px 0px 0px 0px;
+		font-size: 9px;
+		width:70px;
+		text-align:center;
 	}
 	.step-container-wrapper{
 		padding:0px;
@@ -1270,4 +1307,17 @@ md-menu-item>.md-button{
 
 md-menu-item>.md-button{
 	width:30%;
+	font-size:12px;
+}
+.md-button.md-icon-button{
+	margin:15px 6px;
+}
+.md-button:not([disabled]){
+    background-color: #fff !important;
+}
+.md-button:not([disabled]):hover {
+    background-color: #fff !important;
+}
+md-menu-content{
+	padding:0px;
 }
