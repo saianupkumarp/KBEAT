@@ -290,7 +290,7 @@ header{
 .step-container-wrapper {
 	display: flex;
 	flex-flow: row wrap;
-	max-height: calc(100vh - 230px);
+	max-height: calc(100vh - 200px);
 	overflow: auto;
 	padding: 2px 15px 15px 15px;
 	margin-right: 7px;
