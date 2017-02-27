@@ -815,6 +815,20 @@ md-select{
 		margin-top:6%;
 	}
 }
+@media only screen and (min-height:1440px) and (min-width:2560px) {
+	.step-area-wrapper{
+		height:960px !important;
+	}
+	.content-area{
+		margin:16% auto;
+	}
+	.step-headers{
+		padding-top: 13%;
+	}
+	.step-content{
+		margin-top:6%;
+	}
+}
 @media only screen and (max-width:1140px){
 	.dimension-wrapper .flex-button-50{
 		flex-basis:50%;
@@ -1077,7 +1091,7 @@ md-select{
 	}
 	.step-headers{
 		width:103%;
-		padding-left: 10px;
+		padding-left: 7px;
 	}
 	.checkmark_circle{
 		width: 28px;
@@ -1127,8 +1141,21 @@ md-select{
 	.hvacImage{
 		width:300px;
 	}
+	.breadcrumbParent .number{
+		margin-left:25px;
+		margin-top:4px;
+	}
+	.breadcrumbParent .breadcrumbChild1 .label, .breadcrumbParent .breadcrumbChild2 .label{
+		width:75px;
+	}
+	.checkmark{
+		margin-left:-5px;
+	}
 }
 @media only screen and (max-width:375px){
+	.hvacImage{
+		width:240px;
+	}
 	.step-content {
 		margin-top: 33%;
 	}
@@ -1136,7 +1163,7 @@ md-select{
 		height: 135px !important;
 	}
 	.image {
-		width: 300px !important;
+		width: 270px !important;
 	}
 	.hvacImage {
 		margin-left: 0px !important;
@@ -1149,6 +1176,18 @@ md-select{
 		max-width: 35%;
 		max-height: 100%;
 	}
+	.breadcrumbParent .breadcrumbChild1 .label, .breadcrumbParent .breadcrumbChild2 .label{
+		font-size: 7px;
+	}
+}
+@media only screen and (max-width:330px){
+	.breadcrumbParent .number{
+		margin-left:18px;
+	}
+	.breadcrumbParent .breadcrumbChild1 .label, .breadcrumbParent .breadcrumbChild2 .label{
+		width:65px;
+	}
+
 }
 /*Changing in to material containers
 ................................*/
@@ -1168,7 +1207,7 @@ md-select{
 }
 @media only screen and (max-width:430px){
 	md-select{
-		width:52%;
+		width:55%;
 	}
 }
 md-select-menu md-content{
@@ -1321,3 +1360,31 @@ md-menu-item>.md-button{
 md-menu-content{
 	padding:0px;
 }
+ md-select-menu md-content md-option:not([disabled]){
+    color: green;
+}
+md-select-menu md-content md-option[selected] {
+    color: green !important;
+}
+ md-select-menu md-content md-option:not([disabled]):hover {
+    color: green;
+}
+md-select-menu md-content::-webkit-scrollbar-track
+	{
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+		border-radius: 5px;
+		background-color: #F5F5F5;
+	}
+
+	md-select-menu md-content::-webkit-scrollbar
+	{
+		width: 5px;
+		background-color: #F5F5F5;
+	}
+
+	md-select-menu md-content::-webkit-scrollbar-thumb
+	{
+		border-radius: 4px;
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+		background-color: green;
+	}

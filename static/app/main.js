@@ -104,8 +104,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 else if(screenHeight >= 1050 && screenHeight < 1200){
                   var screenOffset =screenHeight * (28/100);
                 }
-                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                 else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
                   var screenOffset = screenHeight * (30/100)
+                }
+                 else if(screenHeight >= 1440 && screenWidth >= 2560){
+                  var screenOffset = screenHeight * (33/100)
                 }
                 else{
                  var screenOffset = screenHeight * (18/100);
@@ -135,8 +138,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 else if(screenHeight >= 1050 && screenHeight < 1200){
                   var screenOffset =screenHeight * (28/100);
                 }
-                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                 else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
                   var screenOffset = screenHeight * (30/100)
+                }
+                 else if(screenHeight >= 1440 && screenWidth >= 2560){
+                  var screenOffset = screenHeight * (33/100)
                 }
                 else{
                  var screenOffset = screenHeight * (18/100);
@@ -187,8 +193,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 else if(screenHeight >= 1050 && screenHeight < 1200){
                   var screenOffset =screenHeight * (28/100);
                 }
-                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                 else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
                   var screenOffset = screenHeight * (30/100)
+                }
+                 else if(screenHeight >= 1440 && screenWidth >= 2560){
+                  var screenOffset = screenHeight * (33/100)
                 }
                 else{
                  var screenOffset = screenHeight * (18/100);
@@ -213,8 +222,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 else if(screenHeight >= 1050 && screenHeight < 1200){
                   var screenOffset =screenHeight * (28/100);
                 }
-                else if(screenHeight >= 1200 && screenWidth >= 1920){
+                 else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
                   var screenOffset = screenHeight * (30/100)
+                }
+                 else if(screenHeight >= 1440 && screenWidth >= 2560){
+                  var screenOffset = screenHeight * (33/100)
                 }
                 else{
                  var screenOffset = screenHeight * (18/100);
