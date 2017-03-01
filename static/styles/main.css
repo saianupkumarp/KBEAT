@@ -1344,22 +1344,24 @@ md-menu-item>.md-button{
 
 /*Header css..................*/
 
-md-menu-item>.md-button{
-	width:30%;
-	font-size:12px;
-}
+
 .md-button.md-icon-button{
 	margin:15px 6px;
 }
 .md-button:not([disabled]){
-    background-color: #fff !important;
+    color: #fff !important;
 }
-.md-button:not([disabled]):hover {
-    background-color: #fff !important;
+
+.md-open-menu-container.md-active{
+	top:60px !important;
+	left:0px !important;
+	min-width:100%;
 }
-md-menu-content{
-	padding:0px;
+md-menu-content[width="4"]{
+background-color: #34495e;
 }
+
+
  md-select-menu md-content md-option:not([disabled]){
     color: green;
 }

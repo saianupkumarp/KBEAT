@@ -6,19 +6,19 @@ steps:
     containers:
     - id: buildingInformation
       label: Building Information
-      widthPercent: 50
+      widthPercent: 40
       parameters:
         - id: txtBldgName
           type: text
           label: Building Name
-          widthPercent: 50
+          widthPercent: 100
         - id: txtBldgAddress
           type: text
           label: Building Address
-          widthPercent: 50
+          widthPercent: 100
     - id: buildingUse
       label: Building Use
-      widthPercent: 50
+      widthPercent: 60
       parameters:
         - id: cmbBldgType
           type: dropdown
