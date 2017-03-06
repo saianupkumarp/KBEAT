@@ -1,0 +1,115 @@
+
+<section  ng-app="taskTable" ng-controller="taskTableController" id="task-list-container" class="task-list-container row" >
+<div style="float: right;padding: 10px;font-family: 'Roboto', sans-serif;font-size: 13px;margin-left:75%;">
+    <button class="btn prevNext" style="font-size: 12px;outline: none;cursor: pointer;margin-right:3px;padding: 4px 5px;" ng-click="taskPaginate('prev')">❮ Previous</button>
+    Showing page 1 of 8 pages
+    <button class="btn prevNext"  style="font-size: 12px;outline: none;cursor: pointer;margin-left:5px;padding: 4px 13px;" ng-click="taskPaginate('next')">Next ❯</button>
+  </div>
+  <table class="table">
+    <tbody>
+      <tr class="header">
+        <th></th>
+        <th>Model</th>
+        <th>Date</th>
+        <th class="runTime">Run Time</th>
+        <th style="width:20%;">Status</th>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <td ng-click="task.expanded=!task.expanded" class="expand_collapse">{{task.expanded?'-':'+'}}</td>
+        <td>
+          <div class="task_model_title">
+            <div class="model_title">Saudi Arabia</div>
+            <div class="parameter">Administered price with quotas | 18 years</div>
+          </div>
+        </td>
+        <td><div>A day ago</div></td>
+        <td>14 minutes 38 seconds</td>
+        <td>
+          <div class="task">
+            <div ng-switch="task.status">
+              <div class="task-status" ng-switch-default>
+                <div style="color:#b1b196;" class="task-status-message" title="Show Results">
+                 Show Results
+                </div>
+                <progressbar type="info" value="100" animate="false">
+                </progressbar>
+              </div>
+
+            </div>
+            </div>
+        </td>
+      </tr>
+       <tr ng-animate-children="false">
+        
+   
+        <td ng-show="task.expanded" class="animate-show parameters" colspan="5"> Hybrid recursive time frame: 1 year | No. of years of deregulation: 8 years | Plants to consider: Nuclear, Concentrating Solar Power, Coal-fired supercritical steam turbine</td>
+      </tr>
+       </tbody>
+     <tbody>
+       <tr>
+        <td ng-click="task.expanded1=!task.expanded1" class="expand_collapse">{{task.expanded1?'-':'+'}}</td>
+        <td>
+          <div class="task_model_title">
+            <div class="model_title">Saudi Arabia</div>
+            <div class="parameter">Administered price with quotas | 18 years</div>
+          </div>
+        </td>
+        <td><div>A day ago</div></td>
+        <td>14 minutes 38 seconds</td>
+        <td>
+          <div class="task">
+            <div ng-switch="task.status">
+              <div class="task-status" ng-switch-default>
+                <div style="color:#b1b196;" class="task-status-message" title="Show Results">
+                 Show Results
+                </div>
+                <progressbar type="info" value="100" animate="false">
+                </progressbar>
+              </div>
+
+            </div>
+            </div>
+        </td>
+      </tr>
+      <tr ng-animate-children="false">
+        <td ng-show="task.expanded1" class="animate-show parameters" colspan="5"> Hybrid recursive time frame: 1 year | No. of years of deregulation: 8 years | Plants to consider: Nuclear, Concentrating Solar Power, Coal-fired supercritical steam turbine</td>
+      </tr>
+     </tbody>
+    <tbody>
+      <tr>
+        <td ng-click="task.expanded2=!task.expanded2" class="expand_collapse">{{task.expanded?'-':'+'}}</td>
+        <td>
+          <div class="task_model_title">
+            <div class="model_title">Saudi Arabia</div>
+            <div class="parameter">Administered price with quotas | 18 years</div>
+          </div>
+        </td>
+        <td><div>A day ago</div></td>
+        <td>14 minutes 38 seconds</td>
+        <td>
+          <div class="task">
+            <div ng-switch="task.status">
+              <div class="task-status" ng-switch-default>
+                <div style="color:#b1b196;" class="task-status-message" title="Show Results">
+                 Show Results
+                </div>
+                <progressbar type="info" value="100" animate="false">
+                </progressbar>
+              </div>
+
+            </div>
+            </div>
+        </td>
+      </tr>
+       <tr ng-animate-children="false">
+        
+   
+        <td ng-show="task.expanded2" class="animate-show parameters" colspan="5"> Hybrid recursive time frame: 1 year | No. of years of deregulation: 8 years | Plants to consider: Nuclear, Concentrating Solar Power, Coal-fired supercritical steam turbine</td>
+      </tr>
+       </tbody>
+  </table>
+  
+</section>
+   

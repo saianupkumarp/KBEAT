@@ -325,7 +325,7 @@ header{
 	clip-path: polygon(75% 0%, 83% 49%, 75% 100%, 0% 100%, 0 49%, 0% 0%);
 }
 .breadcrumbChild2{
-	margin-left: -6%;
+	margin-left: -7%;
 	background-color:#c3c3c2;
 	height:45px;
 	width:24%;
@@ -359,7 +359,7 @@ header{
 	font-weight: 500;
 	cursor: pointer;
 	color:#fff;
-	margin-left:25px;
+	margin-left:15%;
 	margin-top:5px;
 }
 
@@ -890,7 +890,6 @@ md-select{
 	.breadcrumbParent .number{
 		height:34px;
 		width:34px;
-		margin-left:19px;
 	}
 }
 @media only screen and (max-width:947px){
@@ -1349,7 +1348,7 @@ md-menu-item>.md-button{
 	margin:15px 6px;
 }
 .md-button:not([disabled]){
-    color: #fff !important;
+	color: #fff !important;
 }
 
 .md-open-menu-container.md-active{
@@ -1358,35 +1357,207 @@ md-menu-item>.md-button{
 	min-width:100%;
 }
 md-menu-content[width="4"]{
-background-color: #34495e;
+	background-color: #34495e;
 }
 
 
- md-select-menu md-content md-option:not([disabled]){
-    color: green;
+md-select-menu md-content md-option:not([disabled]){
+	color: green;
 }
 md-select-menu md-content md-option[selected] {
-    color: green !important;
+	color: green !important;
 }
- md-select-menu md-content md-option:not([disabled]):hover {
-    color: green;
+md-select-menu md-content md-option:not([disabled]):hover {
+	color: green;
 }
 md-select-menu md-content::-webkit-scrollbar-track
-	{
-		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-		border-radius: 5px;
-		background-color: #F5F5F5;
-	}
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	background-color: #F5F5F5;
+}
 
-	md-select-menu md-content::-webkit-scrollbar
-	{
-		width: 5px;
-		background-color: #F5F5F5;
-	}
+md-select-menu md-content::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
 
-	md-select-menu md-content::-webkit-scrollbar-thumb
-	{
-		border-radius: 4px;
-		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-		background-color: green;
-	}
+md-select-menu md-content::-webkit-scrollbar-thumb
+{
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: green;
+}
+
+/*Task List css..............*/
+
+
+/* css for pagination of the table */
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.prevNext{
+	background-color:#49a858 !important;
+	color:#fff !important;
+	font-family: 'Roboto', sans-serif !important;
+	border-radius:0px;
+}
+.prevNext:hover{
+	box-shadow: 0 6px 15px 0 rgba(0,0,0,0.2),0 5px 5px 0 rgba(0,0,0,0.19)
+}
+.prevNext:active{
+	opacity:0.8;
+}
+/* End of css for table pagination */
+#task-list-container
+{
+
+}
+#task-list-container h2
+{
+	color: #666666;
+	font-size: 24px;
+	font-weight: 400;
+}
+
+#task-list-container .table .progress
+{
+	border-radius: 0px;
+	height: 8px;
+}
+#task-list-container .table th
+{
+	background-color: #f8f8f8;
+	color: #666666;
+	text-align: center;
+	font-size: 19px;
+	font-weight: 400;
+	padding: 12px;
+	border: none;
+	position: relative;
+}
+
+#task-list-container .table .task-status-message
+{
+	padding: 10px;
+	font-weight: 700;
+	font-size: 16px;
+	background: #eae4e4;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+#task-list-container .table .task-status
+{
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 10px;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+#task-list-container .table td.parameters
+{
+	padding: 12px;
+	background-color: #f8f8f8;
+}
+
+#task-list-container .table .task
+{
+	position: relative;
+}
+
+#task-list-container .table .task-action
+{
+	position: absolute;
+	top: 0px;
+	right: 5px;
+	font-weight: 300;
+	font-size: 40px;
+	color: #ccc;
+}
+
+#task-list-container .table .task-action a
+{
+	text-decoration: none;
+	cursor: pointer;
+	color: #ccc;
+}
+#task-list-container .table th::after {
+	content: '';
+	background-color: #ccc;
+	position: absolute;
+	left: 100%;
+	top: 10px;
+	bottom: 10px;
+	width: 2px;
+	z-index: 1;
+}
+
+#task-list-container .table th:first-of-type::after, #task-list-container .table th:last-of-type::after
+{
+	display: none;
+}
+
+#task-list-container .table td
+{
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#task-list-container .table td .model_title
+{
+	padding: 10px;
+	font-size: 18px;
+	color: #666;
+	padding-bottom: 2px;
+}
+
+#task-list-container .table td .parameter
+{
+	padding: 0px 5px 5px 5px;
+	color: #666;
+}
+
+#task-list-container .table td.expand_collapse
+{
+	font-size: 40px;
+	padding: 0px;
+	text-align: center;
+	font-weight: 100;
+	color: #ccc;
+	cursor: pointer;
+}
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+	transition:  0.5s linear all;
+}
+.animate-show.ng-hide {
+	line-height: 0;
+	opacity: 0;
+	padding: 0 10px;
+}
+/* css for table */
+
+/*...........................*/

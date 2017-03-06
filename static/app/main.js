@@ -44,6 +44,21 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                $rootScope.labels = true;
                $rootScope.menu = false;
              }
+             $(window).resize(function(){
+              if ($(window).width() <= 860) {
+                $scope.$apply(function() {
+                  $rootScope.labels = false;
+                  $rootScope.menu = true;
+                });
+
+              }
+              else if($(window).width() > 860){
+               $scope.$apply(function() {
+                 $rootScope.labels = true;
+                 $rootScope.menu = false;
+               });
+             }
+           });
            }
          }
        }
@@ -110,15 +125,19 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
              $rootScope.labels = true;
              $rootScope.menu = false;
            }
-
            $(window).resize(function(){
             if ($(window).width() <= 860) {
-              $rootScope.labels = false;
-              $rootScope.menu = true;
+              $scope.$apply(function() {
+                $rootScope.labels = false;
+                $rootScope.menu = true;
+              });
+
             }
             else if($(window).width() > 860){
-             $rootScope.labels = true;
-             $rootScope.menu = false;
+             $scope.$apply(function() {
+               $rootScope.labels = true;
+               $rootScope.menu = false;
+             });
            }
          });
            $scope.activateStep = function(index) {
@@ -159,11 +178,43 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         $rootScope.num =0;
 
         $rootScope.stepNext = function(index) {
-          if($scope.count >=4){
-           $scope.activeStepIndex = index;
-           var screenHeight = screen.height;
-           var screenWidth = screen.width;
-           if(screenHeight <= 800 && screenWidth <= 1280){
+          if($scope.count >=3){
+            $scope.activeStepIndex = index;
+            $rootScope.postData($rootScope.data);
+          }
+          else{
+            var isError = false;
+            $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
+             container.parameters.forEach(function(parameter){
+              parameter.error = false;
+              if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
+              {
+                  /* if(parameter.type == 'table'){
+                    parameter.combine.forEach(function(element){
+                     if((element.item == '')||(element.item == null)){
+                       parameter.error = true;
+                       isError = true;
+                     }
+                   })
+
+                  }
+                  else{
+                    parameter.error = true;
+                    isError = true;
+                  }*/
+                  parameter.error = true;
+                  isError = true;
+                }
+              });
+           });
+          }
+
+          if (isError)
+            return;
+          if ($scope.activeStepIndex < $scope.totalSteps - 1)
+            var screenHeight = screen.height;
+          var screenWidth = screen.width;
+          if(screenHeight <= 800 && screenWidth <= 1280){
             var screenOffset = screenHeight * (21/100);
           }
           else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
@@ -184,124 +235,73 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           else{
            var screenOffset = screenHeight * (18/100);
          }
-         var someElement = angular.element(document.getElementById(index));
-         $document.scrollToElementAnimated(someElement,screenOffset,1000);
+         if( $scope.count < 3){
+           $scope.activeStepIndex = index;
+           if(index-1 == $scope.count){
+             $scope.count += 1;
+           }
+           var someElement = angular.element(document.getElementById(index));
+           $document.scrollToElementAnimated(someElement,screenOffset,1000);
+         }
+       };
+
+
+
+       $rootScope.stepBack = function(index) {
+        if ($scope.activeStepIndex > 0)
+          $scope.activeStepIndex = index;
+        $scope.count -= 1;
+        var screenHeight = screen.height;
+        var screenWidth = screen.width;
+        if(screenHeight <= 800 && screenWidth <= 1280){
+          var screenOffset = screenHeight * (21/100);
+        }
+        else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
+          var screenOffset = screenHeight * (29/100);
+        }
+        else if(screenHeight >= 1050 && screenWidth < 1200){
+          var screenOffset =screenHeight * (28/100);
+        }
+        else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
+          var screenOffset = screenHeight * (30/100);
+        }
+        else if(screenHeight >= 1440 && screenWidth >= 2560){
+          var screenOffset = screenHeight * (33/100);
+        }
+        else if(screenHeight == 1080 && screenWidth == 1920){
+          var screenOffset = screenHeight * (28/100);
+        }
+        else{
+         var screenOffset = screenHeight * (18/100);
        }
-       else{
-        var isError = false;
-        $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container){
-         container.parameters.forEach(function(parameter){
-          parameter.error = false;
-          if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value===null || parameter.value===""))
-          {
-                  /* if(parameter.type == 'table'){
-                    parameter.combine.forEach(function(element){
-                     if((element.item == '')||(element.item == null)){
-                       parameter.error = true;
-                       isError = true;
-                     }
-                   })
-
-                  }
-                  else{
-                    parameter.error = true;
-                    isError = true;
-                  }*/
-                  parameter.error = true;
-                  isError = true;
-                }
-              });
-       });
+       var someElement = angular.element(document.getElementById(index));
+       $document.scrollToElementAnimated(someElement,screenOffset,1000);
+     };
+     $rootScope.Dialog = function(ev){
+      $mdDialog.show( {
+        controller: function($scope, $mdDialog) {
+          $scope.conDialog = $rootScope.constructionDialog;
+          $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
+          $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
+          $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
+          $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
+          $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
+          $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
+          $scope.winDialog = $rootScope.windowDialog;
+          $scope.hide = function() {
+            $mdDialog.hide();
+          };
+        },
+        templateUrl: '/keec/assets/views/dialog.html',
+        targetEvent: ev,
+        scope: $scope,
+        preserveScope: true,
+        clickOutsideToClose:true
       }
 
-      if (isError)
-        return;
-      if ($scope.activeStepIndex < $scope.totalSteps - 1)
-        $scope.activeStepIndex = index;
-      $scope.count += 1;
-      var screenHeight = screen.height;
-      var screenWidth = screen.width;
-      if(screenHeight <= 800 && screenWidth <= 1280){
-        var screenOffset = screenHeight * (21/100);
-      }
-      else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
-        var screenOffset = screenHeight * (29/100);
-      }
-      else if(screenHeight >= 1050 && screenWidth < 1200){
-        var screenOffset =screenHeight * (28/100);
-      }
-      else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
-        var screenOffset = screenHeight * (30/100);
-      }
-      else if(screenHeight >= 1440 && screenWidth >= 2560){
-        var screenOffset = screenHeight * (33/100);
-      }
-      else if(screenHeight == 1080 && screenWidth == 1920){
-        var screenOffset = screenHeight * (28/100);
-      }
-      else{
-       var screenOffset = screenHeight * (18/100);
-     }
-     var someElement = angular.element(document.getElementById(index));
-     $document.scrollToElementAnimated(someElement,screenOffset,1000);
-   };
-
-
-
-   $rootScope.stepBack = function(index) {
-    if ($scope.activeStepIndex > 0)
-      $scope.activeStepIndex = index;
-    var screenHeight = screen.height;
-    var screenWidth = screen.width;
-    if(screenHeight <= 800 && screenWidth <= 1280){
-      var screenOffset = screenHeight * (21/100);
-    }
-    else if(screenHeight > 800 && screenHeight < 1050 && screenWidth >= 1440){
-      var screenOffset = screenHeight * (29/100);
-    }
-    else if(screenHeight >= 1050 && screenWidth < 1200){
-      var screenOffset =screenHeight * (28/100);
-    }
-    else if(screenHeight >= 1200 && screenHeight < 1440 && screenWidth >= 1920 && screenWidth < 2560){
-      var screenOffset = screenHeight * (30/100);
-    }
-    else if(screenHeight >= 1440 && screenWidth >= 2560){
-      var screenOffset = screenHeight * (33/100);
-    }
-    else if(screenHeight == 1080 && screenWidth == 1920){
-      var screenOffset = screenHeight * (28/100);
-    }
-    else{
-     var screenOffset = screenHeight * (18/100);
-   }
-   var someElement = angular.element(document.getElementById(index));
-   $document.scrollToElementAnimated(someElement,screenOffset,1000);
- };
- $rootScope.Dialog = function(ev){
-  $mdDialog.show( {
-    controller: function($scope, $mdDialog) {
-      $scope.conDialog = $rootScope.constructionDialog;
-      $scope.conDialog.options0 = $scope.conDialog.parameters[0].options.split(', ');
-      $scope.conDialog.values0 = $scope.conDialog.parameters[0].values.split(', ');
-      $scope.conDialog.options1 = $scope.conDialog.parameters[1].options.split(', ');
-      $scope.conDialog.values1 = $scope.conDialog.parameters[1].values.split(', ');
-      $scope.conDialog.options4 = $scope.conDialog.parameters[4].options.split(', ');
-      $scope.conDialog.values4 = $scope.conDialog.parameters[4].values.split(', ');
-      $scope.winDialog = $rootScope.windowDialog;
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-    },
-    templateUrl: '/keec/assets/views/dialog.html',
-    targetEvent: ev,
-    scope: $scope,
-    preserveScope: true,
-    clickOutsideToClose:true
-  }
-
-  );
-};
-}}
+      );
+    };
+  }}
 }
 })
         // If the path doesn't match any of the configured urls redirect to home
@@ -421,7 +421,7 @@ function postData(name,data){
 
     /*.....................*/
 
-    scope.data={
+    $rootScope.data={
     };
 
     scope.runData =function(){
@@ -467,8 +467,8 @@ function postData(name,data){
           nonObjJson[prop] = resJson[prop];
         }
       }
-      scope.data = JSON.stringify(nonObjJson);
-      $rootScope.postData(scope.data);
+      $rootScope.data = JSON.stringify(nonObjJson);
+      $rootScope.postData($rootScope.data);
       scope.showData();
     }
 
