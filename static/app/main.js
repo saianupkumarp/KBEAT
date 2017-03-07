@@ -1,7 +1,7 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
   'angular-animate','angular-aria','angular-messages','angular-cookies',
   'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-  'angular-material','md-steppers','angular-material-data-table','angular-scroll'],
+  'angular-material','md-steppers','angular-material-data-table','angular-scroll', 'fabricjs'],
 
   function ($, angular) {
 
@@ -75,7 +75,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               });
             },
 
-            //Get model - By Anup Kumar - 
+            //Get model - By Anup Kumar -
             models: function ($http, $rootScope, $translate, $sce) {
               var locale = $translate.use() || $translate.proposedLanguage();
               return $http.get('/keec/api/models', {params: {locale: locale}}).then(function (response) {
@@ -329,7 +329,7 @@ function postData(name,data){
     console.log(response.data)
     if(response.data){
       $rootScope.$broadcast('resultData', response.data)
-      setTimeout(function(){ 
+      setTimeout(function(){
         $rootScope.stepNext()}
         , 5000);
     }
@@ -557,7 +557,7 @@ function postData(name,data){
       scope.row4.directionValues = scope.row4.directionValues.split(', ');
       scope.row4.glazingOptions = scope.row4.glazingOptions.split(', ');
       scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
-      scope.field.rowValues = [];      
+      scope.field.rowValues = [];
       scope.field.rowValues.splice(0,0,scope.row1,scope.row2,scope.row3,scope.row4);
     }
     else if(scope.field.id=='spaceTable'){
@@ -753,7 +753,7 @@ function postData(name,data){
           if(fkey == gkey){
            $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
          }
-       }) 
+       })
       });
       $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
       $rootScope.filteredgeneralParamsKeys.forEach(function(key){
