@@ -179,7 +179,7 @@ else if(screenWidth < 1427){
     var screenOffset = screenHeight * (18/100);
   }
   else if(screenHeight < 800){
-    var screenOffset = screenHeight * (20/100);
+    var screenOffset = screenHeight * (22/100);
   }
   else if((screenHeight > 800 && screenHeight <= 900)){
     var screenOffset = screenHeight * (28/100);
@@ -298,7 +298,7 @@ else if(screenWidth < 1427){
     var screenOffset = screenHeight * (18/100);
   }
   else if(screenHeight < 800){
-    var screenOffset = screenHeight * (20/100);
+    var screenOffset = screenHeight * (22/100);
   }
   else if((screenHeight > 800 && screenHeight <= 900)){
     var screenOffset = screenHeight * (28/100);
@@ -387,7 +387,7 @@ else if(screenWidth < 1427){
     var screenOffset = screenHeight * (18/100);
   }
   else if(screenHeight < 800){
-    var screenOffset = screenHeight * (20/100);
+    var screenOffset = screenHeight * (22/100);
   }
   else if((screenHeight > 800 && screenHeight <= 900)){
     var screenOffset = screenHeight * (28/100);
