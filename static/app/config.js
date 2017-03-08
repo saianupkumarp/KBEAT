@@ -19,7 +19,9 @@ requirejs.config({
     'angular-material-data-table':'vendor/angular-material-data-table/dist/md-data-table.min',
     'md-data-table':'vendor/md-data-table/dist/md-data-table-templates',
     'underscore': 'vendor/underscore/underscore-min',
-    'angular-scroll':'vendor/angular-scroll/angular-scroll'
+    'angular-scroll':'vendor/angular-scroll/angular-scroll',
+    'fabricjs':'vendor/fabric.js/dist/fabric.min'
+
   },
   shim: {
     'angular': {
