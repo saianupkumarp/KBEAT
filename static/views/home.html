@@ -1,51 +1,50 @@
-
-<div ng-class="{'step-headers':true}">
-
-	<!-- Breadcrumb stepper .................. -->
-	<div class="breadcrumbParent">
-		<div  ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
-			<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
-			<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}">
-				<span class="checkmark">
-					<div class="checkmark_circle"></div>
-					<div class="checkmark_stem"></div>
-					<div class="checkmark_tick"></div>
-				</span>
-			</div>
-			<div class="label">{{step.label}}</div>
-		</div>
-	</div>
-
-<!-- Description of all the classes applied to the tabs
-
-clickable class - Adds a clickable styling to all the tabs
-active class -    Adds a styling to the currently active tab. Active tab will have background of rgb(255, 210, 0) color.
-complete class -  Adds a styling to all the completed tabs(all the input fields are filled). The completed tabs will have background of #c3c3c2 
-                  color.
-number class  -   Number class will add a background of #fff color and provides a styling of circle.
-
-breadcrumbChild1 class  - Styling of first tab is done using breadcrumbChild1 class.  
-
--->
-
-
-<!-- ............................................ -->
-
-
-<!-- Horizontal stepper............... -->
-
-  <!-- <div ng-class="{'step-header':true}" ng-repeat="step in model.steps">
-			<div ng-class="{clickable:true, active:$index==activeStepIndex}" 	ng-click="activateStep($index)">
-				<div ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
+<div id="parentDiv">
+	<div id="stppr" ng-class="{'step-headers':true}">
+		<!-- Breadcrumb stepper .................. -->
+		<div class="breadcrumbParent">
+			<div  ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
+				<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
+				<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}">
+					<span class="checkmark">
+						<div class="checkmark_circle"></div>
+						<div class="checkmark_stem"></div>
+						<div class="checkmark_tick"></div>
+					</span>
+				</div>
 				<div class="label">{{step.label}}</div>
 			</div>
-		</div -->
-		<!-- .................................... -->
+		</div>
+
+		<!-- Description of all the classes applied to the tabs
+
+		clickable class - Adds a clickable styling to all the tabs
+		active class -    Adds a styling to the currently active tab. Active tab will have background of rgb(255, 210, 0) color.
+		complete class -  Adds a styling to all the completed tabs(all the input fields are filled). The completed tabs will have background of #c3c3c2 
+		                  color.
+		number class  -   Number class will add a background of #fff color and provides a styling of circle.
+
+		breadcrumbChild1 class  - Styling of first tab is done using breadcrumbChild1 class.  
+
+		-->
+
+
+		<!-- ............................................ -->
+
+
+		<!-- Horizontal stepper............... -->
+
+		  <!-- <div ng-class="{'step-header':true}" ng-repeat="step in model.steps">
+					<div ng-class="{clickable:true, active:$index==activeStepIndex}" 	ng-click="activateStep($index)">
+						<div ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
+						<div class="label">{{step.label}}</div>
+					</div>
+				</div -->
+				<!-- .................................... -->
 
 	</div>
-	<div class="step-content" layout="column">
+	<div id="stpMain" class="step-content" layout="column">
 		<!-- <div ng-class="{'step-area-wrapper':true}" style="background-image:url(/keec/assets/img/infographic.jpg);" ng-repeat="step in model.steps"> -->
-		<div ng-class="{'step-area-wrapper':true}" ng-repeat="step in model.steps">
+		<div id="{{$index}}" ng-class="{'step-area-wrapper':true}" ng-repeat="step in model.steps">
 			<div id="{{$index}}" class="step-area">
 				<div class="step-container-wrapper">
 					<!-- <div class="step-container flex-{{container.widthPercent}}" ng-if="!container.openOnEdit" ng-repeat="container in step.containers" 	onmouseover="document.body.style.overflow='hidden';" onmouseout="document.body.style.overflow='auto';"> -->
@@ -65,21 +64,20 @@ breadcrumbChild1 class  - Styling of first tab is done using breadcrumbChild1 cl
 						</div>
 					</div> -->
 
+					</div>
 				</div>
-			</div>
-			<div class="buttonGroup">
-				<div  ng-if="step.label !='Building Info'" class="step-footers-prev" style="position:relative;bottom:0;">
-					<input class="button" type="button" ng-click="stepBack($index-1)" value="Previous">		
+				<div class="buttonGroup">
+					<div  ng-if="step.label !='Building Info'" class="step-footers-prev" style="position:relative;bottom:0;">
+						<input class="button" type="button" ng-click="stepBack($index-1)" value="Previous">		
+					</div>
+					<div  ng-if="((step.label !='HVAC System')&&($index !=4))"  class="step-footers-next" style="position:relative;bottom:0;">
+						<input class="button" type="button" ng-click="stepNext($index+1)" value="Next">		
+					</div>
+					<div ng-if="((step.label =='HVAC System')&&($index !=4))" class="step-footers-next" style="position:relative;bottom:0;">
+						<input class="button" type="button" ng-click="stepNext($index+1)"  value="Run">		
+					</div>
 				</div>
-				<div  ng-if="((step.label !='HVAC System')&&($index !=4))"  class="step-footers-next" style="position:relative;bottom:0;">
-					<input class="button" type="button" ng-click="stepNext($index+1)" value="Next">		
-				</div>
-				<div ng-if="((step.label =='HVAC System')&&($index !=4))" class="step-footers-next" style="position:relative;bottom:0;">
-					<input class="button" type="button" ng-click="stepNext($index+1)"  value="Run">		
-				</div>
-
 			</div>
 		</div>
-		
 	</div>
 </div>

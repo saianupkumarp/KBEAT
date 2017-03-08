@@ -117,6 +117,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
            $scope.totalSteps = $rootScope.model.steps.length;
            $rootScope.screenWidth = $window.innerWidth;
            console.log($rootScope.screenWidth);
+           console.log($window);
            if($rootScope.screenWidth <= 860){
              $rootScope.menu = true;
              $rootScope.labels = false;
@@ -143,85 +144,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
            $scope.activateStep = function(index) {
              if((index <= $scope.count)){
                $scope.activeStepIndex = index;
-               var screenHeight = $(window).height();
-               var screenWidth = $(window).width();
-               console.log(screenHeight,screenWidth);
-          if(screenWidth <= 1050){
+               $("html, body").stop(true).delay(1).animate({scrollTop: $('#'+index).offset().top - ($("#stppr").outerHeight() + 50) }, 1000);
+              }
+            };
 
-   if(screenHeight >= 800){
-    var screenOffset = screenHeight * (21/100);
-  }
-  else if(screenHeight < 800){
-    if( screenHeight > 500 && screenHeight < 700){
-     var screenOffset = screenHeight * (24/100);
-   }
-
-   else if(screenHeight <= 500){
-    var screenOffset = screenHeight * (27/100);
-  }
-  else if( screenHeight >= 700){
-   var screenOffset = screenHeight * (20/100);
- }
-}
-
-}
-else if(screenWidth <= 1280 && screenWidth > 1050){
-
- if(screenHeight <= 800){
-  var screenOffset = screenHeight * (21/100);
-}
-}
-else if(screenWidth < 1427){
-  if(screenWidth >=1400){
-     var screenOffset = screenHeight * (24/100);
-  }
-  else if(screenHeight >= 1024){
-    var screenOffset = screenHeight * (18/100);
-  }
-  else if(screenHeight < 800){
-    var screenOffset = screenHeight * (22/100);
-  }
-  else if((screenHeight > 800 && screenHeight <= 900)){
-    var screenOffset = screenHeight * (28/100);
-  }
-}
-else if(screenWidth >= 1427 && screenWidth < 1907){
-
- if((screenHeight > 800 && screenHeight <= 900)){
-  var screenOffset = screenHeight * (28/100);
-}
-else  if((screenHeight > 900 && screenHeight <= 1050)){
-  var screenOffset = screenHeight * (26/100);
-}
-}
-else if(screenWidth >= 1907){
-  if(screenWidth < 2560){
-   if(screenHeight == 1080){
-
-    var screenOffset = screenHeight * (28/100);
-  }
-  else if(screenHeight >= 1200 && screenHeight < 1440){
-    var screenOffset = screenHeight * (30/100);
-  }
-}
-else if(screenWidth >= 2560){
-
- if(screenHeight >= 1440){
-  var screenOffset = screenHeight * (33/100);
-}
-}
-
-}
-else{
- console.log("7");
- var screenOffset = screenHeight * (18/100);
-}
-     var someElement = angular.element(document.getElementById(index));
-     $document.scrollToElementAnimated(someElement,screenOffset,1000);
-   }
- };
-
- $rootScope.postData = function(data){
+$rootScope.postData = function(data){
   api.postData(model.name,data);
 };
 
@@ -259,173 +186,20 @@ $rootScope.stepNext = function(index) {
    });
   }
 
-  if (isError)
-    return;
-  if ($scope.activeStepIndex < $scope.totalSteps - 1)
-    var screenHeight = $(window).height();
-  var screenWidth = $(window).width();
-  console.log(screenHeight,screenWidth);
-  if(screenWidth <= 1050){
-
-   if(screenHeight >= 800){
-    var screenOffset = screenHeight * (21/100);
-  }
-  else if(screenHeight < 800){
-    if( screenHeight > 500 && screenHeight < 700){
-     var screenOffset = screenHeight * (24/100);
-   }
-
-   else if(screenHeight <= 500){
-    var screenOffset = screenHeight * (27/100);
-  }
-  else if( screenHeight >= 700){
-   var screenOffset = screenHeight * (20/100);
- }
-}
-
-}
-else if(screenWidth <= 1280 && screenWidth > 1050){
-
- if(screenHeight <= 800){
-  var screenOffset = screenHeight * (21/100);
-}
-}
-else if(screenWidth < 1427){
-  if(screenWidth >=1400){
-     var screenOffset = screenHeight * (24/100);
-  }
-  else if(screenHeight >= 1024){
-    var screenOffset = screenHeight * (18/100);
-  }
-  else if(screenHeight < 800){
-    var screenOffset = screenHeight * (22/100);
-  }
-  else if((screenHeight > 800 && screenHeight <= 900)){
-    var screenOffset = screenHeight * (28/100);
-  }
-}
-else if(screenWidth >= 1427 && screenWidth < 1907){
-
- if((screenHeight > 800 && screenHeight <= 900)){
-  var screenOffset = screenHeight * (28/100);
-}
-else  if((screenHeight > 900 && screenHeight <= 1050)){
-  var screenOffset = screenHeight * (26/100);
-}
-}
-else if(screenWidth >= 1907){
-  if(screenWidth < 2560){
-   if(screenHeight == 1080){
-
-    var screenOffset = screenHeight * (28/100);
-  }
-  else if(screenHeight >= 1200 && screenHeight < 1440){
-    var screenOffset = screenHeight * (30/100);
-  }
-}
-else if(screenWidth >= 2560){
-
- if(screenHeight >= 1440){
-  var screenOffset = screenHeight * (33/100);
-}
-}
-
-}
-else{
- console.log("7");
- var screenOffset = screenHeight * (18/100);
-}
 if( $scope.count < 3){
  $scope.activeStepIndex = index;
  if(index-1 == $scope.count){
    $scope.count += 1;
  }
- var someElement = angular.element(document.getElementById(index));
- $document.scrollToElementAnimated(someElement,screenOffset,1000);
+ $("html, body").stop(true).delay(1).animate({scrollTop: $('#'+index).offset().top - ($("#stppr").outerHeight() + 50) }, 1000);
 }
 };
 
 
 
 $rootScope.stepBack = function(index) {
-  if ($scope.activeStepIndex > 0)
-    $scope.activeStepIndex = index;
-  $scope.count -= 1;
-  var screenHeight = $(window).height();
-  var screenWidth = $(window).width();
-  console.log(screenHeight,screenWidth);
-   if(screenWidth <= 1050){
-
-   if(screenHeight >= 800){
-    var screenOffset = screenHeight * (21/100);
-  }
-  else if(screenHeight < 800){
-    if( screenHeight > 500 && screenHeight < 700){
-     var screenOffset = screenHeight * (24/100);
-   }
-
-   else if(screenHeight <= 500){
-    var screenOffset = screenHeight * (27/100);
-  }
-  else if( screenHeight >= 700){
-   var screenOffset = screenHeight * (20/100);
- }
-}
-
-}
-else if(screenWidth <= 1280 && screenWidth > 1050){
-
- if(screenHeight <= 800){
-  var screenOffset = screenHeight * (21/100);
-}
-}
-else if(screenWidth < 1427){
-  if(screenWidth >=1400){
-     var screenOffset = screenHeight * (24/100);
-  }
-  else if(screenHeight >= 1024){
-    var screenOffset = screenHeight * (18/100);
-  }
-  else if(screenHeight < 800){
-    var screenOffset = screenHeight * (22/100);
-  }
-  else if((screenHeight > 800 && screenHeight <= 900)){
-    var screenOffset = screenHeight * (28/100);
-  }
-}
-else if(screenWidth >= 1427 && screenWidth < 1907){
-
- if((screenHeight > 800 && screenHeight <= 900)){
-  var screenOffset = screenHeight * (28/100);
-}
-else  if((screenHeight > 900 && screenHeight <= 1050)){
-  var screenOffset = screenHeight * (26/100);
-}
-}
-else if(screenWidth >= 1907){
-  if(screenWidth < 2560){
-   if(screenHeight == 1080){
-
-    var screenOffset = screenHeight * (28/100);
-  }
-  else if(screenHeight >= 1200 && screenHeight < 1440){
-    var screenOffset = screenHeight * (30/100);
-  }
-}
-else if(screenWidth >= 2560){
-
- if(screenHeight >= 1440){
-  var screenOffset = screenHeight * (33/100);
-}
-}
-
-}
-else{
- console.log("7");
- var screenOffset = screenHeight * (18/100);
-}
-var someElement = angular.element(document.getElementById(index));
-$document.scrollToElementAnimated(someElement,screenOffset,1000);
+  $scope.activeStepIndex = index
+  $("html, body").stop(true).delay(1).animate({scrollTop: $('#'+index).offset().top - ($("#stppr").outerHeight() + 50) }, 1000);
 };
 $rootScope.Dialog = function(ev){
   $mdDialog.show( {
