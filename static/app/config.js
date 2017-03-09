@@ -21,7 +21,6 @@ requirejs.config({
     'underscore': 'vendor/underscore/underscore-min',
     'angular-scroll':'vendor/angular-scroll/angular-scroll',
     'fabricjs':'vendor/fabric.js/dist/fabric.min'
-
   },
   shim: {
     'angular': {
