@@ -1,7 +1,7 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
     'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll', 'fabricjs'
+    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs'
   ],
 
   function($, angular) {
