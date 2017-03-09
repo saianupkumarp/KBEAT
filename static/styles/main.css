@@ -369,7 +369,7 @@ header{
 	display: flex;
 }
 
-.breadcrumbParent .complete{
+.breadcrumbParent .inComplete{
 	background:#c3c3c2;
 }
 

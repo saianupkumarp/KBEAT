@@ -2,7 +2,7 @@
 	<div id="stppr" ng-class="{'step-headers':true}">
 		<!-- Breadcrumb stepper .................. -->
 		<div class="breadcrumbParent">
-			<div  ng-class="{clickable:true, active:$index==activeStepIndex,complete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
+			<div  ng-class="{clickable:true, active:$index==activeStepIndex,inComplete:$index > count,breadcrumbChild2:$index != 0,breadcrumbChild1:$index == 0}" ng-click="activateStep($index)" ng-repeat="step in model.steps">
 				<div ng-if="(($index==activeStepIndex) ||($index > count))" ng-class="{number:true, visited:$index > count}">{{$index+1}}</div>
 				<div ng-if="(($index!=activeStepIndex)&&($index <= count))" ng-class="{number:true, visited:$index > count}">
 					<span class="checkmark">
@@ -19,8 +19,7 @@
 
 		clickable class - Adds a clickable styling to all the tabs
 		active class -    Adds a styling to the currently active tab. Active tab will have background of rgb(255, 210, 0) color.
-		complete class -  Adds a styling to all the completed tabs(all the input fields are filled). The completed tabs will have background of #c3c3c2 
-		                  color.
+		inComplete class -  Adds a styling to all the completed tabs(all the input fields are filled). The completed tabs will have background of #c3c3c2 color.
 		number class  -   Number class will add a background of #fff color and provides a styling of circle.
 
 		breadcrumbChild1 class  - Styling of first tab is done using breadcrumbChild1 class.  

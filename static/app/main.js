@@ -168,7 +168,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $rootScope.num = 0;
 
                   $rootScope.stepNext = function(index) {
-                    if ($scope.count >= 3) {
+                    if (index == 4) {
+                      console.log('run');
                       $scope.activeStepIndex = index;
                       $rootScope.postData($rootScope.data);
                     } else {
@@ -197,7 +198,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       });
                     }
 
-                    if ($scope.count < 3) {
+                    if (index <= 3 && isError == false) {
                       $scope.activeStepIndex = index;
                       if (index - 1 == $scope.count) {
                         $scope.count += 1;
