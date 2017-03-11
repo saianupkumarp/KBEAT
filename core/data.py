@@ -8,15 +8,18 @@ monkey.patch_all()
 
 import ujson as json
 import yaml
-from core.schema import Model
+from core.schema import Model, Task
 import settings
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+from bson import json_util
 import gridfs
 
 client = MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
 
 db = client[settings.MONGO_DBNAME]
 Models = db['model']
+Tasks = db['Task']
 
 def get_locales():
     locales_path = path.join(settings.STATIC_ROOT, 'locales')
@@ -24,7 +27,6 @@ def get_locales():
 
 def get_model(model_name):
     model_data = Models.find_one({"name": model_name})
-    print model_data
     return Model(model_data, strict=False) if model_data else None
 
 def get_models(count=0):
@@ -43,3 +45,18 @@ def load_model_data():
                     model = Model(yaml.load(descriptor_file))
                     Models.update({"name": model.name}, model.to_native(), upsert = True)
         hub.wait(watcher)
+
+def get_task(task_id):
+    task_data = Tasks.find_one({"_id": ObjectId(task_id)})
+    task_data['id'] = str(task_id)
+    print task_data
+    if not task_data:
+        return None
+    task = Task(task_data, strict = False)
+    task.model = get_model(task_data['country'].lower())
+    return task
+
+def get_tasks():
+    tasks = [get_task(task['_id']) for task in Tasks.find({}, {"_id":1, "created":1}).sort("created", -1)]
+    tasks = [task.to_primitive(role='DTO') for task in tasks if task]
+    return {"tasks": tasks}
