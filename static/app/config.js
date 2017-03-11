@@ -5,6 +5,7 @@ requirejs.config({
     'angular-cookies': 'vendor/angular-cookies/angular-cookies.min',
     'angular-i18n': 'vendor/angular-i18n/angular-locale_es-ar',
     'jquery': 'vendor/jquery/dist/jquery.min',
+    'bootstrap': 'vendor/bootstrap/dist/js/bootstrap.min',
     'angular-translate': 'vendor/angular-translate/angular-translate.min',
     'angular-translate-loader': 'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.min',
     'angular-translate-storage-cookie': 'vendor/angular-translate-storage-cookie/angular-translate-storage-cookie.min',
@@ -70,6 +71,12 @@ requirejs.config({
     },
      'angular-scroll': {
       deps: ['angular']
+    },
+    'jquery':{
+      exports: 'jquery'
+    },
+    'bootstrap':{
+      deps:['jquery']
     }
   }
 });

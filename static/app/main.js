@@ -1,7 +1,7 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
     'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll', 'fabricjs'
+    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs'
   ],
 
   function($, angular) {
@@ -229,7 +229,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $rootScope.num = 0;
 
                   $rootScope.stepNext = function(index) {
-                    if ($scope.count >= 3) {
+                    if (index == 4) {
+                      console.log('run');
                       $scope.activeStepIndex = index;
                       $rootScope.data = {};
                       var resJson = {}
@@ -300,7 +301,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       });
                     }
 
-                    if ($scope.count < 3) {
+                    if (index <= 3 && isError == false) {
                       $scope.activeStepIndex = index;
                       if (index - 1 == $scope.count) {
                         $scope.count += 1;

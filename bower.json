@@ -19,6 +19,7 @@
     "fabric.js": "fabric#^1.7.4",
     "angular-scroll": "^1.0.0",
     "angular-intro.js": "^3.0.1",
-    "nvd3": "^1.8.5"
+    "nvd3": "^1.8.5",
+    "bootstrap": "^3.3.7"
   }
 }
