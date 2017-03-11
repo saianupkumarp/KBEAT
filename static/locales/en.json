@@ -13,6 +13,22 @@
     "models": "Models",
     "toggle_nav": "Toggle navigation"
   },
+  "messages": {
+    "cancel_task": "Cancel task",
+    "close": "Close",
+    "go_to_dev": "Go to development page",
+    "active_tasks": "Active tasks",
+    "active_tasks_plural": "{{ count }} active tasks",
+    "active_tasks_singular": "1 active task",
+    "delete_task": "Remove task",
+    "loading": "Loading...",
+    "no_active_tasks": "No active tasks",
+    "no_recent_tasks": "No recent tasks",
+    "recent_tasks": "Recent Tasks",
+    "run_model": "Run model",
+    "select_model": "Select the model you want to run from the following list",
+    "show_report": "Show results"
+  },
   "sections": {
     "about": {
       "title": "About KEEC",
@@ -20,6 +36,27 @@
       "phone": "",
       "fax": "",
       "close": "@:messages.close"
+    }
+  },
+  "properties": {
+    "model": {
+      "name": "Name",
+      "title": "Title",
+      "description": "Scenario Description"
+    },
+    "task": {
+      "model_title": "Model",
+      "created": "Date",
+      "timetook": "Run Time",
+      "status": {
+        "status": "Status",
+        "pending": "Pending",
+        "running": "In Progress",
+        "success": "Saving Result",
+        "failure": "Execution Failed",
+        "cancelled": "Cancelled",
+        "completed": "Show Results"
+      }
     }
   }
 }
