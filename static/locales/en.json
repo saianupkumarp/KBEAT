@@ -45,7 +45,7 @@
       "description": "Scenario Description"
     },
     "task": {
-      "model_title": "Model",
+      "model_title": "Country",
       "created": "Date",
       "timetook": "Run Time",
       "status": {
