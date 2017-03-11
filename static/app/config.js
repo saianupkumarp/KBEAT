@@ -21,7 +21,10 @@ requirejs.config({
     'md-data-table':'vendor/md-data-table/dist/md-data-table-templates',
     'underscore': 'vendor/underscore/underscore-min',
     'angular-scroll':'vendor/angular-scroll/angular-scroll',
-    'fabricjs':'vendor/fabric.js/dist/fabric.min'
+    'fabricjs':'vendor/fabric.js/dist/fabric.min',
+    'angular-moment': 'vendor/angular-moment/angular-moment.min',
+    'moment': 'vendor/moment/min/moment-with-locales.min',
+    'moment-timezone': 'vendor/moment-timezone/builds/moment-timezone-with-data.min',
   },
   shim: {
     'angular': {
@@ -77,6 +80,12 @@ requirejs.config({
     },
     'bootstrap':{
       deps:['jquery']
+    },
+    'angular-moment': {
+      deps: ['angular', 'moment-timezone']
+    },
+    'moment-timezone': {
+      deps: ['moment']
     }
   }
 });

@@ -1,13 +1,13 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
-    'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
+    'angular-translate-loader', 'angular-moment', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
     'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs'
   ],
 
   function($, angular) {
 
     angular.module('keec', [
-        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll'
+        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll', 'angularMoment'
       ])
 
       .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
