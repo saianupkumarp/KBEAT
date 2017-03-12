@@ -1,13 +1,13 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
-    'angular-translate-loader', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
+    'angular-translate-loader', 'angular-moment', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
     'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs'
   ],
 
   function($, angular) {
 
     angular.module('keec', [
-        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll'
+        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll', 'angularMoment'
       ])
 
       .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
@@ -90,6 +90,67 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $rootScope.models = models
                   return $rootScope.models;
                 });
+              },
+
+              //Gets tasks
+              tasks: function($http, $rootScope, models) {
+                return $http.get('/keec/api/tasks').then(function(response) {
+                  var tasks = response.data['tasks'] || [];
+                  var paginationLimit = 10;
+                  _(tasks).each(function (task) {
+                    if (!task.model_name) {
+                      task.model_name = _(models).findWhere({name: task['model_name'].lower()});
+                    }
+                    paginationLimit = task.model_name.taskPaginationLimit;
+                  });
+                  $rootScope.filteredTasks = tasks; 
+                  $rootScope.tasks = tasks;
+                  $rootScope.taskPagination = {
+                    limit: paginationLimit,
+                    pages: Math.floor($rootScope.filteredTasks.length / paginationLimit) + ($rootScope.filteredTasks.length % paginationLimit ? 1 : 0),
+                    currentPage: 1,
+                    start: 0
+                  }
+                  $rootScope.showMoreButton=true;
+                  $rootScope.taskPagination.pages =  Math.floor($rootScope.tasks.length / 6) + 1;
+                  $rootScope.taskPagination.start = 0;
+                  $rootScope.calculatePagination = function(){
+                      $rootScope.taskPagination = {
+                        limit: paginationLimit,
+                        pages: Math.floor($rootScope.filteredTasks.length / paginationLimit) + ($rootScope.filteredTasks.length % paginationLimit ? 1 : 0),
+                        currentPage: 1,
+                        start: 0
+                      }
+                  }
+                  $rootScope.taskPagination = {
+                    limit: paginationLimit,
+                    pages: Math.floor($rootScope.filteredTasks.length / paginationLimit) + ($rootScope.filteredTasks.length % paginationLimit ? 1 : 0),
+                    currentPage: 1,
+                    start: 0
+                  }
+                  $rootScope.taskPaginate = function(direction)
+                  {
+                    switch(direction)
+                    {
+                      case 'next':
+                        if($rootScope.taskPagination.currentPage+1 <= $rootScope.taskPagination.pages)
+                          $rootScope.taskPagination.currentPage += 1;
+                          break;
+                      case 'prev':
+                        if($rootScope.taskPagination.currentPage-1 >= 1)
+                          $rootScope.taskPagination.currentPage -= 1;
+                        break;
+                    }
+                    $rootScope.taskPagination.start = ($rootScope.taskPagination.currentPage -1) * $rootScope.taskPagination.limit;
+                  }
+                  return $rootScope.tasks;
+                });
+              },
+
+              //Get Task ID
+              task_id: function($location, $rootScope){
+                $rootScope.task_id = $location.path().substr($location.path().lastIndexOf('/') + 1);
+                return $rootScope.task_id;
               }
             },
             views: {
@@ -171,6 +232,48 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     if (index == 4) {
                       console.log('run');
                       $scope.activeStepIndex = index;
+                      $rootScope.data = {};
+                      var resJson = {}
+                      var ObjCount = 0;
+                      var RelDimId;
+                      $rootScope.model.steps.forEach(function(obj) {
+                        obj.containers.forEach(function(obj1) {
+                          obj1.parameters.forEach(function(obj2) {
+                            if (obj2.id != 'prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape') {
+                              if (obj2.id == 'cmbBldgShape') {
+                                RelDimId = obj2.value;
+                              }
+                              if (typeof RelDimId != "undefined" && obj2.id == RelDimId + 'Data') {
+                                for (var key in obj2.value) {
+                                  resJson[key] = obj2.value[key];
+                                  ObjCount = ObjCount + 2;
+                                }
+                              }
+                              if (obj2.id == 'rdbtnWinWwr') {
+                                if (obj2.rdbtnWinArea) {
+                                  resJson.rdbtnWinArea = obj2.rdbtnWinArea;
+                                  ObjCount = ObjCount + 2;
+                                } else if (obj2.rdbtnWinWwr) {
+                                  resJson.rdbtnWinWwr = obj2.rdbtnWinWwr;
+                                  ObjCount = ObjCount + 2;
+                                }
+                              } else {
+                                resJson[obj2.id] = obj2.value;
+                                ObjCount = ObjCount + 2;
+                              }
+                            }
+                          });
+                        });
+                      });
+                      resJson.txtSkyltType = 'flat';
+                      resJson.txtSkyltCvr = 13;
+                      var nonObjJson = {};
+                      for (var prop in resJson) {
+                        if (resJson.hasOwnProperty(prop) && typeof resJson[prop] !== "object") {
+                          nonObjJson[prop] = resJson[prop];
+                        }
+                      }
+                      $rootScope.data = JSON.stringify(nonObjJson);
                       $rootScope.postData($rootScope.data);
                     } else {
                       var isError = false;
@@ -209,8 +312,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     }
                   };
 
-
-
                   $rootScope.stepBack = function(index) {
                     $scope.activeStepIndex = index
                     $("html, body").stop(true).delay(10).animate({
@@ -245,6 +346,17 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               }
             }
           })
+
+          //Task list page state
+          .state('app.tlist', {
+            url: '/keec/task',
+            views: {
+              'content@': {templateUrl: '/keec/assets/views/task-list.html'}
+            },
+            onEnter: function(){
+              setTimeout(window.createCarousel,500);
+            }
+          })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
@@ -269,12 +381,13 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         function postData(name, data) {
           return $http.post('/keec/api/models/' + name, data).then(function(response) {
             console.log(response.data)
-            if (response.data) {
-              $rootScope.$broadcast('resultData', response.data)
-              setTimeout(function() {
-                $rootScope.stepNext()
-              }, 5000);
-            }
+            // if (response.data) {
+            //   $rootScope.$broadcast('resultData', response.data)
+            //   setTimeout(function() {
+            //     $rootScope.stepNext()
+            //   }, 5000);
+            // }
+            $state.go('app.tlist');
           })
         }
       })
@@ -297,6 +410,56 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             }
           }
         }
+      })
+
+      //
+      // Filters
+      //
+
+      .filter('htmlSafe', function($sce){
+        return function(args){
+          return $sce.trustAsHtml(args);
+        }
+      })
+
+      .filter('parameterDisplay', function ($sce) {
+        var getParameters = function(args){
+          console.log(args);
+          var bldLoc = args.cmbBldgLocation;
+          var bldShape = args.cmbBldgShape;
+          return bldLoc + " | " + bldShape;
+        }
+        return function (args) {
+          return $sce.trustAsHtml(getParameters(args));
+        };
+      })
+
+      .filter('argumentDisplay', function ($sce) {
+        var getParameters = function(args){
+          var params = "Building Name: " + args.txtBldgName;
+          params += " | " + "Building Type: " +  args.cmbBldgType;
+          params += " | " + "Building Location: " + args.cmbBldgLocation
+          params += " | " + "Building Shape: " + args.cmbBldgShape;
+          return params;
+        }
+        return function (args) {
+          return $sce.trustAsHtml(getParameters(args));
+        };
+      })
+
+      .filter('titleDisplay', function(){
+        return function(title)
+        {
+          var location = title;
+          return location;
+        }
+      })
+
+      // Return true or a given text if object has items
+      .filter('isEmpty', function () {
+        return function (items, replaceText) {
+          return items && items.length ? false : replaceText || true;
+        };
       })
 
       .directive('field', function($mdDialog, $rootScope, $mdEditDialog) {
@@ -360,78 +523,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             scope.selectRow = function(index) {
               scope.selectedTableRow = index;
             }
-
-            /*.....................*/
-
-            $rootScope.data = {};
-
-            scope.runData = function() {
-              var resJson = {}
-              var ObjCount = 0;
-              var RelDimId;
-              $rootScope.model.steps.forEach(function(obj) {
-                obj.containers.forEach(function(obj1) {
-                  obj1.parameters.forEach(function(obj2) {
-                    if (obj2.id != 'prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.type != 'table' && obj2.id != 'shape') {
-                      if (obj2.id == 'cmbBldgShape') {
-                        RelDimId = obj2.value;
-                      }
-                      if (typeof RelDimId != "undefined" && obj2.id == RelDimId + 'Data') {
-                        for (var key in obj2.value) {
-                          resJson[key] = obj2.value[key];
-                          ObjCount = ObjCount + 2;
-                        }
-                      }
-                      if (obj2.id == 'rdbtnWinWwr') {
-                        if (obj2.rdbtnWinArea) {
-                          resJson.rdbtnWinArea = obj2.rdbtnWinArea;
-                          ObjCount = ObjCount + 2;
-                        } else if (obj2.rdbtnWinWwr) {
-                          resJson.rdbtnWinWwr = obj2.rdbtnWinWwr;
-                          ObjCount = ObjCount + 2;
-                        }
-                      } else {
-                        resJson[obj2.id] = obj2.value;
-                        ObjCount = ObjCount + 2;
-                      }
-                    }
-                  });
-                });
-              });
-              resJson.txtSkyltType = 'flat';
-              resJson.txtSkyltCvr = 13;
-              var nonObjJson = {};
-              for (var prop in resJson) {
-                if (resJson.hasOwnProperty(prop) && typeof resJson[prop] !== "object") {
-                  nonObjJson[prop] = resJson[prop];
-                }
-              }
-              $rootScope.data = JSON.stringify(nonObjJson);
-              $rootScope.postData($rootScope.data);
-              scope.showData();
-            }
-
-            scope.showData = function() {
-              var resultData = {}
-              var ObjCount = 0;
-              $rootScope.model.steps.forEach(function(obj) {
-                obj.containers.forEach(function(obj1) {
-                  obj1.parameters.forEach(function(obj2) {
-                    if (obj2.id != 'prev' && obj2.id != 'next' && obj2.id != 'figure' && obj2.id != 'run' && obj2.id != 'display' && obj2.id != 'construction' && obj2.type != 'shape' && obj2.type != 'table' && obj2.type != 'rectangular' && obj2.type != 'lshape' && obj2.type != 'tshape' && obj2.type != 'ushape') {
-                      resultData[obj2.id] = obj2.value;
-                      ObjCount = ObjCount + 2;
-                    }
-                  });
-                });
-              });
-              scope.resultHead = [];
-              scope.resultValue = [];
-              for (var key in resultData) {
-                scope.resultHead.push(key);
-                scope.resultValue.push(resultData[key]);
-              }
-            };
-            scope.showData();
 
             switch (scope.field.type) {
               case 'dropdown':
@@ -681,89 +772,89 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   return p.id == scope.field.related_id;
                 })[0];
                 break;
-              case 'result':
-                /*Result tab tables ........*/
-                scope.$on('resultData', function(event, data) {
-                  /*  Result Tab.......................*/
-                  $rootScope.out = data
+              // case 'result':
+              //   /*Result tab tables ........*/
+              //   scope.$on('resultData', function(event, data) {
+              //     /*  Result Tab.......................*/
+              //     $rootScope.out = data
 
-                  /* Result Data table..................*/
+              //     /* Result Data table..................*/
 
-                  $rootScope.heading = Object.keys($rootScope.out.results[0]);
-                  $rootScope.values = [];
-                  $rootScope.out.results.forEach(function(obj, i) {
-                    $rootScope.values[i] = Object.values(obj);
-                  });
-                  /*..............................*/
-
-
-                  /* GeneralParams data table................*/
-
-                  $rootScope.generalKeys = Object.keys($rootScope.out.generalParams);
-                  $rootScope.filteredgeneralParams = [];
-                  $rootScope.filteredGeneralKeys = [];
-                  $rootScope.glasstype = [];
-                  $rootScope.buildingDetails = [];
-                  $rootScope.misc = [];
-                  $rootScope.generalKeys.forEach(function(obj, i) {
-                    if (obj.charAt(0) == obj.charAt(0).toLowerCase()) {
-                      $rootScope.filteredGeneralKeys[i] = obj;
-                    }
-                  });
-                  $rootScope.filteredGeneralKeys.forEach(function(fkey) {
-                    $rootScope.generalKeys.forEach(function(gkey, i) {
-                      if (fkey == gkey) {
-                        $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
-                      }
-                    })
-                  });
-                  $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
-                  $rootScope.filteredgeneralParamsKeys.forEach(function(key) {
-                    if (key.charAt(0) == 'g') {
-                      $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
-                    } else if (key.charAt(0) == 'b') {
-                      $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
-                    } else {
-                      $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
-                    }
-                  });
-                  $rootScope.glassArray = [];
-                  for (var key in $rootScope.glasstype) {
-                    $rootScope.glassArray.push(key, $rootScope.glasstype[key]);
-                  }
-                  $rootScope.buildingDetailsArray = [];
-                  for (var key in $rootScope.buildingDetails) {
-
-                    $rootScope.buildingDetailsArray.push(key, $rootScope.buildingDetails[key]);
-                  }
-                  $rootScope.miscArray = [];
-                  for (var key in $rootScope.misc) {
-
-                    $rootScope.miscArray.push(key, $rootScope.misc[key]);
-                  }
-
-                  /* .......................*/
-
-                  /*  Input Data Table............*/
-
-                  $rootScope.inputArray = [];
-                  for (var key in $rootScope.out.input) {
-                    $rootScope.inputArray.push(key, $rootScope.out.input[key]);
-                  }
+              //     $rootScope.heading = Object.keys($rootScope.out.results[0]);
+              //     $rootScope.values = [];
+              //     $rootScope.out.results.forEach(function(obj, i) {
+              //       $rootScope.values[i] = Object.values(obj);
+              //     });
+              //     /*..............................*/
 
 
-                  scope.resultValues = $rootScope.values;
-                  scope.resultHeading = $rootScope.heading;
+              //     /* GeneralParams data table................*/
 
-                  scope.glassType = $rootScope.glassArray;
-                  scope.buildingDetails = $rootScope.buildingDetailsArray;
-                  scope.misc = $rootScope.miscArray;
-                  scope.inputData = $rootScope.inputArray;
-                  /* --- SIM File ---*/
-                  scope.simFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.simFile;
-                  scope.bepsFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.beps
-                })
-                break;
+              //     $rootScope.generalKeys = Object.keys($rootScope.out.generalParams);
+              //     $rootScope.filteredgeneralParams = [];
+              //     $rootScope.filteredGeneralKeys = [];
+              //     $rootScope.glasstype = [];
+              //     $rootScope.buildingDetails = [];
+              //     $rootScope.misc = [];
+              //     $rootScope.generalKeys.forEach(function(obj, i) {
+              //       if (obj.charAt(0) == obj.charAt(0).toLowerCase()) {
+              //         $rootScope.filteredGeneralKeys[i] = obj;
+              //       }
+              //     });
+              //     $rootScope.filteredGeneralKeys.forEach(function(fkey) {
+              //       $rootScope.generalKeys.forEach(function(gkey, i) {
+              //         if (fkey == gkey) {
+              //           $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
+              //         }
+              //       })
+              //     });
+              //     $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
+              //     $rootScope.filteredgeneralParamsKeys.forEach(function(key) {
+              //       if (key.charAt(0) == 'g') {
+              //         $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
+              //       } else if (key.charAt(0) == 'b') {
+              //         $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
+              //       } else {
+              //         $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
+              //       }
+              //     });
+              //     $rootScope.glassArray = [];
+              //     for (var key in $rootScope.glasstype) {
+              //       $rootScope.glassArray.push(key, $rootScope.glasstype[key]);
+              //     }
+              //     $rootScope.buildingDetailsArray = [];
+              //     for (var key in $rootScope.buildingDetails) {
+
+              //       $rootScope.buildingDetailsArray.push(key, $rootScope.buildingDetails[key]);
+              //     }
+              //     $rootScope.miscArray = [];
+              //     for (var key in $rootScope.misc) {
+
+              //       $rootScope.miscArray.push(key, $rootScope.misc[key]);
+              //     }
+
+              //     /* .......................*/
+
+              //     /*  Input Data Table............*/
+
+              //     $rootScope.inputArray = [];
+              //     for (var key in $rootScope.out.input) {
+              //       $rootScope.inputArray.push(key, $rootScope.out.input[key]);
+              //     }
+
+
+              //     scope.resultValues = $rootScope.values;
+              //     scope.resultHeading = $rootScope.heading;
+
+              //     scope.glassType = $rootScope.glassArray;
+              //     scope.buildingDetails = $rootScope.buildingDetailsArray;
+              //     scope.misc = $rootScope.miscArray;
+              //     scope.inputData = $rootScope.inputArray;
+              //     /* --- SIM File ---*/
+              //     scope.simFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.simFile;
+              //     scope.bepsFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.beps
+              //   })
+              //   break;
               case 'button':
                 scope.previous = function() {
                   $rootScope.stepBack();

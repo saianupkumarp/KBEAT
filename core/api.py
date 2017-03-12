@@ -31,7 +31,6 @@ def get_model(model_name):
 def run_model(model_name):
     return tasks.run_task(request.data, model_name)
 
-@rest_api.route('/runsim')
-def get_sim():
-    model = tasks.run_sim()
-    return model
+@rest_api.route('/tasks')
+def get_tasks(count=10, offset=0):
+    return jsonify(data.get_tasks())

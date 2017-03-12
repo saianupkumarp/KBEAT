@@ -1,7 +1,11 @@
 	<div style="margin-left:75%;">
-		<div ng-if="labels" ng-class="{headerOption:true,active:$index == selectedCountry}" ng-repeat="model in models | orderBy : title">
-			<a class="selectCountry"  href="/keec/model/{{model.name}}" ng-click="onClick($index)" target="_self" value="{{model.name}}">{{ model.title }}</a> 
+		<div ng-class="{headerOption:true}" ui-sref-active="active">
+			<a class="selectCountry" ui-sref="app.tlist" translate="menu.tasks"></a>
 		</div>
+		<div ng-if="labels" ng-class="{headerOption:true}" ui-sref-active="active" ng-repeat="model in models | orderBy : title">
+			<a class="selectCountry"  ui-sref="app.home({ model_name: model.name })" value="{{model.name}}">{{ model.title }}</a> 
+		</div>
+		<!-- MD-Menu only Works for smaller screens -->
 		<md-menu style="margin-left:25%;" ng-if="menu">
 			<md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-click="$mdOpenMenu()">
 				<md-icon md-menu-origin md-svg-icon="/keec/assets/img/menu.svg"></md-icon>
