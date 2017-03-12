@@ -884,7 +884,7 @@ md-select{
 }
 @media only screen and (min-width: 1300px) {
 	.step-area-wrapper{
-		height:880px !important;
+		height:895px !important;
 	}
 }
 
@@ -951,24 +951,24 @@ md-select{
 		height:850px;
 	}
 	.content-area{
-		margin:16% auto;
+		margin:7% auto;
 	}
-	.step-headers{
+	/*.step-headers{
 		padding-top: 12%;
-	}
+	}*/
 	.step-content{
 		margin-top:6%;
 	}
 }
 @media only screen and (min-height:1440px) and (min-width:2560px) {
 	.step-area-wrapper{
-		height:960px !important;
+		height:1050px !important;
 	}
 	.content-area{
-		margin:16% auto;
+		margin:8% auto;
 	}
 	.step-headers{
-		padding-top: 13%;
+		padding-top: 6%;
 	}
 	.step-content{
 		margin-top:6%;
