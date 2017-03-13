@@ -19,7 +19,7 @@ client = MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
 
 db = client[settings.MONGO_DBNAME]
 Models = db['model']
-Tasks = db['Task']
+Tasks = db['task']
 
 def get_locales():
     locales_path = path.join(settings.STATIC_ROOT, 'locales')
