@@ -609,6 +609,20 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 }
 
                 break;
+              case 'dimension':
+                scope.shpAxis = scope.field.label.split(',');
+                scope.shpAxisVals = Object.keys(scope.field);
+                scope.field.txtFloorArea = parseInt(scope.field.txtFloorArea);
+                scope.fltrAxisVal = function(axis) {
+                  if(scope.field.hasOwnProperty('txtLeng' + axis)) {
+                    scope.axisVal = Number(scope.field['txtLeng' + axis])
+                    return scope.axisVal
+                  }
+                 };
+                scope.building = scope.container.parameters.filter(function(p) {
+                  return p.id == scope.field.related_id;
+                })[0];
+                break;
               case 'rectangular':
                 scope.field.value = {
                   txtLengX1: 10,

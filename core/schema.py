@@ -10,7 +10,6 @@ from schematics.transforms import blacklist
 from bson.objectid import ObjectId
 import settings
 
-
 class ModelContainer(Entity):
     id = StringType(required=True)
     label = StringType(default='')

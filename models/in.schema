@@ -1,0 +1,395 @@
+name: india
+title: India
+steps:
+  - id: buildingInfo
+    label: Building Info
+    containers:
+    - id: buildingInformation
+      label: Building Information
+      widthPercent: 40
+      parameters:
+        - id: txtBldgName
+          type: text
+          label: Building Name
+          widthPercent: 100
+        - id: txtBldgAddress
+          type: text
+          label: Building Address
+          widthPercent: 100
+    - id: buildingUse
+      label: Building Use
+      widthPercent: 60
+      parameters:
+        - id: cmbBldgType
+          type: dropdown
+          options: "Villa, Apartment, Office: Public, Office: Private, Hotel: ThreeStar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
+          values: "Villa, Apartment, Office: Public, Office: Private, hotelthreestar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
+          default: Office:Private
+          label: Building Type
+          widthPercent: 50
+        - id: txtBldgNumFloor
+          type: number
+          label: Number of Floors
+          label_suffix: story
+          default: 1
+          widthPercent: 50
+          default: 1
+        - id: cmbBldgLocation
+          type: dropdown
+          options: Tunis, Bizerte, Ariana, Nabeul, Mahdia, Sousse, Sfax, Medenine, Beja, Jendouba, Kairouan, Gafsa, Siliana, Sidi_Bouzid, Kebili, Tozeur, Tataouine, Matmata
+          values: TUNIS, BIZERTE, ARIANA, NABEUL, MAHDIA, SOUSSE, SFAX, MEDENINE, BEJA, JENDOUBA, KAIROUAN, GAFSA, SILIANA, SIDI_BOUZID, KEBILI, TOZEUR, TATAOUINE, MATMATA
+          default: TUNIS
+          label: Building Location
+          widthPercent: 50
+        - id: txtBldgCondArea
+          type: number
+          label: Air-Conditioned Area
+          label_suffix: (%)
+          default: 50
+          widthPercent: 50
+          default: 50
+    - id: buildingShape
+      label: Building Shape
+      widthPercent: 100
+      hasShape: true
+      parameters:
+        - id: cmbBldgShape
+          type: dropdown
+          url: Rectangular.jpg, L-Shape.jpg, T-Shape.jpg, U-Shape.jpg
+          values: Rectangular, L-Shape, T-Shape, U-Shape
+          options: Rectangular, L-Shape, T-Shape, U-Shape
+          default: Rectangular
+          label: Building Shape
+          span_width: 400
+          span_height: 180
+          widthPercent: 100
+        - id: txtBldgAzi
+          type: number
+          label: Building Orientation
+          label_suffix: deg
+          label_below: (North 0deg. South 180 deg. West 135 deg)
+          default: 0
+          widthPercent: 50
+        - id: txtFloorHeight
+          type: number
+          label: Floor to Floor Height
+          label_suffix: m
+          default: 3
+          widthPercent: 50
+        - id: rectangular
+          type: dimension
+          label: X1,Y1
+          rel_id: rect
+          label_suffix: m
+          related_id: cmbBldgShape
+          widthPercent: 50
+          url: Rectangular.jpg
+          txtLengX1: 10
+          txtLengY1: 5
+          txtFloorArea: 0
+          floor_area_label_suffix: m2
+        - id: lshape
+          type: dimension
+          label: X1,X2,Y1,Y2
+          label_suffix: m
+          related_id: cmbBldgShape
+          widthPercent: 50
+          txtLengX1: 10
+          txtLengX2: 5
+          txtLengY1: 10
+          txtLengY2: 4
+          url: L-Shape.jpg
+          txtFloorArea: 0
+          floor_area_label_suffix: m2
+        - id: biShape
+          type: shape
+          label: Shape
+          related_id: cmbBldgShape
+          widthPercent: 50
+      shapeDetails:
+        - id: Rectangular
+          txlenx1: true
+          txleny1: true
+          axis: txlenx1, txleny1
+        - id: rect
+          axis: X1, Y1
+          image: Rectangular.jpg
+          related_id: cmbBldgShape
+        - id: lshape
+          axis: X1, X2, Y1, Y2
+          image: L-Shape.jpg
+          related_id: cmbBldgShape
+        - id: tshape
+          axis: X1, X2, X3, Y1, Y2
+          image: T-Shape.jpg
+          related_id: cmbBldgShape
+        - id: ushape
+          axis: X1, X2, X3, Y1, Y2, Y3
+          image: U-Shape.jpg
+          related_id: cmbBldgShape
+    - id: button
+      widthPercent: 100
+      label: Button
+      parameters:
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20
+  - id: envelope
+    label: Envelope
+    containers:
+    - id: exteriorConstructions
+      label: Exterior Constructions
+      widthPercent: 100
+      parameters:
+        - id: cmbSouthWall
+          type: dropdown
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          default: EWall Cons-NoInsu
+          label: South Wall
+          widthPercent: 50
+        - id: cmbNorthWall
+          type: dropdown
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          default: EWall Cons-NoInsu
+          label: North Wall
+          widthPercent: 50
+        - id: cmbEastWall
+          type: dropdown
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          default: EWall Cons-NoInsu
+          label: East Wall
+          widthPercent: 50
+        - id: cmbWestWall
+          type: dropdown
+          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
+          default: EWall Cons-NoInsu
+          label: West Wall
+          widthPercent: 50
+        - id: cmbRoof
+          type: dropdown
+          options: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
+          values: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
+          default: Roof Cons-NoInsu
+          label: Roof
+          widthPercent: 50
+        - id: cmbFirstFloorContact
+          type: dropdown
+          options: Ground, Conditioned Space, UnConditioned Space
+          values: ground, condition, uncondition
+          default: ground
+          label: 1st Floor Contact Condition
+          widthPercent: 50
+    - id: windows
+      label: Windows (Conditioned space ONLY)
+      widthPercent: 100
+      hasShape: true
+      parameters:
+        - id: rdbtnWinWwr
+          type: radio
+          label: Windows (Condtioned space ONLY)
+          options: Window Wall Ratio (%), Window Area (m2)
+          url: fp.jpg
+          span_width: 400
+          span_height: 180
+          widthPercent: 100
+        - id: northpercent
+          type: number
+          label: North
+          default: 10
+          widthPercent: 50
+        - id: southpercent
+          type: number
+          label: South
+          default: 10
+          widthPercent: 50
+        - id: eastpercent
+          type: number
+          label: East
+          default: 10
+          widthPercent: 50
+        - id: westpercent
+          type: number
+          label: West
+          default: 10
+          widthPercent: 50
+        - id: glasstype
+          type: dropdown
+          options: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
+          values: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
+          default: Single Clear
+          label: Glass Type
+          widthPercent: 100
+        - id: txtWinSouthOverhang
+          type: number
+          label: Overhang
+          default: '0.3'
+          label_suffix: m(depth)
+          widthPercent: 100
+        - id: txtWinSouthFp
+          type: number
+          label: FP
+          default: '0.2'
+          widthPercent: 100
+        - id: windowShape
+          type: shape
+          label: Shape
+          related_id: rdbtnWinWwr
+          widthPercent: 50
+    - id: constructionEdit
+      label: Construction Edit
+      widthPercent: 100
+      openOnEdit: yes
+      parameters:
+        - id: construction
+          type: dropdown
+          options: ewallconsnolnsu, roofconsnolnsu
+          values: EWALL Cons-Nolnsu, Roof Cons-Nolnsu
+          default: EWALL Cons-Nolnsu
+          label: Construction
+          dialog: 1
+          widthPercent: 50
+        - id: layers
+          type: dropdown
+          options: ewallconslayersnolnsu, roofconslayersnolnsu
+          values: EWALL Cons Layers-Nolnsu, Roof Cons Layers-Nolnsu
+          default: EWALL Cons Layers-Nolnsu
+          label: Layers
+          dialog: 1
+          widthPercent: 50
+        - id: newConstructionName
+          type: text
+          label: New Construction Name
+          widthPercent: 50
+        - id: newLayerName
+          type: text
+          label: New Layer Name
+          dialog: 1
+          widthPercent: 50
+        - id: specificationMethod
+          type: dropdown
+          options: layersinput
+          values: Layers Input
+          default: Layers Input
+          label: Specification Method
+          dialog: 1
+          widthPercent: 50
+        - id: surfaceroughness
+          type: number
+          label: Surface Roughness
+          dialog: 1
+          widthPercent: 50
+        - id: extcolor
+          type: number
+          label: Ext.Color
+          label_suffix: (absorpt.)
+          dialog: 1
+          widthPercent: 50
+    - id: button
+      widthPercent: 100
+      label: Button
+      parameters:
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 20
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20
+  - id: spacedhw
+    label: Space/DHW
+    containers:
+    - id: spaceCondition
+      label: Space Condition
+      widthPercent: 100
+      parameters:
+        - id: spaceTable
+          type: table
+          row1: 70, 129, 0.3, 1.5, 0.93, (), ()
+          row2: 30, 269, 1, 0.93, 0, (), ()
+          row_heading: Office, Corridors Restrooms Stairs,
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+        - id: percentAreaSum
+          type: number
+          label: Percent Area Sum
+          label_suffix: (%)
+          default: 100
+          enabled: false
+          widthPercent: 50
+    - id: domestichotwatersystem
+      label: Domestic Hot Water System
+      widthPercent: 100
+      parameters:
+        - id: cmbHotWaterSystem
+          type: dropdown
+          options: Tankless electric DHW system, Tank gas-fired DHW system
+          values: Tankless electric DHW system, Tank gas-fired DHW system
+          default: Tankless electric DHW system
+          label: Building Type
+          widthPercent: 50
+    - id: button
+      widthPercent: 100
+      label: Button
+      parameters:
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 20
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20
+  - id: hvac
+    label: HVAC System
+    containers:
+    - id: hvacsystem
+      label: HVAC System
+      widthPercent: 100
+      parameters:
+        - id: cmbBldgSystem
+          type: dropdown
+          label: HVAC System
+          url: Residential System.jpg, Packaged Variable Air Volume System.jpg, Split System with Baseboard.jpg, Fan Coil System.jpg, Variable Air Volume System.jpg
+          values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
+          options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
+          default: Residential System
+          span_width: 600
+          span_height: 180
+          widthPercent: 100
+        - id: txtHeatSetTemp
+          type: number
+          default: 20
+          label: Heating setpoint temperature
+          label_suffix: degC
+          widthPercent: 50
+        - id: txtCoolSetTemp
+          type: number
+          default: 26
+          label: Cooling setpoint temperature
+          label_suffix: degC
+          widthPercent: 50
+        - id: hvacShape
+          type: shape
+          label: Figure
+          related_id: cmbBldgSystem
+          widthPercent: 100
+    - id: button
+      widthPercent: 100
+      label: Button
+      parameters:
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 20
+        - id: run
+          type: button
+          label: Run
+          widthPercent: 20
+ 

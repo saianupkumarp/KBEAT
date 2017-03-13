@@ -49,7 +49,6 @@ def load_model_data():
 def get_task(task_id):
     task_data = Tasks.find_one({"_id": ObjectId(task_id)})
     task_data['id'] = str(task_id)
-    print task_data
     if not task_data:
         return None
     task = Task(task_data, strict = False)
