@@ -1,0 +1,135 @@
+<div ng-app="ResultPage" ng-controller="resultPageController">  
+  <div class="container">
+    <div>
+      <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
+      <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px;padding: 10px 30px;background: #f8f8f8;">
+       This is the baseline scenario. Fuel prices and allocations are set to levels established by existing policies as of 2015. This scenario maintains these allocations throughout the planning horizon.
+     </p>
+   </div>
+   <ul class="nav nav-tabs parentList">
+     <li class="list active"><a data-toggle="tab" href="#reports">Reports</a></li>
+     <li class="list"><a data-toggle="tab" href="#caliberation">caliberation</a></li>
+     <div class="dropdown">
+      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF</a></li>
+
+        </ul>
+      </div>
+    </ul>
+
+    <div class="tab-content">
+      <div id="reports" class="tab-pane fade in active">
+        <div ng-class="{chartContainer:true}">
+          <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+            </div>
+            <div style="border:6px solid #f8f8f8;" class="tableContainer">
+              <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
+              <table>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Savings</th>
+                </tr>
+                <tr>
+                  <td>Peter</td>
+                  <td>Griffin</td>
+                  <td>$100</td>
+                </tr>
+                <tr>
+                  <td>Lois</td>
+                  <td>Griffin</td>
+                  <td>$150</td>
+                </tr>
+                <tr>
+                  <td>Joe</td>
+                  <td>Swanson</td>
+                  <td>$300</td>
+                </tr>
+                <tr>
+                  <td>Cleveland</td>
+                  <td>Brown</td>
+                  <td>$250</td>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+          <div id="caliberation" class="tab-pane fade">
+           <div id="accordion" class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4 class="panel-title">
+                Menu 1
+              </h4></a>
+
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4 class="panel-title">
+                Menu 1
+              </h4></a>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4 class="panel-title">
+              Menu 1
+            </h4></a>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer role="contentinfo" id="keec-footer1" ui-view="footer" ng-cloak>
+ <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3">
+      <span class="footer__logo"> </span>
+    </div>
+    <!-- /.footer-info-wrapper -->
+    <div class="col-xs-12 col-sm-5 footer-links-wrapper">
+      <ul class="list-inline">
+        <li><a target="_blank" href="https://www.kapsarc.org/disclaimer/">Disclaimer</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/contact-us/">Contact Us</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/privacy-policy/">Privacy Policy</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/terms-conditions/">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-1 footer-social-links">
+      <ul class="social-links">
+        <li><a href="https://twitter.com/kapsarc" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/company/kapsarc" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-3 footer-info-wrapper">
+      <span>Kapsarc © 2016. All Rights Reserved.
+      </div>
+      <!-- /.footer-links-wrapper -->
+    </div>
+    <!-- /.row -->
+  </div>
+</footer>
