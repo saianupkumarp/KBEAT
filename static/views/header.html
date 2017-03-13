@@ -1,12 +1,12 @@
-	<div style="margin-left:75%;">
+	<!-- <div style="margin-left:75%;">
 		<div ng-class="{headerOption:true}" ui-sref-active="active">
 			<a class="selectCountry" ui-sref="app.tlist" translate="menu.tasks"></a>
 		</div>
 		<div ng-if="labels" ng-class="{headerOption:true}" ui-sref-active="active" ng-repeat="model in models | orderBy : title">
 			<a class="selectCountry"  ui-sref="app.home({ model_name: model.name })" value="{{model.name}}">{{ model.title }}</a> 
-		</div>
+		</div> -->
 		<!-- MD-Menu only Works for smaller screens -->
-		<md-menu style="margin-left:25%;" ng-if="menu">
+		<!-- <md-menu style="margin-left:25%;" ng-if="menu">
 			<md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-click="$mdOpenMenu()">
 				<md-icon md-menu-origin md-svg-icon="/keec/assets/img/menu.svg"></md-icon>
 			</md-button>
@@ -17,4 +17,33 @@
 			</md-menu-content>
 		</md-menu>
 	</div>
-	
+-->
+
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#models">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand header__logo" href="#"></a>
+		</div>
+		<div class="collapse navbar-collapse" id="models">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="headerOption" ui-sref-active="active">
+					<a class="selectCountry" ui-sref="app.tlist" translate="menu.tasks"></a>
+				</li>
+				<li class="dropdown headerOption">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle selectCountry"> <span translate="menu.models"></span><b class="caret"></b></a>
+					<ul class="dropdown-menu" style="top:100%;">
+						<li class="headerOption1" ui-sref-active="active" ng-repeat="model in models | orderBy : title">
+							<a class="selectCountry"  ui-sref="app.home({ model_name: model.name })" value="{{model.name}}">{{ model.title }}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
