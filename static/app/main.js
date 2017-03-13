@@ -610,15 +610,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
                 break;
               case 'dimension':
-                scope.shpAxis = scope.field.label.split(',');
-                scope.shpAxisVals = Object.keys(scope.field);
-                scope.field.txtFloorArea = parseInt(scope.field.txtFloorArea);
-                scope.fltrAxisVal = function(axis) {
-                  if(scope.field.hasOwnProperty('txtLeng' + axis)) {
-                    scope.axisVal = Number(scope.field['txtLeng' + axis])
-                    return scope.axisVal
+                scope.axisObj = {};
+                function axisData() {
+                  var shpAxisArr = scope.field.label.split(',');
+                  for (var axisKey of shpAxisArr) {
+                    if(scope.field.hasOwnProperty('txtLeng' + axisKey)) {
+                      scope.axisObj[axisKey] = Number(scope.field['txtLeng' + axisKey])
+                    }
                   }
-                 };
+                };
+                axisData();
+                //Watch
+                scope.$watchCollection(
+                  "axisObj", function() {
+                    scope.txtFloorArea = 1;
+                    for(var axisKey in scope.axisObj) {
+                      scope.txtFloorArea *= scope.axisObj[axisKey]
+                    };
+                  }
+                );
                 scope.building = scope.container.parameters.filter(function(p) {
                   return p.id == scope.field.related_id;
                 })[0];
