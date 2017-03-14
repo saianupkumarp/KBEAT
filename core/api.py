@@ -34,3 +34,13 @@ def run_model(model_name):
 @rest_api.route('/tasks')
 def get_tasks(count=10, offset=0):
     return jsonify(data.get_tasks())
+
+@rest_api.route('/tasks/<task_id>')
+def get_task(task_id):
+    task = data.get_task(task_id)
+    return jsonify(task.to_primitive(role='DTO')) if task else abort(404)
+
+@rest_api.route('/tasks/<task_id>/result')
+def get_task_result(task_id):
+    result = data.get_task_result(task_id)
+    return jsonify(result) if result else abort(404)

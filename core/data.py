@@ -59,3 +59,18 @@ def get_tasks():
     tasks = [get_task(task['_id']) for task in Tasks.find({}, {"_id":1, "created":1}).sort("created", -1)]
     tasks = [task.to_primitive(role='DTO') for task in tasks if task]
     return {"tasks": tasks}
+
+def get_task_result(task_id):
+    task = Tasks.find_one({"_id": ObjectId(task_id)})
+    if not task:
+        return None
+    if task.get('status', '') == 'COMPLETED':
+        report = {
+            'pieChartData': task.get('result').get('bepu'),
+            'barChartData': task.get('result').get('pse'),
+            'simFile': task.get('result').get('simFile'),
+            'bepsFile': task.get('result').get('beps'),
+            'jasperPdf': task.get('result').get('pdf'),
+            'calibrationData': task.get('result').get('input')
+        }
+    return report
