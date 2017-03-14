@@ -462,6 +462,51 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         };
       })
 
+      //RunTime on Tasks List Page
+      .filter('runtime', function ($sce) {
+        var getTimeInString = function(delta){
+          delta = delta/1000;
+          var days = Math.floor(delta / 86400);
+          delta -= days * 86400;
+
+          // calculate (and subtract) whole hours
+          var hours = Math.floor(delta / 3600) % 24;
+          delta -= hours * 3600;
+
+          // calculate (and subtract) whole minutes
+          var minutes = Math.floor(delta / 60) % 60;
+          delta -= minutes * 60;
+
+          // what's left is seconds
+          var seconds = delta % 60;
+          var time = "";
+          if (days > 0)
+          {
+            time = time + days + " days "
+          }
+          if (hours > 0)
+          {
+            time = time + hours + " hours "
+          }
+          if (minutes > 0)
+          {
+            time = time + minutes + " minutes "
+          }
+          if (seconds > 0)
+          {
+            seconds = Math.round(seconds, 0)
+            time = time + seconds + " seconds "
+          }
+          return time;
+
+        }
+        return function (task) {
+          var startTime = +new Date(task.startTime);
+          var endTime = +new Date(task.endTime);
+          return $sce.trustAsHtml( getTimeInString(endTime - startTime));
+        };
+      })
+
       .directive('field', function($mdDialog, $rootScope, $mdEditDialog) {
         return {
           restrict: 'E',

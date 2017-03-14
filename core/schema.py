@@ -86,6 +86,8 @@ class Task(Entity):
     country = StringType(required=True)
     model = ModelType(Model, required=True)
     status = StringType(default='UNKNOWN', choices=('PENDING', 'RUNNING', 'SUCCESS', 'FAILED', 'COMPLETED', 'CANCELLED'))
+    startTime = DateTimeType()
+    endTime = DateTimeType()
 
     @serializable
     def model_name(self):

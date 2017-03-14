@@ -13,7 +13,7 @@
         <th></th>
         <th translate="properties.task.model_title"></th>
         <th translate="properties.task.created"></th>
-        <th translate="properties.task.timetook"></th>
+        <th class="runTime" translate="properties.task.timetook"></th>
         <th style="width:20%;" translate="properties.task.status"></th>
       </tr>
     </tbody>
@@ -27,7 +27,7 @@
           </div>
         </td>
         <td am-time-ago="task.createdTime"></div></td>
-        <td>{{task.createdTime}}</td>
+        <td>{{task|runtime}}</td>
         <td>
           <div class="task">
             <div ng-switch="task.status">
