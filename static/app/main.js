@@ -357,6 +357,36 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               setTimeout(window.createCarousel,500);
             }
           })
+
+          //Task Result
+          .state('app.taskResult', {
+            url: '/keec/task/{task_id}',
+            resolve: {
+              task: function($stateParams, $http, tasks, $rootScope) {
+                var task = _(tasks).findWhere({id: $stateParams['task_id']});
+                return $http.get('/keec/api/tasks/' + task.id + '/result').then(function (response) {
+                    console.log(response.data)
+                    // var result = response.data;
+                    
+                    return response.data;
+                });
+              }
+            },
+            views: {
+              'content@': {
+                templateUrl: '/keec/assets/views/task-result.html',
+                controller: function ($scope, $window, task) {
+                  $scope.task = task;
+                  $scope.decode = function (input) {
+                    return $window.atob(input);
+                  }
+                }
+              }
+            },
+            onEnter: function ($state, task) {
+              if (!task) $state.go('app.tlist', {}, {location: 'replace'});
+            }
+          })
         // If the path doesn't match any of the configured urls redirect to home
         $urlRouterProvider.otherwise('/keec/');
       })
@@ -424,7 +454,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
       .filter('parameterDisplay', function ($sce) {
         var getParameters = function(args){
-          console.log(args);
+          // console.log(args);
           var bldLoc = args.cmbBldgLocation;
           var bldShape = args.cmbBldgShape;
           return bldLoc + " | " + bldShape;
