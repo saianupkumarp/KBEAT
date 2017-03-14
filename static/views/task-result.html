@@ -25,9 +25,13 @@
       <div id="reports" class="tab-pane fade in active">
         <div ng-class="{chartContainer:true}">
           <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
-            <p>{{task.barChartData|json}}</p></div>
+          <p>
+              <nvd3 options='barChartOptions' data='barData'></nvd3>
+            </p>
             <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
-              <p>{{task.pieChartData|json}}</p></div>
+              <p>
+              <nvd3 options='pieChartOptions' data='pieData'></nvd3>
+            </p>
             </div>
             <div style="border:6px solid #f8f8f8;" class="tableContainer">
               <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>

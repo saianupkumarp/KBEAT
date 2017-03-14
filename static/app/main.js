@@ -1,13 +1,14 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
     'angular-translate-loader', 'angular-moment', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs'
+    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs', 'nvd3'
   ],
 
   function($, angular) {
 
     angular.module('keec', [
-        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table', 'duScroll', 'angularMoment'
+        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table',
+        'duScroll', 'angularMoment', 'nvd3'
       ])
 
       .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
@@ -377,13 +378,58 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 templateUrl: '/keec/assets/views/task-result.html',
                 controller: function ($scope, $window, task) {
                   $scope.task = task;
-                  $scope.decode = function (input) {
-                    return $window.atob(input);
-                  }
+                  $scope.pieChartData = task.pieChartData;
+                   $scope.pieChartOptions = {
+                    chart: {
+                      type: 'pieChart',
+                        showLabels: true,
+                        labelThreshold: .05,
+                        height: 270,
+                        width:398,
+                        margin : {
+                            top: 20,
+                            right: 20,
+                            bottom: 10,
+                            left: 70
+                        },
+                        x: function(d){ return d.label; },
+                        y: function(d){ return d.value; },
+                        duration: 500,
+                      }
+                   };
+                   $scope.pieData = $scope.pieChartData
+                   $scope.barChartOptions = {
+                    chart: {
+                      type: 'multiBarChart',
+                        clipEdge: true,
+                        stacked: true,
+                        height: 270,
+                        width:398,
+                        margin : {
+                            top: 20,
+                            right: 20,
+                            bottom: 45,
+                            left: 45
+                        },
+                        duration: 500,
+                        xAxis: {
+                            "showMaxMin": false,
+                            tickFormat: function(d) {return d;}
+                        },
+                        yAxis: {
+                            "showMaxMin": false,
+                            axisLabelDistance: 100,
+                            tickFormat: function(d){
+                              return d3.format(',.f')(d);
+                          }
+                        },
+                      }
+                   };
+                   $scope.barData = task.barChartData;
                 }
               }
             },
-            onEnter: function ($state, task) {
+            onEnter: function ($state,  $stateParams, $rootScope, $timeout, task) {
               if (!task) $state.go('app.tlist', {}, {location: 'replace'});
             }
           })
