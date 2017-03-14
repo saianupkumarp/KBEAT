@@ -25,6 +25,9 @@ requirejs.config({
     'angular-moment': 'vendor/angular-moment/angular-moment.min',
     'moment': 'vendor/moment/min/moment-with-locales.min',
     'moment-timezone': 'vendor/moment-timezone/builds/moment-timezone-with-data.min',
+    'd3': 'vendor/d3/d3.min',
+    'nvd3-base': 'vendor/nvd3/build/nv.d3.min',
+    'nvd3': 'vendor/angular-nvd3/dist/angular-nvd3.min',
   },
   shim: {
     'angular': {
@@ -86,6 +89,15 @@ requirejs.config({
     },
     'moment-timezone': {
       deps: ['moment']
+    },
+    'd3': {
+      exports: 'd3'
+    },
+    'nvd3-base' : {
+      deps: ['angular', 'd3']
+    },
+    'nvd3':{
+      deps: ['nvd3-base']
     }
   }
 });
