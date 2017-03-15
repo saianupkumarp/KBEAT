@@ -1,5 +1,5 @@
-name: india
-title: India
+name: tunisia
+title: Tunisia
 steps:
   - id: buildingInfo
     label: Building Info
@@ -76,7 +76,7 @@ steps:
           label_suffix: m
           default: 3
           widthPercent: 50
-        - id: rectangular
+        - id: Rectangular
           type: dimension
           label: X1,Y1
           rel_id: rect
@@ -89,7 +89,7 @@ steps:
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: lshape
+        - id: L-Shape
           type: dimension
           label: X1,X2,Y1,Y2
           label_suffix: m
@@ -103,7 +103,7 @@ steps:
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: tshape
+        - id: T-Shape
           type: dimension
           label: X1,X2,X3,Y1,Y2
           label_suffix: m
@@ -118,7 +118,7 @@ steps:
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: ushape
+        - id: U-Shape
           type: dimension
           label: X1,X2,X3,Y1,Y2,Y3
           label_suffix: m

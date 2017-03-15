@@ -1,11 +1,11 @@
 <div class="dimension-wrapper" ng-if="building.url==field.url">
 	<div class="flex-{{field.containerWidthPercent}}" ng-class="{'input-container':true, error: field.error}" ng-repeat="(key, val) in axisObj">
-		<label for="{{key}}" ng-class="{error: field.error}">{{key}}</label>
+		<label for="txtLeng{{key}}" ng-class="{error: field.error}">{{key}}</label>
 		<input type="number" id="txtLeng{{key}}" ng-model="axisObj[key]">
 		<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
 	</div>
 	<div class="flex-{{field.containerWidthPercent}}" ng-class="{'input-container':true, error: field.error}">
-		<label ng-class="{error: field.error}">Floor Area</label>
+		<label for ="txtFloorArea" ng-class="{error: field.error}">Floor Area</label>
 		<input type="number" id="txtFloorArea" ng-model="txtFloorArea" disabled>
 		<div class="label-suffix" ng-if="field.floor_area_label_suffix">{{field.floor_area_label_suffix}}</div>
 	</div>	

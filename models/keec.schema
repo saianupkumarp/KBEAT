@@ -1,5 +1,5 @@
-name: tunisia
-title: Tunisia
+name: india
+title: India
 steps:
   - id: buildingInfo
     label: Building Info
