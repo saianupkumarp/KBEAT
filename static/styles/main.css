@@ -99,9 +99,9 @@ header{
 	color: #807f83;
 	font-weight: 500;
 }
-.headerOption  .selectCountry:hover{
+/*.headerOption  .selectCountry:hover{
 	color:#61a659 !important;
-}
+}*/
 .headerOption.active{
 	border-bottom: 4px solid;
 	border-bottom-color: #ffd200;
@@ -122,11 +122,32 @@ header{
 	right:46%;
 	margin:0px 0px 0px 3%;
 }
+.navbar-default .navbar-nav > li > a:hover{
+	color:green !important;
+}
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand{
+	margin-left:auto !important;
+}
+.dropdown-menu > li > a:hover{
+	background-color: #61a659 !important;
+	color:#fff !important;
+}
+.dropdown-menu > .active > a{
+	background-color: transparent !important;
+	color:#807f83;
+}
+.dropdown-menu > .active > a:hover{
+	background-color: #61a659 !important;
+	color:#fff !important;
+}
 @media(max-width:767px){
 	.navbar-default .navbar-collapse{
     border-color: #e7e7e7;
     margin-top: 2%;
     background-color: #34495e;
+ }
+ .active.headerOption:after{
+ 	display:none;
  }
 .navbar-default .navbar-nav > .active > a{
  	background-color: #2c3e50 !important;
@@ -149,6 +170,12 @@ header{
 	background-color: #2c3e50 !important;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+	background-color: transparent !important;
+}
+.navbar-default .navbar-nav > li > a:hover{
+	color:#fff !important;
+}
+.dropdown-menu > li > a:hover{
 	background-color: transparent !important;
 }
 }
@@ -542,8 +569,9 @@ font-size:12px;
 	outline: none;
 	height: 30px;
 	position: relative;
-	top: 1px;
-	border: 1px solid green;
+	/*top: 1px;
+	border: 1px solid green; converting to bootstrap*/ 
+    background-color: #fff;
 	color: green;
 	padding-left: 10px;
 }
@@ -742,6 +770,7 @@ span.footer__logo {
     border-top: 1px solid #e7e7e7;
     color: #fff;
     border-top: 1px solid #e7e7e7;
+    height:25px;
     /*color: #807F83;*/
 }
 
@@ -756,7 +785,7 @@ span.footer__logo {
     background-size: contain;
     overflow: hidden;
     position: absolute;
-    top: -1.3rem;
+    top: -2rem;
     white-space: nowrap;
     width: 20.45rem;
     height: 4.5rem;
@@ -769,7 +798,7 @@ span.footer__logo {
 }
 
 .footer-info-wrapper,.footer-links-wrapper {
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 #keec-footer1 .list-inline {
@@ -826,7 +855,7 @@ span.footer__logo {
  .footer-social-links{
     margin: 0px!important;
     padding: 0px!important;
-    margin-top: 10px!important;
+    margin-top: -3px!important;
  }
 
  @media only screen and (max-device-width: 480px){
@@ -1586,9 +1615,9 @@ md-icon{
 	min-height: 15px;
 	min-width: 15px;
 }
-.selectedTableRow{
+/*.selectedTableRow{
 	box-shadow: 1px 9px 5px #888,1px -7px 5px #888;
-	outline-color: #fff;
+	outline-color: #fff; Removing shadow effect from the table*/
 }
 /*md-dialog
 .........*/
@@ -1723,7 +1752,7 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 /* End of css for table pagination */
 #task-list-container
 {
-
+margin:10% auto;
 }
 #task-list-container h2
 {
@@ -1822,7 +1851,7 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 #task-list-container .table td .model_title
 {
 	padding: 10px;
-	font-size: 18px;
+	font-size: 16px;
 	color: #666;
 	padding-bottom: 2px;
 }
@@ -1842,6 +1871,9 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	color: #ccc;
 	cursor: pointer;
 }
+#task-list-container .table td.expand_collapse:focus{
+	outline: none !important;
+}
 .animate-show.ng-hide-add, .animate-show.ng-hide-remove {
 	transition:  0.5s linear all;
 }
@@ -1850,8 +1882,54 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	opacity: 0;
 	padding: 0 10px;
 }
+@media only screen and (max-width:728px){
+   #task-list-container .table th{
+    font-size: 18px;
+   }
+   #task-list-container .table td .model_title{
+    font-size:16px;
+   }
+   #task-list-container .table td .parameter{
+    font-size:12px;
+   }
+   #task-list-container .table td{
+    font-size:12px;
+   }
+   #task-list-container .table .task-status-message{
+    font-size:14px;
+   }
+}
+@media only screen and (max-width:695px){
+   #task-list-container .table th{
+    font-size: 16px;
+   }
+   #task-list-container .table td .model_title{
+    font-size:15px;
+   }
+   #task-list-container .table td .parameter{
+    font-size:11px;
+   }
+   #task-list-container .table td{
+    font-size:11px;
+   }
+   #task-list-container .table .task-status-message{
+    font-size:13px;
+   }
+}
 /* css for table */
 
+/* Table: Progress bar in cell */
+.table .progress {
+    margin-bottom: 0px;
+}
+
+.table .progress a {
+    color: #fff;
+}
+
+.y-axis-label, .x-axis-label{
+  font-size: 0.7em;
+}
 /*...........................*/
 
 
@@ -1905,19 +1983,7 @@ md-select-menu md-content::-webkit-scrollbar-thumb
   height:400px;
   margin:0 3px;
 }
-table, th, td {
-    border: 6px solid #f8f8f8;
-    border-collapse: collapse;
-    padding: 10px;
-    width: 100%;
-}
 
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
-}
-table tr:nth-child(even) {
-  background-color: #ffffff;
-}
 .btn-group-sm>.btn, .btn-sm{
   float:right;
 }
@@ -1967,3 +2033,28 @@ a:focus, a:hover {
 }
 /*Task result page css Ends ........*/
 
+/*Moving from Angular to Bootstrap.........*/
+
+/*Radio Button..........*/
+.radio-inline input[type="radio"]{
+	top:-3px !important;
+	color:green;
+}
+.radio-inline{
+	color:green;
+	font-size:15px;
+}
+
+
+.Table, .Th, .Td {
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+}
+
+.Table .Tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+.Table .Tr:nth-child(even) {
+  background-color: #ffffff;
+}

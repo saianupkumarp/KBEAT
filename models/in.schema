@@ -82,31 +82,33 @@ steps:
           rel_id: rect
           label_suffix: m
           related_id: cmbBldgShape
-          widthPercent: 50
+          widthPercent: 100
           url: Rectangular.jpg
           txtLengX1: 10
           txtLengY1: 5
           txtFloorArea: 0
+          containerWidthPercent: 100
           floor_area_label_suffix: m2
         - id: lshape
           type: dimension
           label: X1,X2,Y1,Y2
           label_suffix: m
           related_id: cmbBldgShape
-          widthPercent: 50
+          widthPercent: 100
           txtLengX1: 10
           txtLengX2: 5
           txtLengY1: 10
           txtLengY2: 4
           url: L-Shape.jpg
           txtFloorArea: 0
+          containerWidthPercent: 100
           floor_area_label_suffix: m2
         - id: tshape
           type: dimension
           label: X1,X2,X3,Y1,Y2
           label_suffix: m
           related_id: cmbBldgShape
-          widthPercent: 50
+          widthPercent: 100
           txtLengX1: 10
           txtLengX2: 5
           txtLengX3: 5
@@ -114,13 +116,14 @@ steps:
           txtLengY2: 4
           url: T-Shape.jpg
           txtFloorArea: 0
+          containerWidthPercent: 100
           floor_area_label_suffix: m2
         - id: ushape
           type: dimension
           label: X1,X2,X3,Y1,Y2,Y3
           label_suffix: m
           related_id: cmbBldgShape
-          widthPercent: 50
+          widthPercent: 100
           txtLengX1: 10
           txtLengX2: 5
           txtLengX3: 5
@@ -129,6 +132,7 @@ steps:
           txtLengY3: 5
           url: U-Shape.jpg
           txtFloorArea: 0
+          containerWidthPercent: 100
           floor_area_label_suffix: m2
         - id: biShape
           type: shape

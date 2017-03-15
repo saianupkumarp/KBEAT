@@ -1,6 +1,4 @@
-<section id="task-list-container" class="task-list-container row">
-<br /><br /><br /><br /><br /><br /><br /><br /><br />
-
+<div id="task-list-container" class="task-list-container row">
   <h2 class="heading" style="padding-left:0px;margin-left:0px;margin-bottom: 0px;" trangslate="messages.recent_tasks">Recent Tasks</h2>
   <div ng-show="taskPagination.pages > 1" style="float: right;padding: 10px;">
     <button class="btn prevNext" style="font-size: 12px;outline: none;cursor: pointer;margin-right:3px;padding: 4px 5px;" ng-click="taskPaginate('prev')">❮ Previous</button>
@@ -26,7 +24,7 @@
             <div class="parameter" ng-bind-html="task.request|parameterDisplay">{{task.request|parameterDisplay}}</div>
           </div>
         </td>
-        <td am-time-ago="task.createdTime"></div></td>
+        <td am-time-ago="task.createdTime"></td>
         <td>{{task|runtime}}</td>
         <td>
           <div class="task">
@@ -50,7 +48,7 @@
 
               <div class="task-status" ng-switch-when="SUCCESS">
                 <div style="color:green;" class="task-status-message" title="{{ 'properties.task.status.success' | translate }}">
-                    {{ 'properties.task.status.success' | translate }}
+                  {{ 'properties.task.status.success' | translate }}
                 </div>
                 <progressbar type="warning" value="100" animate="false">
                 </progressbar>
@@ -68,14 +66,15 @@
 
               <div style="color:red;" class="task-status" ng-switch-when="CANCELLED">
                 <div class="task-status-message" title="{{ 'properties.task.status.cancelled' | translate }}">
-                    {{ 'properties.task.status.cancelled' | translate }}
-                  </div>
+                  {{ 'properties.task.status.cancelled' | translate }}
+                </div>
                 <progressbar type="danger" value="100" animate="false">
                 </progressbar>
               </div>
 
               <div style="color:green;" class="task-status" ng-switch-when="COMPLETED">
                 <div class="task-status-message" title="{{ 'properties.task.status.completed' | translate }}">
+
                     <a style="color:green;" ui-sref="app.taskResult({task_id: task.id})">
                       {{ 'messages.show_report' | translate }}
                     </a>
@@ -90,6 +89,35 @@
       <tr ng-animate-children="false">
         <td ng-show="task.expanded" class="animate-show parameters" colspan="5"> {{task.request|argumentDisplay}}</td>
       </tr>
-     </tbody>
+    </tbody>
   </table>
-</section>
+</div>
+<footer role="contentinfo" id="keec-footer1" ui-view="footer" ng-cloak>
+ <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3">
+      <span class="footer__logo"> </span>
+    </div>
+    <!-- /.footer-info-wrapper -->
+    <div class="col-xs-12 col-sm-5 footer-links-wrapper">
+      <ul class="list-inline">
+        <li><a target="_blank" href="https://www.kapsarc.org/disclaimer/">Disclaimer</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/contact-us/">Contact Us</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/privacy-policy/">Privacy Policy</a></li>
+        <li><a target="_blank" href="https://www.kapsarc.org/terms-conditions/">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-1 footer-social-links">
+      <ul class="social-links">
+        <li><a href="https://twitter.com/kapsarc" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/company/kapsarc" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-3 footer-info-wrapper">
+      <span>Kapsarc © 2016. All Rights Reserved.
+      </div>
+      <!-- /.footer-links-wrapper -->
+    </div>
+    <!-- /.row -->
+  </div>
+</footer>

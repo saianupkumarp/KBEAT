@@ -231,7 +231,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
                   $rootScope.stepNext = function(index) {
                     if (index == 4) {
-                      console.log('run');
                       $scope.activeStepIndex = index;
                       $rootScope.data = {};
                       var resJson = {}
@@ -657,13 +656,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
                 scope.field.values = scope.field.values.split(', ');
+                
                 if (scope.field.url) {
-                  scope.field.urls = scope.field.url.split(', ')
-                  scope.field.value = scope.field.values[0]
+                  scope.field.urls = scope.field.url.split(', ');
+                  scope.field.value = scope.field.values[0];
                 }
                 scope.$watch('field.url', function() {
                   if (scope.field.url) {
-                    scope.field.value = scope.field.url.slice(0, -4)
+                    scope.field.value = scope.field.url.slice(0, -4);
                   }
                 })
                 break;
@@ -767,6 +767,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       }
                       
                     };
+                       scope.field.value = scope.axisObj;
                   }
                 );
                 scope.building = scope.container.parameters.filter(function(p) {
