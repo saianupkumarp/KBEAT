@@ -849,6 +849,22 @@ span.footer__logo {
 }
 
 }
+@media only screen and (max-width: 960px){
+	span.footer__logo{
+		height:3.5rem !important;
+	}
+    .footer-links-wrapper {
+    	font-size:9px !important;
+    }
+    .footer-info-wrapper{
+    	font-size:9px !important;
+    }
+ }
+@media only screen and (max-width: 480px){
+    #keec-footer1 {
+    	display:none !important;
+    }
+ }
 
 /* Social Links
  * -------------------------- */
@@ -858,7 +874,7 @@ span.footer__logo {
     margin-top: -3px!important;
  }
 
- @media only screen and (max-device-width: 480px){
+ @media only screen and (max-width: 960px){
     .footer-social-links{
         display: none!important;
     }
@@ -1914,6 +1930,23 @@ margin:10% auto;
    }
    #task-list-container .table .task-status-message{
     font-size:13px;
+   }
+}
+@media (max-width:420px){
+	#task-list-container{
+		margin:20% auto !important;
+	}
+	 #task-list-container .table th:nth-child(1),#task-list-container .table td:nth-child(1){
+    display:none;
+   }
+    #task-list-container .table th:nth-child(3),#task-list-container .table td:nth-child(3){
+    display:none;
+   }
+    #task-list-container .table th:nth-child(4),#task-list-container .table td:nth-child(4){
+    display:none;
+   }
+   #task-list-container .table th:nth-child(5){
+   	width:40% !important;
    }
 }
 /* css for table */
