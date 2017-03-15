@@ -89,31 +89,31 @@
     </md-table-container> -->
 
    <div ng-if="field.id=='spaceTable'" style="margin-bottom:20px;overflow-x:scroll;">
-        <table>
+        <table class="Table">
             <thead>
-                <tr>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[0]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[1]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[2]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[3]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[4]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[5]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[6]}}</th>
-                    <th style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[7]}}</th>
+                <tr class="Tr">
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[0]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[1]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[2]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[3]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[4]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[5]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[6]}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;">{{field.column_heading[7]}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
-                    <td style="border:1px solid green;">{{row[0]}}</td>
-                    <td style="border:1px solid green;">{{row[1]}}</td>
-                    <td style="border:1px solid green;">{{row[2]}}</td>
-                    <td style="border:1px solid green;">{{row[3]}}</td>
-                    <td style="border:1px solid green;">{{row[4]}}</td>
-                    <td style="border:1px solid green;">{{row[5]}}</td>
-                    <td style="border:1px solid green;">
+                <tr class="Tr" ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
+                    <td class="Td" style="border:1px solid green;">{{row[0]}}</td>
+                    <td class="Td" style="border:1px solid green;">{{row[1]}}</td>
+                    <td class="Td" style="border:1px solid green;">{{row[2]}}</td>
+                    <td class="Td" style="border:1px solid green;">{{row[3]}}</td>
+                    <td class="Td" style="border:1px solid green;">{{row[4]}}</td>
+                    <td class="Td" style="border:1px solid green;">{{row[5]}}</td>
+                    <td class="Td" style="border:1px solid green;">
                     <img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/selected.png"/>
                     </td>
-                    <td style="border:1px solid green;">
+                    <td class="Td" style="border:1px solid green;">
                     <img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/deselected.png"/>
                     </td>
                 </tr>

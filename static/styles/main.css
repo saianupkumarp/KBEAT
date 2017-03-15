@@ -2044,3 +2044,17 @@ a:focus, a:hover {
 	color:green;
 	font-size:15px;
 }
+
+
+.Table, .Th, .Td {
+    border-collapse: collapse;
+    padding: 10px;
+    width: 100%;
+}
+
+.Table .Tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+.Table .Tr:nth-child(even) {
+  background-color: #ffffff;
+}
