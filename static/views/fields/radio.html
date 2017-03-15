@@ -1,6 +1,11 @@
-<div class="input-container">
+<!-- <div class="input-container">
 	<md-radio-group  ng-model="field.value">
-      <md-radio-button  ng-value="option" ng-repeat="option in field.options" class="md-primary" >{{option}}</md-radio-button>
-    </md-radio-group>
-</div>
+		<md-radio-button  ng-value="option" ng-repeat="option in field.options" class="md-primary" >{{option}}</md-radio-button>
+	</md-radio-group>
+</div> -->
 
+<div class="input-container">
+	<span class="radio-inline" ng-repeat="option in field.options">
+		<input type="radio" name="radio"  ng-value="option" ng-model="field.value">{{option}}
+	</span>
+</div

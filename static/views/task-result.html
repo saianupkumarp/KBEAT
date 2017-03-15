@@ -1,5 +1,5 @@
-<div ng-app="ResultPage">  
-  <div class="container">
+<div>  
+<div style="margin:10% auto;">
     <div>
       <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
       <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px;padding: 10px 30px;background: #f8f8f8;">
@@ -13,8 +13,8 @@
       <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-        <li><a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a></li>
-        <li><a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a></li>
+          <li><a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a></li>
+          <li><a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a></li>
           <li><a href="{{task.jasperPdf}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>Jasper PDF</a></li>
 
         </ul>
@@ -106,32 +106,3 @@
 </div>
 </div>
 
-<footer role="contentinfo" id="keec-footer1" ui-view="footer" ng-cloak>
- <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      <span class="footer__logo"> </span>
-    </div>
-    <!-- /.footer-info-wrapper -->
-    <div class="col-xs-12 col-sm-5 footer-links-wrapper">
-      <ul class="list-inline">
-        <li><a target="_blank" href="https://www.kapsarc.org/disclaimer/">Disclaimer</a></li>
-        <li><a target="_blank" href="https://www.kapsarc.org/contact-us/">Contact Us</a></li>
-        <li><a target="_blank" href="https://www.kapsarc.org/privacy-policy/">Privacy Policy</a></li>
-        <li><a target="_blank" href="https://www.kapsarc.org/terms-conditions/">Terms & Conditions</a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-1 footer-social-links">
-      <ul class="social-links">
-        <li><a href="https://twitter.com/kapsarc" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="https://www.linkedin.com/company/kapsarc" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-      </ul>
-    </div>
-    <div class="col-xs-12 col-sm-3 footer-info-wrapper">
-      <span>Kapsarc © 2016. All Rights Reserved.
-      </div>
-      <!-- /.footer-links-wrapper -->
-    </div>
-    <!-- /.row -->
-  </div>
-</footer>
