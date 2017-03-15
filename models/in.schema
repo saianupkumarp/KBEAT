@@ -23,7 +23,7 @@ steps:
         - id: cmbBldgType
           type: dropdown
           options: "Villa, Apartment, Office: Public, Office: Private, Hotel: ThreeStar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
-          values: "Villa, Apartment, Office: Public, Office: Private, hotelthreestar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
+          values: "Villa, Apartment, Office: Public, Office: Private, hotelthreestar, Hotel: FourStar, Hotel: FiveStar, Hospital:Private, Hospital:Public"
           default: Office:Private
           label: Building Type
           widthPercent: 50

@@ -383,12 +383,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       type: 'pieChart',
                         showLabels: true,
                         labelThreshold: .05,
-                        height: 270,
-                        width:398,
+                        donut: true,
+                        donutRatio: 0.4,
+                        height: 320,
+                        width: 398,
                         margin : {
                             top: 20,
                             right: 20,
-                            bottom: 10,
+                            bottom: 5,
                             left: 70
                         },
                         x: function(d){ return d.label; },
@@ -397,23 +399,29 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       }
                    };
                    $scope.pieData = $scope.pieChartData
+                   var months = ["JAN" , "FEB" , "MAR" , "APR" , "MAY", "JUN" , "JUL" , "AUG" , "SEP" , "OCT" , "NOV" , "DEC"];
                    $scope.barChartOptions = {
                     chart: {
                       type: 'multiBarChart',
                         clipEdge: true,
                         stacked: true,
+                        reduceXTicks: false,
+                        showControls: false,
                         height: 270,
-                        width:398,
+                        width: 500,
                         margin : {
                             top: 20,
                             right: 20,
                             bottom: 45,
                             left: 45
                         },
+                        legend: {
+                          rightAlign: true
+                        },
                         duration: 500,
                         xAxis: {
                             "showMaxMin": false,
-                            tickFormat: function(d) {return d;}
+                            tickFormat: function(d) {return months[d];}
                         },
                         yAxis: {
                             "showMaxMin": false,
@@ -746,7 +754,18 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   "axisObj", function() {
                     scope.txtFloorArea = 1;
                     for(var axisKey in scope.axisObj) {
-                      scope.txtFloorArea *= scope.axisObj[axisKey]
+                      if(scope.field.id == 'rectangular'){
+                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                      }else if(scope.field.id == 'lshape'){
+                        scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y2']) + ((scope.axisObj['Y1'] - scope.axisObj['Y2']) * scope.axisObj['X2'])
+                      }else if(scope.field.id == 'tshape'){
+                        scope.txtFloorArea =  ((scope.axisObj['X1'] * scope.axisObj['Y1']) - (scope.axisObj['X2'] * scope.axisObj['Y2']) - ((scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * scope.axisObj['Y2']))
+                      }else if(scope.field.id == 'ushape'){
+                        scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
+                      }else{
+                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                      }
+                      
                     };
                        scope.field.value = scope.axisObj;
                   }
