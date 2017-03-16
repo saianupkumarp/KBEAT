@@ -224,6 +224,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   };
 
                   $rootScope.postData = function(data) {
+                    console.log(data)
                     api.postData(model.name, data);
                   };
 
@@ -243,9 +244,25 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                               if (obj2.id == 'cmbBldgShape') {
                                 RelDimId = obj2.value;
                               }
-                              if (typeof RelDimId != "undefined" && obj2.id == RelDimId + 'Data') {
+                              if (typeof RelDimId != "undefined" && obj2.id == RelDimId) {
+                                if(RelDimId == 'Rectangular'){
+                                  resJson['txtFloorArea'] = obj2.value['X1'] * obj2.value['Y1']
+                                  ObjCount = ObjCount + 2;
+                                }else if(RelDimId == 'L-Shape'){
+                                  resJson['txtFloorArea'] = (obj2.value['X1'] * obj2.value['Y2']) + ((obj2.value['Y1'] - obj2.value['Y2']) * obj2.value['X2'])
+                                  ObjCount = ObjCount + 2;
+                                }else if(RelDimId == 'T-Shape'){
+                                  resJson['txtFloorArea'] =  ((obj2.value['X1'] * obj2.value['Y1']) - (obj2.value['X2'] * obj2.value['Y2']) - ((obj2.value['X1'] - obj2.value['X2'] - obj2.value['X3']) * obj2.value['Y2']))
+                                  ObjCount = ObjCount + 2;
+                                }else if(RelDimId == 'U-Shape'){
+                                  resJson['txtFloorArea'] = (obj2.value['Y1'] >= obj2.value['Y2']) ? obj2.value['X1'] * obj2.value['Y1'] - (obj2.value['X1'] - obj2.value['X2'] - obj2.value['X3']) * (obj2.value['Y1'] - obj2.value['Y3']) - obj2.value['X3'] * (obj2.value['Y1'] - obj2.value['Y2']) : obj2.value['X1'] * obj2.value['Y2'] - (obj2.value['X1'] - obj2.value['X2'] - obj2.value['X3']) * (obj2.value['Y2'] - obj2.value['Y3']) - obj2.value['X2'] * (obj2.value['Y2'] - obj2.value['Y1'])
+                                  ObjCount = ObjCount + 2;
+                                }else{
+                                  resJson['txtFloorArea'] = obj2.value['X1'] * obj2.value['Y1']
+                                  ObjCount = ObjCount + 2;
+                                }
                                 for (var key in obj2.value) {
-                                  resJson[key] = obj2.value[key];
+                                  resJson['txtLeng' + key] = obj2.value[key];
                                   ObjCount = ObjCount + 2;
                                 }
                               }
@@ -754,13 +771,13 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   "axisObj", function() {
                     scope.txtFloorArea = 1;
                     for(var axisKey in scope.axisObj) {
-                      if(scope.field.id == 'rectangular'){
+                      if(scope.field.id == 'Rectangular'){
                         scope.txtFloorArea *= scope.axisObj[axisKey]  
-                      }else if(scope.field.id == 'lshape'){
+                      }else if(scope.field.id == 'L-Shape'){
                         scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y2']) + ((scope.axisObj['Y1'] - scope.axisObj['Y2']) * scope.axisObj['X2'])
-                      }else if(scope.field.id == 'tshape'){
+                      }else if(scope.field.id == 'T-Shape'){
                         scope.txtFloorArea =  ((scope.axisObj['X1'] * scope.axisObj['Y1']) - (scope.axisObj['X2'] * scope.axisObj['Y2']) - ((scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * scope.axisObj['Y2']))
-                      }else if(scope.field.id == 'ushape'){
+                      }else if(scope.field.id == 'U-Shape'){
                         scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
                       }else{
                         scope.txtFloorArea *= scope.axisObj[axisKey]  

@@ -3,7 +3,7 @@
     <div>
       <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
       <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px;padding: 10px 30px;background: #f8f8f8;">
-       This is the baseline scenario. Fuel prices and allocations are set to levels established by existing policies as of 2015. This scenario maintains these allocations throughout the planning horizon.
+       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
      </p>
    </div>
    <ul class="nav nav-tabs parentList">
@@ -31,7 +31,7 @@
             </div>
             <div style="border:6px solid #f8f8f8;" class="tableContainer">
               <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
-              <table>
+              <table class="table table-responsive table-hover">
                 <tr>
                   <th>Firstname</th>
                   <th>Lastname</th>
@@ -66,37 +66,79 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4 class="panel-title">
-                Menu 1
+                Building Information
               </h4></a>
 
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
               <div class="panel-body">
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <table class="table table-responsive table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Building Name: {{task.calibrationData.txtBldgName}}</td>
+                    <tr>
+                      <td>Building Address: {{task.calibrationData.txtBldgAddress}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4 class="panel-title">
-                Menu 1
+                Building Use
               </h4></a>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
               <div class="panel-body">
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <table class="table table-responsive table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Building Type: {{task.calibrationData.cmbBldgType}}</td>
+                    <tr>
+                      <td>Building Location: {{task.calibrationData.cmbBldgLocation}}</td>
+                    </tr>
+                    <tr>
+                      <td>Number of Floors: {{task.calibrationData.txtBldgNumFloor}}</td>
+                    </tr>
+                    <tr>
+                      <td>Air-Conditioned Area: {{task.calibrationData.txtBldgCondArea}} %</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
           <div class="panel panel-default">
             <div class="panel-heading">
              <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4 class="panel-title">
-              Menu 1
+              Building Shape
             </h4></a>
           </div>
           <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
-              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <table class="table table-responsive table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Building Shape: {{task.calibrationData.cmbBldgType}}</td>
+                    <tr>
+                      <td>Building Orientation: {{task.calibrationData.cmbBldgLocation}}</td>
+                    </tr>
+                    <tr>
+                      <td>X1: {{task.calibrationData.txtLengX1}} m</td>
+                    </tr>
+                    <tr>
+                      <td>Y1: {{task.calibrationData.txtLengY1}} m</td>
+                    </tr>
+                    <tr>
+                      <td>Floor Area: {{task.calibrationData.txtFloorArea}} m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                      <td>Floor Height: {{task.calibrationData.txtFloorHeight}}</td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
           </div>
         </div>
