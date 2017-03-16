@@ -2019,7 +2019,8 @@ margin:10% auto;
 }
 .chart-header{
 	padding: 3%;
-    background-color: #f8f8f8;
+    background-color: #6a6a6a;
+    color:#fff;
 }
 
 .btn-group-sm>.btn, .btn-sm{
