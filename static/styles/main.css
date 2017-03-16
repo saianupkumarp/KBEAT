@@ -790,8 +790,19 @@ span.footer__logo {
     width: 20.45rem;
     height: 4.5rem;
 }
+@media only screen and (max-width: 960px){
+	span.footer__logo{
+		height:3.5rem !important;
+	}
+    .footer-links-wrapper {
+    	font-size:9px !important;
+    }
+    .footer-info-wrapper{
+    	font-size:9px !important;
+    }
+ }
 
-@media only screen and (max-device-width: 800px){
+@media only screen and (max-width: 800px){
 span.footer__logo {
     display: none!important;
 }
@@ -849,17 +860,7 @@ span.footer__logo {
 }
 
 }
-@media only screen and (max-width: 960px){
-	span.footer__logo{
-		height:3.5rem !important;
-	}
-    .footer-links-wrapper {
-    	font-size:9px !important;
-    }
-    .footer-info-wrapper{
-    	font-size:9px !important;
-    }
- }
+
 @media only screen and (max-width: 480px){
     #keec-footer1 {
     	display:none !important;
