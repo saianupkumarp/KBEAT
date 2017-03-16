@@ -2012,9 +2012,14 @@ margin:10% auto;
   width:100%;
 }
 .chart{
-  padding:5px;
+  /*padding:5px;*/
   height:400px;
   margin:0 3px;
+  width:50%;
+}
+.chart-header{
+	padding: 3%;
+    background-color: #f8f8f8;
 }
 
 .btn-group-sm>.btn, .btn-sm{
@@ -2054,7 +2059,7 @@ a{
 }
 a:focus, a:hover {
     color: #555;
-  text-decoration:none;
+  text-decoration:underline;
 }
 
 .panel-default>.panel-heading a::after{
@@ -2063,6 +2068,46 @@ a:focus, a:hover {
     float: right;
     color: grey;
  margin-top:-2%;
+}
+.panel-default>.panel-heading a.collapsed:after {
+    content: "\e080";
+}
+.panel-default>.panel-heading a:hover{
+	text-decoration:none !important;
+}
+/*@media (max-width: 1120px){
+	.chartContainer{
+  display:block !important;
+}
+.chart{
+	width:100% !important;
+	height:60% !important;
+}
+nvd3{
+	margin-left:20%;
+}
+}
+@media (max-width:700px){
+	nvd3{
+	margin-left:10%;
+}
+}
+@media (max-width:600px){
+	nvd3{
+	margin-left:0%;
+}
+}*/
+@media (max-width:502px){
+	.parentList .list:after{
+		top:-7%;
+	}
+		.chartContainer{
+  display:block !important;
+}
+.chart{
+	width:100% !important;
+/*	height:60% !important;
+*/}
 }
 /*Task result page css Ends ........*/
 

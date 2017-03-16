@@ -388,10 +388,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         height: 320,
                         width: 398,
                         margin : {
-                            top: 20,
+                            top: 35,
                             right: 20,
                             bottom: 5,
-                            left: 70
+                            left: 50
                         },
                         x: function(d){ return d.label; },
                         y: function(d){ return d.value; },
@@ -410,10 +410,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         height: 270,
                         width: 500,
                         margin : {
-                            top: 20,
-                            right: 20,
-                            bottom: 45,
-                            left: 45
+                            top: 80,
+                            right: 30,
+                            bottom: 20,
+                            left: 40
                         },
                         legend: {
                           rightAlign: true
