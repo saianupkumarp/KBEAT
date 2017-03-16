@@ -140,6 +140,11 @@ header{
 	background-color: #61a659 !important;
 	color:#fff !important;
 }
+@media (min-width:950px){
+	.header__logo{
+		left:9rem !important;
+	}
+}
 @media(max-width:767px){
 	.navbar-default .navbar-collapse{
     border-color: #e7e7e7;
