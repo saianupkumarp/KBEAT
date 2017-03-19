@@ -481,13 +481,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         function postData(name, data) {
           return $http.post('/keec/api/models/' + name, data).then(function(response) {
             console.log(response.data)
-            // if (response.data) {
-            //   $rootScope.$broadcast('resultData', response.data)
-            //   setTimeout(function() {
-            //     $rootScope.stepNext()
-            //   }, 5000);
-            // }
-            $state.go('app.tlist');
+            if(response.data.status == 'QUEUED'){
+              $state.go('app.tlist');  
+            }
           })
         }
       })
