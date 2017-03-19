@@ -24,9 +24,9 @@
     <div class="tab-content">
       <div id="reports" class="tab-pane fade in active">
         <div ng-class="{chartContainer:true}">
-          <div ng-class="{chart:true,card:true}"><h3 class="chart-header">Menu 1</h3>
+          <div ng-class="{chart:true,card:true}"><h3 class="chart-header">PSE Report</h3>
             <nvd3 options='barChartOptions' data='barData'></nvd3></div>
-            <div ng-class="{chart:true,card:true}"><h3 class="chart-header">Menu 1</h3>
+            <div ng-class="{chart:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
               <nvd3 options='pieChartOptions' data='pieData'></nvd3></div>
             </div>
             <div style="border:6px solid #f8f8f8;" class="tableContainer">
@@ -128,8 +128,20 @@
                     <tr>
                       <td>X1: {{task.calibrationData.txtLengX1}} m</td>
                     </tr>
+                    <tr ng-if="task.calibrationData.txtLengX2">
+                      <td>X2: {{task.calibrationData.txtLengX2}} m</td>
+                    </tr>
+                    <tr ng-if="task.calibrationData.txtLengX3">
+                      <td>X3: {{task.calibrationData.txtLengX3}} m</td>
+                    </tr>
                     <tr>
                       <td>Y1: {{task.calibrationData.txtLengY1}} m</td>
+                    </tr>
+                    <tr ng-if="task.calibrationData.txtLengY2">
+                      <td>Y2: {{task.calibrationData.txtLengY2}} m</td>
+                    </tr>
+                    <tr ng-if="task.calibrationData.txtLengY3">
+                      <td>Y3: {{task.calibrationData.txtLengY3}} m</td>
                     </tr>
                     <tr>
                       <td>Floor Area: {{task.calibrationData.txtFloorArea}} m<sup>2</sup></td>
@@ -139,6 +151,38 @@
                     </tr>
                   </tbody>
                 </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapsefour"><h4 class="panel-title">
+              Exterior Construction
+            </h4></a>
+          </div>
+          <div id="collapsefour" class="panel-collapse collapse">
+            <div class="panel-body">
+              <table class="table table-responsive table-hover">
+                <tbody>
+                  <tr>
+                    <td>South Wall: {{task.calibrationData.cmbSouthWall}}</td>
+                  <tr>
+                    <td>North Wall: {{task.calibrationData.cmbNorthWall}}</td>
+                  </tr>
+                  <tr>
+                    <td>East Wall: {{task.calibrationData.cmbEastWall}}</td>
+                  </tr>
+                  <tr>
+                    <td>West Wall: {{task.calibrationData.cmbWestWall}} %</td>
+                  </tr>
+                  <tr>
+                    <td>Roof  Floor: {{task.calibrationData.cmbRoof}} %</td>
+                  </tr>
+                  <tr>
+                    <td>First Floor Contact: {{task.calibrationData.cmbFirstFloorContact}} %</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
