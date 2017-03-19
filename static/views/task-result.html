@@ -1,5 +1,5 @@
 <div>  
-<div style="margin:10% auto;">
+<div class="taskResult">
     <div>
       <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
       <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px;padding: 10px 30px;background: #f8f8f8;">
@@ -24,9 +24,9 @@
     <div class="tab-content">
       <div id="reports" class="tab-pane fade in active">
         <div ng-class="{chartContainer:true}">
-          <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
+          <div ng-class="{chart:true,card:true}"><h3 class="chart-header">Menu 1</h3>
             <nvd3 options='barChartOptions' data='barData'></nvd3></div>
-            <div ng-class="{chart:true,card:true}"><h3>Menu 1</h3>
+            <div ng-class="{chart:true,card:true}"><h3 class="chart-header">Menu 1</h3>
               <nvd3 options='pieChartOptions' data='pieData'></nvd3></div>
             </div>
             <div style="border:6px solid #f8f8f8;" class="tableContainer">
