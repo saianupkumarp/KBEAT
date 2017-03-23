@@ -140,9 +140,19 @@ header{
 		background-color: #61a659 !important;
 		color:#fff !important;
 	}
+	@media (min-width:1900px){
+		.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand{
+		margin-left:14% !important;
+	}
+	}
 	@media (min-width:950px){
 		.header__logo{
-			left:9rem !important;
+			left:4rem !important;
+		}
+	}
+	@media (min-width:1366px){
+		.header__logo{
+			left:7rem !important;
 		}
 	}
 	@media(max-width:767px){
@@ -670,11 +680,10 @@ font-size:12px;
 		padding: 35px 0;
 		font-size: 12px;
 		display: flex;
-		position: absolute;
-		right: 0;
-		bottom: -100%;
-		left: 0;
-		width:100%;
+		position: fixed;
+		width: 100%;
+		z-index: 100;
+		bottom: 0px;
 	}
 
 	#keec-footer {
@@ -760,15 +769,30 @@ font-size:12px;
 		}
 
 	}
+
+
+    @media (min-width:1280px){
+		#keec-footer1{
+			margin-top: 6% !important;
+		}
+	}
+	@media (min-width:1440px){
+		#keec-footer1{
+			margin-top: 12% !important;
+		}
+	}
+	@media (min-width:1680px){
+		#keec-footer1{
+			margin-top: 13% !important;
+		}
+	}
+	
 	#keec-footer1{
 		padding: 35px 0;
 		font-size: 12px;
 		display: flex;
-		position: absolute;
-		right: 0;
-		bottom: -100%;
-		left: 0;
-		width:100%;
+		position: relative;
+		margin-top: 3%
 	}
 
 	#keec-footer1 {
@@ -796,6 +820,12 @@ font-size:12px;
 		width: 20.45rem;
 		height: 4.5rem;
 	}
+	@media (min-width:1900px){
+		#keec-footer1{
+			display: none;
+		}
+	}
+
 	@media only screen and (max-width: 960px){
 		span.footer__logo{
 			height:3.5rem !important;
@@ -1134,7 +1164,7 @@ md-select{
 		height:800px;
 	}
 	.step-container-wrapper{
-		max-height:calc(100vh - 200px)
+		max-height:calc(100vh - 200px);
 	}
 }
 @media only screen and (min-height:900px) and (min-width:1440px) {
@@ -1676,15 +1706,62 @@ md-menu-item>.md-button{
 
 /* Intro CSS */
 
-.intro-page, .intro-page{
-	margin: 30px 0;
-	text-align: center;
-}
-
 .intro-page{
-	display: initial!important;
+	margin: 10% auto !important;
+	text-align: justify !important;
+}
+.introHeading{
+	display:inline-block;
+	color: #61A659;
+	margin: 0 0 20px 0;
+	font-size: 2em;
 }
 
+.introButton{
+	display:block !important;
+	margin:0 auto !important;
+	width:15% !important;
+	background-color:#61a246 !important;
+	border-color:#61a246 !important;
+	border-radius: 0px !important;
+}
+.introButton:hover{
+	background-color:#61a246 !important;
+	border-color:#61a246 !important;
+	border-radius: 0px !important;
+}
+@media (max-width:920px){
+	.introButton{
+		width:20% !important;
+	}
+	.intro-page{
+		margin: 10% 5% !important;
+	}
+	.introHeading{
+		font-size: 1.5em;
+	}
+}
+@media (max-width:750px){
+	.introButton{
+		width:30% !important;
+	}
+}
+@media (max-width:500px){
+	.introButton{
+		width:35% !important;
+	}
+}
+@media (max-width:420px){
+	.introButton{
+		width:43% !important;
+	}
+	.introHeading{
+		font-size: 1.2em;
+	}
+	.introDetails{
+		font-size:12px;
+	}
+}
 /*Header css..................*/
 
 
@@ -2007,6 +2084,23 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	border:none;
 	border-bottom: 1px solid #f8f8f8;
 }
+.parentList1>li{
+	width:100%;
+}
+.parentList1>li>a{
+	background-color: #c3c3c2;
+	color:#555;
+	margin-right:1px;
+	padding:6px 15px;
+	font-size:13px;
+}
+.parentList1>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	color: #555;
+	cursor: default;
+	background-color: #f8f8f8; 
+	border:none;
+	border-bottom: 1px solid #f8f8f8;
+}
 .nav>li>a:hover{
 	background-color:#c3c3c2;
 	border-color:#c3c3c2;
@@ -2026,10 +2120,16 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	/*padding:5px;*/
 	height:400px;
 	margin:5px 3px;
-	width:50%;
+	width:100%;
+}
+.chart1{
+	/*padding:5px;*/
+/*	height:400px;
+*/	margin:5px 3px;
+	width:100%;
 }
 .chart-header{
-	padding: 3%;
+	padding: 2%;
 	background-color: #6a6a6a;
 	color:#fff;
 }
@@ -2086,6 +2186,35 @@ a:focus, a:hover {
 }
 .panel-default>.panel-heading a:hover{
 	text-decoration:none !important;
+}
+.sideTab{
+    padding:1% 0 0 1%;
+}
+nvd3{
+	margin:5% 20%;
+}
+@media (max-width:1005px){
+	nvd3{
+	margin:5% 10%;
+}
+}
+@media (max-width:770px){
+	nvd3{
+	margin:5% 5%;
+}
+}
+@media (max-width:710px){
+	.parentList1>li>a{
+	font-size:10px;
+}
+.sideTab{
+    padding:1.5% 0 0 1.5%;
+}
+}
+@media (max-width:686px){
+	nvd3{
+	margin:5% 0;
+}
 }
 /*@media (max-width: 1120px){
 	.chartContainer{
@@ -2153,3 +2282,6 @@ nvd3{
 .Table .Tr:nth-child(even) {
 	background-color: #ffffff;
 }
+
+
+

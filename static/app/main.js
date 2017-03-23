@@ -41,28 +41,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               'content@': {
                 templateUrl: '/keec/assets/views/intro.html',
                 controller: function($scope, $rootScope, $window) {
-                  $rootScope.screenWidth = $window.innerWidth;
-                  if ($rootScope.screenWidth <= 860) {
-                    $rootScope.menu = true;
-                    $rootScope.labels = false;
-                  } else if ($rootScope.screenWidth > 860) {
-                    $rootScope.labels = true;
-                    $rootScope.menu = false;
-                  }
-                  $(window).resize(function() {
-                    if ($(window).width() <= 860) {
-                      $scope.$apply(function() {
-                        $rootScope.labels = false;
-                        $rootScope.menu = true;
-                      });
-
-                    } else if ($(window).width() > 860) {
-                      $scope.$apply(function() {
-                        $rootScope.labels = true;
-                        $rootScope.menu = false;
-                      });
-                    }
-                  });
+                  $rootScope.footer = true;
                 }
               }
             }
@@ -183,6 +162,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   } else {
                     $rootScope.selectedCountry = $window.localStorage.getItem("token");
                   }
+                  $rootScope.footer = false;
                   $rootScope.onClick = function(index) {
                     $window.localStorage.setItem("token", index);
                   };
@@ -190,30 +170,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $scope.count = 0;
                   $scope.activeStepIndex = 0;
                   $scope.totalSteps = $rootScope.model.steps.length;
-                  $rootScope.screenWidth = $window.innerWidth;
-                  console.log($rootScope.screenWidth);
-                  console.log($window);
-                  if ($rootScope.screenWidth <= 860) {
-                    $rootScope.menu = true;
-                    $rootScope.labels = false;
-                  } else if ($rootScope.screenWidth > 860) {
-                    $rootScope.labels = true;
-                    $rootScope.menu = false;
-                  }
-                  $(window).resize(function() {
-                    if ($(window).width() <= 860) {
-                      $scope.$apply(function() {
-                        $rootScope.labels = false;
-                        $rootScope.menu = true;
-                      });
-
-                    } else if ($(window).width() > 860) {
-                      $scope.$apply(function() {
-                        $rootScope.labels = true;
-                        $rootScope.menu = false;
-                      });
-                    }
-                  });
                   $scope.activateStep = function(index) {
                     if ((index <= $scope.count)) {
                       $scope.activeStepIndex = index;
@@ -368,7 +324,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           .state('app.tlist', {
             url: '/keec/task',
             views: {
-              'content@': {templateUrl: '/keec/assets/views/task-list.html'}
+              'content@': {
+                templateUrl: '/keec/assets/views/task-list.html',
+                controller: function($scope,$rootScope){
+                  $rootScope.footer = true;
+                }
+            }
             },
             onEnter: function(){
               setTimeout(window.createCarousel,500);
@@ -392,7 +353,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             views: {
               'content@': {
                 templateUrl: '/keec/assets/views/task-result.html',
-                controller: function ($scope, $window, task) {
+                controller: function ($scope, $window, task, $rootScope) {
+                  $rootScope.footer = true;
                   $scope.task = task;
                   $scope.pieChartData = task.pieChartData;
                    $scope.pieChartOptions = {
