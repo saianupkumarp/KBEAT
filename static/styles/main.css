@@ -142,8 +142,8 @@ header{
 	}
 	@media (min-width:1900px){
 		.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand{
-		margin-left:14% !important;
-	}
+			margin-left:14% !important;
+		}
 	}
 	@media (min-width:950px){
 		.header__logo{
@@ -771,7 +771,7 @@ font-size:12px;
 	}
 
 
-    @media (min-width:1280px){
+	@media (min-width:1280px){
 		#keec-footer1{
 			margin-top: 6% !important;
 		}
@@ -2113,6 +2113,24 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	flex-direction: row;
 	flex-wrap: nowrap;
 }
+.chartTabContainer{
+	padding:0px;
+}
+.chartLink{
+	border-radius:0px;
+}
+.navbar-default .navbar-nav > .active > .chartLink{
+	border:none;
+}
+.navbar-default .navbar-nav > li > .chartLink:hover{
+	color: #777 !important;
+	background-color: #c3c3c2;
+}
+.navbar-default .navbar-nav > .active > .chartLink:hover{
+	color: #555 !important;
+	background-color: #e7e7e7;
+	border:none;
+}
 .tableContainer{
 	width:100%;
 }
@@ -2126,7 +2144,7 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 	/*padding:5px;*/
 /*	height:400px;
 */	margin:5px 3px;
-	width:100%;
+width:100%;
 }
 .chart-header{
 	padding: 2%;
@@ -2188,33 +2206,127 @@ a:focus, a:hover {
 	text-decoration:none !important;
 }
 .sideTab{
-    padding:1% 0 0 1%;
+	padding:1% 0 0 1%;
+	position:absolute;
+	left:0.5% !important;
+	width:10%;
+	height:95px;
 }
 nvd3{
 	margin:5% 20%;
 }
+@media (min-width:1280px){
+	.sideTab {
+		left:0.5% !important;
+	}
+}
+@media (min-width:1440px){
+	.sideTab {
+		left:2.5% !important;
+	}
+}
+@media (min-width:1600px){
+	.sideTab {
+		left:6.5% !important;
+	}
+}
+@media (min-width:1680px){
+	.sideTab {
+		left:8% !important;
+	}
+}
+@media (min-width:1920px){
+	.sideTab {
+		left:12% !important;
+	}
+}
+@media (max-width:1024px){
+	.taskResult{
+		margin:10% 7%;
+	}
+	.navbar-default .navbar-nav > li > .chartLink{
+		padding:5%;
+	}
+	.sideTab{
+		height:80px;
+	}
+}
 @media (max-width:1005px){
 	nvd3{
-	margin:5% 10%;
+		margin:5% 10%;
+	}
 }
+@media (max-width:800px){
+	.taskResult{
+		margin:10% 10%;
+	}
+	.navbar-default .navbar-nav > li > .chartLink{
+		font-size:9px;
+		color:#fff;
+	}
+	.sideTab{
+		height:70px;
+	}
 }
 @media (max-width:770px){
 	nvd3{
-	margin:5% 5%;
+		margin:5% 5%;
+	}
+	.navbar-collapse.in{
+		overflow-y:visible;
+	}
+	.chartTabContainer{
+		background-color: transparent !important;
+		border-top:none !important;
+		margin-top: -18% !important;
+	}
+	.navbar-default .navbar-nav > li > .chartLink{
+		color:#fff;
+	}
+	.navbar-default .navbar-nav > li > .chartLink:hover {
+    color:#fff !important;
+}
+.navbar-default .navbar-nav > .active > .chartLink:hover{
+	color:#fff !important;
+}
+.parentList1>li{
+	padding-left: 10%;
 }
 }
 @media (max-width:710px){
 	.parentList1>li>a{
-	font-size:10px;
-}
-.sideTab{
-    padding:1.5% 0 0 1.5%;
-}
+		font-size:10px;
+	}
+	.sideTab{
+		padding:1.5% 0 0 1.5%;
+	}
 }
 @media (max-width:686px){
 	nvd3{
-	margin:5% 0;
+		margin:5% 0;
+	}
 }
+@media (max-width:640px){
+	.navbar-toggle{
+		margin-right:5px;
+	}
+	.sideTab {
+		height: 60px;
+	}
+	.charts{
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+}
+@media (max-width:540px){
+	.navbar-toggle{
+		margin-right:1px;
+	}
+}
+@media (max-width:480px){
+	.navbar-toggle{
+		margin-right:0px;
+	}
 }
 /*@media (max-width: 1120px){
 	.chartContainer{
@@ -2252,7 +2364,17 @@ nvd3{
 }
 @media (max-width:450px){
 	.taskResult{
-		margin:20% auto;
+		margin:20% 10%;
+	}
+	.navbar-toggle{
+		padding:5px 5px;
+	}
+	.navbar-toggle .icon-bar{
+		width: 20px;
+		height: 1px;
+	}
+	.navbar-toggle{
+		margin-top: 15px;
 	}
 }
 /*Task result page css Ends ........*/
