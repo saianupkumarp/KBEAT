@@ -1,4 +1,4 @@
-<!-- <div>  
+<!-- <div>
   <div class="taskResult">
     <div>
       <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
@@ -197,7 +197,7 @@
 
 
 
-    
+
     <div class="taskResult">
 
       <div>
@@ -216,6 +216,8 @@
             <li><a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a></li>
             <li><a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a></li>
             <li><a href="{{task.jasperPdf}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>Jasper PDF</a></li>
+            <li><a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF</a></li>
+            <li><a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint</a></li>
 
           </ul>
         </div>
@@ -227,9 +229,9 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-              <span class="icon-bar"></span> 
+              <span class="icon-bar"></span>
             </button>
-            
+
           </div>
           <div class="collapse navbar-collapse chartTabContainer" id="myNavbar">
             <ul class="nav navbar-nav parentList1">
@@ -315,7 +317,7 @@
                       </tr>
                     </table>
                   </div></div>
-                  </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -447,10 +449,3 @@
               </div>
             </div>
           </div>
-          
-
-
-
-
-
-
