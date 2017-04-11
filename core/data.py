@@ -71,6 +71,7 @@ def get_task_result(task_id):
             'simFile': task.get('result').get('simFile'),
             'bepsFile': task.get('result').get('beps'),
             'jasperPdf': task.get('result').get('pdf'),
+            'id': task_id,
             'calibrationData': task.get('result').get('input')
         }
     return report
