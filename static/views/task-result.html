@@ -8,7 +8,7 @@
    </div>
    <ul class="nav nav-tabs parentList">
      <li class="list active"><a data-toggle="tab" href="#reports">Reports</a></li>
-     <li class="list"><a data-toggle="tab" href="#caliberation">caliberation</a></li>
+     <li class="list"><a data-toggle="tab" href="#calibration">calibration</a></li>
      <div class="dropdown">
       <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
         <span class="caret"></span></button>
@@ -61,7 +61,7 @@
 
             </div>
           </div>
-          <div id="caliberation" class="tab-pane fade">
+          <div id="calibration" class="tab-pane fade">
            <div id="accordion" class="panel-group">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -202,13 +202,13 @@
 
       <div>
         <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 0px;" >Description</label><br>
-        <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px;padding: 10px 30px;background: #f8f8f8;">
+        <p style="font-size: 16px;color: #666;line-height: 1.5em;margin: 10px 0px 25px 0px;padding: 10px 30px;background: #f8f8f8;">
          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
        </p>
      </div>
      <ul class="nav nav-tabs parentList">
-       <li class="list active"><a data-toggle="tab" href="#reports">Reports</a></li>
-       <li class="list"><a data-toggle="tab" href="#caliberation">caliberation</a></li>
+       <li class="list active"><a data-toggle="tab" href="#reports"><img src="/keec/assets/img/graph.svg" height="20" width="20"><span class="tabText">Reports</span></a></li>
+       <li class="list"><a data-toggle="tab" href="#calibration"><img src="/keec/assets/img/report.svg" height="20" width="20"><span class="tabText">calibration</span></a></li>
        <div class="dropdown">
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
           <span class="caret"></span></button>
@@ -220,16 +220,8 @@
           </ul>
         </div>
       </ul>
-      <div class="tab-content">
+      <div class="tab-content primaryTabContent">
        <div id="reports" class="tab-pane fade in active">
-        <!-- required for floating -->
-        <!-- Nav tabs -->
-         <!--   <div class="col-xs-1 sideTab">
-          <ul class="nav nav-tabs tabs-left parentList1">
-            <li class="list active"><a style="border-radius:0px;" href="#pseReport" data-toggle="tab">PSE Report</a></li>
-            <li class="list"><a style="border-radius:0px;" href="#bepuReport" data-toggle="tab">BEPU Report</a></li>
-          </ul>
-        </div> -->
         <nav class="navbar navbar-default col-xs-4 col-sm-1 sideTab">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -246,14 +238,13 @@
             </ul>
           </div>
         </nav>
-        <div class="tab-content">
+        <div class="tab-content" style="background-color:#f8f8f8;">
           <div id="pseReport" class="tab-pane fade in active">
             <div ng-class="{chartContainer:true}">
               <div ng-class="{chart:true,card:true}"><h3 class="chart-header">PSE Report</h3>
                 <div class="charts">
                   <nvd3 options='barChartOptions' data='barData'></nvd3></div></div>
-                </div>
-                <div ng-class="{chart1:true,card:true}"><h3 class="chart-header">PSE Report</h3>
+                 <div ng-class="{chart1:true,card:true}"><h3 class="chart-header">PSE Report</h3>
                  <div style="border:6px solid #f8f8f8;" class="tableContainer">
                   <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
                   <table class="table table-responsive table-hover">
@@ -284,13 +275,14 @@
                     </tr>
                   </table>
                 </div></div>
+                 </div>
               </div>
               <div id="bepuReport" class="tab-pane fade">
                 <div ng-class="{chartContainer:true}">
                   <div ng-class="{chart:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
                    <div class="charts">
                     <nvd3 options='pieChartOptions' data='pieData'></nvd3></div></div>
-                  </div>
+                  
 
                   <div ng-class="{chart1:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
                    <div style="border:6px solid #f8f8f8;" class="tableContainer">
@@ -323,11 +315,11 @@
                       </tr>
                     </table>
                   </div></div>
-                  
+                  </div>
                 </div>
               </div>
             </div>
-            <div id="caliberation" class="tab-pane fade">
+            <div id="calibration" class="tab-pane fade">
              <div id="accordion" class="panel-group">
               <div class="panel panel-default">
                 <div class="panel-heading">
