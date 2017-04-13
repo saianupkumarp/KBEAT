@@ -345,7 +345,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 return $http.get('/keec/api/tasks/' + task.id + '/result').then(function (response) {
                     console.log(response.data)
                     // var result = response.data;
-                    
+                    $rootScope.reportResultData = response.data;
                     return response.data;
                 });
               }
