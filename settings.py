@@ -19,6 +19,6 @@ STATIC_ROOT = path.join(APP_ROOT, 'static')
 OUTPUT_ROOT = tempfile.gettempdir()
 
 #MongoDB
-MONGO_HOST = 'localhost'
+MONGO_HOST = '10.200.69.43'
 MONGO_PORT = 27017
 MONGO_DBNAME = 'keec'

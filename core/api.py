@@ -4,30 +4,25 @@ from datetime import datetime
 import os
 import StringIO, mimetypes
 from werkzeug.datastructures import Headers
+
 from pptx import Presentation
 from pptx.chart.data import ChartData
 from pptx.enum.chart import XL_CHART_TYPE, XL_LEGEND_POSITION, XL_LABEL_POSITION
 from pptx.dml.color import RGBColor
 from pptx.util import Pt, Inches
+
 from reportlab.platypus import BaseDocTemplate, Frame, Paragraph, NextPageTemplate, PageBreak, PageTemplate, Table, TableStyle, Image, Flowable
-from reportlab.graphics.shapes import Drawing
+from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.piecharts import Pie
 from reportlab.graphics.charts.legends import Legend
-from reportlab.graphics.charts.legends import Legend
-from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
-
-from reportlab.lib.units import inch, cm
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfgen.canvas import Canvas
-from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.lib import colors
-from reportlab.lib.colors import black, red, purple, green, maroon, brown, pink, white, HexColor
 from reportlab.lib.validators import Auto
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.enums import TA_CENTER
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -84,37 +79,27 @@ def get_pptx_results(task_id):
 
     task = data.get_task_result(task_id)
 
+    ## Create presentation with given template
     prs = Presentation("templates/ppt_template.pptx")
     # prs = Presentation()
     # slide_master = prs.slide_master
 
-    # Slide 1
-    title_slide1_layout = prs.slide_layouts[0]
-    slide1 = prs.slides.add_slide(title_slide1_layout)
-    titleSlide1 = slide1.shapes.title
-    titleSlide1.text = "KAPSARC Building Stock Energy Efficiency Analysis"
-    # sub=slide1.placeholders[1]
-    # sub.text = "KAPSARC Building Stock Energy Efficiency Analysis"
-    # subtitleSlide1 = slide1.placeholders[1]
-    # subtitleSlide1.text = "python-pptx was here!"
-
-
-    # Slide 2
-    # bullet_slide_layout = prs.slide_layouts[1]
-    # slide2 = prs.slides.add_slide(bullet_slide_layout)
-    # title_shape = slide2.shapes.title
-    # body_shape = slide2.shapes.placeholders[1]
-    # title_shape.text = 'Adding a Bullet Slide'
-    # tf = body_shape.text_frame
-    # tf.text = 'Find the bullet slide layout'+str(task['barChartData'])
-
-    # Slide 2
+    ## Define slide template /prs.slide_layouts[number of slide in slide matser template]/
+    title_slide_layout = prs.slide_layouts[0]
     table_slide_layout = prs.slide_layouts[4]
-    slide2 = prs.slides.add_slide(table_slide_layout)
-    shapesSlide2 = slide2.shapes
-    shapesSlide2.title.text = 'PSE Table'
-    # sub=slide2.placeholders[0]
-    # sub.text = "KAPSARC Building Stock Energy Efficiency Analysis"
+    chart_slide_layout = prs.slide_layouts[4]
+
+    ## Slide 1
+    firstSlide = prs.slides.add_slide(title_slide_layout)
+    ## Create shapes and add title
+    firstSlideShapes = firstSlide.shapes
+    firstSlideShapes.title.text = "KAPSARC Building Stock Energy Efficiency Analysis"
+
+    ## Slide 2
+    PSEtableSlide = prs.slides.add_slide(table_slide_layout)
+    PSEtableSlideShapes = PSEtableSlide.shapes
+    PSEtableSlideShapes.title.text = 'PSE Table'
+    ## Get barChartData
     barChartData = task['barChartData']
     month=['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -122,71 +107,54 @@ def get_pptx_results(task_id):
     rows = len(barChartData)+1
     left = Inches(0.5)
     top = Inches(1.5)
-
-
-
     width = Inches(8)
     height = Inches(0.8)
-
-    table = shapesSlide2.add_table(rows, cols, left, top, width, height).table
-    # set column widths
-    table.columns[0].width = Inches(1.5)
+    ## Add table
+    table = PSEtableSlideShapes.add_table(rows, cols, left, top, width, height).table
     # write column headings
     table.cell(0, 0).text = 'Key'
+    table.columns[0].width = Inches(1.5)
 
+    ## Add table header and apply text style
     for i,m in enumerate(month):
         table.cell(0, i+1).text = str(month[i])
         table.cell(0,i+1).text_frame.paragraphs[0].font.size=Pt(14)
 
+    ## Create 'barData' list to pass the data values to the bar chart
     barData=[[0 for i in xrange(len(barChartData[0]['values']))] for i in xrange(len(barChartData))]
+    ## Add table index and values
     for i,result in enumerate(barChartData):
-        # write body cells
         table.cell(i+1, 0).text = str(result['key'])
         table.cell(i+1,0).text_frame.paragraphs[0].font.size=Pt(14)
         for j,value in enumerate(result['values']):
-            # table.cell(2, 2).text = str(7)+str(result['values'][i]['x'])
             table.cell(i+1, j+1).text = str(result['values'][j]['y'])
             barData[i][j]=str(result['values'][j]['y'])
             table.cell(i+1,j+1).text_frame.paragraphs[0].font.size=Pt(12)
 
 
 
-    # Slide 4
-    chart_slide_layout = prs.slide_layouts[4]
-    slide4 = prs.slides.add_slide(chart_slide_layout)
-    shapesSlide4 = slide4.shapes
-    shapesSlide4.title.text = 'PSE Chart'
-    # uy=[19.2, 21.4, 16.7,0,0,0,0,9,0,0,0,0]
-    # define chart data
+    ## Slide 3
+    PSEchartSlide = prs.slides.add_slide(chart_slide_layout)
+    PSEchartSlideShapes = PSEchartSlide.shapes
+    PSEchartSlideShapes.title.text = 'PSE Chart'
+    ## Define chart data
     chart_data = ChartData()
     chart_data.categories = month
     for i,result in enumerate(barChartData):
         chart_data.add_series(str(result['key']), barData[i])
 
-
-    # add chart to slide
     x, y, cx, cy = Inches(0.5), Inches(1.5), Inches(9), Inches(5)
-    chart1=slide4.shapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, cx, cy, chart_data).chart
-
-    chart1.has_legend = True
-    chart1.legend.position = XL_LEGEND_POSITION.RIGHT
-    chart1.legend.include_in_layout = False
-
-    #Add label
-    # plot = chart.plots[0]
-    # plot.has_data_labels = True
-    # data_labels = plot.data_labels
-    #
-    # data_labels.font.size = Pt(13)
-    # data_labels.font.color.rgb = RGBColor(0x0A, 0x42, 0x80)
-    # data_labels.position = XL_LABEL_POSITION.INSIDE_END
+    PSEchart=PSEchartSlideShapes.add_chart(XL_CHART_TYPE.COLUMN_STACKED, x, y, cx, cy, chart_data).chart
+    # Add legend
+    PSEchart.has_legend = True
+    PSEchart.legend.position = XL_LEGEND_POSITION.RIGHT
+    PSEchart.legend.include_in_layout = False
 
 
-    # Slide 5
-    table_slide_layout = prs.slide_layouts[4]
-    slide5 = prs.slides.add_slide(table_slide_layout)
-    shapesSlide5 = slide5.shapes
-    shapesSlide5.title.text = 'BEPU Table'
+    ## Slide 4
+    BEPUtableSlide = prs.slides.add_slide(table_slide_layout)
+    BEPUtableSlideShapes = BEPUtableSlide.shapes
+    BEPUtableSlideShapes.title.text = 'BEPU Table'
     pieChartData = task['pieChartData']
 
     cols = 2
@@ -196,68 +164,58 @@ def get_pptx_results(task_id):
     width = Inches(5.5)
     height = Inches(1.5)
 
-    table = shapesSlide5.add_table(rows, cols, left, top, width, height).table
-    # set column widths
-    # table.columns[0].width = Inches(2.3)
+    table = BEPUtableSlideShapes.add_table(rows, cols, left, top, width, height).table
 
     # write column headings
     table.cell(0, 0).text = 'Key'
     table.cell(0, 1).text = 'Value'
-
-
+    ## Create label and values lists to pass the data to the pie chart
     pieDataLabel=[0 for x in range(len(pieChartData))]
     pieDataValue=[0 for x in range(len(pieChartData))]
+
+    ## Add table index and values
     for i,result in enumerate(pieChartData):
         # write body cells
         table.cell(i+1, 0).text = str(result['label'])
-        # table.cell(2, 2).text = str(7)+str(result['values'][i]['x'])
         table.cell(i+1, 1).text = str(result['value'])
         pieDataValue[i]=result['value']
         pieDataLabel[i]=str(result['label'])
 
 
-    # Slide 6
+    ## Slide 5
     chart_slide_layout = prs.slide_layouts[4]
-    slide6 = prs.slides.add_slide(chart_slide_layout)
-    shapesSlide6 = slide6.shapes
-    shapesSlide6.title.text = 'BEPU Chart'
-    # define chart data
+    BEPUchartSlide = prs.slides.add_slide(chart_slide_layout)
+    BEPUchartSlideShapes = BEPUchartSlide.shapes
+    BEPUchartSlideShapes.title.text = 'BEPU Chart'
+
+    # Define chart data
     chart_data = ChartData()
     chart_data.categories = pieDataLabel
-    # for i,result in enumerate(pieChartData):
     chart_data.add_series('', pieDataValue)
-
-
     # add chart to slide
     x, y, cx, cy = Inches(0.5), Inches(1), Inches(6), Inches(5.5)
-    chart2=slide6.shapes.add_chart(
-        XL_CHART_TYPE.PIE , x, y, cx, cy, chart_data).chart
-
-    chart2.has_legend = True
-    chart2.legend.position = XL_LEGEND_POSITION.RIGHT
-    chart2.legend.include_in_layout = False
-    chart2.plots[0].has_data_labels = True
-
-    # labelc=[0 for i in xrange(len(pieDataValue))]
-    # for i , r in enumerate(pieDataValue):
-    #     labelc[i]= str(round(r/sum(pieDataValue)*100,1))+'%'
-    # chart2.plots[0].data_labels=labelc
-    data_labels = chart2.plots[0].data_labels
+    BEPUchart=BEPUchartSlideShapes.add_chart(XL_CHART_TYPE.PIE , x, y, cx, cy, chart_data).chart
+    # Add legend
+    BEPUchart.has_legend = True
+    BEPUchart.legend.position = XL_LEGEND_POSITION.RIGHT
+    BEPUchart.legend.include_in_layout = False
+    BEPUchart.plots[0].has_data_labels = True
+    data_labels = BEPUchart.plots[0].data_labels
     # data_labels=labelc
     # data_labels.number_format_is_linked = False
     # data_labels.number_format = '0%' #%
     data_labels.ShowPercentage=True
     data_labels.ShowValue=False
-    # chart2.plots[0].has_text_frame = True
     data_labels.position = XL_LABEL_POSITION.CENTER
 
 
 
-    # Slide 7
+    ## Slide 6
     title_only_slide_layout = prs.slide_layouts[4]
-    slide7 = prs.slides.add_slide(title_only_slide_layout)
-    shapes = slide7.shapes
-    shapes.title.text = 'Calibration Data'
+    CalibrationSlide = prs.slides.add_slide(title_only_slide_layout)
+    CalibrationSlideShapes = CalibrationSlide.shapes
+    CalibrationSlideShapes.title.text = 'Calibration Data'
+    #get data values
     calibrationData = task['calibrationData']
 
     cols = 2
@@ -267,7 +225,7 @@ def get_pptx_results(task_id):
     width = Inches(7.5)
     height = Inches(0.8)
 
-    table = shapes.add_table(rows, cols, left, top, width, height).table
+    table = CalibrationSlideShapes.add_table(rows, cols, left, top, width, height).table
 
     # set column widths
     table.columns[0].width = Inches(2.3)
@@ -303,29 +261,24 @@ def get_pdf_results(task_id):
     task = data.get_task_result(task_id)
     #Saving file to a in-memory file
     output_file = StringIO.StringIO()
-    # c = SimpleDocTemplate(output_file)
-    # c.drawString(100,750,"Welcome to Reportlab!")
 
     def header_footer(canvas, doc):
 
         canvas.saveState()
 
         background ='static/img/pdf_bg.png'
-        canvas.drawImage(background,1*inch,5.65*inch, width=8*inch,height=6*inch,mask='auto')
+        canvas.drawImage(background,1*inch,5.75*inch, width=8*inch,height=6*inch,mask='auto')
 
 
         # Header
         logo =Image('static/img/logo/logo.png')
-        logo.drawHeight = 0.7*inch
+        logo.drawHeight = 0.5*inch
         logo.drawWidth = 1.75*inch
         date=datetime.now().strftime("%y-%m-%d %H:%M")
         headerData= [[logo, '', date]]
         headerTable = Table(headerData, colWidths=[2*inch,3.58 * inch,1.2* inch],
              style=[('LINEBELOW',(0,0),(2,0),1,colors.HexColor(0xcccccc)),
                     ('TEXTCOLOR',(0,0),(2,0),colors.HexColor(0x807F83)),
-                    # ('GRID',(0,0),(0,1),1,colors.red),
-                    # ('BACKGROUND',(1,0),(1,0),colors.green),
-                    # ('BACKGROUND',(2,0),(2,0),colors.blue),
                     ('VALIGN',(1,0),(1,0),'MIDDLE'),
                     ('VALIGN',(2,0),(2,0),'MIDDLE')])
         headerTable.wrapOn(canvas, doc.width, doc.topMargin)
@@ -336,8 +289,6 @@ def get_pdf_results(task_id):
         footerTable = Table(footerData, colWidths=[5.76*inch,1* inch],
              style=[('LINEABOVE',(0,0),(1,0),2,colors.HexColor(0xcccccc)),
                     ('TEXTCOLOR',(0,0),(1,0),colors.HexColor(0x807F83)),
-                    # ('GRID',(0,0),(0,1),1,colors.red),
-                    # ('BACKGROUND',(1,0),(1,0),colors.green),
                     ('ALIGN',(1,0),(1,0),'RIGHT')])
         footerTable.wrapOn(canvas, doc.width, doc.bottomMargin)
         footerTable.drawOn(canvas, doc.leftMargin, 0.5*inch)
@@ -351,11 +302,9 @@ def get_pdf_results(task_id):
     styles=getSampleStyleSheet()
     # Title
     styles.add(ParagraphStyle(name = 'styleTitle',
-                                    #   parent = styles['Heading2'],
                                       alignment= TA_CENTER,
                                       fontSize = 16,
                                       fontName ='Vera',
-                                    #   backColor= colors.HexColor(0x807F83),
                                       textColor= colors.HexColor(0x61a659),
                                       leading = 30,
                                       spaceBefore = 35,
@@ -370,7 +319,6 @@ def get_pdf_results(task_id):
                                       underlineProportion=1.1,
                                       spaceAfter = 20))
     styles.add(ParagraphStyle(name = 'styleHeading2',
-                                    #   parent = styles['Heading2'],
                                       alignment= TA_CENTER,
                                       fontSize = 12,
                                       fontName ='Vera',
@@ -417,7 +365,6 @@ def get_pdf_results(task_id):
     #add some flowables
     Elements.append(Paragraph("KAPSARC Building Stock Energy Efficiency Analysis",styleTitle))
     Elements.append(Paragraph("Calibration Data",styleHeading))
-    # Elements.append(Paragraph("This is a paragraph in <i>Normal</i> style.",styleBodyText))
     calibrationData = task['calibrationData']
 
     calibrationTableData=[[0 for i in xrange(2)] for i in xrange(len(calibrationData))]
@@ -441,8 +388,6 @@ def get_pdf_results(task_id):
 
     Elements.append(PageBreak())
     Elements.append(Paragraph("PSE Report:",styleHeading))
-    # Elements.append(Paragraph('<br /><br />', styleBodyText))
-    # Elements.append(Paragraph("Frame one column, "*400,styles['Normal']))
     Elements.append(Paragraph("Table",styleHeading2))
     barChartData = task['barChartData']
     month=['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
@@ -464,28 +409,15 @@ def get_pdf_results(task_id):
 
     t=Table(PSEtableData,style=[
      ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
-     # ('TEXTCOLOR',(0,0),(len(data[0]),len(data)),colors.HexColor(0x807F83)),
      ('FONTSIZE',(0,0),(-1,-1),9),
      ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
      ('FONTNAME',(0,0),(len(PSEtableData[0])-1,0),'Helvetica-Bold'),
-     # ('GRID',(0,0),(0,len(data)),1,colors.blue),
-     # ('BOX',(0,0),(1,-1),2,colors.red),
-    #  ('LINEABOVE',(0,0),(len(PSEtableData[0]),0),1,colors.HexColor(0x807F83)),
      ('LINEBELOW',(0,0),(len(PSEtableData[0]),0),1,colors.HexColor(0x807F83)),
-    #  ('LINERIGHT',(1,0),(len(PSEtableData[0])-3,0),1,colors.HexColor(0x807F83)),
-    #  ('GRID',(0,0),(len(PSEtableData[0]),0),1, colors.orange),
      ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
-     # ('GRID',(0,0),(-1,-1),0.5,colors.black),
-    #  ('VALIGN',(3,0),(3,0),'BOTTOM'),
-    #  ('ALIGN',(3,1),(3,1),'CENTER'),
-    #  ('BACKGROUND',(0,0),(len(PSEtableData[0]),len(PSEtableData)),colors.HexColor(0xbfbfbf)),
      ('ALIGN',(0,0),(0,0),'CENTER'),
      ])
     # t._argW[3]=6*inch
-    # t._argW[3]=1*inch
     Elements.append(t)
-    # f = Frame(0.75*inch, 0.75*inch,6.75*inch, 10.3*inch, showBoundary=1)
-    # f.addFromList(Elements,c)
     #start the construction of the pdf
     Elements.append(Paragraph('<br /><br />', styleBodyText))
 
@@ -509,7 +441,6 @@ def get_pdf_results(task_id):
         for i, result in enumerate(PSEchartData):
             sumColum+=PSEchartData[i][j]
         sumPSEcolumnData[j]=sumColum
-        # print sumColum
     bc.valueAxis.valueMax = max(sumPSEcolumnData)
     # bc.valueAxis.valueStep = 100
     bc.strokeWidth = 0
@@ -535,7 +466,7 @@ def get_pdf_results(task_id):
     bc.barWidth = .3*inch
     bc.groupSpacing = .2 * inch
 
-    bc.bars.strokeColor     = white
+    bc.bars.strokeColor     = colors.HexColor(0xffffff)
     bc.bars.strokeWidth     = 0.5
     for i , r in enumerate(PSEchartLegend):
         bc.bars[i].fillColor= colors.HexColor(pdf_chart_colors[i])
@@ -558,7 +489,7 @@ def get_pdf_results(task_id):
     swatches.boxAnchor       = 'nw'
     swatches.columnMaximum   = (len(bc.data)+1)/2
     swatches.strokeWidth     = 0.5
-    swatches.strokeColor     = white
+    swatches.strokeColor     = colors.HexColor(0xffffff)
     swatches.deltax          = 75
     swatches.deltay          = 12
     # # # swatches.autoXPadding    = 7
@@ -627,7 +558,7 @@ def get_pdf_results(task_id):
     # pc.slices[3].fontColor = colors.red
     # pc.legend.x=200
     pc._seriesCount = len(BEPUchartLabel)
-    pc.slices.strokeColor     = white
+    pc.slices.strokeColor     = colors.HexColor(0xffffff)
     pc.slices.strokeWidth     = 0.5
     for i , r in enumerate(BEPUchartLabel):
         pc.slices[i].fillColor= colors.HexColor(pdf_chart_colors[i])
@@ -650,7 +581,7 @@ def get_pdf_results(task_id):
     # legend.columnMaximum   = (len(pc.data)+1)/2
     legend.columnMaximum   = 8
     legend.strokeWidth     = 0.5
-    legend.strokeColor     = white
+    legend.strokeColor     = colors.HexColor(0xffffff)
     legend.deltax          = 75
     legend.deltay          = 10
     legend.autoXPadding    = 10
