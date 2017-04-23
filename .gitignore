@@ -1,3 +1,4 @@
 *.pyc
 tunbeec_desktop_nogui_exp_v1/
 vid/
+settings.py
