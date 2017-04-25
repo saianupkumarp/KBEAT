@@ -663,6 +663,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 break;
               case 'number':
                 scope.field.value = parseFloat(scope.field.default);
+                scope.buildType =  scope.container.parameters.filter(function(p) {
+                  return p.id == scope.field.related_id;
+                })[0];
                 break;
               case 'table':
                 if (scope.field.id == 'windowTable') {

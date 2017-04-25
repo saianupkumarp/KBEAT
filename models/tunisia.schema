@@ -48,6 +48,7 @@ steps:
           default: 50
           widthPercent: 50
           default: 50
+          related_id: cmbBldgType
     - id: buildingShape
       label: Building Shape
       widthPercent: 100
