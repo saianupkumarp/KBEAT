@@ -626,7 +626,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             scope.selectRow = function(index) {
               scope.selectedTableRow = index;
             }
-
             switch (scope.field.type) {
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
@@ -639,6 +638,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 scope.$watch('field.url', function() {
                   if (scope.field.url) {
                     scope.field.value = scope.field.url.slice(0, -4);
+                  }
+                })
+                scope.$watch('field.value', function(){
+                  if(scope.field.id == 'cmbBldgType'){
+                    scope.field.cmbBldgTypeVal = scope.field.value;
                   }
                 })
                 break;
@@ -692,26 +696,19 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   scope.row4.glazingValues = scope.row4.glazingValues.split(', ');
                   scope.field.rowValues = [];
                   scope.field.rowValues.splice(0, 0, scope.row1, scope.row2, scope.row3, scope.row4);
-                } else if (scope.field.id == 'spaceTable') {
+                } else if (scope.field.id.substr(scope.field.id.length - 6) == 'SpcTbl') {
                   scope.field.row_heading = scope.field.row_heading.split(', ');
-                  scope.field.row1 = scope.field.row1.split(', ');
-                  scope.field.row1.splice(0, 0, scope.field.row_heading[0]);
-                  scope.field.row2 = scope.field.row2.split(', ');
-                  scope.field.row2.splice(0, 0, scope.field.row_heading[1]);
                   scope.field.column_heading = scope.field.column_heading.split(', ');
-                  scope.field.row1 = scope.field.row1.reduce(function(o, v, i) {
-                    o[i] = v;
-                    return o;
-                  }, {});
-                  scope.field.row2 = scope.field.row2.reduce(function(o, v, i) {
-                    o[i] = v;
-                    return o;
-                  }, {});
-                  scope.field.merge = [];
-                  scope.field.merge.splice(0, 0, scope.field.row1, scope.field.row2);
-                  scope.field.value = scope.field.merge;
+                  scope.field.tblData = [];
+                  for (var j=0; j<Object.keys(scope.field.row_heading).length;j++) {
+                    scope.field['row'+(j+1)] = scope.field['row'+(j+1)].split(', ');
+                    scope.field['row'+(j+1)].splice(0, 0, scope.field.row_heading[j]);
+                    scope.field.tblData.push(scope.field['row'+(j+1)])
+                  }
                 }
-
+                scope.buildType = $rootScope.model.steps[0].containers[1].parameters.filter(function(p) {
+                  return p.id == scope.field.related_id;
+                })[0];
                 break;
               case 'dimension':
                 scope.axisObj = {};
