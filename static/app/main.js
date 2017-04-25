@@ -83,7 +83,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     }
                     paginationLimit = task.model_name.taskPaginationLimit;
                   });
-                  $rootScope.filteredTasks = tasks; 
+                  $rootScope.filteredTasks = tasks;
                   $rootScope.tasks = tasks;
                   $rootScope.taskPagination = {
                     limit: paginationLimit,
@@ -444,7 +444,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           return $http.post('/keec/api/models/' + name, data).then(function(response) {
             console.log(response.data)
             if(response.data.status == 'QUEUED'){
-              $state.go('app.tlist');  
+              $state.go('app.tlist');
             }
           })
         }
@@ -631,7 +631,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
                 scope.field.values = scope.field.values.split(', ');
-                
+
                 if (scope.field.url) {
                   scope.field.urls = scope.field.url.split(', ');
                   scope.field.value = scope.field.values[0];
@@ -639,7 +639,387 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 scope.$watch('field.url', function() {
                   if (scope.field.url) {
                     scope.field.value = scope.field.url.slice(0, -4);
+                    var canvas = new fabric.Canvas('canvas');
+        var rect = new fabric.Rect({
+        left: 50,
+        top: 50,
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 100,//x1
+        height: 50//y1
+      });  
+      var rectL1 = new fabric.Rect({
+        left: 50,
+        top: 50,
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 50,//x2
+        height: 100//y1
+      });
+      var rectL2 = new fabric.Rect({
+        left: (50),
+        top: 50+60,//(100 + ((Ly1 - Ly2) < 0 ? 0 : (Ly1 - Ly2))),
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 100,//x1
+        height: 40//y2
+      }); 
+        var rectT1 = new fabric.Rect({
+        left: 50,
+        top: 50,
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 100,//Tx1,
+        height:60 //(Ty1-Ty2)
+      });
+      var rectT2 = new fabric.Rect({
+        left: 75,//(50 +Tx2/2),
+        top: 110,//(100+Ty1-Ty2),
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 50,//Tx3,
+        height: 40//Ty2
+      });
+      var rectT3 = new fabric.Rect({
+        left: 25,
+        top: 50,
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: '',
+        width: 50,//Tx2,
+        height: 100//Ty1
+      });
+var rectU1 = new fabric.Rect({
+        left: 50,
+        top: 50,
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 50,//Ux2,
+        height: 100//Uy1
+      });
+      var rectU2 = new fabric.Rect({
+        left: (50),
+        top: 100,//(100 + (Uy1 - Uy3)),
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'green',
+        width: 100,//Ux1,
+        height: 50//Uy3
+      });
+      var rectU3 = new fabric.Rect({
+        left: 100,//(50 + Ux1 -Ux3),
+        top: 110,//(100 +(Uy1-Uy2)),
+        selectable:false,
+        hasBorders: false,
+        hasControls: false,
+        lockScalingX: true,
+        lockScalingY: true,
+        lockRotation: true,
+        lockMovementX: true,
+        lockMovementY: true,
+        hoverCursor: 'default',
+        fill: 'red',
+        width: 50,//Ux3,
+        height: 40//Uy2
+      });
+      var dashedLine = new fabric.Line([rectU3.get('left'),rectU2.get('top'), rectU3.get('left')+rectU3.get('width'),rectU2.get('top')], {
+      stroke: 'blue',//'#808080',
+      strokeWidth: 1,
+      strokeDashArray:[4,4],
+      selectable:false,
+      hasBorders: false,
+      hasControls: false,
+      originX: 'center',
+      originY: 'center',
+      lockScalingX: true,
+      lockScalingY: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default'
+    });
+      if (scope.field.value=="Rectangular"){
+        canvas.add(rect);
+        verticalArrow(rect,'   y1\n'+'(static'+100+'m)', '6|left');
+        horizontalArrow(rect, '   x1\n'+'('+50+'m)','6|bottom');
+      
+    } 
+      else if (scope.field.value=="L-Shape"){
+        canvas.clear();
+        canvas.add(rectL1, rectL2);
+        verticalArrow(rectL1,'   y1\n'+'(y1 m)','6|left');
+        horizontalArrow(rectL1,'   x2\n'+'(x2 m)','6|top');
+        verticalArrow(rectL2,'   y2\n'+'(y2 m)','6|right');
+        horizontalArrow(rectL2,'   x1\n'+'(x1 m)','6|bottom');
+      
+    }
+      else if (scope.field.value=="T-Shape"){
+        canvas.clear();
+        canvas.add(rectT1, rectT2, rectT3);
+        verticalArrow(rectT3,'   y1\n'+'(Ty1 m)','6|left');
+        horizontalArrow(rectT1,'   x1\n'+'(x1 m)','6|top');
+        verticalArrow(rectT2,'   y2\n'+'(y2 m)', '6|right');
+        horizontalArrow(rectT2,'   x3\n'+'(x3 m)','6|bottom');
+        horizontalArrow(rectT3,'   x2\n'+'(x2 m)','6|bottom');}  
+      else if (scope.field.value=="U-Shape"){
+        canvas.clear();
+        canvas.add(rectU1, rectU2, rectU3);
+        verticalArrow(rectU1,'   y1\n'+'(y1 m)', '6|left');
+        horizontalArrow(rectU1,'   x2\n'+'(x2 m)','6|top');
+        verticalArrow(rectU3,'   y2\n'+'(y2 m)', '28|right');
+        horizontalArrow(rectU2,'   x1\n'+'(x1 m)','6|bottom');
+        verticalArrow(rectU2,'y3\n'+'(y3 m)', '6|right');
+        horizontalArrow(rectU3,'   x3\n'+'(x3 m)','6|top');}
                   }
+
+//arrows function
+                  function verticalArrow(rect, label, position) {
+
+  var positionString=position.substring(position.indexOf('|')+1,position.length);
+  var positionNumber= parseInt(position.substring(0,position.indexOf('|')));
+  var arrowPosition;
+  var labelPosition;
+if (positionString == 'left'){
+
+arrowPosition=rect.get('left') - positionNumber;
+labelPosition= - 40;
+}
+if (positionString == 'right'){
+arrowPosition=rect.get('left') +rect.get('width')+ positionNumber;
+labelPosition=7;}
+
+    var line = new fabric.Line([arrowPosition, rect.get('top') + 3, arrowPosition, rect.get('top')-3 + rect.get('height')], {
+      stroke: '#ccc',
+      strokeWidth: '2',
+      padding: 5,
+      selectable:false,
+      hasBorders: false,
+      hasControls: false,
+      originX: 'center',
+      originY: 'center',
+      lockScalingX: true,
+      lockScalingY: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default'
+    });
+
+    var arrowTop = new fabric.Triangle({
+      left: line.get('x1'),
+      top: line.get('y1'),
+      selectable:false,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      pointType: 'arrow_start',
+      angle: 0,
+      width: 5,
+      height: 5,
+      fill: '#ccc'
+    });
+
+    var arrowBottom = new fabric.Triangle({
+      left: line.get('x2'),
+      top: line.get('y2'),
+      selectable:false,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      pointType: 'arrow_start',
+      angle: 180,
+      width: 5,
+      height: 5,
+      fill: '#ccc'
+    });
+    var verticalLabel = new fabric.Text(label, {
+      fontFamily: 'sans-serif',
+      fontSize: 12,
+      left: line.get('left') + labelPosition,
+      top: line.get('top')-7,
+      selectable:false,
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      fill: '#808080'
+    });
+
+    canvas.add(line, arrowTop, arrowBottom, verticalLabel);
+    //canvas.renderAll();
+  }
+
+
+
+
+  function horizontalArrow(rect, label, position) {
+  var positionString= position.substring(position.indexOf('|')+1,position.length);
+  var positionNumber= parseInt(position.substring(0,position.indexOf('|')));
+  var arrowPosition;
+  var labelPosition;
+if (positionString == 'bottom'){
+arrowPosition=rect.get('top') + rect.get('height') + positionNumber;
+labelPosition=7;}
+if (positionString == 'top'){
+arrowPosition=rect.get('top')- positionNumber;
+labelPosition=-40;}
+
+    var line = new fabric.Line([rect.get('left') + 3,arrowPosition , rect.get('left') + rect.get('width') - 2, arrowPosition], {
+      stroke: '#ccc',
+      strokeWidth: '2',
+      padding: 5,
+      selectable:false,
+      hasBorders: false,
+      hasControls: false,
+      originX: 'center',
+      originY: 'center',
+      lockScalingX: true,
+      lockScalingY: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default'
+    });
+
+    var arrowLeft = new fabric.Triangle({
+      left: line.get('x1'),
+      top: line.get('y1'),
+      selectable:false,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      pointType: 'arrow_start',
+      angle: -90,
+      width: 5,
+      height: 5,
+      fill: '#ccc'
+    });
+
+    var arrowRight = new fabric.Triangle({
+      left: line.get('x2'),
+      top: line.get('y2'),
+      selectable:false,
+      originX: 'center',
+      originY: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      pointType: 'arrow_start',
+      angle: 90,
+      width: 5,
+      height: 5,
+      fill: '#ccc'
+    });
+    var horizontalLabel = new fabric.Text(label, {
+      fontFamily: 'sans-serif',
+      fontSize: 12,
+      left: line.get('left'),
+      top: line.get('top') + labelPosition,
+      selectable:false,
+      originX: 'center',
+      hasBorders: false,
+      hasControls: false,
+      lockScalingX: true,
+      lockScalingY: true,
+      lockRotation: true,
+      lockMovementX: true,
+      lockMovementY: true,
+      hoverCursor: 'default',
+      fill: '#808080'
+    });
+    canvas.add(line, arrowLeft, arrowRight, horizontalLabel);
+    canvas.renderAll();
+  }
                 })
                 break;
               case 'radio':
@@ -730,7 +1110,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     scope.txtFloorArea = 1;
                     for(var axisKey in scope.axisObj) {
                       if(scope.field.id == 'Rectangular'){
-                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                        scope.txtFloorArea *= scope.axisObj[axisKey]
                       }else if(scope.field.id == 'L-Shape'){
                         scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y2']) + ((scope.axisObj['Y1'] - scope.axisObj['Y2']) * scope.axisObj['X2'])
                       }else if(scope.field.id == 'T-Shape'){
@@ -738,9 +1118,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       }else if(scope.field.id == 'U-Shape'){
                         scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
                       }else{
-                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                        scope.txtFloorArea *= scope.axisObj[axisKey]
                       }
-                      
+
                     };
                        scope.field.value = scope.axisObj;
                   }

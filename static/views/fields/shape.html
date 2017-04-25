@@ -6,3 +6,12 @@
 	<img class="hvacImage" width="{{shape.span_width}}" height="{{shape.span_height}}" style="margin-left: 100px;" ng-src="/keec/assets/img/{{shape.url}}"/>
 	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
+
+
+<div ng-if="field.related_id=='cmbBldgShape'" class="shape">
+	 <img class="image" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
+	  <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+	 <canvas id="canvas" class="image" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;border:1px solid #000000;">
+	         Your browser does not support canvas tag!
+	 </canvas>
+</div>
