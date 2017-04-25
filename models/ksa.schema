@@ -76,179 +76,69 @@ steps:
           label_suffix: m
           default: 3
           widthPercent: 50
-        - id: RectangularData
-          type: rectangular
-          label: X1
+        - id: Rectangular
+          type: dimension
+          label: X1,Y1
+          rel_id: rect
           label_suffix: m
           related_id: cmbBldgShape
-          relatedY1: rectY1
-          relatedArea: rectFloorArea
-          rectangularWidthPercent: 50
-        - id: rectY1
-          type: rectangular
-          label: Y1
-          label_suffix: m
-          hide: true
-          rectangularWidthPercent: 50
-        - id: rectFloorArea
-          type: rectangular
-          label: Floor Area
-          label_suffix: m2
-          hide: true
-          rectangularWidthPercent: 100
-        - id: L-ShapeData
-          type: lshape
-          label: X1
+          widthPercent: 100
+          url: Rectangular.jpg
+          txtLengX1: 10
+          txtLengY1: 5
+          txtFloorArea: 0
+          containerWidthPercent: 100
+          floor_area_label_suffix: m2
+        - id: L-Shape
+          type: dimension
+          label: X1,X2,Y1,Y2
           label_suffix: m
           related_id: cmbBldgShape
-          relatedX2: lshapeX2
-          relatedY1: lshapeY1
-          relatedY2: lshapeY2
-          relatedArea: lshapeFloorArea
-          relatedSelected: selected
-          lshapeWidthPercent: 50
-        - id: selected
-          dimSelected: 0
-          hide: yes
-        - id: lshapeX2
-          type: lshape
-          label: X2
-          label_suffix: m
-          hide: true
-          lshapeWidthPercent: 50
-        - id: lshapeY1
-          type: lshape
-          label: Y1
-          label_suffix: m
-          hide: true
-          lshapeWidthPercent: 50
-        - id: lshapeY2
-          type: lshape
-          label: Y2
-          label_suffix: m
-          hide: true
-          lshapeWidthPercent: 50
-        - id: lshapeFloorArea
-          type: lshape
-          label: Floor Area
-          label_suffix: m2
-          hide: true
-          lshapeWidthPercent: 100
-        - id: T-ShapeData
-          type: tshape
-          label: X1
+          widthPercent: 100
+          txtLengX1: 10
+          txtLengX2: 5
+          txtLengY1: 10
+          txtLengY2: 4
+          url: L-Shape.jpg
+          txtFloorArea: 0
+          containerWidthPercent: 100
+          floor_area_label_suffix: m2
+        - id: T-Shape
+          type: dimension
+          label: X1,X2,X3,Y1,Y2
           label_suffix: m
           related_id: cmbBldgShape
-          relatedX2: tshapeX2
-          relatedX3: tshapeX3
-          relatedY1: tshapeY1
-          relatedY2: tshapeY2
-          relatedArea: tshapeFloorArea
-          tshapeWidthPercent: 50
-        - id: tshapeX2
-          type: tshape
-          label: X2
-          label_suffix: m
-          hide: true
-          tshapeWidthPercent: 50
-        - id: tshapeX3
-          type: tshape
-          label: X3
-          label_suffix: m
-          hide: true
-          tshapeWidthPercent: 100
-        - id: tshapeY1
-          type: tshape
-          label: Y1
-          label_suffix: m
-          hide: true
-          tshapeWidthPercent: 50
-        - id: tshapeY2
-          type: tshape
-          label: Y2
-          label_suffix: m
-          hide: true
-          tshapeWidthPercent: 50
-        - id: tshapeFloorArea
-          type: tshape
-          label: Floor Area
-          label_suffix: m2
-          hide: true
-          tshapeWidthPercent: 100
-        - id: U-ShapeData
-          type: ushape
-          label: X1
+          widthPercent: 100
+          txtLengX1: 10
+          txtLengX2: 5
+          txtLengX3: 5
+          txtLengY1: 10
+          txtLengY2: 4
+          url: T-Shape.jpg
+          txtFloorArea: 0
+          containerWidthPercent: 100
+          floor_area_label_suffix: m2
+        - id: U-Shape
+          type: dimension
+          label: X1,X2,X3,Y1,Y2,Y3
           label_suffix: m
           related_id: cmbBldgShape
-          relatedX2: ushapeX2
-          relatedX3: ushapeX3
-          relatedY1: ushapeY1
-          relatedY2: ushapeY2
-          relatedY3: ushapeY3
-          relatedArea: ushapeFloorArea
-          ushapeWidthPercent: 50
-        - id: ushapeX2
-          type: ushape
-          label: X2
-          label_suffix: m
-          hide: true
-          ushapeWidthPercent: 50
-        - id: ushapeX3
-          type: ushape
-          label: X3
-          label_suffix: m
-          hide: true
-          ushapeWidthPercent: 50
-        - id: ushapeY1
-          type: ushape
-          label: Y1
-          label_suffix: m
-          hide: true
-          ushapeWidthPercent: 50
-        - id: ushapeY2
-          type: ushape
-          label: Y2
-          label_suffix: m
-          hide: true
-          ushapeWidthPercent: 50
-        - id: ushapeY3
-          type: ushape
-          label: Y3
-          label_suffix: m
-          hide: true
-          ushapeWidthPercent: 50
-        - id: ushapeFloorArea
-          type: ushape
-          label: Floor Area
-          label_suffix: m2
-          hide: true
-          ushapeWidthPercent: 100
+          widthPercent: 100
+          txtLengX1: 10
+          txtLengX2: 5
+          txtLengX3: 5
+          txtLengY1: 10
+          txtLengY2: 4
+          txtLengY3: 5
+          url: U-Shape.jpg
+          txtFloorArea: 0
+          containerWidthPercent: 100
+          floor_area_label_suffix: m2
         - id: biShape
           type: shape
           label: Shape
           related_id: cmbBldgShape
           widthPercent: 50
-      shapeDetails:
-        - id: Rectangular
-          txlenx1: true
-          txleny1: true
-          axis: txlenx1, txleny1
-        - id: rect
-          axis: X1, Y1
-          image: Rectangular.jpg
-          related_id: cmbBldgShape
-        - id: lshape
-          axis: X1, X2, Y1, Y2
-          image: L-Shape.jpg
-          related_id: cmbBldgShape
-        - id: tshape
-          axis: X1, X2, X3, Y1, Y2
-          image: T-Shape.jpg
-          related_id: cmbBldgShape
-        - id: ushape
-          axis: X1, X2, X3, Y1, Y2, Y3
-          image: U-Shape.jpg
-          related_id: cmbBldgShape
     - id: button
       widthPercent: 100
       label: Button
