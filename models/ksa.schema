@@ -372,7 +372,7 @@ steps:
           values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           default: Residential System
-          span_width: 800
+          span_width: 600
           span_height: 180
           widthPercent: 100
         - id: txtHeatSetTemp
