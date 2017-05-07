@@ -32,6 +32,8 @@ steps:
           label: Number of Floors
           label_suffix: story
           default: 1
+          min: 1
+          max: 100
           widthPercent: 50
           default: 1
         - id: cmbBldgLocation
@@ -48,6 +50,8 @@ steps:
           default: 50
           widthPercent: 50
           default: 50
+          min: 0
+          max: 100
           related_id: cmbBldgType
     - id: buildingShape
       label: Building Shape

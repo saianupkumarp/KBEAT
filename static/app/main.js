@@ -859,8 +859,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 if (scope.field.error && newValue != oldValue) {
                   scope.field.error = !newValue;
                 }
+                if(typeof scope.field.value === 'undefined'){
+                  scope.field.value = Number(scope.field.max);
+                }
               });
-
           }
         }
       });
