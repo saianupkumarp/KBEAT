@@ -2337,7 +2337,7 @@ width:100%;
 	right:0;
 	left:auto !important;
 	top:30px;
-	text-align:center;
+	text-align:left;
 	border:none;
 }
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{

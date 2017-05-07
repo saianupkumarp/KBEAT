@@ -465,7 +465,7 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          url: Residential System.jpg, Packaged Variable Air Volume System.jpg, Split System with Baseboard.jpg, Fan Coil System.jpg, Variable Air Volume System.jpg
+          url: Residential System.jpg, Packaged Variable Air Volume System.jpg, Split System with Baseboard.gif, Fan Coil System.jpg, Variable Air Volume System.jpg
           values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
           default: Residential System
