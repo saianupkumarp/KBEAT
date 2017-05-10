@@ -11,7 +11,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         'duScroll', 'angularMoment', 'nvd3'
       ])
 
-      .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
+      .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider, $mdAriaProvider) {
+        //disabling Aria
+        $mdAriaProvider.disableWarnings();
         // Multi-language support
         $translateProvider
           .useLocalStorage()
