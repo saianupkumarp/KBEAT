@@ -196,7 +196,7 @@
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapsefour"><h4 class="panel-title">
-                      Exterior Construction
+                      Exterior Constructions
                     </h4></a>
                   </div>
                   <div id="collapsefour" class="panel-collapse collapse">
@@ -225,6 +225,132 @@
                       </div>
                     </div>
                   </div>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive"><h4 class="panel-title">
+                        Windows (Conditioned space ONLY)
+                      </h4></a>
+                    </div>
+                    <div id="collapsefive" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <table class="table table-responsive table-hover">
+                          <tbody>
+                              <tr>
+                                <td>{{task.calibrationData.rdbtnWinWwr}}</td>
+                              </tr>
+                              <tr>
+                                <td>North: {{task.calibrationData.northpercent}}</td>
+                              </tr>
+                              <tr>
+                                <td>South: {{task.calibrationData.southpercent}}</td>
+                              </tr>
+                              <tr>
+                                <td>East: {{task.calibrationData.eastpercent}}</td>
+                              </tr>
+                              <tr>
+                                <td>West: {{task.calibrationData.westpercent}}</td>
+                              </tr>
+                              <tr>
+                                <td>Glass Type: {{task.calibrationData.glasstype}}</td>
+                              </tr>
+                              <tr>
+                                <td>Overhang: {{task.calibrationData.txtWinSouthOverhang}} m(depth)</td>
+                              </tr>
+                              <tr>
+                                <td>FP: {{task.calibrationData.txtWinSouthFp}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix"><h4 class="panel-title">
+                          Space Condition
+                        </h4></a>
+                      </div>
+                      <div id="collapsesix" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <table class="table table-responsive table-hover">
+                            <tbody>
+                                <tr>
+                                  <td>{{task.calibrationData.rdbtnWinWwr}}</td>
+                                </tr>
+                                <tr>
+                                  <td>North: {{task.calibrationData.northpercent}}</td>
+                                </tr>
+                                <tr>
+                                  <td>South: {{task.calibrationData.southpercent}}</td>
+                                </tr>
+                                <tr>
+                                  <td>East: {{task.calibrationData.eastpercent}}</td>
+                                </tr>
+                                <tr>
+                                  <td>West: {{task.calibrationData.westpercent}}</td>
+                                </tr>
+                                <tr>
+                                  <td>Glass Type: {{task.calibrationData.glasstype}}</td>
+                                </tr>
+                                <tr>
+                                  <td>Overhang: {{task.calibrationData.txtWinSouthOverhang}} m(depth)</td>
+                                </tr>
+                                <tr>
+                                  <td>FP: {{task.calibrationData.txtWinSouthFp}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseseven"><h4 class="panel-title">
+                            Domestic Hot Water System
+                          </h4></a>
+                        </div>
+                        <div id="collapseseven" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <table class="table table-responsive table-hover">
+                              <tbody>
+                                  <tr>
+                                    <td>Building Type: {{task.calibrationData.cmbHotWaterSystem}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseeight"><h4 class="panel-title">
+                              HVAC System
+                            </h4></a>
+                          </div>
+                          <div id="collapseeight" class="panel-collapse collapse">
+                            <div class="panel-body">
+                              <table class="table table-responsive table-hover">
+                                <tbody>
+                                    <tr>
+                                      <td>HVAC System: {{task.calibrationData.cmbBldgSystem}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Heating setpoint temperature: {{task.calibrationData.txtHeatSetTemp}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Cooling setpoint temperature: {{task.calibrationData.txtCoolSetTemp}} degC</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
                 </div>
               </div>
             </div>
