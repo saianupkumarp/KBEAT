@@ -139,11 +139,6 @@ steps:
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: biShape
-          type: shape
-          label: Shape
-          related_id: cmbBldgShape
-          widthPercent: 50
     - id: button
       widthPercent: 100
       label: Button
@@ -501,4 +496,3 @@ steps:
           type: button
           label: Run
           widthPercent: 20
- 
