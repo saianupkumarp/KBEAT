@@ -1214,7 +1214,7 @@ md-select{
             margin:8% auto;
         }
         .step-headers{
-            /*padding-top: 4%;*/
+            padding-top: 4%;
         }
         .step-content{
             margin-top:6%;
@@ -1481,7 +1481,7 @@ md-select{
     }
     .step-headers{
         width:103%;
-        padding-left: 4px;
+        padding-left: 7px;
     }
     .checkmark_circle{
         width: 28px;
