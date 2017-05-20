@@ -89,8 +89,8 @@ steps:
           related_id: cmbBldgShape
           widthPercent: 100
           url: Rectangular.jpg
-          txtLengX1: 10
-          txtLengY1: 5
+          txtLengX1: 120
+          txtLengY1: 50
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
@@ -100,10 +100,10 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengY1: 10
-          txtLengY2: 4
+          txtLengX1: 120
+          txtLengX2: 50
+          txtLengY1: 100
+          txtLengY2: 40
           url: L-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
@@ -114,11 +114,11 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengX3: 5
-          txtLengY1: 10
-          txtLengY2: 4
+          txtLengX1: 120
+          txtLengX2: 40
+          txtLengX3: 40
+          txtLengY1: 100
+          txtLengY2: 60
           url: T-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
@@ -129,21 +129,16 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengX3: 5
-          txtLengY1: 10
-          txtLengY2: 4
-          txtLengY3: 5
+          txtLengX1: 120
+          txtLengX2: 40
+          txtLengX3: 40
+          txtLengY1: 100
+          txtLengY2: 90
+          txtLengY3: 30
           url: U-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: biShape
-          type: shape
-          label: Shape
-          related_id: cmbBldgShape
-          widthPercent: 50
     - id: button
       widthPercent: 100
       label: Button
@@ -503,4 +498,3 @@ steps:
           type: button
           label: Run
           widthPercent: 20
- 
