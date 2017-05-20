@@ -358,25 +358,46 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 controller: function ($scope, $window, task, $rootScope) {
                   $rootScope.footer = true;
                   $scope.task = task;
-                  $scope.pieChartData = task.pieChartData;
+                  $scope.pieChartData = task.bepuData;
                    $scope.pieChartOptions = {
                     chart: {
-                      type: 'pieChart',
-                        showLabels: true,
-                        labelThreshold: .05,
-                        donut: true,
-                        donutRatio: 0.4,
-                        height: 320,
-                        width: 398,
+                      type: 'multiBarChart',
+                        clipEdge: true,
+                        groupSpacing: 0.1,
+                        reduceXTicks: false,
+                        showControls: false,
+                        height: 270,
+                        width: 700,
                         margin : {
-                            top: 35,
+                            top: 20,
                             right: 20,
-                            bottom: 5,
-                            left: 50
+                            bottom: 45,
+                            left: 45
                         },
+                        legend: {
+                          rightAlign: true
+                        },
+                        tooltip: {
+                          enabled: true,
+                          headerEnabled: true,
+                          id: 'nvtooltip-58248'
+                        },
+                        duration: 500,
                         x: function(d){ return d.label; },
                         y: function(d){ return d.value; },
-                        duration: 500,
+                        xAxis: {
+                            axisLabel: "Time",
+                            orient: "bottom",
+                            tickSize: 1,
+                            tickFormat: function(d) {return d;}
+                        },
+                        yAxis: {
+                            "showMaxMin": false,
+                            axisLabelDistance: 100,
+                            tickFormat: function(d){
+                              return d3.format(',.f')(d);
+                          }
+                        },
                       }
                    };
                    $scope.pieData = $scope.pieChartData
@@ -632,13 +653,13 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
                 scope.field.values = scope.field.values.split(', ');
-                
+                scope.show = false;
                 if (scope.field.url) {
                   scope.field.urls = scope.field.url.split(', ');
                   scope.field.value = scope.field.values[0];
                 }
                 scope.$watch('field.url', function() {
-                  if (scope.field.url) {
+                  if (scope.field.url && !scope.field.hover) {
                     scope.field.value = scope.field.url.slice(0, -4);
                   }
                 })
