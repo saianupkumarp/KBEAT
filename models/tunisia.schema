@@ -164,6 +164,8 @@ steps:
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
+          url: "EWall Cons-NoInsu.png, EWall Cons-Outside-2cm.png"
+          hover: true
           label: South Wall
           widthPercent: 50
         - id: cmbNorthWall

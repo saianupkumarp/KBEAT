@@ -1,24 +1,44 @@
-<div ng-class="{'input-container':true, error: field.error}">
-	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-		<md-select id="{{field.id}}"  ng-if="field.url" ng-model="field.url">
-			<md-option ng-value="url" ng-repeat="url in field.urls" ng-selected="$first">{{field.options[$index]}}</md-option>
-		</md-select>
-		<md-select id="{{field.id}}" ng-if="!field.url" ng-model="field.value">
-			<md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}</md-option>
-		</md-select>
-	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-	<input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
+<div ng-class="{'input-container':true, error: field.error}" ng-if="!field.hover">
+    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+        <md-select id="{{field.id}}"  ng-if="field.url && !field.hover" ng-model="field.url">
+            <md-option ng-value="url" ng-repeat="url in field.urls" ng-selected="$first">{{field.options[$index]}}</md-option>
+        </md-select>
+        <!--<md-select id="{{field.id}}" ng-if="field.hover" ng-model="field.value">
+            <md-option ng-value="option" ng-mouseenter="show = true" ng-mouseleave="show = false" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}<img src="/keec/assets/img/{{field.urls[$index]}}" align-"right" width="60px" height="40px" vertical-align="top"/></md-option>
+            <span ng-show="show">Hello!</span>
+        </md-select>-->
+        <md-select id="{{field.id}}" ng-if="!field.url && !field.hover" ng-model="field.value">
+            <md-option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}</md-option>
+        </md-select>
+    <div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+    <input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
 </div>
-
+<div  ng-class="{'input-container':true, error: field.error}" ng-if="field.hover">
+    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+      
+          <md-select id="{{field.id}}" ng-model="field.value" 
+                     ng-mouseenter="show = true"
+                     ng-mouseleave="show = false">
+            <md-option ng-value="option" 
+                       ng-mouseenter="$parent.show = true"
+                       ng-mouseleave="$parent.show = false"
+                       ng-repeat="option in field.values" 
+                       ng-selected="$first">{{field.options[$index]}}</md-option>
+          </md-select>
+          <span ng-show="show">
+              <img src="/keec/assets/img/{{field.urls[$index]}}" align="right" width="60" height="40" />
+          </span>
+  </div>
+  
 <!-- <div ng-class="{'input-container':true, error: field.error}">
-	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-		<select id="{{field.id}}"  ng-if="field.url" ng-model="field.url">
-			<option ng-value="url" ng-repeat="url in field.urls" ng-selected="$first">{{field.options[$index]}}</option>
-		</select>
-		<select id="{{field.id}}" ng-if="!field.url" ng-model="field.value">
-			<option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}</option>
-		</select>
-	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-	<input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
+    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+        <select id="{{field.id}}"  ng-if="field.url" ng-model="field.url">
+            <option ng-value="url" ng-repeat="url in field.urls" ng-selected="$first">{{field.options[$index]}}</option>
+        </select>
+        <select id="{{field.id}}" ng-if="!field.url" ng-model="field.value">
+            <option ng-value="option" ng-repeat="option in field.values" ng-selected="$first">{{field.options[$index]}}</option>
+        </select>
+    <div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+    <input ng-if="field.edit" class="edit" type="button" value="Edit" ng-click="dialogBox($event)"/>
 </div>
  -->
