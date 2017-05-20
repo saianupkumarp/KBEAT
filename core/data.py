@@ -65,9 +65,16 @@ def get_task_result(task_id):
     if not task:
         return None
     if task.get('status', '') == 'COMPLETED':
+        bepuObj = []
+        for outputType in task.get('result'):
+            obj = outputType.split("Output",1)[0]
+            obj = {}
+            obj['key'] = outputType.split("Output",1)[0].title()
+            obj['values'] = task.get('result').get(outputType).get('bepu')
+            bepuObj.append(obj)
         report = {
-            'pieChartData': task.get('result').get('bepu'),
-            'barChartData': task.get('result').get('pse'),
+            'bepuData': bepuObj,
+            'barChartData': task.get('result').get('userOutput').get('pse'),
             'simFile': task.get('result').get('simFile'),
             'bepsFile': task.get('result').get('beps'),
             'jasperPdf': task.get('result').get('pdf'),
