@@ -1175,7 +1175,7 @@ md-select{
         margin:1% auto;
     }
     .step-headers{
-        padding-top: 4%;
+        /*padding-top: 4%;*/
     }
     .step-area-wrapper{
         height:800px;
