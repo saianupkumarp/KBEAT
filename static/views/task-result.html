@@ -1,105 +1,105 @@
-    <div class="taskResult">
+<div class="taskResult">
 
-      <div>
-        <p style="font-size: 14px;color: #666;line-height: 1.5em;margin: 10px 0px 40px 0px;padding: 25px;background: #f8f8f8;">
-          <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 15px;" >Description</label><br>
-         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-       </p>
-     </div>
-     <ul class="nav nav-tabs parentList">
-       <li class="list active"><a data-toggle="tab" href="#reports"><img src="/keec/assets/img/graph.svg" height="20" width="20"><span class="tabText">Reports</span></a></li>
-       <li class="list"><a data-toggle="tab" href="#calibration"><img src="/keec/assets/img/report.svg" height="20" width="20"><span class="tabText">Calibration</span></a></li>
-       <div class="dropdown">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a></li>
-            <li><a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a></li>
-            <li><a href="{{task.jasperPdf}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>Jasper PDF</a></li>
-            <li><a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF</a></li>
-            <li><a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint</a></li>
+  <div>
+    <p style="font-size: 14px;color: #666;line-height: 1.5em;margin: 10px 0px 40px 0px;padding: 25px;background: #f8f8f8;">
+      <label style="font-size: 18px;font-weight: 400;color: #666;margin-bottom: 15px;" >Description</label><br>
+     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+   </p>
+ </div>
+ <ul class="nav nav-tabs parentList">
+   <li class="list active"><a data-toggle="tab" href="#reports"><img src="/keec/assets/img/graph.svg" height="20" width="20"><span class="tabText">Reports</span></a></li>
+   <li class="list"><a data-toggle="tab" href="#calibration"><img src="/keec/assets/img/report.svg" height="20" width="20"><span class="tabText">Calibration</span></a></li>
+   <div class="dropdown">
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Download
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a></li>
+        <li><a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a></li>
+        <li><a href="{{task.jasperPdf}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>Jasper PDF</a></li>
+        <li><a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF</a></li>
+        <li><a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint</a></li>
 
-          </ul>
-        </div>
       </ul>
-      <div class="tab-content primaryTabContent">
-       <div id="reports" class="tab-pane fade in active">
-        <nav class="navbar navbar-default col-xs-4 col-sm-1 sideTab">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle menuButton" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+    </div>
+  </ul>
+  <div class="tab-content primaryTabContent">
+   <div id="reports" class="tab-pane fade in active">
+    <nav class="navbar navbar-default col-xs-4 col-sm-1 sideTab">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle menuButton" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
 
+      </div>
+      <div class="collapse navbar-collapse chartTabContainer" id="myNavbar">
+        <ul class="nav navbar-nav parentList1">
+          <li class="active"><a class="chartLink" href="#pseReport" data-toggle="tab">PSE Report</a></li>
+          <li><a class="chartLink" href="#bepuReport" data-toggle="tab">BEPU Report</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="tab-content" style="background-color:#ededed;">
+      <div id="pseReport" class="tab-pane fade in active">
+        <div ng-class="{chartContainer:true}">
+          <div ng-class="{chart:true,card:true}"><h3 class="chart-header">PSE Report</h3>
+            <div class="charts">
+              <nvd3 options='barChartOptions' data='barData'></nvd3></div></div>
+             <!--<div ng-class="{chart1:true,card:true}"><h3 class="chart-header">PSE Report</h3>
+             <div style="border:6px solid #f8f8f8;" class="tableContainer">
+              <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
+              <table class="table table-responsive table-hover">
+              <tbody ng-repeat="barChartData in reportResultData.barChartData">
+                <tr ng-if="$index==0">
+                 <tr>
+                  <th style="font-weight: 600;font-size: 15px;">key</th>
+                  <th style="font-weight: 600;font-size: 15px;">series</th>
+                  <th style="font-weight: 600;font-size: 15px;">size</th>
+                  <th style="font-weight: 600;font-size: 15px;">x</th>
+                  <th style="font-weight: 600;font-size: 15px;">y</th>
+                  <th style="font-weight: 600;font-size: 15px;">y0</th>
+                  <th style="font-weight: 600;font-size: 15px;">y1</th>
+                </tr>
+
+             <tr ng-repeat="barData in barChartData.values">
+                  <td>{{barData.key}}</td>
+                  <td>{{barData.series}}</td>
+                  <td>{{barData.size}}</td>
+                  <td>{{barData.x}}</td>
+                  <td>{{barData.y}}</td>
+                  <td>{{barData.y0}}</td>
+                  <td>{{barData.y1}}</td>
+                </tr>
+            </tbody>
+              </table>
+            </div></div>-->
+             </div>
           </div>
-          <div class="collapse navbar-collapse chartTabContainer" id="myNavbar">
-            <ul class="nav navbar-nav parentList1">
-              <li class="active"><a class="chartLink" href="#pseReport" data-toggle="tab">PSE Report</a></li>
-              <li><a class="chartLink" href="#bepuReport" data-toggle="tab">BEPU Report</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="tab-content" style="background-color:#ededed;">
-          <div id="pseReport" class="tab-pane fade in active">
+          <div id="bepuReport" class="tab-pane fade">
             <div ng-class="{chartContainer:true}">
-              <div ng-class="{chart:true,card:true}"><h3 class="chart-header">PSE Report</h3>
-                <div class="charts">
-                  <nvd3 options='barChartOptions' data='barData'></nvd3></div></div>
-                 <!--<div ng-class="{chart1:true,card:true}"><h3 class="chart-header">PSE Report</h3>
-                 <div style="border:6px solid #f8f8f8;" class="tableContainer">
-                  <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
-                  <table class="table table-responsive table-hover">
-                  <tbody ng-repeat="barChartData in reportResultData.barChartData">
-                    <tr ng-if="$index==0">
-                     <tr> 
-                      <th style="font-weight: 600;font-size: 15px;">key</th>
-                      <th style="font-weight: 600;font-size: 15px;">series</th>
-                      <th style="font-weight: 600;font-size: 15px;">size</th>
-                      <th style="font-weight: 600;font-size: 15px;">x</th>
-                      <th style="font-weight: 600;font-size: 15px;">y</th>
-                      <th style="font-weight: 600;font-size: 15px;">y0</th>
-                      <th style="font-weight: 600;font-size: 15px;">y1</th>
-                    </tr>
-
-                 <tr ng-repeat="barData in barChartData.values">
-                      <td>{{barData.key}}</td>
-                      <td>{{barData.series}}</td>
-                      <td>{{barData.size}}</td>
-                      <td>{{barData.x}}</td>
-                      <td>{{barData.y}}</td>
-                      <td>{{barData.y0}}</td>
-                      <td>{{barData.y1}}</td>
-                    </tr>
-                </tbody>
-                  </table>
-                </div></div>-->
-                 </div>
-              </div>
-              <div id="bepuReport" class="tab-pane fade">
-                <div ng-class="{chartContainer:true}">
-                  <div ng-class="{chart:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
-                   <div class="charts">
-                    <nvd3 options='pieChartOptions' data='pieData'></nvd3></div></div>
-                  <div ng-class="{chart1:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
-                   <div style="border:6px solid #f8f8f8;" class="tableContainer">
-                    <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
-                    <table class="table table-responsive table-hover">
-                      <tr>
-                        <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">Label</th>
-                        <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">value</th>
-                      </tr>
-                      <tr ng-repeat="pieChartData in reportResultData.pieChartData">
-                        <td style="padding-left:4%;">{{pieChartData.label}}</td>
-                        <td style="padding-left:4%;">{{pieChartData.value}}</td>
-                      </tr>
-                </table>
-                  </div></div>
-                </div>
-                </div>
-              </div>
+              <div ng-class="{chart:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
+               <div class="charts">
+                <nvd3 options='pieChartOptions' data='pieData'></nvd3></div></div>
+              <div ng-class="{chart1:true,card:true}"><h3 class="chart-header">BEPU Report</h3>
+               <div style="border:6px solid #f8f8f8;" class="tableContainer">
+                <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;" >Table</label>
+                <table class="table table-responsive table-hover">
+                  <tr>
+                    <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">Label</th>
+                    <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">value</th>
+                  </tr>
+                  <tr ng-repeat="pieChartData in reportResultData.pieChartData">
+                    <td style="padding-left:4%;">{{pieChartData.label}}</td>
+                    <td style="padding-left:4%;">{{pieChartData.value}}</td>
+                  </tr>
+            </table>
+              </div></div>
             </div>
-            <div id="calibration" class="tab-pane fade">
+            </div>
+          </div>
+        </div>
+        <div id="calibration" class="tab-pane fade">
 
                <div class="panel panel-default">
                  <div class="panel-heading">
@@ -112,24 +112,24 @@
                      <tbody>
                       <div id="accordion" class="panel-group">
                         <div class="panel panel-default">
-                          <div class="panel-heading">
-                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4 class="panel-title">
-                            Building Information
-                          </h4></a>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse in">
-                          <div class="panel-body">
-                            <table class="table table-responsive table-hover">
-                              <tbody>
-                                <tr>
-                                  <td>Building Name: {{task.calibrationData.txtBldgName}}</td>
-                                  <tr>
-                                    <td>Building Address: {{task.calibrationData.txtBldgAddress}}</td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                            <div class="panel-heading">
+                               <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4 class="panel-title">
+                                Building Information
+                              </h4></a>
                             </div>
-                          </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                              <div class="panel-body">
+                                <table class="table table-responsive table-hover">
+                                  <tbody>
+                                    <tr>
+                                      <td>Building Name: {{task.calibrationData.txtBldgName}}</td>
+                                      <tr>
+                                        <td>Building Address: {{task.calibrationData.txtBldgAddress}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
                         </div>
                         <div class="panel panel-default">
                           <div class="panel-heading">
@@ -159,64 +159,63 @@
                           </div>
                           <div class="panel panel-default">
                             <div class="panel-heading">
-                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4 class="panel-title">
-                              Building Shape
-                            </h4></a>
-                          </div>
-                          <div id="collapseThree" class="panel-collapse collapse">
-                            <div class="panel-body">
-                              <table class="table table-responsive table-hover">
-                                <tbody>
-                                  <tr>
-                                    <td>Building Shape: {{task.calibrationData.cmbBldgType}}</td>
+                               <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><h4 class="panel-title">
+                                Building Shape
+                              </h4></a>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                <table class="table table-responsive table-hover">
+                                  <tbody>
                                     <tr>
-                                      <td>Building Orientation: {{task.calibrationData.cmbBldgLocation}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td>X1: {{task.calibrationData.txtLengX1}} m</td>
-                                    </tr>
-                                    <tr ng-if="task.calibrationData.txtLengX2">
-                                      <td>X2: {{task.calibrationData.txtLengX2}} m</td>
-                                    </tr>
-                                    <tr ng-if="task.calibrationData.txtLengX3">
-                                      <td>X3: {{task.calibrationData.txtLengX3}} m</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Y1: {{task.calibrationData.txtLengY1}} m</td>
-                                    </tr>
-                                    <tr ng-if="task.calibrationData.txtLengY2">
-                                      <td>Y2: {{task.calibrationData.txtLengY2}} m</td>
-                                    </tr>
-                                    <tr ng-if="task.calibrationData.txtLengY3">
-                                      <td>Y3: {{task.calibrationData.txtLengY3}} m</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Floor Area: {{task.calibrationData.txtFloorArea}} m<sup>2</sup></td>
-                                    </tr>
-                                    <tr>
-                                      <td>Floor Height: {{task.calibrationData.txtFloorHeight}}</td>
-                                    </tr>
-                              </tbody>
-                            </table>
+                                      <td>Building Shape: {{task.calibrationData.cmbBldgType}}</td>
+                                      <tr>
+                                        <td>Building Orientation: {{task.calibrationData.cmbBldgLocation}}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>X1: {{task.calibrationData.txtLengX1}} m</td>
+                                      </tr>
+                                      <tr ng-if="task.calibrationData.txtLengX2">
+                                        <td>X2: {{task.calibrationData.txtLengX2}} m</td>
+                                      </tr>
+                                      <tr ng-if="task.calibrationData.txtLengX3">
+                                        <td>X3: {{task.calibrationData.txtLengX3}} m</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Y1: {{task.calibrationData.txtLengY1}} m</td>
+                                      </tr>
+                                      <tr ng-if="task.calibrationData.txtLengY2">
+                                        <td>Y2: {{task.calibrationData.txtLengY2}} m</td>
+                                      </tr>
+                                      <tr ng-if="task.calibrationData.txtLengY3">
+                                        <td>Y3: {{task.calibrationData.txtLengY3}} m</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Floor Area: {{task.calibrationData.txtFloorArea}} m<sup>2</sup></td>
+                                      </tr>
+                                      <tr>
+                                        <td>Floor Height: {{task.calibrationData.txtFloorHeight}}</td>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                           </div>
                         </div>
-                      </div>
-              </tbody>
-          </div>
-        </div>
-      </div>  </div>
+                   </tbody>
+               </div>
+            </div>
+         </div>
+       </div>
 
       <div class="panel panel-default">
         <div class="panel-heading">
-         <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupTwo"><h4 class="panel-title">
-          Envelope
-        </h4></a>
-      </div>
+           <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupTwo"><h4 class="panel-title">
+            Envelope
+          </h4></a>
+        </div>
       <div id="collapseGroupTwo" class="panel-collapse collapse">
         <div class="panel-body">
             <tbody>
-
-
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapsefour"><h4 class="panel-title">
@@ -288,19 +287,17 @@
                         </div>
                       </div>
                     </div>
-
-
                   </tbody>
               </div>
             </div>
-          </div>  </div>
+          </div>
 
           <div class="panel panel-default">
             <div class="panel-heading">
-             <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupThree"><h4 class="panel-title">
-              Space/DHW
-            </h4></a>
-          </div>
+               <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupThree"><h4 class="panel-title">
+                Space/DHW
+              </h4></a>
+            </div>
           <div id="collapseGroupThree" class="panel-collapse collapse">
             <div class="panel-body">
                 <tbody>
@@ -365,14 +362,14 @@
                       </tbody>
                   </div>
                 </div>
-              </div>  </div>
+              </div>
 
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupFour"><h4 class="panel-title">
-                            HVAC System
-                          </h4></a>
-                        </div>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseGroupFour"><h4 class="panel-title">
+                      HVAC System
+                      </h4></a>
+                    </div>
                         <div id="collapseGroupFour" class="panel-collapse collapse">
                           <div class="panel-body">
                               <tbody>
@@ -393,8 +390,8 @@
                     </div>
                   </div>
                 </div>
-                </div>
-                </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
