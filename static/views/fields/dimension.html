@@ -11,459 +11,362 @@
 	</div>
 	<div class="shape">
 		<svg ng-if = "field.id=='Rectangular'" width="100%" height="100%">
-			<rect x="100.11" y="100.22" width="{{axisObj['X1']}}" height="{{axisObj['Y1']}}" fill="green"></rect>
+		          <!-- <line ng-attr-x1="50" ng-attr-y1="45-10" ng-attr-x2="" ng-attr-y2="45-10" style="stroke:rgb(255,0,0);stroke-width:2" />
+		          <text ng-attr-x="{{120}}" ng-attr-dy="45-30" fill="red" stroke="none">
+		            <tspan ng-attr-x="50-10" ng-attr-y="45-15">{{axisObj['X1']}} {{field.label_suffix}}</tspan>
+		          </text>
+		              <polygon points="50,35 45,32 55,32" fill="red"stroke="none"/>
+		              <polygon points="{{50 + 120}},32 {{50 + 120}},32 {{55+120}},40" stroke="none"/>
+		     -->
+		     <rect x="70" y="50" width="180" height="100" fill="green"></rect>
+		     <!-- ##TOP HORIZANTAL LINE -->
+		     <!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5 //-5 is the space between the rect and line)
+		    second point coord  (x2= rect x coord +width of the rect  ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
+		     <line ng-attr-x1="70" ng-attr-y1="45"  x2="250" y2="45" style="stroke:#ccc;stroke-width:1" />
+		     <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+				 <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
+		     <polygon points="70,45     73,42    73,48" fill="#ccc" stroke="none"/>
+		     <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+				 <!--     (xcoord+x1-3,ycoord-5-3 ) (xcoord+x1-3 ,ycoord-5+3) (xcoord+x1 , ycoord-5)-->
+		     <polygon points="247,42     247,48    250,45" fill="#ccc" stroke="none"/>
+		     <!-- ##HORIZANTAL LINE LABEL-->
+		     <!--  ((x1)/2+xcoord   ,ycoord-30 ) -->
+		     <text   x="160"         y="20" fill="gray" stroke="none" style="font-size:11px">
+		        X1<!--  {{field.label}}-->
+		     <!--  ((x1)/2+xcoord-10   ,ycoord-15 ) -->
+		       <tspan x="150" y="35">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
+		     </text>
 
+		     <!-- ##LEFT VERTICAL LINE -->
+		     <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
+		             second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
+		     <line x1="65" y1="50"  x2="65" y2="150" style="stroke:#ccc;stroke-width:1" />
+		     <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		     <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
+		     <polygon points="65,50     62,53    68,53" fill="#ccc" stroke="none"/>
+		     <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		     <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
+		     <polygon points="65,150      62,147   68,147 " fill="#ccc" stroke="none"/>
+		     <!-- ##VERTICAL LINE LABEL-->
+		     <!--  ( xcoord-30   , y1/2+ycoord ) -->
+		     <text   x="40"         y="100" fill="gray" stroke="none" style="font-size:10px">
+		         Y1<!--  {{field.label}}-->
+		           <!--  (xcoord-40   ,y1/2+ycoord+15  ) -->
+		         <tspan x="30" y="115">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
+		      </text>
 
-
-			<!-- <line ng-attr-x1="50" ng-attr-y1="45-10" ng-attr-x2="" ng-attr-y2="45-10" style="stroke:rgb(255,0,0);stroke-width:2" />
-			<text ng-attr-x="{{axisObj['X1']}}" ng-attr-dy="45-30" fill="red" stroke="none">
-				<tspan ng-attr-x="50-10" ng-attr-y="45-15">{{axisObj['X1']}} {{field.label_suffix}}</tspan>
-			</text>
-      		<polygon points="50,35 45,32 55,32" fill="red"stroke="none"/>
-      		<polygon points="{{50 + axisObj['X1']}},32 {{50 + axisObj['X1']}},32 {{55+axisObj['X2']}},40" stroke="none"/>
- -->
-
-
-
-
-
-
-
-
-
-<!-- ##TOP HORIZANTAL LINE -->
-<!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5 //-5 is the space between the rect and line)
-second point coord  (x2= rect x coord +width of the rect  ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
-	<line ng-attr-x1="100.11" ng-attr-y1="95.22"  x2="{{100.11+axisObj['X1']}}" y2="95.22" style="stroke:#ccc;stroke-width:1" />
-		 <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-		 <!-- //5 same space between rect and line //3 is the width of the arrows-->
-		 <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
-	 <polygon points="100.11,95.22     103.11,92.22    103.11,98.22" fill="#ccc" stroke="none"/>
-		 <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-		 <!--     (xcoord+x1-3,ycoord-5-3 ) (xcoord+x1-3 ,ycoord-5+3) (xcoord+x1 , ycoord-5)-->
-	 <polygon points="{{100.11+axisObj['X1']-3}},92.22     {{100.11+axisObj['X1']-3}},98.22    {{100.11+axisObj['X1']}},95.22" fill="#ccc" stroke="none"/>
-
-	 <!-- ##HORIZANTAL LINE LABEL-->
-	 <!--  ((x1)/2+xcoord   ,ycoord-30 ) -->
-		<text   x="{{100.11+axisObj['X1']/2}}"         y="70.22" fill="gray" stroke="none" style="font-size:13px">
-		X1<!--  {{field.label}}-->
-		<!--  ((x1)/2+xcoord-10   ,ycoord-15 ) -->
-		<tspan x="{{100.11+axisObj['X1']/2-10}}" y="85.22">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
-	 </text>
-
-	 <!-- ##LEFT VERTICAL LINE -->
-	    <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
-			   second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
-	      <line x1="95.11" y1="100.22"  x2="95.11" y2="{{100.22+axisObj['Y1']}}" style="stroke:#ccc;stroke-width:1" />
-	      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-	      <!-- //5 same space between rect and line //3 is the width of the arrows-->
-	      <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
-       <polygon points="95.11,100.22     92.11,103.22    98.11,103.22" fill="#ccc" stroke="none"/>
-        <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-        <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
-       <polygon points="95.11,{{100.22+axisObj['Y1']}}     92.11,{{100.22+axisObj['Y1']-3}}   98.11,{{100.22+axisObj['Y1']-3}}" fill="#ccc" stroke="none"/>
-
-	     <!-- ##VERTICAL LINE LABEL-->
-	     <!--  ( xcoord-30   , y1/2+ycoord ) -->
-       <text   x="70.11"         y="{{axisObj['Y1']/2+100.22}}" fill="gray" stroke="none" style="font-size:13px">
-    Y1<!--  {{field.label}}-->
-	     <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
-      <tspan x="50.11" y="{{axisObj['Y1']/2+100.22+15}}">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
-      </text>
-
-	 	</svg>
-
+		</svg>
 
 
 		<svg ng-if = "field.id=='L-Shape'" width="100%" height="100%">
-      <!-- ##DRAW RECT -->
-      <!-- xcoordinate   ycoordinate         x2//user input     y1//user input -->
-      <rect x="100.11"      y="100.22"       width="{{axisObj['X2']}}" height="{{axisObj['Y1']}}"  fill="green">
-      </rect>
+		      <!-- ##DRAW RECT -->
+		      <!-- xcoordinate   ycoordinate         x2//user input     y1//user input -->
+		      <rect x="100"      y="100"       width="50" height="100"  fill="green">
+		      </rect>
+		      <!-- ##TOP HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5//-5 is the space between the rect and line)
+		      second point coord  (x2= rect x coord +x2//width of redct ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
+		      <line x1="100" y1="95"  x2="150" y2="95" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
+		      <polygon points="100,95     103,92    103,98" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x2-3,ycoord-5-3 ) (xcoord+x2-3 ,ycoord-5+3) (xcoord+x2 , ycoord-5)-->
+		      <polygon points="147,92     147,98    150,95" fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x2)/2+xcoord   ,ycoord-30 ) -->
+		      <text   x="120"         y="70" fill="gray" stroke="none" style="font-size:10px">
+		        X2<!--  {{field.label}}-->
+		        <!--  ((x2)/2+xcoord-10   ,ycoord-15 ) -->
+		        <tspan x="110" y="85">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##LEFT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
+		      second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
+		      <line x1="95" y1="100"  x2="95" y2="200" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
+		      <polygon points="95,100     92,103    98,103" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
+		      <polygon points="95,200     92,197    98,197" fill="#ccc" stroke="none"/>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord-30   , y1/2+ycoord ) -->
+		      <text   x="70"         y="150" fill="gray" stroke="none" style="font-size:10px">
+		         Y1<!--  {{field.label}}-->
+		         <!--  (xcoord-35   ,y1/2+ycoord+15  ) -->
+		         <tspan x="55" y="165">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
+		      </text>
 
 
-   <!-- ##TOP HORIZANTAL LINE -->
-   <!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5//-5 is the space between the rect and line)
-	 second point coord  (x2= rect x coord +x2//width of redct ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
-                  <line x1="100.11" y1="95.22"  x2="{{100.11+axisObj['X2']}}" y2="95.22" style="stroke:#ccc;stroke-width:1" />
-        <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-        <!-- //5 same space between rect and line //3 is the width of the arrows-->
-        <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
-      <polygon points="100.11,95.22     103.11,92.22    103.11,98.22" fill="#ccc" stroke="none"/>
-        <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-        <!--     (xcoord+x2-3,ycoord-5-3 ) (xcoord+x2-3 ,ycoord-5+3) (xcoord+x2 , ycoord-5)-->
-      <polygon points="{{100.11+axisObj['X2']-3}},92.22     {{100.11+axisObj['X2']-3}},98.22    {{100.11+axisObj['X2']}},95.22" fill="#ccc" stroke="none"/>
+		     <!-- ##DRAW RECT2-->
+		     <!-- xcoord         ycoord+y1-y2                                      x1//user input     y2//user input -->
+		     <rect x="100" y="160"   width="120" height="40"  fill="green">
+		     </rect>
+		     <!-- ##BOTTOM HORIZANTAL LINE -->
+		     <!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2 ycoord//100.22+100-40+y2 //height+5 //5 is the space between the rect and line)
+		       second point coord  (x2= rect x coord +x1//width of the rect,     y2= rect2 ycoord//(100.22+100-40)+y2//height +5 //5 is the space between the rect and line)-->
+		     <line x1="100" y1="205"  x2="220" y2="205" style="stroke:#ccc;stroke-width:1" />
+		     <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		     <!--     (xcoord,rect2ycoord+y2+5 ) (xcoord+3 ,rect2ycoord+y2+5-3) (xcoord+3 , redct2ycoord+y2+5+3)-->
+		     <polygon points="100,205     103,202    103,208" fill="#ccc" stroke="none"/>
+		     <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		     <!--     (xcoord+x1-3,rect2ycoord+y2+5-3 ) (xcoord+x1-3 ,rect2ycoord+y2+5+3) (xcoord+x1 , rect2ycoord+y2+5)-->
+		     <polygon points="217,202      217,208     220,205 " fill="#ccc" stroke="none"/>
+		     <!-- ##HORIZANTAL LINE LABEL-->
+		     <!--  ((x1)/2+xcoord   ,rect2ycoord+y2+20 ) -->
+		     <text   x="160"    y="220" fill="gray" stroke="none" style="font-size:10px">
+		       X1<!--  {{field.label}}-->
+		       <!--  ((x2)/2+xcoord-10   ,rect2ycoord+y2+35 ) -->
+		       <tspan x="150" y="235">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
+		     </text>
+		     <!-- ##RIGHT VERTICAL LINE -->
+		     <!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
+		      second point coord  (x2= xcoord+x1+5,     y2= rect2ycoord + y2)-->
+		     <line x1="225" y1="160"  x2="225" y2="200" style="stroke:#ccc;stroke-width:1" />
+		     <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		     <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
+		     <polygon points="225,160     222,163   228,163" fill="#ccc" stroke="none"/>
+		     <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		     <!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
+		     <polygon points="225,200     222,197    228,197 " fill="#ccc" stroke="none"/>
+		     <!-- ##VERTICAL LINE LABEL-->
+		     <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
+		     <text   x="240"   y="180" fill="gray" stroke="none" style="font-size:10px">
+		       Y2<!--  {{field.label}}-->
+		       <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
+		       <tspan x="235" y="195">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
+		     </text>
 
-      <!-- ##HORIZANTAL LINE LABEL-->
-      <!--  ((x2)/2+xcoord   ,ycoord-30 ) -->
-       <text   x="{{100.11+axisObj['X2']/2}}"         y="70.22" fill="gray" stroke="none" style="font-size:13px">
-       X2<!--  {{field.label}}-->
-       <!--  ((x2)/2+xcoord-10   ,ycoord-15 ) -->
-       <tspan x="{{100.11+axisObj['X2']/2-10}}" y="85.22">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
-      </text>
-
-
-<!-- ##LEFT VERTICAL LINE -->
-   <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
-	 second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
-                  <line x1="95.11" y1="100.22"  x2="95.11" y2="{{100.22+axisObj['Y1']}}" style="stroke:#ccc;stroke-width:1" />
-        <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-        <!-- //5 same space between rect and line //3 is the width of the arrows-->
-        <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
-      <polygon points="95.11,100.22     92.11,103.22    98.11,103.22" fill="#ccc" stroke="none"/>
-        <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-        <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
-      <polygon points="95.11,{{100.22+axisObj['Y1']}}     92.11,{{100.22+axisObj['Y1']-3}}    98.11,{{100.22+axisObj['Y1']-3}}" fill="#ccc" stroke="none"/>
-
-      <!-- ##VERTICAL LINE LABEL-->
-      <!--  ( xcoord-30   , y1/2+ycoord ) -->
-       <text   x="70.11"         y="{{axisObj['Y1']/2+100.22}}" fill="gray" stroke="none" style="font-size:13px">
-       Y1<!--  {{field.label}}-->
-       <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
-       <tspan x="50.11" y="{{axisObj['Y1']/2+100.22+15}}">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
-      </text>
-
-
-
-
-
-      <!-- ##DRAW RECT2-->
-     <!-- xcoord         ycoord+y1-y2                                      x1//user input     y2//user input -->
-      <rect x="100.11" y="{{100.22+axisObj['Y1']-axisObj['Y2']}}"   width="{{axisObj['X1']}}" height="{{axisObj['Y2']}}"  fill="red">
-      </rect>
-
-
-
-   <!-- ##BOTTOM HORIZANTAL LINE -->
-   <!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2 ycoord//100.22+axisObj['Y1']-axisObj['Y2']+y2 //height+5 //5 is the space between the rect and line)
-	     second point coord  (x2= rect x coord +x1//width of the rect,     y2= rect2 ycoord//(100.22+axisObj['Y1']-axisObj['Y2'])+y2//height +5 //5 is the space between the rect and line)-->
-                  <line x1="100.11" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}"  x2="{{100.11+axisObj['X1']}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}" style="stroke:#ccc;stroke-width:1" />
-
-
-        <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-        <!-- //5 same space between rect and line //3 is the width of the arrows-->
-        <!--     (xcoord,rect2ycoord+y2+5 ) (xcoord+3 ,rect2ycoord+y2+5-3) (xcoord+3 , redct2ycoord+y2+5+3)-->
-      <polygon points="100.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}     103.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5-3}}    103.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5+3}}" fill="#ccc" stroke="none"/>
-        <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-        <!--     (xcoord+x1-3,rect2ycoord+y2+5-3 ) (xcoord+x1-3 ,rect2ycoord+y2+5+3) (xcoord+x1 , rect2ycoord+y2+5)-->
-      <polygon points="{{100.11+axisObj['X1']-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5-3}}      {{100.11+axisObj['X1']-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5+3}}     {{100.11+axisObj['X1']}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}} " fill="#ccc" stroke="none"/>
-
-      <!-- ##HORIZANTAL LINE LABEL-->
-      <!--  ((x1)/2+xcoord   ,rect2ycoord+y2+20 ) -->
-       <text   x="{{axisObj['X1']/2+100.11}}"    y="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+20}}" fill="gray" stroke="none" style="font-size:13px">
-      X1<!--  {{field.label}}-->
-       <!--  ((x2)/2+xcoord-10   ,rect2ycoord+y2+35 ) -->
-       <tspan x="{{axisObj['X1']/2+100.11-10}}" y="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+35}} ">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
-      </text>
-
-
-<!-- ##RIGHT VERTICAL LINE -->
-   <!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
-	 second point coord  (x2= xcoord+x1+5,     y2= rect2ycoord + y2)-->
-  <line x1="{{axisObj['X1']+100.11+5}}" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])}}"  x2="{{axisObj['X1']+100.11+5}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}" style="stroke:#ccc;stroke-width:1" />
-  <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-  <!-- //5 same space between rect and line //3 is the width of the arrows-->
-  <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
- <polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y2'])}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}" fill="#ccc" stroke="none"/>
-<!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-<!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
-<polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}} " fill="#ccc" stroke="none"/>
-
-      <!-- ##VERTICAL LINE LABEL-->
-      <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
-       <text   x="{{axisObj['X1']+100.11+20}}"   y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])}}" fill="gray" stroke="none" style="font-size:13px">
-       Y2<!--  {{field.label}}-->
-       <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
-       <tspan x="{{axisObj['X1']+100.11+15}}" y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])+15}}">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
-      </text>
-
-    </svg>
-
-
+		</svg>
 
 
 		<svg ng-if = "field.id=='T-Shape'" width="100%" height="100%">
 
-			<!-- ##DRAW RECT1-->
-		 <!-- xcoord   ycoord             x1//user input     -->
-		<rect x="100.11" y="100.22" width="{{axisObj['X1']}}" height="{{axisObj['Y1']-axisObj['Y2']}}" fill="green"></rect>
-		<!-- ##TOP HORIZANTAL LINE -->
-		<!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect ycoord -5 //-5 is the space between the rect and line)
-		second point coord  (x2= rect x coord +x1//width of the rect  ,     y2= rect ycoord -5//-5 is the space between the rect and line)-->
-			<line ng-attr-x1="100.11" ng-attr-y1="95.22"  x2="{{100.11+axisObj['X1']}}" y2="95.22" style="stroke:#ccc;stroke-width:1" />
-				 <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-				 <!-- //5 same space between rect and line //3 is the width of the arrows-->
-				 <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
-			 <polygon points="100.11,95.22     103.11,92.22    103.11,98.22" fill="#ccc" stroke="none"/>
-				 <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-				 <!--     (xcoord+x1-3,ycoord-5-3 ) (xcoord+x1-3 ,ycoord-5+3) (xcoord+x1 , ycoord-5)-->
-			 <polygon points="{{100.11+axisObj['X1']-3}},92.22     {{100.11+axisObj['X1']-3}},98.22    {{100.11+axisObj['X1']}},95.22" fill="#ccc" stroke="none"/>
+		      <!-- ##DRAW RECT1-->
+		      <!-- xcoord   ycoord             x1//user input     -->
+		      <rect x="100" y="100" width="120" height="40" fill="green"></rect>
+		      <!-- ##TOP HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect ycoord -5 //-5 is the space between the rect and line)
+		      second point coord  (x2= rect x coord +x1//width of the rect  ,     y2= rect ycoord -5//-5 is the space between the rect and line)-->
+		      <line ng-attr-x1="100" ng-attr-y1="95"  x2="220" y2="95" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
+		      <polygon points="100,95     103,92    103,98" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x1-3,ycoord-5-3 ) (xcoord+x1-3 ,ycoord-5+3) (xcoord+x1 , ycoord-5)-->
+		      <polygon points="217,92     217,98    220,95" fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x1)/2+xcoord   ,ycoord-30 ) -->
+		      <text   x="160"         y="70" fill="gray" stroke="none" style="font-size:10px">
+		          X1<!--  {{field.label}}-->
+		          <!--  ((x1)/2+xcoord-10   ,ycoord-15 ) -->
+		          <tspan x="150" y="85">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
+		      </text>
 
-			 <!-- ##HORIZANTAL LINE LABEL-->
-			 <!--  ((x1)/2+xcoord   ,ycoord-30 ) -->
-				<text   x="{{100.11+axisObj['X1']/2}}"         y="70.22" fill="gray" stroke="none" style="font-size:13px">
-				X1<!--  {{field.label}}-->
-				<!--  ((x1)/2+xcoord-10   ,ycoord-15 ) -->
-				<tspan x="{{100.11+axisObj['X1']/2-10}}" y="85.22">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
-			 </text>
+		      <!-- ##DRAW RECT2-->
+		      <!-- xcoord   ycoord             x2//user input         y1//user input-->
+		      <rect x="100" y="100" width="40" height="100" fill="none"></rect>
+		      <!-- ##BOTTOM HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoord of the rect2   ,   y1= ycoord+y1 //height+5 //5 is the space between the rect and line)
+		            second point coord  (x2= rect x coord +x2//width of the rect2,     y2= ycoord+y1//height +5 //5 is the space between the rect and line)-->
+		      <line x1="100" y1="205"  x2="140" y2="205" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord,ycoord+y1+5 ) (xcoord+3 ,ycoord+y1+5-3) (xcoord+3 , ycoord+y1+5+3)-->
+		      <polygon points="100,205     103,202   103,208" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x2-3,ycoord+y1+5-3 ) (xcoord+x2-3 ,ycoord+y1+5+3) (xcoord+x2 , ycoord+y1+5)-->
+		      <polygon points="137,202      137,208     140,205 " fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x2)/2+xcoord   ,ycoord+y1+20 ) -->
+		      <text   x="120"    y="220" fill="gray" stroke="none" style="font-size:10px">
+		            X2<!--  {{field.label}}-->
+		             <!--  ((x2)/2+xcoord-10   ,ycoord+y1+35 ) -->
+		             <tspan x="110" y="235">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##LEFT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
+		               second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
+		      <line x1="95.11" y1="100"  x2="95.11" y2="200" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
+		      <polygon points="95.11,100     92.11,103.22    98.11,103.22" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
+		      <polygon points="95.11,200     92.11,197    98.11,197" fill="#ccc" stroke="none"/>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord-30   , y1/2+ycoord ) -->
+		      <text   x="70"         y="150" fill="gray" stroke="none" style="font-size:10px">
+		         Y1<!--  {{field.label}}-->
+		         <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
+		        <tspan x="50" y="165">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##DRAW RECT3-->
+		      <!--     xcoord+x2             ycoord+y1-y2             x3//user input         y2//user input-->
+		      <rect x="140" y="140" width="40" height="60" fill="green"></rect>
+		      <!-- ##BOTTOM HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2ycoord+y2 //height+5 //5 is the space between the rect and line)
+		                    second point coord  (x2= rect x coord +x3//width of the rect2,     y2= rect2ycoord+y2//height +5 //5 is the space between the rect and line)-->
+		      <line x1="140" y1="205"  x2="180" y2="205" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (rect2xcoord,rect2ycoord+y2+5 ) (rect2xcoord+3 ,rect2ycoord+y2+5-3) (rect2xcoord+3 , rect2ycoord+y2+5+3)-->
+		      <polygon points="140,205     143,202    143,208" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (rect2xcoord+x3-3,rect2ycoord+y2+5-3 ) (rect2xcoord+x3-3 ,rect2ycoord+y2+5+3) (rect2xcoord+x3 , rect2ycoord+y2+5)-->
+		      <polygon points="177,202     177,208    180,205" fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x3)/2+xcoord   ,rect2ycoord+y2+20 ) -->
+		      <text   x="160"    y="220" fill="gray" stroke="none" style="font-size:10px">
+		            X3<!--  {{field.label}}-->
+		                     <!--  ((x3)/2+xcoord-10   ,ycoord+y2+35 ) -->
+		           <tspan x="150" y="235">({{axisObj['X3']}} {{field.label_suffix}})</tspan>
+		      </text>
 
+		      <!-- ##RIGHT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
+		                       second point coord  (x2= xcoord+x1+5,     y2= rect2ycoord + y2)-->
+		      <line x1="225" y1="140"  x2="225" y2="200" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
+		      <polygon points="225,140     222,143    228,143" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
+		      <polygon points="225,200     222,197    228,197 " fill="#ccc" stroke="none"/>
 
-			 <!-- ##DRAW RECT2-->
-			 <!-- xcoord   ycoord             x2//user input         y1//user input-->
-			 <rect x="100.11" y="100.22" width="{{axisObj['X2']}}" height="{{axisObj['Y1']}}" fill="none"></rect>
-			 <!-- ##BOTTOM HORIZANTAL LINE -->
-			 <!--first point coord   (x1=same xcoord of the rect2   ,   y1= ycoord+y1 //height+5 //5 is the space between the rect and line)
-					second point coord  (x2= rect x coord +x2//width of the rect2,     y2= ycoord+y1//height +5 //5 is the space between the rect and line)-->
-			<line x1="100.11" y1="{{100.22+axisObj['Y1']+5}}"  x2="{{100.11+axisObj['X2']}}" y2="{{100.22+axisObj['Y1']+5}}" style="stroke:#ccc;stroke-width:1" />
-
-						<!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-						<!-- //5 same space between rect and line //3 is the width of the arrows-->
-						<!--     (xcoord,ycoord+y1+5 ) (xcoord+3 ,ycoord+y1+5-3) (xcoord+3 , ycoord+y1+5+3)-->
-					<polygon points="100.11,{{100.22+axisObj['Y1']+5}}     103.11,{{100.22+axisObj['Y1']+5-3}}    103.11,{{100.22+axisObj['Y1']+5+3}}" fill="#ccc" stroke="none"/>
-						<!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-						<!--     (xcoord+x2-3,ycoord+y1+5-3 ) (xcoord+x2-3 ,ycoord+y1+5+3) (xcoord+x2 , ycoord+y1+5)-->
-					<polygon points="{{100.11+axisObj['X2']-3}},{{100.22+axisObj['Y1']+5-3}}      {{100.11+axisObj['X2']-3}},{{100.22+axisObj['Y1']+5+3}}     {{100.11+axisObj['X2']}},{{100.22+axisObj['Y1']+5}} " fill="#ccc" stroke="none"/>
-
-					<!-- ##HORIZANTAL LINE LABEL-->
-					<!--  ((x2)/2+xcoord   ,ycoord+y1+20 ) -->
-					 <text   x="{{axisObj['X2']/2+100.11}}"    y="{{100.22+axisObj['Y1']+20}}" fill="gray" stroke="none" style="font-size:13px">
-					X2<!--  {{field.label}}-->
-					 <!--  ((x2)/2+xcoord-10   ,ycoord+y1+35 ) -->
-					 <tspan x="{{axisObj['X2']/2+100.11-10}}" y="{{100.22+axisObj['Y1']+35}} ">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
-					</text>
-
-
-
-
-					<!-- ##LEFT VERTICAL LINE -->
-					   <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
-						 second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
-					    <line x1="95.11" y1="100.22"  x2="95.11" y2="{{100.22+axisObj['Y1']}}" style="stroke:#ccc;stroke-width:1" />
-					        <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-					        <!-- //5 same space between rect and line //3 is the width of the arrows-->
-					        <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
-					      <polygon points="95.11,100.22     92.11,103.22    98.11,103.22" fill="#ccc" stroke="none"/>
-					        <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-					        <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
-					      <polygon points="95.11,{{100.22+axisObj['Y1']}}     92.11,{{100.22+axisObj['Y1']-3}}    98.11,{{100.22+axisObj['Y1']-3}}" fill="#ccc" stroke="none"/>
-
-					      <!-- ##VERTICAL LINE LABEL-->
-					      <!--  ( xcoord-30   , y1/2+ycoord ) -->
-					       <text   x="70.11"         y="{{axisObj['Y1']/2+100.22}}" fill="gray" stroke="none" style="font-size:13px">
-					       Y1<!--  {{field.label}}-->
-					       <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
-					       <tspan x="50.11" y="{{axisObj['Y1']/2+100.22+15}}">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
-					      </text>
-
-
-
-
-								<!-- ##DRAW RECT3-->
-				 			 <!--     xcoord+x2             ycoord+y1-y2             x3//user input         y2//user input-->
-				 			 <rect x="{{100.11+axisObj['X2']}}" y="{{100.22+axisObj['Y1']-axisObj['Y2']}}" width="{{axisObj['X3']}}" height="{{axisObj['Y2']}}" fill="red"></rect>
-				 			 <!-- ##BOTTOM HORIZANTAL LINE -->
-				 			 <!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2ycoord+y2 //height+5 //5 is the space between the rect and line)
-				 					second point coord  (x2= rect x coord +x3//width of the rect2,     y2= rect2ycoord+y2//height +5 //5 is the space between the rect and line)-->
-				 			<line x1="{{(100.11+axisObj['X2'])}}" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}"  x2="{{(100.11+axisObj['X2'])+axisObj['X3']}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}" style="stroke:#ccc;stroke-width:1" />
-
-				 						<!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-				 						<!-- //5 same space between rect and line //3 is the width of the arrows-->
-				 						<!--     (rect2xcoord,rect2ycoord+y2+5 ) (rect2xcoord+3 ,rect2ycoord+y2+5-3) (rect2xcoord+3 , rect2ycoord+y2+5+3)-->
-				 					<polygon points="{{(100.11+axisObj['X2'])}},{{100.22+axisObj['Y1']+5}}     {{(100.11+axisObj['X2'])+3}},{{100.22+axisObj['Y1']+5-3}}    {{(100.11+axisObj['X2'])+3}},{{100.22+axisObj['Y1']+5+3}}" fill="#ccc" stroke="none"/>
-				 						<!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-				 						<!--     (rect2xcoord+x3-3,rect2ycoord+y2+5-3 ) (rect2xcoord+x3-3 ,rect2ycoord+y2+5+3) (rect2xcoord+x3 , rect2ycoord+y2+5)-->
-				 					<polygon points="{{(100.11+axisObj['X2'])+axisObj['X3']-3}},{{100.22+axisObj['Y1']+5-3}}      {{(100.11+axisObj['X2'])+axisObj['X3']-3}},{{100.22+axisObj['Y1']+5+3}}     {{(100.11+axisObj['X2'])+axisObj['X3']}},{{100.22+axisObj['Y1']+5}} " fill="#ccc" stroke="none"/>
-
-				 					<!-- ##HORIZANTAL LINE LABEL-->
-				 					<!--  ((x3)/2+xcoord   ,rect2ycoord+y2+20 ) -->
-				 					 <text   x="{{axisObj['X3']/2+(100.11+axisObj['X2'])}}"    y="{{100.22+axisObj['Y1']+20}}" fill="gray" stroke="none" style="font-size:13px">
-				 					X3<!--  {{field.label}}-->
-				 					 <!--  ((x3)/2+xcoord-10   ,ycoord+y2+35 ) -->
-				 					 <tspan x="{{axisObj['X3']/2+(100.11+axisObj['X2'])-10}}" y="{{100.22+axisObj['Y1']+35}} ">({{axisObj['X3']}} {{field.label_suffix}})</tspan>
-				 					</text>
-
-
-
-									<!-- ##RIGHT VERTICAL LINE -->
-									   <!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
-										 second point coord  (x2= xcoord+x1+5,     y2= rect2ycoord + y2)-->
-									  <line x1="{{axisObj['X1']+100.11+5}}" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])}}"  x2="{{axisObj['X1']+100.11+5}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}" style="stroke:#ccc;stroke-width:1" />
-									  <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-									  <!-- //5 same space between rect and line //3 is the width of the arrows-->
-									  <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
-									 <polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y2'])}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}" fill="#ccc" stroke="none"/>
-									<!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-									<!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
-									<polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}} " fill="#ccc" stroke="none"/>
-
-									      <!-- ##VERTICAL LINE LABEL-->
-									      <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
-									       <text   x="{{axisObj['X1']+100.11+20}}"   y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])}}" fill="gray" stroke="none" style="font-size:13px">
-									       Y2<!--  {{field.label}}-->
-									       <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
-									       <tspan x="{{axisObj['X1']+100.11+15}}" y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])+15}}">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
-									      </text>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
+		      <text   x="240"   y="170" fill="gray" stroke="none" style="font-size:10px">
+		          Y2<!--  {{field.label}}-->
+		          <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
+		          <tspan x="235" y="185">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
+		      </text>
 		</svg>
+
 
 
 		<svg ng-if = "field.id=='U-Shape'" width="100%" height="100%">
 
+		      <!-- ##DRAW RECT -->
+		      <!-- xcoordinate   ycoordinate         x2//user input     y1//user input -->
+		      <rect x="80"      y="140"       width="40" height="100"  fill="green">
+		      </rect>
+		      <!-- ##TOP HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5//-5 is the space between the rect and line)
+		      second point coord  (x2= rect x coord +x2//width of redct ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
+		      <line x1="80" y1="135"  x2="120" y2="135" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
+		      <polygon points="80,135     83,132    83,138" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x2-3,ycoord-5-3 ) (xcoord+x2-3 ,ycoord-5+3) (xcoord+x2 , ycoord-5)-->
+		      <polygon points="117,132     117,138    120,135" fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x2)/2+xcoord   ,ycoord-30 ) -->
+		      <text   x="95"         y="110" fill="gray" stroke="none" style="font-size:10px">
+		         X2<!--  {{field.label}}-->
+		         <!--  ((x2)/2+xcoord-10   ,ycoord-15 ) -->
+		         <tspan x="85" y="125">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##LEFT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
+		       second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
+		      <line x1="75" y1="140"  x2="75" y2="240" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!-- //5 same space between rect and line //3 is the width of the arrows-->
+		      <!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
+		      <polygon points="75,140     72,143    78,143" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
+		      <polygon points="75,240    72,237  78,237" fill="#ccc" stroke="none"/>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord-30   , y1/2+ycoord ) -->
+		      <text   x="50"         y="190" fill="gray" stroke="none" style="font-size:10px">
+		          Y1<!--  {{field.label}}-->
+		          <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
+		          <tspan x="30" y="205">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
+		      </text>
 
-			<!-- ##DRAW RECT -->
-			<!-- xcoordinate   ycoordinate         x2//user input     y1//user input -->
-			<rect x="100.11"      y="100.22"       width="{{axisObj['X2']}}" height="{{axisObj['Y1']}}"  fill="green">
-			</rect>
+		      <!-- ##DRAW RECT2-->
+		      <!-- xcoord         ycoord+y1-y3                                     x1//user input     y2//user input -->
+		      <rect x="80" y="210"   width="120" height="30"  fill="green">
+		      </rect>
+		      <!-- ##BOTTOM HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2 ycoord//100.22+100-100+y2 //height+5 //5 is the space between the rect and line)
+		      second point coord  (x2= rect x coord +x1//width of the rect,     y2= rect2 ycoord//(100.22+100-100)+y2//height +5 //5 is the space between the rect and line)-->
+		      <line x1="80" y1="245"  x2="200" y2="245" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!-- //5 same space between rect and line //3 is the width of the arrows-->
+		      <!--     (xcoord,rect2ycoord+y2+5 ) (xcoord+3 ,rect2ycoord+y2+5-3) (xcoord+3 , redct2ycoord+y2+5+3)-->
+		      <polygon points="80,245     83,242  83,248" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x1-3,rect2ycoord+y2+5-3 ) (xcoord+x1-3 ,rect2ycoord+y2+5+3) (xcoord+x1 , rect2ycoord+y2+5)-->
+		      <polygon points="197,242      197,248    200,245 " fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x1)/2+xcoord   ,rect2ycoord+y2+20 ) -->
+		      <text   x="140"    y="260" fill="gray" stroke="none" style="font-size:10px">
+		         X1<!--  {{field.label}}-->
+		         <!--  ((x2)/2+xcoord-10   ,rect2ycoord+y2+35 ) -->
+		         <tspan x="130" y="275">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##RIGHT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
+		      second point coord  (x2= xcoord+x1+5,     y3= rect2ycoord + y3)-->
+		      <line x1="205" y1="210"  x2="205" y2="240" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!-- //5 same space between rect and line //3 is the width of the arrows-->
+		      <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
+		      <polygon points="205,210    202,213   208,213" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord+x1+5,rect2ycoord+y3 ) (xcoord+x1+5-3 ,rct2ycoord+y3-3) (xcoord+x1+5+3, rect2ycoord+y3-3)-->
+		      <polygon points="205,240     202,237    208,237 " fill="#ccc" stroke="none"/>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord+x1+20   , Y3/2+ycoord ) -->
+		      <text   x="220"   y="225" fill="gray" stroke="none" style="font-size:10px">
+		         Y3<!--  {{field.label}}-->
+		         <!--  (xcoord+x1+15   ,Y3/2+ycoord+15  ) -->
+		         <tspan x="215" y="240">({{axisObj['Y3']}} {{field.label_suffix}})</tspan>
+		      </text>
 
-
-		<!-- ##TOP HORIZANTAL LINE -->
-		<!--first point coord   (x1=same xcoordinate of the rect   ,   y1= rect y coordinate -5//-5 is the space between the rect and line)
-		second point coord  (x2= rect x coord +x2//width of redct ,     y2= rect y coordinate -5//-5 is the space between the rect and line)-->
-									<line x1="100.11" y1="95.22"  x2="{{100.11+axisObj['X2']}}" y2="95.22" style="stroke:#ccc;stroke-width:1" />
-				<!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-				<!-- //5 same space between rect and line //3 is the width of the arrows-->
-				<!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
-			<polygon points="100.11,95.22     103.11,92.22    103.11,98.22" fill="#ccc" stroke="none"/>
-				<!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-				<!--     (xcoord+x2-3,ycoord-5-3 ) (xcoord+x2-3 ,ycoord-5+3) (xcoord+x2 , ycoord-5)-->
-			<polygon points="{{100.11+axisObj['X2']-3}},92.22     {{100.11+axisObj['X2']-3}},98.22    {{100.11+axisObj['X2']}},95.22" fill="#ccc" stroke="none"/>
-
-			<!-- ##HORIZANTAL LINE LABEL-->
-			<!--  ((x2)/2+xcoord   ,ycoord-30 ) -->
-			 <text   x="{{100.11+axisObj['X2']/2}}"         y="70.22" fill="gray" stroke="none" style="font-size:13px">
-			 X2<!--  {{field.label}}-->
-			 <!--  ((x2)/2+xcoord-10   ,ycoord-15 ) -->
-			 <tspan x="{{100.11+axisObj['X2']/2-10}}" y="85.22">({{axisObj['X2']}} {{field.label_suffix}})</tspan>
-			</text>
-
-
-		<!-- ##LEFT VERTICAL LINE -->
-		<!--first point coord   (x1= xcoord-5//-5 is the space between the rect and line ,   y1= rect y coord)
-		second point coord  (x2= xcoord-5,     y2= rect ycoord + y1 )-->
-									<line x1="95.11" y1="100.22"  x2="95.11" y2="{{100.22+axisObj['Y1']}}" style="stroke:#ccc;stroke-width:1" />
-				<!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-				<!-- //5 same space between rect and line //3 is the width of the arrows-->
-				<!--     (xcoord-5,ycoord ) (xcoord-5-3 ,ycoord+3) (xcoord-5+3 , ycoord+3)-->
-			<polygon points="95.11,100.22     92.11,103.22    98.11,103.22" fill="#ccc" stroke="none"/>
-				<!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-				<!--     (xcoord-5,ycoord+y1 ) (xcoord-5-3 ,ycoord+y1-3) (xcoord-5+3, ycoord+y1-3)-->
-			<polygon points="95.11,{{100.22+axisObj['Y1']}}     92.11,{{100.22+axisObj['Y1']-3}}    98.11,{{100.22+axisObj['Y1']-3}}" fill="#ccc" stroke="none"/>
-
-			<!-- ##VERTICAL LINE LABEL-->
-			<!--  ( xcoord-30   , y1/2+ycoord ) -->
-			 <text   x="70.11"         y="{{axisObj['Y1']/2+100.22}}" fill="gray" stroke="none" style="font-size:13px">
-			 Y1<!--  {{field.label}}-->
-			 <!--  (xcoord-50   ,y1/2+ycoord+15  ) -->
-			 <tspan x="50.11" y="{{axisObj['Y1']/2+100.22+15}}">({{axisObj['Y1']}} {{field.label_suffix}})</tspan>
-			</text>
-
-
-
-
-
-			<!-- ##DRAW RECT2-->
-		 <!-- xcoord         ycoord+y1-y3                                     x1//user input     y2//user input -->
-			<rect x="100.11" y="{{100.22+axisObj['Y1']-axisObj['Y3']}}"   width="{{axisObj['X1']}}" height="{{axisObj['Y3']}}"  fill="red">
-			</rect>
-
-
-
-		<!-- ##BOTTOM HORIZANTAL LINE -->
-		<!--first point coord   (x1=same xcoord of the rect2   ,   y1= rect2 ycoord//100.22+axisObj['Y1']-axisObj['Y2']+y2 //height+5 //5 is the space between the rect and line)
-			 second point coord  (x2= rect x coord +x1//width of the rect,     y2= rect2 ycoord//(100.22+axisObj['Y1']-axisObj['Y2'])+y2//height +5 //5 is the space between the rect and line)-->
-			<line x1="100.11" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}"  x2="{{100.11+axisObj['X1']}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}" style="stroke:#ccc;stroke-width:1" />
-
-
-				<!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-				<!-- //5 same space between rect and line //3 is the width of the arrows-->
-				<!--     (xcoord,rect2ycoord+y2+5 ) (xcoord+3 ,rect2ycoord+y2+5-3) (xcoord+3 , redct2ycoord+y2+5+3)-->
-			<polygon points="100.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}}     103.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5-3}}    103.11,{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5+3}}" fill="#ccc" stroke="none"/>
-				<!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-				<!--     (xcoord+x1-3,rect2ycoord+y2+5-3 ) (xcoord+x1-3 ,rect2ycoord+y2+5+3) (xcoord+x1 , rect2ycoord+y2+5)-->
-			<polygon points="{{100.11+axisObj['X1']-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5-3}}      {{100.11+axisObj['X1']-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5+3}}     {{100.11+axisObj['X1']}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+5}} " fill="#ccc" stroke="none"/>
-
-			<!-- ##HORIZANTAL LINE LABEL-->
-			<!--  ((x1)/2+xcoord   ,rect2ycoord+y2+20 ) -->
-			 <text   x="{{axisObj['X1']/2+100.11}}"    y="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+20}}" fill="gray" stroke="none" style="font-size:13px">
-			X1<!--  {{field.label}}-->
-			 <!--  ((x2)/2+xcoord-10   ,rect2ycoord+y2+35 ) -->
-			 <tspan x="{{axisObj['X1']/2+100.11-10}}" y="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']+35}} ">({{axisObj['X1']}} {{field.label_suffix}})</tspan>
-			</text>
-
-
-		<!-- ##RIGHT VERTICAL LINE -->
-		<!--first point coord   (x1= xcoord+x1+5//+5 is the space between the rect and line ,   y1= rect2ycoord)
-		second point coord  (x2= xcoord+x1+5,     y3= rect2ycoord + y3)-->
-		<line x1="{{axisObj['X1']+100.11+5}}" y1="{{(100.22+axisObj['Y1']-axisObj['Y3'])}}"  x2="{{axisObj['X1']+100.11+5}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y3'])+axisObj['Y3']}}" style="stroke:#ccc;stroke-width:1" />
-		<!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-		<!-- //5 same space between rect and line //3 is the width of the arrows-->
-		<!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
-		<polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y3'])}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y3'])+3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y3'])+3}}" fill="#ccc" stroke="none"/>
-		<!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-		<!--     (xcoord+x1+5,rect2ycoord+y3 ) (xcoord+x1+5-3 ,rct2ycoord+y3-3) (xcoord+x1+5+3, rect2ycoord+y3-3)-->
-		<polygon points="{{axisObj['X1']+100.11+5}},{{(100.22+axisObj['Y1']-axisObj['Y3'])+axisObj['Y3']}}     {{axisObj['X1']+100.11+5-3}},{{(100.22+axisObj['Y1']-axisObj['Y3'])+axisObj['Y3']-3}}    {{axisObj['X1']+100.11+5+3}},{{(100.22+axisObj['Y1']-axisObj['Y3'])+axisObj['Y3']-3}} " fill="#ccc" stroke="none"/>
-
-			<!-- ##VERTICAL LINE LABEL-->
-			<!--  ( xcoord+x1+20   , Y3/2+ycoord ) -->
-			 <text   x="{{axisObj['X1']+100.11+20}}"   y="{{axisObj['Y3']/2+(100.22+axisObj['Y1']-axisObj['Y3'])}}" fill="gray" stroke="none" style="font-size:13px">
-			 Y3<!--  {{field.label}}-->
-			 <!--  (xcoord+x1+15   ,Y3/2+ycoord+15  ) -->
-			 <tspan x="{{axisObj['X1']+100.11+15}}" y="{{axisObj['Y3']/2+(100.22+axisObj['Y1']-axisObj['Y3'])+15}}">({{axisObj['Y3']}} {{field.label_suffix}})</tspan>
-			</text>
-
-
-
-			<!-- ##DRAW RECT2-->
-			<!-- xcoord         ycoord+y1-y2                                     x1//user input     y2//user input -->
-			<rect x="{{100.11+axisObj['X1']-axisObj['X3']}}" y="{{100.22+axisObj['Y1']-axisObj['Y2']}}"   width="{{axisObj['X2']}}" height="{{axisObj['Y2']}}"  fill="blue">
-			</rect>
-
-			<!-- ##TOP HORIZANTAL LINE -->
-			<!--first point coord   (x1=same xcoordinate of the rect3   ,   y1= rect3ycoord -5//-5 is the space between the rect and line)
-			second point coord  (x2= rect3 x coord +x3//width of redct ,     y2= rect3ycoord -5//-5 is the space between the rect and line)-->
-			<line x1="{{(100.11+axisObj['X1']-axisObj['X3'])}}" y1="{{100.22+axisObj['Y1']-axisObj['Y2']-5}}"  x2="{{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']}}" y2="{{100.22+axisObj['Y1']-axisObj['Y2']-5}}" style="stroke:#ccc;stroke-width:1" />
-					<!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
-					<!-- //5 same space between rect and line //3 is the width of the arrows-->
-					<!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
-				<polygon points="{{(100.11+axisObj['X1']-axisObj['X3'])}},{{100.22+axisObj['Y1']-axisObj['Y2']-5}}     {{(100.11+axisObj['X1']-axisObj['X3'])+3}},{{100.22+axisObj['Y1']-axisObj['Y2']-5-3}}    {{(100.11+axisObj['X1']-axisObj['X3'])+3}},{{100.22+axisObj['Y1']-axisObj['Y2']-5+3}}" fill="#ccc" stroke="none"/>
-					<!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
-					<!--     (xcoord+x3-3,ycoord-5-3 ) (xcoord+x3-3 ,ycoord-5+3) (xcoord+x3 , ycoord-5)-->
-				<polygon points="{{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']-3}},{{100.22+axisObj['Y1']-axisObj['Y2']-5-3}}     {{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']-3}},{{100.22+axisObj['Y1']-axisObj['Y2']-5+3}}    {{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']}},{{100.22+axisObj['Y1']-axisObj['Y2']-5}}" fill="#ccc" stroke="none"/>
-
-				<!-- ##HORIZANTAL LINE LABEL-->
-				<!--  ((x3)/2+xcoord   ,ycoord-30 ) -->
-				 <text   x="{{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']/2}}"         y="{{(100.22+axisObj['Y1']-axisObj['Y2'])-30}}" fill="gray" stroke="none" style="font-size:13px">
-				 X3<!--  {{field.label}}-->
-				 <!--  ((x3)/2+xcoord-10   ,ycoord-15 ) -->
-				 <tspan x="{{(100.11+axisObj['X1']-axisObj['X3'])+axisObj['X3']/2-10}}" y="{{(100.22+axisObj['Y1']-axisObj['Y2'])-15}}">({{axisObj['X3']}} {{field.label_suffix}})</tspan>
-				</text>
-
-
-
-
-				<!-- ##RIGHT VERTICAL LINE -->
-				   <!--first point coord   (x1= xcoord+x1+10//+5 is the space between the rect and line ,   y1= rect2ycoord)
-					 second point coord  (x2= xcoord+x1+10,     y2= rect2ycoord + y2)-->
-				  <line x1="{{axisObj['X1']+100.11+10}}" y1="{{(100.22+axisObj['Y1']-axisObj['Y2'])}}"  x2="{{axisObj['X1']+100.11+10}}" y2="{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}" style="stroke:#ccc;stroke-width:1" />
-				  <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
-				  <!-- //5 same space between rect and line //3 is the width of the arrows-->
-				  <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
-				 <polygon points="{{axisObj['X1']+100.11+10}},{{(100.22+axisObj['Y1']-axisObj['Y2'])}}     {{axisObj['X1']+100.11+10-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}    {{axisObj['X1']+100.11+10+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+3}}" fill="#ccc" stroke="none"/>
-				<!-- ##ARROW TAIL OF THE VERTICAL LINE-->
-				<!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
-				<polygon points="{{axisObj['X1']+100.11+10}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']}}     {{axisObj['X1']+100.11+10-3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}}    {{axisObj['X1']+100.11+10+3}},{{(100.22+axisObj['Y1']-axisObj['Y2'])+axisObj['Y2']-3}} " fill="#ccc" stroke="none"/>
-
-				      <!-- ##VERTICAL LINE LABEL-->
-				      <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
-				       <text   x="{{axisObj['X1']+100.11+30}}"   y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])}}" fill="gray" stroke="none" style="font-size:13px">
-				       Y2<!--  {{field.label}}-->
-				       <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
-				       <tspan x="{{axisObj['X1']+100.11+25}}" y="{{axisObj['Y2']/2+(100.22+axisObj['Y1']-axisObj['Y2'])+15}}">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
-				      </text>
-
-
-
+		      <!-- ##DRAW RECT3-->
+		      <!-- xcoord         ycoord+y1-y2                                     x1//user input     y2//user input -->
+		      <rect x="160" y="140"   width="40" height="100"  fill="green">
+		      </rect>
+		      <!-- ##TOP HORIZANTAL LINE -->
+		      <!--first point coord   (x1=same xcoordinate of the rect3   ,   y1= rect3ycoord -5//-5 is the space between the rect and line)
+		      second point coord  (x2= rect3 x coord +x3//width of redct ,     y2= rect3ycoord -5//-5 is the space between the rect and line)-->
+		      <line x1="160" y1="135"  x2="200" y2="135" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord,ycoord-5 ) (xcoord+3 ,ycoord-5-3) (xcoord+3 , ycoord-5+3)-->
+		      <polygon points="160,135    163,132    163,138" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE TOP HORIZANTAL LINE-->
+		      <!--     (xcoord+x3-3,ycoord-5-3 ) (xcoord+x3-3 ,ycoord-5+3) (xcoord+x3 , ycoord-5)-->
+		      <polygon points="197,132     197,138    200,135" fill="#ccc" stroke="none"/>
+		      <!-- ##HORIZANTAL LINE LABEL-->
+		      <!--  ((x3)/2+xcoord   ,ycoord-30 ) -->
+		      <text   x="180"         y="110" fill="gray" stroke="none" style="font-size:10px">
+		         X3<!--  {{field.label}}-->
+		         <!--  ((x3)/2+xcoord-10   ,ycoord-15 ) -->
+		         <tspan x="170" y="125">({{axisObj['X3']}} {{field.label_suffix}})</tspan>
+		      </text>
+		      <!-- ##RIGHT VERTICAL LINE -->
+		      <!--first point coord   (x1= xcoord+x1+10//+5 is the space between the rect and line ,   y1= rect2ycoord)
+		           second point coord  (x2= xcoord+x1+10,     y2= rect2ycoord + y2)-->
+		      <line x1="210" y1="140"  x2="210" y2="240" style="stroke:#ccc;stroke-width:1" />
+		      <!-- ##ARROW HEAD OF THE VERTICAL LINE-->
+		      <!-- //5 same space between rect and line //3 is the width of the arrows-->
+		      <!--     (xcoord+x1+5,rect2ycoord ) (xcoord+x1+5-3 ,rect2ycoord+3) (xcoord+x1+5+3 , rect2ycoord+3)-->
+		      <polygon points="210,140     207,143    213,143" fill="#ccc" stroke="none"/>
+		      <!-- ##ARROW TAIL OF THE VERTICAL LINE-->
+		      <!--     (xcoord+x1+5,rect2ycoord+y2 ) (xcoord+x1+5-3 ,rct2ycoord+y2-3) (xcoord+x1+5+3, rect2ycoord+y2-3)-->
+		      <polygon points="210,240    207,237    213,237 " fill="#ccc" stroke="none"/>
+		      <!-- ##VERTICAL LINE LABEL-->
+		      <!--  ( xcoord+x1+20   , y2/2+ycoord ) -->
+		      <text   x="230"   y="190" fill="gray" stroke="none" style="font-size:10px">
+		          Y2<!--  {{field.label}}-->
+		          <!--  (xcoord+x1+15   ,y2/2+ycoord+15  ) -->
+		          <tspan x="225" y="205">({{axisObj['Y2']}} {{field.label_suffix}})</tspan>
+		      </text>
 		</svg>
-
 
 	</div>
 </div>
