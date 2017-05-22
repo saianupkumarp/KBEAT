@@ -87,6 +87,7 @@ def get_task_result(task_id):
             'bepsFile': task.get('result').get('beps'),
             'jasperPdf': task.get('result').get('pdf'),
             'lvdData': task.get('result').get('userOutput').get('lvd'),
+            'lvhData': task.get('result').get('userOutput').get('lvh'),
             'id': task_id,
             'calibrationData': task.get('result').get('input')
         }

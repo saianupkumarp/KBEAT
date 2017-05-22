@@ -469,8 +469,42 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         },
                       }
                    };
-                   console.log(task.lvdData);
                    $scope.lvdData = task.lvdData;
+                   $scope.lvhChart = {
+                    chart: {
+                      type: 'multiBarChart',
+                        clipEdge: true,
+                        stacked: true,
+                        reduceXTicks: false,
+                        showControls: false,
+                        height: 270,
+                        width: 500,
+                        margin : {
+                            top: 80,
+                            right: 30,
+                            bottom: 20,
+                            left: 40
+                        },
+                        legend: {
+                          rightAlign: true
+                        },
+                        duration: 500,
+                        x: function(d){ return d.label; },
+                        y: function(d){ return d.value; },
+                        xAxis: {
+                            "showMaxMin": false,
+                            tickFormat: function(d) {return d;}
+                        },
+                        yAxis: {
+                            "showMaxMin": false,
+                            axisLabelDistance: 100,
+                            tickFormat: function(d){
+                              return d3.format(',.f')(d);
+                          }
+                        },
+                      }
+                   };
+                   $scope.lvhData = task.lvhData;
                 }
               }
             },

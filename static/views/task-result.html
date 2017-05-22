@@ -43,6 +43,7 @@
             <li class="active"><a class="chartLink" href="#pseReport" data-toggle="tab">PSE Report</a></li>
             <li><a class="chartLink" href="#bepuReport" data-toggle="tab">BEPU Report</a></li>
             <li><a class="chartLink" href="#lvdReport" data-toggle="tab">LVD Report</a></li>
+            <li><a class="chartLink" href="#lvhReport" data-toggle="tab">LVH Report</a></li>
           </ul>
         </div>
       </nav>
@@ -89,6 +90,16 @@
               <h3 class="chart-header">LVD Report</h3>
               <div class="charts">
                 <nvd3 options='lvdChart' data='lvdData'></nvd3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="lvhReport" class="tab-pane fade">
+          <div ng-class="{chartContainer:true}">
+            <div ng-class="{chart:true,card:true}">
+              <h3 class="chart-header">LVD Report</h3>
+              <div class="charts">
+                <nvd3 options='lvhChart' data='lvhData'></nvd3>
               </div>
             </div>
           </div>
