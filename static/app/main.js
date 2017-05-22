@@ -366,13 +366,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         groupSpacing: 0.1,
                         reduceXTicks: false,
                         showControls: false,
-                        height: 270,
+                        interactive: true,
+                        tooltips: true,
+                        height: 300,
                         width: 700,
                         margin : {
                             top: 20,
                             right: 20,
                             bottom: 45,
-                            left: 45
+                            left: 50
                         },
                         legend: {
                           rightAlign: true
@@ -409,13 +411,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         stacked: true,
                         reduceXTicks: false,
                         showControls: false,
+                        interactive: true,
+                        tooltips: true,
                         height: 270,
-                        width: 500,
+                        // width: 700,
                         margin : {
                             top: 80,
                             right: 30,
                             bottom: 20,
-                            left: 40
+                            left: 50
                         },
                         legend: {
                           rightAlign: true
@@ -442,13 +446,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         stacked: true,
                         reduceXTicks: false,
                         showControls: false,
+                        interactive: true,
+                        tooltips: true,
                         height: 270,
-                        width: 500,
+                        width: 700,
                         margin : {
                             top: 80,
                             right: 30,
                             bottom: 20,
-                            left: 40
+                            left: 50
                         },
                         legend: {
                           rightAlign: true
@@ -477,13 +483,15 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         stacked: true,
                         reduceXTicks: false,
                         showControls: false,
+                        interactive: true,
+                        tooltips: true,
                         height: 270,
-                        width: 500,
+                        width: 800,
                         margin : {
                             top: 80,
                             right: 30,
                             bottom: 20,
-                            left: 40
+                            left: 50
                         },
                         legend: {
                           rightAlign: true
