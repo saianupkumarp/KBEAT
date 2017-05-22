@@ -19,19 +19,10 @@
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li>
-          <a href="{{task.simFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>SIM</a>
+          <a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF Report</a>
         </li>
         <li>
-          <a href="{{task.bepsFile}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>BEPS</a>
-        </li>
-        <li>
-          <a href="{{task.jasperPdf}}"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>Jasper PDF</a>
-        </li>
-        <li>
-          <a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF</a>
-        </li>
-        <li>
-          <a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint</a>
+          <a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint Report</a>
         </li>
       </ul>
     </div>

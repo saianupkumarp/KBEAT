@@ -200,8 +200,8 @@ header{
     .content-area {
         flex: 1;
         margin:auto;
-        width:80%;
-        max-width:1070px;
+        width:85%;
+        max-width:1270px;
     }
 
     .step-content {
