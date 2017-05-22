@@ -435,6 +435,42 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       }
                    };
                    $scope.barData = task.barChartData;
+                   $scope.lvdChart = {
+                    chart: {
+                      type: 'multiBarChart',
+                        clipEdge: true,
+                        stacked: true,
+                        reduceXTicks: false,
+                        showControls: false,
+                        height: 270,
+                        width: 500,
+                        margin : {
+                            top: 80,
+                            right: 30,
+                            bottom: 20,
+                            left: 40
+                        },
+                        legend: {
+                          rightAlign: true
+                        },
+                        duration: 500,
+                        x: function(d){ return d.label; },
+                        y: function(d){ return d.value; },
+                        xAxis: {
+                            "showMaxMin": false,
+                            tickFormat: function(d) {return d;}
+                        },
+                        yAxis: {
+                            "showMaxMin": false,
+                            axisLabelDistance: 100,
+                            tickFormat: function(d){
+                              return d3.format(',.f')(d);
+                          }
+                        },
+                      }
+                   };
+                   console.log(task.lvdData);
+                   $scope.lvdData = task.lvdData;
                 }
               }
             },
@@ -653,7 +689,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
                 scope.field.values = scope.field.values.split(', ');
-                scope.show = false;
+                
                 if (scope.field.url) {
                   scope.field.urls = scope.field.url.split(', ');
                   scope.field.value = scope.field.values[0];
@@ -777,89 +813,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   return p.id == scope.field.related_id;
                 })[0];
                 break;
-              // case 'result':
-              //   /*Result tab tables ........*/
-              //   scope.$on('resultData', function(event, data) {
-              //     /*  Result Tab.......................*/
-              //     $rootScope.out = data
-
-              //     /* Result Data table..................*/
-
-              //     $rootScope.heading = Object.keys($rootScope.out.results[0]);
-              //     $rootScope.values = [];
-              //     $rootScope.out.results.forEach(function(obj, i) {
-              //       $rootScope.values[i] = Object.values(obj);
-              //     });
-              //     /*..............................*/
-
-
-              //     /* GeneralParams data table................*/
-
-              //     $rootScope.generalKeys = Object.keys($rootScope.out.generalParams);
-              //     $rootScope.filteredgeneralParams = [];
-              //     $rootScope.filteredGeneralKeys = [];
-              //     $rootScope.glasstype = [];
-              //     $rootScope.buildingDetails = [];
-              //     $rootScope.misc = [];
-              //     $rootScope.generalKeys.forEach(function(obj, i) {
-              //       if (obj.charAt(0) == obj.charAt(0).toLowerCase()) {
-              //         $rootScope.filteredGeneralKeys[i] = obj;
-              //       }
-              //     });
-              //     $rootScope.filteredGeneralKeys.forEach(function(fkey) {
-              //       $rootScope.generalKeys.forEach(function(gkey, i) {
-              //         if (fkey == gkey) {
-              //           $rootScope.filteredgeneralParams[fkey] = $rootScope.out.generalParams[fkey];
-              //         }
-              //       })
-              //     });
-              //     $rootScope.filteredgeneralParamsKeys = Object.keys($rootScope.filteredgeneralParams);
-              //     $rootScope.filteredgeneralParamsKeys.forEach(function(key) {
-              //       if (key.charAt(0) == 'g') {
-              //         $rootScope.glasstype[key] = $rootScope.filteredgeneralParams[key];
-              //       } else if (key.charAt(0) == 'b') {
-              //         $rootScope.buildingDetails[key] = $rootScope.filteredgeneralParams[key];
-              //       } else {
-              //         $rootScope.misc[key] = $rootScope.filteredgeneralParams[key];
-              //       }
-              //     });
-              //     $rootScope.glassArray = [];
-              //     for (var key in $rootScope.glasstype) {
-              //       $rootScope.glassArray.push(key, $rootScope.glasstype[key]);
-              //     }
-              //     $rootScope.buildingDetailsArray = [];
-              //     for (var key in $rootScope.buildingDetails) {
-
-              //       $rootScope.buildingDetailsArray.push(key, $rootScope.buildingDetails[key]);
-              //     }
-              //     $rootScope.miscArray = [];
-              //     for (var key in $rootScope.misc) {
-
-              //       $rootScope.miscArray.push(key, $rootScope.misc[key]);
-              //     }
-
-              //     /* .......................*/
-
-              //     /*  Input Data Table............*/
-
-              //     $rootScope.inputArray = [];
-              //     for (var key in $rootScope.out.input) {
-              //       $rootScope.inputArray.push(key, $rootScope.out.input[key]);
-              //     }
-
-
-              //     scope.resultValues = $rootScope.values;
-              //     scope.resultHeading = $rootScope.heading;
-
-              //     scope.glassType = $rootScope.glassArray;
-              //     scope.buildingDetails = $rootScope.buildingDetailsArray;
-              //     scope.misc = $rootScope.miscArray;
-              //     scope.inputData = $rootScope.inputArray;
-              //     /* --- SIM File ---*/
-              //     scope.simFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.simFile;
-              //     scope.bepsFile = location.protocol + '//' + location.hostname + ':' + '8080' + $rootScope.out.beps
-              //   })
-              //   break;
               case 'button':
                 scope.previous = function() {
                   $rootScope.stepBack();

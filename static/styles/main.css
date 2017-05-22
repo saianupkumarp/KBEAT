@@ -2651,3 +2651,17 @@ nvd3{
 .Table .Tr:nth-child(even) {
     background-color: #ffffff;
 }
+.img-legend {
+  color: #3F51B5;
+  font-weight: bold; 
+}
+
+.img-fieldset {
+  border-style: solid;
+  border-width: 1px;
+  height: 100%; 
+}
+strong{
+ font-weight:bold;
+ font-size: 1em;
+}

@@ -156,15 +156,15 @@ steps:
       parameters:
         - id: cmbSouthWall
           type: dropdown
+          url: EWall Cons-NoInsu.png, EWall Cons-Outside-2cm.png, EWall Cons-Outside-4cm.png, EWall Cons-Outside-6cm.png, EWall Cons-NoInsu1.png, EWall Cons-Outside-21cm.png, EWall Cons-Outside-43cm.png, EWall Cons-Outside-63cm.png, EWall Cons-Outside-42cm.png, EWall Cons-Outside-62cm.png
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
-          url: "EWall Cons-NoInsu.png, EWall Cons-Outside-2cm.png"
-          hover: true
           label: South Wall
           widthPercent: 50
         - id: cmbNorthWall
           type: dropdown
+          url: EWall Cons-NoInsu.png, EWall Cons-Outside-2cm.png, EWall Cons-Outside-4cm.png, EWall Cons-Outside-6cm.png, EWall Cons-NoInsu1.png, EWall Cons-Outside-21cm.png, EWall Cons-Outside-43cm.png, EWall Cons-Outside-63cm.png, EWall Cons-Outside-42cm.png, EWall Cons-Outside-62cm.png
           options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
           default: EWall Cons-NoInsu
@@ -198,6 +198,22 @@ steps:
           default: ground
           label: 1st Floor Contact Condition
           widthPercent: 50
+        - id: cmbSouthWallshp
+          type: shape
+          label: Shape
+          related_id: cmbSouthWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
+        - id: cmbNothWallshp
+          type: shape
+          label: Shape
+          related_id: cmbNorthWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
     - id: windows
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
