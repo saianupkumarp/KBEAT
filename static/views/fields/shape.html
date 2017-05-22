@@ -1,8 +1,15 @@
-<div ng-if="field.id!='hvacShape'" class="shape">
-	<img class="image" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
-	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+<div ng-if="field.id!='hvacShape' && !field.constructionImage" class="shape">
+    <img class="image" width="{{shape.span_width}}" height="{{shape.span_height}}" style="padding: 6px;" ng-src="/keec/assets/img/{{shape.url}}"/>
+     <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
 <div ng-if="field.id=='hvacShape'" class="figure">
-	<img class="hvacImage" width="{{shape.span_width}}" height="{{shape.span_height}}" style="margin-left: 100px;" ng-src="/keec/assets/img/{{shape.url}}"/>
-	 <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+    <img class="hvacImage" width="{{shape.span_width}}" height="{{shape.span_height}}" style="margin-left: 100px;" ng-src="/keec/assets/img/{{shape.url}}"/>
+     <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
+</div>
+<fieldset class="img-fieldset" ng-if="field.constructionImage">
+    <legend class="img-lenged">{{shape.label}}</legend>
+    <div layout="row" align="center" layout-wrap flex>
+        <img align="middle" style="display: block;margin-left: auto;margin-right: auto;" width="{{field.span_width}}" height="{{field.span_height}}" ng-src="/keec/assets/img/{{shape.url}}"/>
+    </div>
+</fieldset>
 </div>
