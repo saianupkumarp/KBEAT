@@ -22,8 +22,8 @@ steps:
       parameters:
         - id: cmbBldgType
           type: dropdown
-          options: "Villa, Apartment, Office: Public, Office: Private, Hotel: ThreeStar, Hotel: FourStar, Hotel: FiveStar, Hospital: Private, Hospital: Public"
-          values: "Villa, Apartment, Office: Public, Office: Private, hotelthreestar, Hotel: FourStar, Hotel: FiveStar, Hospital:Private, Hospital:Public"
+          options: "Villa, Apartment"
+          values: "Villa, Apartment"
           default: Office:Private
           label: Building Type
           widthPercent: 50
@@ -32,22 +32,26 @@ steps:
           label: Number of Floors
           label_suffix: story
           default: 1
+          min: 1
+          max: 3
           widthPercent: 50
           default: 1
         - id: cmbBldgLocation
           type: dropdown
-          options: Riyadh, Jeddah, Tabuk, Makkah
-          values: RIYADH, JEDDAH, TABUK, MAKKAH
-          default: Riyadh
+          options: Riyadh, Jeddah, Tabuk, Makkah, Madinah, Gizan, Dharan, Abha
+          values: RIYADH, JEDDAH, TABUK, MAKKAH, MADINAH, GIZAN, DHAHRAN, ABHA
+          default: TUNIS
           label: Building Location
           widthPercent: 50
         - id: txtBldgCondArea
           type: number
           label: Air-Conditioned Area
           label_suffix: (%)
-          default: 50
+          default: 100
           widthPercent: 50
-          default: 50
+          min: 0
+          max: 100
+          related_id: cmbBldgType
     - id: buildingShape
       label: Building Shape
       widthPercent: 100
@@ -69,12 +73,16 @@ steps:
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
           default: 0
+          min: 0
+          max: 360
           widthPercent: 50
         - id: txtFloorHeight
           type: number
           label: Floor to Floor Height
           label_suffix: m
           default: 3
+          min: 1
+          max: 100
           widthPercent: 50
         - id: Rectangular
           type: dimension
@@ -84,8 +92,8 @@ steps:
           related_id: cmbBldgShape
           widthPercent: 100
           url: Rectangular.jpg
-          txtLengX1: 10
-          txtLengY1: 5
+          txtLengX1: 120
+          txtLengY1: 50
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
@@ -95,10 +103,10 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengY1: 10
-          txtLengY2: 4
+          txtLengX1: 120
+          txtLengX2: 50
+          txtLengY1: 100
+          txtLengY2: 40
           url: L-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
@@ -109,11 +117,11 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengX3: 5
-          txtLengY1: 10
-          txtLengY2: 4
+          txtLengX1: 120
+          txtLengX2: 40
+          txtLengX3: 40
+          txtLengY1: 100
+          txtLengY2: 60
           url: T-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
@@ -124,21 +132,16 @@ steps:
           label_suffix: m
           related_id: cmbBldgShape
           widthPercent: 100
-          txtLengX1: 10
-          txtLengX2: 5
-          txtLengX3: 5
-          txtLengY1: 10
-          txtLengY2: 4
-          txtLengY3: 5
+          txtLengX1: 120
+          txtLengX2: 40
+          txtLengX3: 40
+          txtLengY1: 100
+          txtLengY2: 90
+          txtLengY3: 30
           url: U-Shape.jpg
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
-        - id: biShape
-          type: shape
-          label: Shape
-          related_id: cmbBldgShape
-          widthPercent: 50
     - id: button
       widthPercent: 100
       label: Button
@@ -156,46 +159,92 @@ steps:
       parameters:
         - id: cmbSouthWall
           type: dropdown
-          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          default: EWall Cons-NoInsu
+          url: KSA-Ewall-HCB-no-insulation.png, KSA-Ewall-HCB-50-ins.png, KSA-Ewall-HCB-100-ins.png, KSA-Ewall-HCB-150-ins.png, KSA-Ewall-HCB-200-ins.png, KSA-Ewall-HRB-no-insulation.png, KSA-Ewall-HRB-50-ins.png, KSA-Ewall-HRB-100-ins.png, KSA-Ewall-HRB-150-ins.png, KSA-Ewall-HRB-200-ins.png, KSA-Ewall-DHCB-50-ins.png, KSA-Ewall-DHCB-100-ins.png, KSA-Ewall-DHCB-150-ins.png, KSA-Ewall-DHCB-200-ins.png, KSA-Ewall-DHRB-50-ins.png, KSA-Ewall-DHRB-100-ins.png, KSA-Ewall-DHRB-150-ins.png, KSA-Ewall-DHRB-200-ins.png
+          options: Hollow Concrete Block - No Insulation, Hollow Concrete Block - 50-mm Insulation, Hollow Concrete Block - 100-mm Insulation, Hollow Concrete Block - 150-mm Insulation, Hollow Concrete Block - 200-mm Insulation, Hollow Clay Brick - No Insulation, Hollow Clay Brick - 50-mm Insulation, Hollow Clay Brick - 100-mm Insulation,     Hollow Clay Brick - 150-mm Insulation, Hollow Clay Brick - 200-mm Insulation, Double Hollow Concrete Block - 50-mm Insulation, Double Hollow Concrete Block - 100-mm Insulation, Double Hollow Concrete Block - 150-mm Insulation, Double Hollow Concrete Block - 200-mm Insulation, Double Clay Brick 50-mm Insulation, Double Clay Brick - 100-mm Insulation, Double Clay Brick - 150-mm Insulation, Double Clay Brick - 200-mm Insulation
+          values: KSA-Ewall-HCB-no-insulation, KSA-Ewall-HCB-50-ins, KSA-Ewall-HCB-100-ins, KSA-Ewall-HCB-150-ins, KSA-Ewall-HCB-200-ins, KSA-Ewall-HRB-no-insulation, KSA-Ewall-HRB-50-ins, KSA-Ewall-HRB-100-ins, KSA-Ewall-HRB-150-ins, KSA-Ewall-HRB-200-ins, KSA-Ewall-DHCB-50-ins, KSA-Ewall-DHCB-100-ins, KSA-Ewall-DHCB-150-ins, KSA-Ewall-DHCB-200-ins, KSA-Ewall-DHRB-50-ins, KSA-Ewall-DHRB-100-ins, KSA-Ewall-DHRB-150-ins, KSA-Ewall-DHRB-200-ins
+          default: Hollow Concrete Block - No Insulation
           label: South Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbNorthWall
           type: dropdown
-          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          default: EWall Cons-NoInsu
+          url: KSA-Ewall-HCB-no-insulation.png, KSA-Ewall-HCB-50-ins.png, KSA-Ewall-HCB-100-ins.png, KSA-Ewall-HCB-150-ins.png, KSA-Ewall-HCB-200-ins.png, KSA-Ewall-HRB-no-insulation.png, KSA-Ewall-HRB-50-ins.png, KSA-Ewall-HRB-100-ins.png, KSA-Ewall-HRB-150-ins.png, KSA-Ewall-HRB-200-ins.png, KSA-Ewall-DHCB-50-ins.png, KSA-Ewall-DHCB-100-ins.png, KSA-Ewall-DHCB-150-ins.png, KSA-Ewall-DHCB-200-ins.png, KSA-Ewall-DHRB-50-ins.png, KSA-Ewall-DHRB-100-ins.png, KSA-Ewall-DHRB-150-ins.png, KSA-Ewall-DHRB-200-ins.png
+          options: Hollow Concrete Block - No Insulation, Hollow Concrete Block - 50-mm Insulation, Hollow Concrete Block - 100-mm Insulation, Hollow Concrete Block - 150-mm Insulation, Hollow Concrete Block - 200-mm Insulation, Hollow Clay Brick - No Insulation, Hollow Clay Brick - 50-mm Insulation, Hollow Clay Brick - 100-mm Insulation,     Hollow Clay Brick - 150-mm Insulation, Hollow Clay Brick - 200-mm Insulation, Double Hollow Concrete Block - 50-mm Insulation, Double Hollow Concrete Block - 100-mm Insulation, Double Hollow Concrete Block - 150-mm Insulation, Double Hollow Concrete Block - 200-mm Insulation, Double Clay Brick 50-mm Insulation, Double Clay Brick - 100-mm Insulation, Double Clay Brick - 150-mm Insulation, Double Clay Brick - 200-mm Insulation
+          values: KSA-Ewall-HCB-no-insulation, KSA-Ewall-HCB-50-ins, KSA-Ewall-HCB-100-ins, KSA-Ewall-HCB-150-ins, KSA-Ewall-HCB-200-ins, KSA-Ewall-HRB-no-insulation, KSA-Ewall-HRB-50-ins, KSA-Ewall-HRB-100-ins, KSA-Ewall-HRB-150-ins, KSA-Ewall-HRB-200-ins, KSA-Ewall-DHCB-50-ins, KSA-Ewall-DHCB-100-ins, KSA-Ewall-DHCB-150-ins, KSA-Ewall-DHCB-200-ins, KSA-Ewall-DHRB-50-ins, KSA-Ewall-DHRB-100-ins, KSA-Ewall-DHRB-150-ins, KSA-Ewall-DHRB-200-ins
+          default: Hollow Concrete Block - No Insulation
           label: North Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbEastWall
           type: dropdown
-          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          default: EWall Cons-NoInsu
+          url: KSA-Ewall-HCB-no-insulation.png, KSA-Ewall-HCB-50-ins.png, KSA-Ewall-HCB-100-ins.png, KSA-Ewall-HCB-150-ins.png, KSA-Ewall-HCB-200-ins.png, KSA-Ewall-HRB-no-insulation.png, KSA-Ewall-HRB-50-ins.png, KSA-Ewall-HRB-100-ins.png, KSA-Ewall-HRB-150-ins.png, KSA-Ewall-HRB-200-ins.png, KSA-Ewall-DHCB-50-ins.png, KSA-Ewall-DHCB-100-ins.png, KSA-Ewall-DHCB-150-ins.png, KSA-Ewall-DHCB-200-ins.png, KSA-Ewall-DHRB-50-ins.png, KSA-Ewall-DHRB-100-ins.png, KSA-Ewall-DHRB-150-ins.png, KSA-Ewall-DHRB-200-ins.png
+          options: Hollow Concrete Block - No Insulation, Hollow Concrete Block - 50-mm Insulation, Hollow Concrete Block - 100-mm Insulation, Hollow Concrete Block - 150-mm Insulation, Hollow Concrete Block - 200-mm Insulation, Hollow Clay Brick - No Insulation, Hollow Clay Brick - 50-mm Insulation, Hollow Clay Brick - 100-mm Insulation,     Hollow Clay Brick - 150-mm Insulation, Hollow Clay Brick - 200-mm Insulation, Double Hollow Concrete Block - 50-mm Insulation, Double Hollow Concrete Block - 100-mm Insulation, Double Hollow Concrete Block - 150-mm Insulation, Double Hollow Concrete Block - 200-mm Insulation, Double Clay Brick 50-mm Insulation, Double Clay Brick - 100-mm Insulation, Double Clay Brick - 150-mm Insulation, Double Clay Brick - 200-mm Insulation
+          values: KSA-Ewall-HCB-no-insulation, KSA-Ewall-HCB-50-ins, KSA-Ewall-HCB-100-ins, KSA-Ewall-HCB-150-ins, KSA-Ewall-HCB-200-ins, KSA-Ewall-HRB-no-insulation, KSA-Ewall-HRB-50-ins, KSA-Ewall-HRB-100-ins, KSA-Ewall-HRB-150-ins, KSA-Ewall-HRB-200-ins, KSA-Ewall-DHCB-50-ins, KSA-Ewall-DHCB-100-ins, KSA-Ewall-DHCB-150-ins, KSA-Ewall-DHCB-200-ins, KSA-Ewall-DHRB-50-ins, KSA-Ewall-DHRB-100-ins, KSA-Ewall-DHRB-150-ins, KSA-Ewall-DHRB-200-ins
+          default: Hollow Concrete Block - No Insulation
           label: East Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbWestWall
           type: dropdown
-          options: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          values: EWall Cons-NoInsu, EWall Cons-Outside-2cm, EWall Cons-Outside-4cm, EWall Cons-Outside-6cm, EWall Cons-Middle-2cm, EWall Cons-Middle-4cm, EWall Cons-Middle-6cm, EWall Cons-Inside-2cm, EWall Cons-Inside-4cm, EWall Cons-Inside-6cm
-          default: EWall Cons-NoInsu
+          url: KSA-Ewall-HCB-no-insulation.png, KSA-Ewall-HCB-50-ins.png, KSA-Ewall-HCB-100-ins.png, KSA-Ewall-HCB-150-ins.png, KSA-Ewall-HCB-200-ins.png, KSA-Ewall-HRB-no-insulation.png, KSA-Ewall-HRB-50-ins.png, KSA-Ewall-HRB-100-ins.png, KSA-Ewall-HRB-150-ins.png, KSA-Ewall-HRB-200-ins.png, KSA-Ewall-DHCB-50-ins.png, KSA-Ewall-DHCB-100-ins.png, KSA-Ewall-DHCB-150-ins.png, KSA-Ewall-DHCB-200-ins.png, KSA-Ewall-DHRB-50-ins.png, KSA-Ewall-DHRB-100-ins.png, KSA-Ewall-DHRB-150-ins.png, KSA-Ewall-DHRB-200-ins.png
+          options: Hollow Concrete Block - No Insulation, Hollow Concrete Block - 50-mm Insulation, Hollow Concrete Block - 100-mm Insulation, Hollow Concrete Block - 150-mm Insulation, Hollow Concrete Block - 200-mm Insulation, Hollow Clay Brick - No Insulation, Hollow Clay Brick - 50-mm Insulation, Hollow Clay Brick - 100-mm Insulation,     Hollow Clay Brick - 150-mm Insulation, Hollow Clay Brick - 200-mm Insulation, Double Hollow Concrete Block - 50-mm Insulation, Double Hollow Concrete Block - 100-mm Insulation, Double Hollow Concrete Block - 150-mm Insulation, Double Hollow Concrete Block - 200-mm Insulation, Double Clay Brick 50-mm Insulation, Double Clay Brick - 100-mm Insulation, Double Clay Brick - 150-mm Insulation, Double Clay Brick - 200-mm Insulation
+          values: KSA-Ewall-HCB-no-insulation, KSA-Ewall-HCB-50-ins, KSA-Ewall-HCB-100-ins, KSA-Ewall-HCB-150-ins, KSA-Ewall-HCB-200-ins, KSA-Ewall-HRB-no-insulation, KSA-Ewall-HRB-50-ins, KSA-Ewall-HRB-100-ins, KSA-Ewall-HRB-150-ins, KSA-Ewall-HRB-200-ins, KSA-Ewall-DHCB-50-ins, KSA-Ewall-DHCB-100-ins, KSA-Ewall-DHCB-150-ins, KSA-Ewall-DHCB-200-ins, KSA-Ewall-DHRB-50-ins, KSA-Ewall-DHRB-100-ins, KSA-Ewall-DHRB-150-ins, KSA-Ewall-DHRB-200-ins
+          default: Hollow Concrete Block - No Insulation
           label: West Wall
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbRoof
           type: dropdown
-          options: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
-          values: Roof Cons-NoInsu, Roof Cons-Outside-2cm, Roof Cons-Outside-4cm, Roof Cons-Outside-6cm, Roof Cons-Inside-2cm, Roof Cons-Inside-4cm, Roof Cons-Inside-6cm, Roof Cons-Middle-2cm, Roof Cons-Middle-4cm, Roof Cons-Middle-6cm
-          default: Roof Cons-NoInsu
+          url: KSA-Conc-no-insulation.png, KSA-Conc-50-ins-out.png, KSA-Conc-100-ins-out.png, KSA-Conc-150-ins-out.png, KSA-Conc-200-ins-out.png, KSA-Conc-50-in.png, KSA-Conc-100-in.png, KSA-Conc-150-in.png, KSA-Conc-200-in.png
+          options: Reinforced Concrete - No Insulation, Reinforced Concrete - 50-mm Insulation On Top, Reinforced Concrete - 100-mm Insulation On Top, Reinforced Concrete - 150-mm Insulation On Top, Reinforced Concrete - 200-mm Insulation On Top, Reinforced Concrete - 50-mm Insulation Below, Reinforced Concrete - 100-mm Insulation Below, Reinforced Concrete Roof - 150-mm Insulation Below, Reinforced Concrete Roof - 200-mm Insulation Below
+          values: KSA-Conc-no-insulation, KSA-Conc-50-ins-out, KSA-Conc-100-ins-out, KSA-Conc-150-ins-out, KSA-Conc-200-ins-out, KSA-Conc-50-in, KSA-Conc-100-in, KSA-Conc-150-in, KSA-Conc-200-in
+          default: Reinforced Concrete - No Insulation
           label: Roof
-          widthPercent: 33
+          widthPercent: 50
         - id: cmbFirstFloorContact
           type: dropdown
-          options: Ground, Conditioned Space, UnConditioned Space
-          values: ground, condition, uncondition
-          default: ground
+          url: GroundFloor.png, ConditionFloor.png, Uncondition.png
+          options: Slab-on-Grade Floor, Floor above Conditioned Space, Floor above Unconditioned Space 
+          values: GroundFloor, ConditionFloor, Uncondition
+          default: Slab-on-Grade Floor
           label: 1st Floor Contact Condition
-          widthPercent: 33
+          widthPercent: 50
+        - id: cmbSouthWallshp
+          type: shape
+          label: Shape
+          related_id: cmbSouthWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
+        - id: cmbNothWallshp
+          type: shape
+          label: Shape
+          related_id: cmbNorthWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
+        - id: cmbEastWallshp
+          type: shape
+          label: Shape
+          related_id: cmbEastWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
+        - id: cmbWestWallshp
+          type: shape
+          label: Shape
+          related_id: cmbWestWall
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
+        - id: cmbRoofshp
+          type: shape
+          label: Shape
+          related_id: cmbRoof
+          widthPercent: 20
+          span_width: 100
+          span_height: 100
+          constructionImage: yes
     - id: windows
       label: Windows (Conditioned space ONLY)
       widthPercent: 100
@@ -204,7 +253,7 @@ steps:
         - id: rdbtnWinWwr
           type: radio
           label: Windows (Condtioned space ONLY)
-          options: Window Wall Ratio (%), Window Area (m2)
+          options: Window Area (m2), Window Wall Ratio (%)
           url: fp.jpg
           span_width: 400
           span_height: 180
@@ -214,37 +263,45 @@ steps:
           label: North
           default: 10
           widthPercent: 50
+          min: 1
+          max: 100
         - id: southpercent
           type: number
           label: South
           default: 10
           widthPercent: 50
+          min: 1
+          max: 100
         - id: eastpercent
           type: number
           label: East
           default: 10
           widthPercent: 50
+          min: 1
+          max: 100
         - id: westpercent
           type: number
           label: West
           default: 10
           widthPercent: 50
+          min: 1
+          max: 100
         - id: glasstype
           type: dropdown
-          options: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
-          values: Single Clear, Single Bronze, Single Low-e, Double Clear, Double Bronze, Double Low-e
+          options: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
+          values: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
           default: Single Clear
           label: Glass Type
           widthPercent: 100
         - id: txtWinSouthOverhang
           type: number
-          label: Overhang
+          label: Overhang Width
           default: '0.3'
           label_suffix: m(depth)
           widthPercent: 100
         - id: txtWinSouthFp
           type: number
-          label: FP
+          label: Overhand Height
           default: '0.2'
           widthPercent: 100
         - id: windowShape
@@ -320,14 +377,106 @@ steps:
       label: Space Condition
       widthPercent: 100
       parameters:
-        - id: spaceTable
+        - id: officePubSpcTbl
           type: table
-          row1: 70, 129, 0.3, 1.5, 0.93, (), ()
-          row2: 30, 269, 1, 0.93, 0, (), ()
-          row_heading: Office, Corridors Restrooms Stairs,
+          row1: 70, 129, 0.3, 1.5, 0.93, (), -
+          row2: 30, 269, 1, 0.93, 0, -, ()
+          row_heading: Office, Corridors Restrooms Stairs
           column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
           label: Space Table
           widthPercent: 100
+          bldType: "Office: Public"
+          related_id: cmbBldgType
+        - id: officePriSpcTbl
+          type: table
+          row1: 70, 129, 0.3, 1.5, 0.93, (), -
+          row2: 30, 269, 1, 0.93, 0, -, ()
+          row_heading: Office, Corridors Restrooms Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "Office: Private"
+          related_id: cmbBldgType
+        - id: villaSpcTbl
+          type: table
+          row1: 30, 75, 1.5, 0.67, 0.6, (), -
+          row2: 40, 79, 1, 0.96, 0, (), -
+          row3: 10, 65, 1, 0.59, 1.09, (), -
+          row4: 5, 37, 1.5, 0.52, 1.24, -, ()
+          row5: 5, 48, 1.5, 0.83, 0, -, ()
+          row6: 5, 50, 1, 0.81, 0, -, ()
+          row7: 5, 132, 1.5, 0.46, 0, -, ()
+          row_heading: "Residential (Living), Residential (Bedroom), Dining area, Kitchen, Restrooms, Stairs, Corridors"
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: Villa
+          related_id: cmbBldgType
+        - id: aptSpcTbl
+          type: table
+          row1: 30, 75, 1.5, 0.67, 0.6, (), -
+          row2: 40, 79, 1, 0.96, 0, (), -
+          row3: 10, 65, 1, 0.59, 1.09, (), -
+          row4: 5, 37, 1.5, 0.52, 1.24, -, ()
+          row5: 5, 48, 1.5, 0.83, 0, -, ()
+          row6: 5, 50, 1, 0.81, 0, -, ()
+          row7: 5, 132, 1.5, 0.46, 0, -, ()
+          row_heading: "Residential (Living), Residential (Bedroom), Dining area, Kitchen, Restrooms, Stairs, Corridors"
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: Apartment
+          related_id: cmbBldgType
+        - id: htl3SpcTbl
+          type: table
+          row1: 70, 161, 1, 1.39, 0.46, (), -
+          row2: 30, 118, 1, 1.39, 0, -, ()
+          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "hotelthreestar"
+          related_id: cmbBldgType
+        - id: htl4SpcTbl
+          type: table
+          row1: 70, 161, 1, 1.39, 0.46, (), -
+          row2: 30, 118, 1, 1.39, 0, -, ()
+          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "Hotel: FourStar"
+          related_id: cmbBldgType
+        - id: htl5SpcTbl
+          type: table
+          row1: 70, 161, 1, 1.39, 0.46, (), -
+          row2: 30, 118, 1, 1.39, 0, -, ()
+          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "Hotel: FiveStar"
+          related_id: cmbBldgType
+        - id: hospPriSpcTbl
+          type: table
+          row1: 60, 43, 1.2, 0.93, 0.46, (), -
+          row2: 40, 81, 1, 0.93, 0, -, ()
+          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "Hospital:Private"
+          related_id: cmbBldgType
+        - id: hospPubSpcTbl
+          type: table
+          row1: 60, 43, 1.2, 0.93, 0.46, (), -
+          row2: 40, 81, 1, 0.93, 0, -, ()
+          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
+          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
+          label: Space Table
+          widthPercent: 100
+          bldType: "Hospital:Public"
+          related_id: cmbBldgType
         - id: percentAreaSum
           type: number
           label: Percent Area Sum
@@ -368,9 +517,9 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          url: Residential System.jpg, Packaged Variable Air Volume System.jpg, Split System with Baseboard.gif, Fan Coil System.jpg, Variable Air Volume System.jpg
-          values: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
-          options: Residential System, Packaged Variable Air Volume System, Split System with Baseboard, Fan Coil System, Variable Air Volume System
+          url: Split System with Baseboard.gif, Residential System.jpg
+          values: Split System with Baseboard, Residential System
+          options: Split System with Baseboard, Residential System
           default: Residential System
           span_width: 600
           span_height: 180
@@ -380,13 +529,13 @@ steps:
           default: 20
           label: Heating setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: txtCoolSetTemp
           type: number
           default: 26
           label: Cooling setpoint temperature
           label_suffix: degC
-          widthPercent: 100
+          widthPercent: 50
         - id: hvacShape
           type: shape
           label: Figure
@@ -404,4 +553,3 @@ steps:
           type: button
           label: Run
           widthPercent: 20
-  

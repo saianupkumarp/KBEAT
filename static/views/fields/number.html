@@ -1,6 +1,6 @@
-<div ng-class="{'input-container':true, error: field.error}" ng-if="!field.hidden && buildType.cmbBldgTypeVal!='Villa'">
-	<label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
-	<input ng-disabled="blocked()" type="number" id="{{field.id}}" ng-model="field.value" min="{{field.min}}" max="{{field.max}}" ng-value="field.default">
-	<div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
-	<input ng-if="field.edit" class="Edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
+<div ng-class="{'input-container':true, error: field.error}" ng-if="!field.hidden && buildType.cmbBldgTypeVal!='Villa' && buildType.cmbBldgTypeVal!='Apartment'">
+    <label for="{{field.id}}" ng-class="{error: field.error}">{{field.label}}</label>
+    <input ng-disabled="blocked()" type="number" id="{{field.id}}" ng-model="field.value" min="{{field.min}}" max="{{field.max}}" ng-value="field.default">
+    <div class="label-suffix" ng-if="field.label_suffix">{{field.label_suffix}}</div>
+    <input ng-if="field.edit" class="Edit" type="button" value="Edit" ng-click="mdDialog($event)"/>
 </div>
