@@ -358,8 +358,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 controller: function ($scope, $window, task, $rootScope) {
                   $rootScope.footer = true;
                   $scope.task = task;
-                  $scope.pieChartData = task.bepuData;
-                   $scope.pieChartOptions = {
+                   $scope.bepuCompareChartOptions = {
                     chart: {
                       type: 'multiBarChart',
                         clipEdge: true,
@@ -371,9 +370,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         height: 300,
                         width: 700,
                         margin : {
-                            top: 20,
-                            right: 20,
-                            bottom: 45,
+                            top: 80,
+                            right: 30,
+                            bottom: 20,
                             left: 50
                         },
                         legend: {
@@ -388,7 +387,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         x: function(d){ return d.label; },
                         y: function(d){ return d.value; },
                         xAxis: {
-                            axisLabel: "Time",
+                            // axisLabel: "Time",
                             orient: "bottom",
                             tickSize: 1,
                             tickFormat: function(d) {return d;}
@@ -400,11 +399,19 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                               return d3.format(',.f')(d);
                           }
                         },
+                        title: {
+                          enable: true,
+                          text: 'Annual Energy Use (kWh/year)',
+                          css: {
+                            'textAlign': 'center',
+                            'color': 'black'
+                          }
+                        },
                       }
                    };
-                   $scope.pieData = $scope.pieChartData
+                   $scope.bepuComparisonData = task.bepuComparisonData;
                    var months = ["JAN" , "FEB" , "MAR" , "APR" , "MAY", "JUN" , "JUL" , "AUG" , "SEP" , "OCT" , "NOV" , "DEC"];
-                   $scope.barChartOptions = {
+                   $scope.pseChartOptions = {
                     chart: {
                       type: 'multiBarChart',
                         clipEdge: true,
@@ -412,9 +419,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         reduceXTicks: false,
                         showControls: false,
                         interactive: true,
+                        groupSpacing: 0.1,
                         tooltips: true,
                         height: 270,
-                        // width: 700,
+                        width: 700,
                         margin : {
                             top: 80,
                             right: 30,
@@ -438,52 +446,16 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         },
                       }
                    };
-                   $scope.barData = task.barChartData;
+                   $scope.pseBarData = task.pseBarData;
                    $scope.lvdChart = {
                     chart: {
                       type: 'multiBarChart',
                         clipEdge: true,
-                        stacked: true,
+                        stacked: false,
                         reduceXTicks: false,
                         showControls: false,
                         interactive: true,
-                        tooltips: true,
-                        height: 270,
-                        width: 700,
-                        margin : {
-                            top: 80,
-                            right: 30,
-                            bottom: 20,
-                            left: 50
-                        },
-                        legend: {
-                          rightAlign: true
-                        },
-                        duration: 500,
-                        x: function(d){ return d.label; },
-                        y: function(d){ return d.value; },
-                        xAxis: {
-                            "showMaxMin": false,
-                            tickFormat: function(d) {return d;}
-                        },
-                        yAxis: {
-                            "showMaxMin": false,
-                            axisLabelDistance: 100,
-                            tickFormat: function(d){
-                              return d3.format(',.f')(d);
-                          }
-                        },
-                      }
-                   };
-                   $scope.lvdData = task.lvdData;
-                   $scope.lvhChart = {
-                    chart: {
-                      type: 'multiBarChart',
-                        clipEdge: true,
-                        stacked: true,
-                        reduceXTicks: false,
-                        showControls: false,
-                        interactive: true,
+                        groupSpacing: 0.1,
                         tooltips: true,
                         height: 270,
                         width: 800,
@@ -512,7 +484,29 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         },
                       }
                    };
-                   $scope.lvhData = task.lvhData;
+                   $scope.lvdData = task.lvdData;
+                   $scope.bepuPieDataOptions = {
+                     chart: {
+                       type: 'pieChart',
+                       showLabels: true,
+                       labelThreshold: .10,
+                       height: 270,
+                       width: 500,
+                       margin: {
+                          top: 80,
+                          // right: 30,
+                          bottom: 20,
+                          left: 50
+                       },
+                       legend: {
+                          rightAlign: true
+                        },
+                       x: function(d) {return d.label;},
+                       y: function(d) {return d.value;},
+                       duration: 500
+                     }
+                   };
+                   $scope.bepuPieData = task.bepuPieData;
                 }
               }
             },
@@ -872,7 +866,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             scope.dialogBox = function(ev) {
               $rootScope.Dialog(ev);
             }
-            if (scope.field.type == 'text' || scope.field.type == 'number')
+            if (scope.field.type == 'text' || scope.field.type == 'number' || scope.field.type == 'dimension' )
               scope.$watch('field.value', function(newValue, oldValue) {
                 if (scope.field.error && newValue != oldValue) {
                   scope.field.error = !newValue;

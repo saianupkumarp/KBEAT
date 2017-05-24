@@ -67,28 +67,35 @@ def get_task_result(task_id):
     if task.get('status', '') == 'COMPLETED':
         bepuObj = []
         pseObj = []
+        lvdObj = []
         for outputType in task.get('result'):
-            if task.get('result').get(outputType).get('bepu'):
-                obj = outputType.split("Output",1)[0]
-                obj = {}
-                obj['key'] = outputType.split("Output",1)[0].title()
-                obj['values'] = task.get('result').get(outputType).get('bepu')
-                bepuObj.append(obj)
-            if task.get('result').get(outputType).get('pse'):
-                obj = outputType.split("Output",1)[0]
-                obj = {}
-                obj['key'] = outputType.split("Output",1)[0].title()
-                obj['values'] = task.get('result').get(outputType).get('pse')
-                pseObj.append(obj)
+            if outputType == 'userOutput' or outputType == 'standardOutput':
+                if task.get('result').get(outputType).get('bepu'):
+                    obj = outputType.split("Output",1)[0]
+                    obj = {}
+                    obj['key'] = 'Your Building' if outputType.split("Output",1)[0].title() == 'User' else 'SASO Baseline'
+                    obj['values'] = task.get('result').get(outputType).get('bepu')
+                    bepuObj.append(obj)
+                if task.get('result').get(outputType).get('pse'):
+                    obj = outputType.split("Output",1)[0]
+                    obj = {}
+                    obj['key'] = 'Your Building' if outputType.split("Output",1)[0].title() == 'User' else 'SASO Baseline'
+                    obj['values'] = task.get('result').get(outputType).get('pse')
+                    pseObj.append(obj)
+                if task.get('result').get(outputType).get('lvd'):
+                    obj = outputType.split("Output",1)[0]
+                    obj = {}
+                    obj['key'] = 'Your Building' if outputType.split("Output",1)[0].title() == 'User' else 'SASO Baseline'
+                    for elem in task.get('result').get(outputType).get('lvd'):
+                        obj['values'] = elem['values']
+                    lvdObj.append(obj)
         report = {
-            'bepuData': bepuObj,
-            'barChartData': task.get('result').get('userOutput').get('pse'),
-            'simFile': task.get('result').get('simFile'),
-            'bepsFile': task.get('result').get('beps'),
-            'jasperPdf': task.get('result').get('pdf'),
-            'lvdData': task.get('result').get('userOutput').get('lvd'),
-            'lvhData': task.get('result').get('userOutput').get('lvh'),
             'id': task_id,
-            'calibrationData': task.get('result').get('input')
+            'bepuComparisonData': bepuObj,
+            'pseBarData': task.get('result').get('userOutput').get('pse'),
+            'lvdData': lvdObj,
+            'bepuPieData': task.get('result').get('userOutput').get('bepu'),
+            'compliant': task.get('result').get('compliant'),
+            'energyDiff': task.get('result').get('energyDiff')
         }
     return report
