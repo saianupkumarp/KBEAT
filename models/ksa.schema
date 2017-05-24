@@ -38,8 +38,8 @@ steps:
           default: 1
         - id: cmbBldgLocation
           type: dropdown
-          options: Riyadh, Jeddah, Tabuk, Makkah, Madinah, Gizan, Dharan, Abha
-          values: RIYADH, JEDDAH, TABUK, MAKKAH, MADINAH, GIZAN, DHAHRAN, ABHA
+          options: Riyadh, Jeddah, Abha, Dharan, Gizan, Madinah, Makkah, Tabuk
+          values: RIYADH, JEDDAH, ABHA, DHAHRAN, GIZAN, MADINAH, MAKKAH, TABUK
           default: TUNIS
           label: Building Location
           widthPercent: 50
@@ -82,7 +82,7 @@ steps:
           label_suffix: m
           default: 3
           min: 1
-          max: 100
+          max: 50
           widthPercent: 50
         - id: Rectangular
           type: dimension
@@ -154,7 +154,7 @@ steps:
     label: Envelope
     containers:
     - id: exteriorConstructions
-      label: Exterior Constructions
+      label: Exterior Wall Constructions
       widthPercent: 100
       parameters:
         - id: cmbSouthWall
@@ -173,6 +173,22 @@ steps:
           default: Hollow Concrete Block - No Insulation
           label: North Wall
           widthPercent: 50
+        - id: cmbSouthWallshp
+          type: shape
+          label: Shape
+          related_id: cmbSouthWall
+          widthPercent: 50
+          span_width: 150
+          span_height: 150
+          constructionImage: yes
+        - id: cmbNothWallshp
+          type: shape
+          label: Shape
+          related_id: cmbNorthWall
+          widthPercent: 50
+          span_width: 150
+          span_height: 150
+          constructionImage: yes
         - id: cmbEastWall
           type: dropdown
           url: KSA-Ewall-HCB-no-insulation.png, KSA-Ewall-HCB-50-ins.png, KSA-Ewall-HCB-100-ins.png, KSA-Ewall-HCB-150-ins.png, KSA-Ewall-HCB-200-ins.png, KSA-Ewall-HRB-no-insulation.png, KSA-Ewall-HRB-50-ins.png, KSA-Ewall-HRB-100-ins.png, KSA-Ewall-HRB-150-ins.png, KSA-Ewall-HRB-200-ins.png, KSA-Ewall-DHCB-50-ins.png, KSA-Ewall-DHCB-100-ins.png, KSA-Ewall-DHCB-150-ins.png, KSA-Ewall-DHCB-200-ins.png, KSA-Ewall-DHRB-50-ins.png, KSA-Ewall-DHRB-100-ins.png, KSA-Ewall-DHRB-150-ins.png, KSA-Ewall-DHRB-200-ins.png
@@ -189,126 +205,58 @@ steps:
           default: Hollow Concrete Block - No Insulation
           label: West Wall
           widthPercent: 50
-        - id: cmbRoof
-          type: dropdown
-          url: KSA-Conc-no-insulation.png, KSA-Conc-50-ins-out.png, KSA-Conc-100-ins-out.png, KSA-Conc-150-ins-out.png, KSA-Conc-200-ins-out.png, KSA-Conc-50-in.png, KSA-Conc-100-in.png, KSA-Conc-150-in.png, KSA-Conc-200-in.png
-          options: Reinforced Concrete - No Insulation, Reinforced Concrete - 50-mm Insulation On Top, Reinforced Concrete - 100-mm Insulation On Top, Reinforced Concrete - 150-mm Insulation On Top, Reinforced Concrete - 200-mm Insulation On Top, Reinforced Concrete - 50-mm Insulation Below, Reinforced Concrete - 100-mm Insulation Below, Reinforced Concrete Roof - 150-mm Insulation Below, Reinforced Concrete Roof - 200-mm Insulation Below
-          values: KSA-Conc-no-insulation, KSA-Conc-50-ins-out, KSA-Conc-100-ins-out, KSA-Conc-150-ins-out, KSA-Conc-200-ins-out, KSA-Conc-50-in, KSA-Conc-100-in, KSA-Conc-150-in, KSA-Conc-200-in
-          default: Reinforced Concrete - No Insulation
-          label: Roof
-          widthPercent: 50
-        - id: cmbFirstFloorContact
-          type: dropdown
-          url: GroundFloor.png, ConditionFloor.png, Uncondition.png
-          options: Slab-on-Grade Floor, Floor above Conditioned Space, Floor above Unconditioned Space 
-          values: GroundFloor, ConditionFloor, Uncondition
-          default: Slab-on-Grade Floor
-          label: 1st Floor Contact Condition
-          widthPercent: 50
-        - id: cmbSouthWallshp
-          type: shape
-          label: Shape
-          related_id: cmbSouthWall
-          widthPercent: 20
-          span_width: 100
-          span_height: 100
-          constructionImage: yes
-        - id: cmbNothWallshp
-          type: shape
-          label: Shape
-          related_id: cmbNorthWall
-          widthPercent: 20
-          span_width: 100
-          span_height: 100
-          constructionImage: yes
         - id: cmbEastWallshp
           type: shape
           label: Shape
           related_id: cmbEastWall
-          widthPercent: 20
-          span_width: 100
-          span_height: 100
+          widthPercent: 50
+          span_width: 150
+          span_height: 150
           constructionImage: yes
         - id: cmbWestWallshp
           type: shape
           label: Shape
           related_id: cmbWestWall
-          widthPercent: 20
-          span_width: 100
-          span_height: 100
+          widthPercent: 50
+          span_width: 150
+          span_height: 150
           constructionImage: yes
+    - id: roofCons
+      label: Roof and Floor Constructions
+      widthPercent: 100
+      parameters:
+        - id: cmbRoof
+          type: dropdown
+          url: KSA-Roof-no-insulation.png, KSA-Roof-50-out.png, KSA-Roof-100-out.png, KSA-Conc-150-ins-out.png, KSA-Conc-200-ins-out.png, KSA-Roof-50-in.png, KSA-Roof-100-in.png, KSA-Roof-150-in.png, KSA-Roof-200-in.png
+          options: Reinforced Concrete - No Insulation, Reinforced Concrete - 50-mm Insulation On Top, Reinforced Concrete - 100-mm Insulation On Top, Reinforced Concrete - 150-mm Insulation On Top, Reinforced Concrete - 200-mm Insulation On Top, Reinforced Concrete - 50-mm Insulation Below, Reinforced Concrete - 100-mm Insulation Below, Reinforced Concrete Roof - 150-mm Insulation Below, Reinforced Concrete Roof - 200-mm Insulation Below
+          values: KSA-Roof-no-insulation, KSA-Roof-50-out, KSA-Roof-100-out, KSA-Conc-150-ins-out, KSA-Conc-200-ins-out, KSA-Roof-50-in, KSA-Roof-100-in, KSA-Roof-150-in, KSA-Roof-200-in
+          default: Reinforced Concrete - No Insulation
+          label: Roof
+          widthPercent: 50
+        - id: cmbFirstFloorContact
+          type: dropdown
+          url: ground.png, condition.png, uncondition.png
+          options: Slab-on-Grade Floor, Floor above Conditioned Space, Floor above Unconditioned Space 
+          values: ground, condition, uncondition
+          default: Slab-on-Grade Floor
+          label: 1st Floor Contact Condition
+          widthPercent: 50
         - id: cmbRoofshp
           type: shape
           label: Shape
           related_id: cmbRoof
-          widthPercent: 20
-          span_width: 100
-          span_height: 100
+          widthPercent: 50
+          span_width: 150
+          span_height: 150
           constructionImage: yes
-    - id: windows
-      label: Windows (Conditioned space ONLY)
-      widthPercent: 100
-      hasShape: true
-      parameters:
-        - id: rdbtnWinWwr
-          type: radio
-          label: Windows (Condtioned space ONLY)
-          options: Window Area (m2), Window Wall Ratio (%)
-          url: fp.jpg
-          span_width: 400
-          span_height: 180
-          widthPercent: 100
-        - id: northpercent
-          type: number
-          label: North
-          default: 10
-          widthPercent: 50
-          min: 1
-          max: 100
-        - id: southpercent
-          type: number
-          label: South
-          default: 10
-          widthPercent: 50
-          min: 1
-          max: 100
-        - id: eastpercent
-          type: number
-          label: East
-          default: 10
-          widthPercent: 50
-          min: 1
-          max: 100
-        - id: westpercent
-          type: number
-          label: West
-          default: 10
-          widthPercent: 50
-          min: 1
-          max: 100
-        - id: glasstype
-          type: dropdown
-          options: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
-          values: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
-          default: Single Clear
-          label: Glass Type
-          widthPercent: 100
-        - id: txtWinSouthOverhang
-          type: number
-          label: Overhang Width
-          default: '0.3'
-          label_suffix: m(depth)
-          widthPercent: 100
-        - id: txtWinSouthFp
-          type: number
-          label: Overhand Height
-          default: '0.2'
-          widthPercent: 100
-        - id: windowShape
+        - id: cmbFirstFloorContactshp
           type: shape
           label: Shape
-          related_id: rdbtnWinWwr
+          related_id: cmbFirstFloorContact
           widthPercent: 50
+          span_width: 150
+          span_height: 150
+          constructionImage: yes
     - id: constructionEdit
       label: Construction Edit
       widthPercent: 100
@@ -371,130 +319,89 @@ steps:
           label: Next
           widthPercent: 20
   - id: spacedhw
-    label: Space/DHW
+    label: Windows
     containers:
-    - id: spaceCondition
-      label: Space Condition
+    - id: windows
+      label: Windows
       widthPercent: 100
       parameters:
-        - id: officePubSpcTbl
-          type: table
-          row1: 70, 129, 0.3, 1.5, 0.93, (), -
-          row2: 30, 269, 1, 0.93, 0, -, ()
-          row_heading: Office, Corridors Restrooms Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
+        - id: rdbtnWinWwr
+          type: radio
+          label: Windows
+          options: Window Area (m2), Window Wall Ratio (%)
           widthPercent: 100
-          bldType: "Office: Public"
-          related_id: cmbBldgType
-        - id: officePriSpcTbl
-          type: table
-          row1: 70, 129, 0.3, 1.5, 0.93, (), -
-          row2: 30, 269, 1, 0.93, 0, -, ()
-          row_heading: Office, Corridors Restrooms Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "Office: Private"
-          related_id: cmbBldgType
-        - id: villaSpcTbl
-          type: table
-          row1: 30, 75, 1.5, 0.67, 0.6, (), -
-          row2: 40, 79, 1, 0.96, 0, (), -
-          row3: 10, 65, 1, 0.59, 1.09, (), -
-          row4: 5, 37, 1.5, 0.52, 1.24, -, ()
-          row5: 5, 48, 1.5, 0.83, 0, -, ()
-          row6: 5, 50, 1, 0.81, 0, -, ()
-          row7: 5, 132, 1.5, 0.46, 0, -, ()
-          row_heading: "Residential (Living), Residential (Bedroom), Dining area, Kitchen, Restrooms, Stairs, Corridors"
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: Villa
-          related_id: cmbBldgType
-        - id: aptSpcTbl
-          type: table
-          row1: 30, 75, 1.5, 0.67, 0.6, (), -
-          row2: 40, 79, 1, 0.96, 0, (), -
-          row3: 10, 65, 1, 0.59, 1.09, (), -
-          row4: 5, 37, 1.5, 0.52, 1.24, -, ()
-          row5: 5, 48, 1.5, 0.83, 0, -, ()
-          row6: 5, 50, 1, 0.81, 0, -, ()
-          row7: 5, 132, 1.5, 0.46, 0, -, ()
-          row_heading: "Residential (Living), Residential (Bedroom), Dining area, Kitchen, Restrooms, Stairs, Corridors"
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: Apartment
-          related_id: cmbBldgType
-        - id: htl3SpcTbl
-          type: table
-          row1: 70, 161, 1, 1.39, 0.46, (), -
-          row2: 30, 118, 1, 1.39, 0, -, ()
-          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "hotelthreestar"
-          related_id: cmbBldgType
-        - id: htl4SpcTbl
-          type: table
-          row1: 70, 161, 1, 1.39, 0.46, (), -
-          row2: 30, 118, 1, 1.39, 0, -, ()
-          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "Hotel: FourStar"
-          related_id: cmbBldgType
-        - id: htl5SpcTbl
-          type: table
-          row1: 70, 161, 1, 1.39, 0.46, (), -
-          row2: 30, 118, 1, 1.39, 0, -, ()
-          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "Hotel: FiveStar"
-          related_id: cmbBldgType
-        - id: hospPriSpcTbl
-          type: table
-          row1: 60, 43, 1.2, 0.93, 0.46, (), -
-          row2: 40, 81, 1, 0.93, 0, -, ()
-          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "Hospital:Private"
-          related_id: cmbBldgType
-        - id: hospPubSpcTbl
-          type: table
-          row1: 60, 43, 1.2, 0.93, 0.46, (), -
-          row2: 40, 81, 1, 0.93, 0, -, ()
-          row_heading: Hotel/Motel Guest Room, Corridors,Restrooms,Stairs
-          column_heading: Space Type, Present Area(%), Occupant(m2/person), Infiltration(ACH), Lightning(W/m2), Plug Load(W/m2), Cond Space, UnCond Space
-          label: Space Table
-          widthPercent: 100
-          bldType: "Hospital:Public"
-          related_id: cmbBldgType
-        - id: percentAreaSum
+        - id: northpercent
           type: number
-          label: Percent Area Sum
-          label_suffix: (%)
-          default: 100
-          enabled: false
-          widthPercent: 50
-    - id: domestichotwatersystem
-      label: Domestic Hot Water System
+          label: North
+          default: 10
+          widthPercent: 25
+          min: 1
+          max: 100
+        - id: southpercent
+          type: number
+          label: South
+          default: 10
+          widthPercent: 25
+          min: 1
+          max: 100
+        - id: eastpercent
+          type: number
+          label: East
+          default: 10
+          widthPercent: 25
+          min: 1
+          max: 100
+        - id: westpercent
+          type: number
+          label: West
+          default: 10
+          widthPercent: 25
+          min: 1
+          max: 100
+    - id: windows
+      label: Overhang
       widthPercent: 100
       parameters:
-        - id: cmbHotWaterSystem
-          type: dropdown
-          options: Tankless electric DHW system, Tank gas-fired DHW system
-          values: Tankless electric DHW system, Tank gas-fired DHW system
-          default: Tankless electric DHW system
-          label: Building Type
+        - id: txtWinSouthOverhang
+          type: number
+          label: Overhang Width
+          default: '0.3'
+          label_suffix: m(depth)
+          url: fp.png
           widthPercent: 50
+        - id: txtWinSouthFp
+          type: number
+          label: Overhand Height
+          default: '0.2'
+          widthPercent: 50
+        - id: overhangShape
+          type: shape
+          label: Shape
+          related_id: txtWinSouthOverhang
+          widthPercent: 100
+          span_width: 370
+          span_height: 140
+          constructionImage: yes
+    - id: glassyTypeCont
+      label: Glass Type
+      widthPercent: 100
+      parameters:
+        - id: glasstype
+          type: dropdown
+          url: Single clear.png, Double clear.png, Single Low-e.png, Double low-e.png, Single Bronze.png, Double Bronze.png, Double-low-e-refl.png, Double-low-e-tint.png
+          options: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
+          values: Single clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
+          default: Single Clear
+          label: Glass Type
+          widthPercent: 100
+        - id: glassTypeShp
+          type: shape
+          label: Shape
+          related_id: glasstype
+          widthPercent: 100
+          span_width: 370
+          span_height: 140
+          constructionImage: yes
     - id: button
       widthPercent: 100
       label: Button
@@ -521,8 +428,8 @@ steps:
           values: Split System with Baseboard, Residential System
           options: Split System with Baseboard, Residential System
           default: Residential System
-          span_width: 600
-          span_height: 180
+          span_width: 700
+          span_height: 250
           widthPercent: 100
         - id: txtHeatSetTemp
           type: number
@@ -536,6 +443,14 @@ steps:
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 50
+        - id: eir
+          type: number
+          default: 9
+          label: EER
+          widthPercent: 50
+          min: 9
+          max: 12
+          widthPercent: 100
         - id: hvacShape
           type: shape
           label: Figure
