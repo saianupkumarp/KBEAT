@@ -1,8 +1,7 @@
 <div class="taskResult">
   <div ng-if = "task.compliant" style="font-size: 14px;color: #666;line-height: 1.5em;margin: 10px 0px 40px 0px;padding: 25px;background: #f8f8f8;">
     <label style="font-size: 18px;font-weight: bold;color: #666;margin-bottom: 15px;">Overall Assessment</label><br>
-    <p>Based on your description and the current SASO requirements, the tool provides the following assessments:
-      <p><br />
+    <p>Based on your description and the current SASO requirements, the tool provides the following assessments:</p>
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong style="color: green">meets</strong> SASO requirements for all building envelope</li>
           <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
@@ -13,8 +12,7 @@
   </div>
   <div ng-if = "!task.compliant" style="font-size: 14px;color: #666;line-height: 1.5em;margin: 10px 0px 40px 0px;padding: 25px;background: #f8f8f8;">
     <label style="font-size: 18px;font-weight: bold;color: #666;margin-bottom: 15px;">Overall Assessment</label><br>
-    <p>Based on your description and the current SASO requirements, the tool provides the following assessments:
-      <p><br />
+    <p>Based on your description and the current SASO requirements, the tool provides the following assessments:</p>
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong style="color: red">does not meets</strong> SASO requirements for all building envelope</li>
           <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
