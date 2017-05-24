@@ -7,9 +7,8 @@
      <input ng-if="field.edit" class="Edit" type="button" value="Edit"/>
 </div>
 <fieldset class="img-fieldset" ng-if="field.constructionImage">
-    <legend class="img-lenged">{{shape.label}}</legend>
+    <!--<legend class="img-lenged">{{shape.label}}</legend>-->
     <div layout="row" align="center" layout-wrap flex>
         <img align="middle" style="display: block;margin-left: auto;margin-right: auto;" width="{{field.span_width}}" height="{{field.span_height}}" ng-src="/keec/assets/img/{{shape.url}}"/>
     </div>
 </fieldset>
-</div>

@@ -1,17 +1,19 @@
 define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
     'angular-animate', 'angular-aria', 'angular-messages', 'angular-cookies',
     'angular-translate-loader', 'angular-moment', 'angular-translate-storage-cookie', 'angular-translate-storage-local',
-    'angular-material', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs', 'nvd3'
+    'angular-material', 'angular-loading-bar', 'md-steppers', 'angular-material-data-table', 'angular-scroll','bootstrap', 'fabricjs', 'nvd3'
   ],
 
   function($, angular) {
 
     angular.module('keec', [
-        'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table',
-        'duScroll', 'angularMoment', 'nvd3'
+        'angular-loading-bar', 'ui.router', 'ngMaterial', 'pascalprecht.translate', 'ngCookies', 'md-steppers', 'md.data.table',
+        'duScroll', 'angularMoment', 'nvd3', 'ngAnimate'
       ])
 
-      .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider, $mdAriaProvider) {
+      .config(function($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider, $mdAriaProvider, cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = true; // Show the spinner.
+        cfpLoadingBarProvider.includeBar = true; // Show the bar.
         //disabling Aria
         $mdAriaProvider.disableWarnings();
         // Multi-language support
@@ -242,6 +244,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       });
                       resJson.txtSkyltType = 'flat';
                       resJson.txtSkyltCvr = 13;
+                      resJson.cmbHotWaterSystem = 'Tankless electric DHW system';
                       var nonObjJson = {};
                       for (var prop in resJson) {
                         if (resJson.hasOwnProperty(prop) && typeof resJson[prop] !== "object") {
@@ -518,7 +521,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         $urlRouterProvider.otherwise('/keec/');
       })
       /* Backend API */
-      .factory('api', function($q, $http, $state, $timeout, $rootScope) {
+      .factory('api', function($q, $http, $state, $timeout, $rootScope, $window) {
         var request = function(callback, timeout) {
           var deferred = $q.defer();
 
@@ -539,7 +542,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           return $http.post('/keec/api/models/' + name, data).then(function(response) {
             console.log(response.data)
             if(response.data.status == 'QUEUED'){
-              $state.go('app.tlist');  
+              console.log(response.data.id)
+              // $state.go('app.taskResult', {task_id: response.data.id});
+               $timeout(function () { $window.location.href = "/keec/task/" + response.data.id; }, 10000);  
             }
           })
         }

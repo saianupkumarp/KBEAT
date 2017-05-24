@@ -5,8 +5,8 @@
       <p><br />
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong style="color: green">meets</strong> SASO requirements for all building envelope</li>
-          <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: red">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
-          <li ng-if="task.energyDiff >= 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
+          <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
+          <li ng-if="task.energyDiff >= 0">Your building consumed <strong style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
           <li>You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances
             and air conditioning system</li>
         </ul>
@@ -17,8 +17,8 @@
       <p><br />
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong style="color: red">does not meets</strong> SASO requirements for all building envelope</li>
-          <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: red">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
-          <li ng-if="task.energyDiff >= 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
+          <li ng-if="task.energyDiff < 0">Your building consumed <strong style="color: green">{{task.energyDiff}} kWh/year less</strong> than the SASO Baseline</li>
+          <li ng-if="task.energyDiff >= 0">Your building consumed <strong style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
           <li>You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances
             and air conditioning system</li>
         </ul>
@@ -84,7 +84,7 @@
         <div id="monthlyConsumption" class="tab-pane fade">
           <div ng-class="{chartContainer:true}">
             <div ng-class="{chart:true,card:true}">
-              <h3 class="chart-header">When electricity is consumed in your building?</h3>
+              <h3 class="chart-header">When and where electricity is consumed in your building?</h3>
               <div>
                 <br />
                 <p>Based on the weather of your location, your building consumes electricity as noted in the following monthly profile:</p>

@@ -10,7 +10,7 @@ import requests
 import settings
 
 def run_task(args, country):
-    simEngine = "http://52.29.26.174:8080/" + country
+    simEngine = "http://localhost:9001/async/" + country
     simHeaders = {'Content-type': 'application/json; charset=UTF-8'}
     result = requests.post(simEngine, data=args, headers=simHeaders)
     return result.text #if result.status_code == '200' else abort(404)

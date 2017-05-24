@@ -2666,3 +2666,20 @@ strong{
  font-weight:bold;
  font-size: 1em;
 }
+
+/* Loading bar */
+
+#loading-bar .bar {
+  background: green;
+  height: 4px;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  green;
+  border-left-color: green;
+}
+#loading-bar .peg {
+  -moz-box-shadow: green 1px 0 6px 1px;
+  -ms-box-shadow: green 1px 0 6px 1px;
+  -webkit-box-shadow: green 1px 0 6px 1px;
+  box-shadow: green 1px 0 6px 1px;
+}
