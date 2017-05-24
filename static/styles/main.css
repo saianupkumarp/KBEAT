@@ -1,5 +1,5 @@
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h5, h6, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -1723,13 +1723,13 @@ md-menu-item>.md-button{
 /* Intro CSS */
 
 .intro-page{
-    margin: 10% auto !important;
+    margin: 10% auto 0 !important;
     text-align: justify !important;
 }
 .introHeading{
     display:inline-block;
     color: #61A659;
-    margin: 0 0 20px 0;
+    margin: 0 auto 25px;
     font-size: 23px;
 }
 .introHeadingButton{
@@ -1737,17 +1737,17 @@ md-menu-item>.md-button{
 }
 .introButton{
     display:block !important;
-    margin:0 auto !important;
-    width:15% !important;
-    background-color:#61a246 !important;
-    border-color:#61a246 !important;
-    border-radius: 0px !important;
-    padding:5px 5px !important;
+    margin:0 auto 45px !important;
+    width:15%;
+    background-color:#61a246;
+    border-color:#61a246;
+    padding:5px 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 .introButton:hover{
-    background-color:#61a246 !important;
-    border-color:#61a246 !important;
-    border-radius: 0px !important;
+    opacity: 0.75;
 }
 .introButton1{
     display:block !important;
@@ -1761,6 +1761,16 @@ md-menu-item>.md-button{
     background-color:#61a246 !important;
     border-color:#61a246 !important;
     border-radius: 0px !important;
+}
+.intro-text{
+  font-size: 15px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 19px;
+}
+.intro-text h4{
+  margin: 30px 0 10px;
+  text-align: center;
 }
 @media (max-width:1280px){
     .introHeading{
@@ -1825,7 +1835,7 @@ md-menu-item>.md-button{
     .introHeading{
         font-size: 1.2em;
     }
-    .introDetails{
+    .intro-text{
         font-size:12px;
     }
 }
@@ -1883,25 +1893,11 @@ md-select-menu md-content::-webkit-scrollbar-thumb
 
 /* css for pagination of the table */
 .btn {
-    display: inline-block;
-    padding: 12px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: white;
+    background-color: #61a246;
+    border: none;
 }
 
 .prevNext{
@@ -2288,6 +2284,7 @@ width:100%;
     padding: 2%;
     background-color: #6a6a6a;
     color:#fff;
+    font-size: 18px;
 }
 
 .btn-group-sm>.btn, .btn-sm{
@@ -2314,6 +2311,12 @@ width:100%;
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+.card p{
+  font-size: 14px;
+  padding: 20px;
+  line-height: 20px;
+}
+
 .btn:active:focus, .btn:focus {
     outline: none;
     outline-offset: -2px;
@@ -2654,13 +2657,13 @@ nvd3{
 }
 .img-legend {
   color: #3F51B5;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 .img-fieldset {
   border-style: solid;
   border-width: 1px;
-  height: 100%; 
+  height: 100%;
 }
 strong{
  font-weight:bold;
