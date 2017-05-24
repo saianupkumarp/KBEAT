@@ -28,6 +28,7 @@ requirejs.config({
     'd3': 'vendor/d3/d3.min',
     'nvd3-base': 'vendor/nvd3/build/nv.d3.min',
     'nvd3': 'vendor/angular-nvd3/dist/angular-nvd3.min',
+    'angular-loading-bar': 'vendor/angular-loading-bar/build/loading-bar.min',
   },
   shim: {
     'angular': {
@@ -98,6 +99,9 @@ requirejs.config({
     },
     'nvd3':{
       deps: ['nvd3-base']
+    },
+    'angular-loading-bar': {
+      deps: ['angular']
     }
   }
 });
