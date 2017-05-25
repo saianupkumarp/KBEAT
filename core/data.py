@@ -14,6 +14,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson import json_util
 import gridfs
+import time
 
 client = MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
 
@@ -64,10 +65,14 @@ def get_task_result(task_id):
     task = Tasks.find_one({"_id": ObjectId(task_id)})
     if not task:
         return None
+    if task.get('status', '') == 'RUNNING':
+        time.sleep(10)
+        return get_task_result(task_id)
     if task.get('status', '') == 'COMPLETED':
         bepuObj = []
         pseObj = []
         lvdObj = []
+        bepuPieData = []
         for outputType in task.get('result'):
             if outputType == 'userOutput' or outputType == 'standardOutput':
                 if task.get('result').get(outputType).get('bepu'):
@@ -89,6 +94,11 @@ def get_task_result(task_id):
                     for elem in task.get('result').get(outputType).get('lvd'):
                         obj['values'] = elem['values']
                     lvdObj.append(obj)
+        # for item in task.get('result').get('userOutput').get('bepu'):
+        #     for val in item().values:
+        #         if val != 'Total':
+        #             bepuPieData = item
+                print bepuPieData
         report = {
             'id': task_id,
             'bepuComparisonData': bepuObj,

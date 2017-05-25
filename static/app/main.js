@@ -161,6 +161,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               'content@': {
                 templateUrl: '/keec/assets/views/home.html',
                 controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window) {
+                  console.log($rootScope.spinnerGif)
+                  $('#loadingOverlay').hide()
                   if ($window.localStorage.getItem("token") == null) {
                     $rootScope.selectedCountry = 0;
                   } else {
@@ -184,7 +186,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   };
 
                   $rootScope.postData = function(data) {
-                    console.log(data)
+                    $window.scrollTo(0, angular.element('loadingOverlay').offsetTop);   
+                    $('#loadingOverlay').show()
                     api.postData(model.name, data);
                   };
 
@@ -514,7 +517,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               }
             },
             onEnter: function ($state,  $stateParams, $rootScope, $timeout, task) {
-              if (!task) $state.go('app.tlist', {}, {location: 'replace'});
+              if (!task || task.status == 'ERROR') $state.go('app.tlist', {}, {location: 'replace'});
             }
           })
         // If the path doesn't match any of the configured urls redirect to home
@@ -540,12 +543,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
         function postData(name, data) {
           return $http.post('/keec/api/models/' + name, data).then(function(response) {
-            console.log(response.data)
-            if(response.data.status == 'QUEUED'){
-              console.log(response.data.id)
+            // if(response.data.status == 'QUEUED'){
+               $window.location.href = "/keec/task/" + response.data.id;
               // $state.go('app.taskResult', {task_id: response.data.id});
-               $timeout(function () { $window.location.href = "/keec/task/" + response.data.id; }, 10000);  
-            }
+            // }
           })
         }
       })
