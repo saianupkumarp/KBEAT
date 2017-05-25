@@ -87,7 +87,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     }
                     paginationLimit = task.model_name.taskPaginationLimit;
                   });
-                  $rootScope.filteredTasks = tasks; 
+                  $rootScope.filteredTasks = tasks;
                   $rootScope.tasks = tasks;
                   $rootScope.taskPagination = {
                     limit: paginationLimit,
@@ -186,7 +186,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   };
 
                   $rootScope.postData = function(data) {
-                    $window.scrollTo(0, angular.element('loadingOverlay').offsetTop);   
+                    $window.scrollTo(0, angular.element('loadingOverlay').offsetTop);
                     $('#loadingOverlay').show()
                     api.postData(model.name, data);
                   };
@@ -375,6 +375,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         tooltips: true,
                         height: 300,
                         width: 700,
+                        color: (['#5894D0','#F67A40']),
                         margin : {
                             top: 80,
                             right: 30,
@@ -429,6 +430,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         tooltips: true,
                         height: 270,
                         width: 700,
+                        color: (['#FFC43E','#A4A4A4','#F67A40','#5894D0']),
                         margin : {
                             top: 80,
                             right: 30,
@@ -465,6 +467,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         tooltips: true,
                         height: 270,
                         width: 800,
+                        color: (['#5894D0','#F67A40']),
                         margin : {
                             top: 80,
                             right: 30,
@@ -498,6 +501,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                        labelThreshold: .10,
                        height: 270,
                        width: 500,
+                       color: (['#FFC43E','#A4A4A4','#F67A40','#5894D0', '#98cd99']),
                        margin: {
                           top: 80,
                           // right: 30,
@@ -731,7 +735,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               case 'dropdown':
                 scope.field.options = scope.field.options.split(', ');
                 scope.field.values = scope.field.values.split(', ');
-                
+
                 if (scope.field.url) {
                   scope.field.urls = scope.field.url.split(', ');
                   scope.field.value = scope.field.values[0];
@@ -831,7 +835,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                     scope.txtFloorArea = 1;
                     for(var axisKey in scope.axisObj) {
                       if(scope.field.id == 'Rectangular'){
-                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                        scope.txtFloorArea *= scope.axisObj[axisKey]
                       }else if(scope.field.id == 'L-Shape'){
                         scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y2']) + ((scope.axisObj['Y1'] - scope.axisObj['Y2']) * scope.axisObj['X2'])
                       }else if(scope.field.id == 'T-Shape'){
@@ -839,9 +843,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       }else if(scope.field.id == 'U-Shape'){
                         scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
                       }else{
-                        scope.txtFloorArea *= scope.axisObj[axisKey]  
+                        scope.txtFloorArea *= scope.axisObj[axisKey]
                       }
-                      
+
                     };
                        scope.field.value = scope.axisObj;
                   }
