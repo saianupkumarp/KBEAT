@@ -74,6 +74,7 @@ class Arguments(Entity):
     glasstype = StringType(required=True)
     txtSkyltType = StringType(required=True)
     txtSkyltCvr = IntType(required=True)
+    eir = IntType(required=True)
 
     class Options:
         serialize_when_none = False

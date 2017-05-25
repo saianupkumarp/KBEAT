@@ -388,7 +388,7 @@ steps:
       parameters:
         - id: glasstype
           type: dropdown
-          url: Single clear.png, Double clear.png, Single Low-e.png, Double low-e.png, Single Bronze.png, Double Bronze.png, Double-low-e-refl.png, Double-low-e-tint.png
+          url: Single Clear.png, Double clear.png, Single Low-e.png, Double low-e.png, Single Bronze.png, Double Bronze.png, Double-low-e-refl.png, Double-low-e-tint.png
           options: Single Clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
           values: Single clear, Double clear, Single Low-e, Double low-e, Single Bronze, Double Bronze, Double-low-e-refl, Double-low-e-tint
           default: Single Clear
