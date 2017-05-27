@@ -14,6 +14,7 @@ from pptx.util import Pt, Inches
 from reportlab.platypus import BaseDocTemplate, Frame, Paragraph, NextPageTemplate, PageBreak, PageTemplate, Table, TableStyle, Image, Flowable
 from reportlab.graphics.shapes import Drawing, _DrawingEditorMixin
 from reportlab.graphics.charts.barcharts import VerticalBarChart
+from reportlab.graphics.charts.textlabels import Label
 from reportlab.graphics.charts.piecharts import Pie
 from reportlab.graphics.charts.legends import Legend
 from reportlab.lib.units import inch
@@ -285,7 +286,7 @@ def get_pdf_results(task_id):
         headerTable.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin)
 
         pageNum ="Page %d" % doc.page
-        footerData= [['KAPSARC Building Stock Energy Efficiency Analysis', pageNum]]
+        footerData= [['KAPSARC Building Energy Assessment Tool (BEAT)', pageNum]]
         footerTable = Table(footerData, colWidths=[5.76*inch,1* inch],
              style=[('LINEABOVE',(0,0),(1,0),2,colors.HexColor(0xcccccc)),
                     ('TEXTCOLOR',(0,0),(1,0),colors.HexColor(0x807F83)),
@@ -308,34 +309,44 @@ def get_pdf_results(task_id):
                                       textColor= colors.HexColor(0x61a659),
                                       leading = 30,
                                       spaceBefore = 35,
-                                      spaceAfter = 20))
+                                      spaceAfter = 10))
     # Headings
     styles.add(ParagraphStyle(name = 'styleHeading',
                                       parent = styles['Heading2'],
-                                      fontSize = 16,
+                                      fontSize = 14,
                                       textColor = colors.HexColor(0x807F83),
+                                      leading = 20,
+                                      spaceBefore = 10,
+                                      underlineProportion=1.1,
+                                      spaceAfter = 10))
+    styles.add(ParagraphStyle(name = 'styleHeading2',
+                                      parent = styles['Heading2'],
+                                      fontSize = 14,
+                                      textColor= colors.HexColor(0x61a659),
                                       leading = 20,
                                       spaceBefore = 20,
                                       underlineProportion=1.1,
                                       spaceAfter = 20))
-    styles.add(ParagraphStyle(name = 'styleHeading2',
-                                      alignment= TA_CENTER,
+    styles.add(ParagraphStyle(name = 'styleHeading3',
+                                      #alignment= TA_CENTER,
                                       fontSize = 12,
                                       fontName ='Vera',
                                       textColor= colors.HexColor(0x61a659),
                                       leading = 20,
-                                      spaceBefore = 20,
-                                      spaceAfter = 20))
+                                      spaceBefore = 10,
+                                      spaceAfter = 5))
     # Body text
     styles.add(ParagraphStyle(name = 'styleBodyText',
                                       parent = styles['Normal'],
-                                      fontSize = 12,
+                                      fontSize = 10,
                                       textColor= colors.HexColor(0x666666),
-                                      spaceBefore = 6))
+                                      spaceBefore = 5,
+                                      spaceAfter = 15))
 
     styleTitle = styles['styleTitle']
     styleHeading = styles['styleHeading']
     styleHeading2 = styles['styleHeading2']
+    styleHeading3 = styles['styleHeading3']
     styleBodyText = styles['styleBodyText']
     pdf_chart_colors = [
             "#3D6531",
@@ -353,7 +364,7 @@ def get_pdf_results(task_id):
             ]
 
     Elements=[]
-    doc = BaseDocTemplate(output_file, showBoundary=0, pagesize=A4,
+    doc = BaseDocTemplate(output_file, showBoundary=0, pagesize=A4,title='BEAT Report',author="KAPSARC",
     leftMargin=0.75*inch, rightMargin=0.75*inch, topMargin=inch, bottomMargin=inch)
 
     frame = Frame(doc.leftMargin, doc.topMargin, doc.width, doc.height,topPadding=0.3*inch, showBoundary=0)
@@ -361,87 +372,206 @@ def get_pdf_results(task_id):
     doc.addPageTemplates([template])
 
 
-
+    ## PAGE 1
     #add some flowables
-    Elements.append(Paragraph("KAPSARC Building Stock Energy Efficiency Analysis",styleTitle))
-    Elements.append(Paragraph("Calibration Data",styleHeading))
-    calibrationData = task['calibrationData']
+    Elements.append(Paragraph("KAPSARC Building Energy Assessment Tool (BEAT)",styleTitle))
+    Elements.append(Paragraph("Overall Assessment",styleHeading))
+    Elements.append(Paragraph("Based on your description and the current SASO requirements, the tool provides the following assessments:",styleBodyText))    
+    
+    if task['compliant']:
+        compliant="<strong><font color=green>meets</font></strong>"
+    else: 
+        compliant="<strong><font color=red>does not meet</font></strong>"
+    if (task['energyDiff']<0):
+        energyDiff= "<strong><font color=green>"+str(task['energyDiff'])+" kWh/year, less</font></strong>"
+    else:
+        energyDiff= "<strong><font color=red>"+str(task['energyDiff'])+" kWh/year, more</font></strong>"
+    
+    Elements.append(Paragraph("- Your building "+compliant+" SASO requirements for all building envelope",styleBodyText)) 
+    Elements.append(Paragraph("- Your building consumed " +energyDiff+" than the SASO Baseline",styleBodyText)) 
 
-    calibrationTableData=[[0 for i in xrange(2)] for i in xrange(len(calibrationData))]
-    for i,result in enumerate(calibrationData):
+    if task['compliant']:
+        Elements.append(Paragraph("- You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances and air conditioning system",styleBodyText))  
+    else:
+        Elements.append(Paragraph(" - You need have to add more insulation in walls and/or roof or use more efficient window glazing to comply with SASO requirements",styleBodyText))  
+    if  not task['compliant'] and (task['energyDiff']>=0):
+        Elements.append(Paragraph(" - You may also consider using LED lamps and high efficient appliances and air conditioning system",styleBodyText))   
+    
+    #Elements.append(Paragraph("BEPU report",styleHeading))
+    #Elements.append(Paragraph("End-Use",styleHeading2))
+    Elements.append(Paragraph("Where electricity is used in your building?",styleHeading3))
+    Elements.append(Paragraph("Your building needs electricity to operate several types of equipment including: air-conditioning, lighting, appliances, and domestic hot water.",styleBodyText))
+    
+    
+    #add image
+    Elements.append(Image('static/img/results-intro.png', width=5.7*inch, height=2*inch))
+    #add text
+    Elements.append(Paragraph("Based on the description you provided, here how your building consumes electricity on annual basis:",styleBodyText))
+    
+    
+    bepuPieData = task['bepuPieData']
+    bepuTableData=[[0 for i in xrange(len(bepuPieData[0]))] for i in xrange(len(bepuPieData)+1)]
+    bepuChartLabel=[0 for i in xrange(len(bepuPieData))]
+    bepuChartData=[0 for i in xrange(len(bepuPieData))]
+    bepuTableData[0][0]= 'End-Use'
+    bepuTableData[0][1] =  'Annual Electricity Use'
+    for i,result in enumerate(bepuPieData):
         # write body cells
-        calibrationTableData[i][0] = str(result)
-        calibrationTableData[i][1] = str(calibrationData[result])
+        bepuTableData[i+1][0]= str(result['label'])
+        bepuTableData[i+1][1] = int(result['value'])
+        bepuChartLabel[i] = str(result['label'])
+        bepuChartData[i] = result['value']
+    #add table
+    # bepuTable=Table(bepuTableData,style=[
+    #  ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
+    #  ('FONTSIZE',(0,0),(-1,-1),9),
+    #  ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
+    #  ('FONTNAME',(0,0),(len(bepuTableData[0])-1,0),'Helvetica-Bold'),
+    #  ('LINEBELOW',(0,0),(len(bepuTableData[0]),0),1,colors.HexColor(0x807F83)),
+    #  ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
+    #  ('ALIGN',(1,1),(1,len(bepuTableData)-1),'CENTER'),
+    #  ('LINEBELOW',(0,1),(1,len(bepuTableData)-2),0.5,colors.HexColor(0x807F83)),
+    #  ])
 
-    t=Table(calibrationTableData,style=[
-      ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
-      ('FONTSIZE',(0,0),(-1,-1),12),
-      ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
-      ('FONTNAME',(0,0),(0,len(calibrationTableData)-1),'Helvetica-Bold'),
-      ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
-     ])
+    #Elements.append(bepuTable)
 
-    Elements.append(t)
+    #add chart
+    bepuChart = Drawing(400,200)
+    pc = Pie()
+    pc.data = bepuChartData
+    labelc=[0 for i in xrange(len(bepuChartData))]
+    for i , r in enumerate(bepuChartData):
+        labelc[i]=str(round(r/sum(bepuChartData)*100,1))+"%"
+    pc.labels = labelc
+    # pc.slices[3].popout = 20
+    # pc.slices[3].strokeWidth = 2
+    # pc.slices[3].strokeDashArray = [2,2]
+    # pc.slices[3].labelRadius = 1.75
+    # pc.slices[3].fontColor = colors.red
+    # pc.legend.x=200
+    pc._seriesCount = len(bepuChartLabel)
+    pc.slices.strokeColor     = colors.HexColor(0xffffff)
+    pc.slices.strokeWidth     = 0.5
+    bepu_chart_colors=['#FFC43E','#A4A4A4','#F67A40','#5894D0','#98cd99']
+    for i , r in enumerate(bepuChartLabel):
+        pc.slices[i].fillColor= colors.HexColor(bepu_chart_colors[i])
 
-
-
+    pc.width=pc.height= 120
+    pc.x=40
+    pc.y=30
+    # add_legend(d, pc)
+    legend = Legend()
+    legend.alignment = 'right'
+    legend.x = pc.width+pc.x+80
+    legend.y = pc.height-10
+    legend.dx              = 8
+    legend.dy              = 8
+    legend.fontName        = 'Helvetica'
+    legend.fillColor = colors.HexColor(0x807F83)
+    legend.fontSize        = 10
+    legend.boxAnchor       = 'nw'
+    # legend.columnMaximum   = (len(pc.data)+1)/2
+    legend.columnMaximum   = 8
+    legend.strokeWidth     = 0.5
+    legend.strokeColor     = colors.HexColor(0xffffff)
+    legend.deltax          = 75
+    legend.deltay          = 10
+    legend.autoXPadding    = 10
+    legend.yGap            = 0
+    legend.dxTextSpace     = 5
+    legend.dividerLines    = 1|2|4
+    legend.dividerOffsY    = 6
+    legend.subCols.rpad    = 70
+    legend.dividerColor    = colors.HexColor(0xdedede)
+    legend.colorNamePairs = [(pc.slices[i].fillColor, (bepuChartLabel[i][0:20], '  %0.0f ' % pc.data[i])) for i in xrange(len(pc.data))]
+    legendHeader = Legend()
+    legendHeader.colorNamePairs = [('', ('End-Use','Annual Electricity Use\n(kWh/year)'))]
+    legendHeader.alignment = 'right'
+    legendHeader.x = legend.x-20
+    legendHeader.y = legend.y+30
+    legendHeader.fontName        = 'Helvetica'
+    legendHeader.fillColor = colors.HexColor(0x807F83)
+    legendHeader.fontSize = 10
+    legendHeader.boxAnchor       = 'nw'
+    legendHeader.subCols.rpad= 80
+    legendFooter = Legend()
+    legendFooter.colorNamePairs = [('', ('Total',str(int(sum(bepuChartData)))+''))]
+    legendFooter.alignment = 'right'
+    legendFooter.x = legendHeader.x
+    legendFooter.y = legend.y-(len(bepuChartLabel)+1)*11
+    legendFooter.fontName        = 'Helvetica'
+    legendFooter.fillColor = colors.HexColor(0x807F83)
+    legendFooter.fontSize = 10
+    legendFooter.boxAnchor       = 'nw'
+    legendFooter.subCols.rpad    = 150
+    bepuChart.add(legend)
+    bepuChart.add(legendHeader)
+    bepuChart.add(legendFooter)
+    pc.slices.fontColor = colors.HexColor(0x807F83)
+    n = len(pc.data)
+    bepuChart.add(pc, '')
+    Elements.append(bepuChart)
+    
+    
 
     Elements.append(PageBreak())
-    Elements.append(Paragraph("PSE Report:",styleHeading))
-    Elements.append(Paragraph("Table",styleHeading2))
-    barChartData = task['barChartData']
-    month=['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+    ## PAGE 2
+    #Elements.append(Paragraph("PS-E report",styleHeading))
+    #Elements.append(Paragraph("Monthly  Consumption",styleHeading2))
+    Elements.append(Paragraph("When electricity is consumed in your building?",styleHeading3))
+    Elements.append(Paragraph("Based on the weather of your location, your building consumes electricity as noted in the following monthly profile:",styleBodyText))    
+    #Elements.append(Paragraph("Electric Consumption (kWh)",styleBodyText))        
+    #add chart
+    pseBarData = task['pseBarData']
 
-
-    PSEtableData=[[0 for i in xrange(len(barChartData[0]['values'])+1)] for i in xrange(len(barChartData)+1)]
-    PSEchartData=[[0 for i in xrange(len(barChartData[0]['values']))] for i in xrange(len(barChartData))]
-    PSEchartLegend=[0 for i in xrange(len(barChartData))]
-    PSEtableData[0][0] = 'Key'
+    pseTableData=[[0 for i in xrange(len(pseBarData[0]['values'])+1)] for i in xrange(len(pseBarData)+1)]
+    pseChartData=[[0 for i in xrange(len(pseBarData[0]['values']))] for i in xrange(len(pseBarData))]
+    pseChartLegend=[0 for i in xrange(len(pseBarData))]
+    pseTableData[0][0] = 'Key'
+    month=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     for i,m in enumerate(month):
-        PSEtableData[0][i+1] = str(month[i])
-    for i,result in enumerate(barChartData):
+        pseTableData[0][i+1] = str(month[i])
+    for i,result in enumerate(pseBarData):
         # write body cells
-        PSEtableData[i+1][0] = str(result['key'])
-        PSEchartLegend[i] = str(result['key'])
+        pseTableData[i+1][0] = str(result['key'])
+        pseChartLegend[i] = str(result['key'])
         for j,value in enumerate(result['values']):
-            PSEtableData[i+1][j+1]=str(result['values'][j]['y'])
-            PSEchartData[i][j]=result['values'][j]['y']
+            pseTableData[i+1][j+1]=int(result['values'][j]['y'])
+            pseChartData[i][j]=int(result['values'][j]['y'])
 
-    t=Table(PSEtableData,style=[
-     ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
-     ('FONTSIZE',(0,0),(-1,-1),9),
-     ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
-     ('FONTNAME',(0,0),(len(PSEtableData[0])-1,0),'Helvetica-Bold'),
-     ('LINEBELOW',(0,0),(len(PSEtableData[0]),0),1,colors.HexColor(0x807F83)),
-     ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
-     ('ALIGN',(0,0),(0,0),'CENTER'),
-     ])
-    # t._argW[3]=6*inch
-    Elements.append(t)
-    #start the construction of the pdf
-    Elements.append(Paragraph('<br /><br />', styleBodyText))
+    # t=Table(pseTableData,style=[
+    #  ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
+    #  ('FONTSIZE',(0,0),(-1,-1),9),
+    #  ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
+    #  ('FONTNAME',(0,0),(len(pseTableData[0])-1,0),'Helvetica-Bold'),
+    #  ('LINEBELOW',(0,0),(len(pseTableData[0]),0),1,colors.HexColor(0x807F83)),
+    #  ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
+    #  ('ALIGN',(0,0),(0,0),'CENTER'),
+    #  ])
+    # # t._argW[3]=6*inch
+    # Elements.append(t)
 
-    Elements.append(Paragraph("Chart",styleHeading2))
-    drawing = Drawing(400, 200)
-
+    pseChart = Drawing(400, 200)
     bc = VerticalBarChart()
-    bc.x=30
+    bc.x=70
     bc.y=0
     bc.height = 200
-    bc.width = 350
-
-    bc.data = PSEchartData
+    bc.width = 300
+    bc.data = pseChartData
     bc.strokeColor = colors.black
-    # bc.fillColor=colors.blue
+    #bc.text="klkjl"
+    #bc.valueAxis._text="a;aaaaaak"
+    #bc.title._text = '5-year average\nannual return (%)'
+    #bc.valueAxis.yTitleText="Electric Consumption (kWh)"
+    #bc.fillColor=colors.blue
     bc.valueAxis.valueMin = 0
-
-    sumPSEcolumnData= [0 for i in xrange(len(PSEchartData))]
-    for j, result in enumerate(PSEchartData[0]):
-        sumColum=0
-        for i, result in enumerate(PSEchartData):
-            sumColum+=PSEchartData[i][j]
-        sumPSEcolumnData[j]=sumColum
-    bc.valueAxis.valueMax = max(sumPSEcolumnData)
+    # sumPSEcolumnData= [0 for i in xrange(len(pseChartData))]
+    # for j, result in enumerate(pseChartData[0]):
+    #     sumColum=0
+    #     for i, result in enumerate(pseChartData):
+    #         sumColum+=pseChartData[i][j]
+    #     sumPSEcolumnData[j]=sumColum
+    # bc.valueAxis.valueMax = max(sumPSEcolumnData)
     # bc.valueAxis.valueStep = 100
     bc.strokeWidth = 0
     bc.valueAxis.valueMin = 0
@@ -467,141 +597,510 @@ def get_pdf_results(task_id):
     bc.groupSpacing = .2 * inch
 
     bc.bars.strokeColor     = colors.HexColor(0xffffff)
-    bc.bars.strokeWidth     = 0.5
-    for i , r in enumerate(PSEchartLegend):
-        bc.bars[i].fillColor= colors.HexColor(pdf_chart_colors[i])
+    bc.bars.strokeWidth     = 0.
+    pse_chart_colors=['#FFC43E','#A4A4A4','#F67A40','#5894D0']
+    for i , r in enumerate(pseChartLegend):
+        bc.bars[i].fillColor= colors.HexColor(pse_chart_colors[i])
     #  = colors.blue
     # bc.bars[1].fillColor = colors.lightblue
-
-
-    swatches = Legend()
-    swatches.alignment = 'right'
-    swatches.x = bc.width+bc.x+20
-    swatches.y = bc.height+bc.y
-    swatches.deltax = 40
-    swatches.dxTextSpace = 5
-
-    swatches.dx              = 8
-    swatches.dy              = 8
-    swatches.fontName        = 'Helvetica'
-    swatches.fillColor = colors.HexColor(0x807F83)
-    swatches.fontSize        = 10
-    swatches.boxAnchor       = 'nw'
-    swatches.columnMaximum   = (len(bc.data)+1)/2
-    swatches.strokeWidth     = 0.5
-    swatches.strokeColor     = colors.HexColor(0xffffff)
-    swatches.deltax          = 75
-    swatches.deltay          = 12
-    # # # swatches.autoXPadding    = 7
-    # # # swatches.yGap            = 0
-    # # # swatches.dxTextSpace     = 5
-    # # # swatches.dividerLines    = 1|2|4
-    # # # swatches.dividerOffsY    = 5
-    # # # swatches.subCols.rpad    = 40
-    swatches.dividerColor    = colors.HexColor(0xdedede)
-
-    swatches.columnMaximum = len(PSEchartLegend)
-    swatches.colorNamePairs = [(bc.bars[i].fillColor, PSEchartLegend[i]) for i in xrange(len(bc.data))]
-
-    # drawing.hAlign = 'RIGHT'
-
-
-    drawing.add(swatches, 'legend')
-
-    drawing.add(bc)
-
-    Elements.append(drawing)
-
-    Elements.append(PageBreak())
-
-
-    Elements.append(Paragraph("BEPU Report:",styleHeading))
-    Elements.append(Paragraph("Table",styleHeading2))
-    pieChartData = task['pieChartData']
-    BEPUtableData=[[0 for i in xrange(len(pieChartData[0]))] for i in xrange(len(pieChartData)+1)]
-    BEPUchartLabel=[0 for i in xrange(len(pieChartData))]
-    BEPUchartData=[0 for i in xrange(len(pieChartData))]
-    BEPUtableData[0][0]= 'Key'
-    BEPUtableData[0][1] = 'Value'
-    for i,result in enumerate(pieChartData):
-        # write body cells
-        BEPUtableData[i+1][0]= str(result['label'])
-        BEPUtableData[i+1][1] = str(result['value'])
-        BEPUchartLabel[i] = str(result['label'])
-        BEPUchartData[i] = result['value']
-
-    t=Table(BEPUtableData,style=[
-     ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
-     ('FONTSIZE',(0,0),(-1,-1),9),
-     ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
-     ('FONTNAME',(0,0),(len(BEPUtableData[0])-1,0),'Helvetica-Bold'),
-     ('LINEBELOW',(0,0),(len(BEPUtableData[0]),0),1,colors.HexColor(0x807F83)),
-     ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
-     ])
-
-    Elements.append(t)
-
-    Elements.append(Paragraph('<br /><br />', styleBodyText))
-    Elements.append(Paragraph("Chart",styleHeading2))
-    d = Drawing(400,200)
-    pc = Pie()
-    pc.data = BEPUchartData
-    labelc=[0 for i in xrange(len(BEPUchartData))]
-    for i , r in enumerate(BEPUchartData):
-        labelc[i]=str(round(r/sum(BEPUchartData)*100,1))+"%"
-    pc.labels = labelc
-    pc.slices.strokeWidth=0.5
-    # pc.slices[3].popout = 20
-    # pc.slices[3].strokeWidth = 2
-    # pc.slices[3].strokeDashArray = [2,2]
-    # pc.slices[3].labelRadius = 1.75
-    # pc.slices[3].fontColor = colors.red
-    # pc.legend.x=200
-    pc._seriesCount = len(BEPUchartLabel)
-    pc.slices.strokeColor     = colors.HexColor(0xffffff)
-    pc.slices.strokeWidth     = 0.5
-    for i , r in enumerate(BEPUchartLabel):
-        pc.slices[i].fillColor= colors.HexColor(pdf_chart_colors[i])
-
-    pc.width=  pc.height= 150
-
-    pc.x=50
-    pc.y=20
-    # add_legend(d, pc)
     legend = Legend()
     legend.alignment = 'right'
-    legend.x = pc.width+pc.x+50
-    legend.y = pc.height
+    legend.x = bc.width+bc.x+5
+    legend.y = bc.height+bc.y
+    legend.deltax = 40
+    legend.dxTextSpace = 5
     legend.dx              = 8
     legend.dy              = 8
     legend.fontName        = 'Helvetica'
     legend.fillColor = colors.HexColor(0x807F83)
     legend.fontSize        = 10
     legend.boxAnchor       = 'nw'
-    # legend.columnMaximum   = (len(pc.data)+1)/2
-    legend.columnMaximum   = 8
+    legend.columnMaximum   = (len(bc.data)+1)/2
     legend.strokeWidth     = 0.5
     legend.strokeColor     = colors.HexColor(0xffffff)
     legend.deltax          = 75
-    legend.deltay          = 10
-    legend.autoXPadding    = 10
-    legend.yGap            = 0
-    legend.dxTextSpace     = 5
-    legend.dividerLines    = 1|2|4
-    legend.dividerOffsY    = 6
-    legend.subCols.rpad    = 20
+    legend.deltay          = 12
+    #legend.autoXPadding    = 7
+    #legend.yGap            = 0
+    #legend.dxTextSpace     = 5
+    #legend.dividerLines    = 1|2|4
+    #legend.dividerOffsY    = 5
+    #legend.subCols.rpad    = 40
     legend.dividerColor    = colors.HexColor(0xdedede)
-    legend.colorNamePairs = [(pc.slices[i].fillColor, (BEPUchartLabel[i][0:20], '  %0.2f' % pc.data[i])) for i in xrange(len(pc.data))]
-    d.add(legend)
-    # pc.x = 150
-    # pc.y= 20
-    pc.slices.fontColor = colors.HexColor(0x807F83)
-    n = len(pc.data)
+    legend.columnMaximum = len(pseChartLegend)
+    legend.colorNamePairs = [(bc.bars[i].fillColor, pseChartLegend[i]) for i in xrange(len(bc.data))]
+    #pseChart.hAlign = 'RIGHT'
 
-    d.add(pc, '')
+    label = Label()
+    label.setOrigin(10,bc.height/2)
+    #label.boxAnchor = 'sw'
+    label.angle = 90
+    label.fillColor = colors.HexColor(0x807F83)
+    label.setText('Electric Consumption (kWh)')
+    label.fontName        = 'Helvetica'
+
+    pseChart.add(legend, 'legend')
+    pseChart.add(bc)
+    pseChart.add(label)    
+    Elements.append(pseChart)
+
+    #Elements.append(PageBreak())
+    Elements.append(Paragraph('<br /><br />', styleBodyText))    
+    ## PAGE 3
+    #Elements.append(Paragraph("LV-H report",styleHeading))
+    #Elements.append(Paragraph("Thermal Compliance",styleHeading2))
+    Elements.append(Paragraph("Does your building meets SASO Thermal Performance Requirements?",styleHeading3))
+    Elements.append(Paragraph("Based on your description, the thermal transmittance properties of the walls, roof, and glazing are calculated and are compared to SASO requirements:",styleBodyText))    
+    #Elements.append(Paragraph("Envelope U-value (W/m2.k)",styleBodyText))  
+          
+    #add chart
+    lvdData= task['lvdData']
+    lvdChartData=[[0 for i in xrange(len(lvdData[0]['values']))] for i in xrange(len(lvdData))]
+    lvdChartCategoryNames=[0 for i in xrange(len(lvdData[0]['values']))]
+    lvdComparedObjKey=[0 for i in xrange(len(lvdData))]
+    for i,result in enumerate(lvdData):
+        # write body cells
+        lvdComparedObjKey[i]= str(lvdData[i]['key'])
+        for j,value in enumerate(result['values']):
+            lvdChartCategoryNames[j]=value['label']
+            lvdChartData[i][j]=value['value']
+
+    
+
+    lvdChart = Drawing(400, 200)
+    bc = VerticalBarChart()
+    bc.x=70
+    bc.y=0
+    bc.height = 200
+    bc.width = 300
+    bc.data = lvdChartData
+    bc.strokeColor = colors.black
+    # bc.fillColor=colors.blue
+    bc.valueAxis.valueMin = 0
+    bc.strokeWidth = 0
+    bc.valueAxis.valueMin = 0
+    bc.categoryAxis.labels.boxAnchor = 'ne'
+    bc.categoryAxis.labels.dx = 20
+    bc.categoryAxis.labels.dy = -2
+    # bc.categoryAxis.labels.angle = 20
+    bc.valueAxis.labels.fontName  = 'Helvetica'
+    bc.valueAxis.labels.fontSize  = 10
+    bc.valueAxis.strokeWidth  = 0.5
+    bc.valueAxis.strokeColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.strokeWidth  = 0.5
+    bc.categoryAxis.strokeColor  = colors.HexColor(0x807F83)
+    bc.valueAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.labels.fontName  = 'Helvetica'
+    bc.categoryAxis.labels.fontSize  = 10
+    bc.categoryAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.categoryNames = lvdChartCategoryNames
+    bc.categoryAxis.labels.angle= 0
+    # create a list and add the elements of our document (image, paragraphs, table, chart) to it
+    #add our barchart and legend
+    bc.barWidth = .3*inch
+    bc.groupSpacing = .2 * inch
+
+    bc.bars.strokeColor     = colors.HexColor(0xffffff)
+    bc.bars.strokeWidth     = 0.5
+    lvd_chart_colors=['#5894D0','#F67A40']
+    for i , r in enumerate(lvdComparedObjKey):
+        bc.bars[i].fillColor= colors.HexColor(lvd_chart_colors[i])
+    
+    #  = colors.blue
+    # bc.bars[1].fillColor = colors.lightblue
+    legend = Legend()
+    legend.alignment = 'right'
+    legend.x = bc.width+bc.x+5
+    legend.y = bc.height+bc.y
+    legend.deltax = 40
+    legend.dxTextSpace = 5
+    legend.dx              = 8
+    legend.dy              = 8
+    legend.fontName        = 'Helvetica'
+    legend.fillColor = colors.HexColor(0x807F83)
+    legend.fontSize        = 10
+    legend.boxAnchor       = 'nw'
+    legend.columnMaximum   = (len(bc.data)+1)/2
+    legend.strokeWidth     = 0.5
+    legend.strokeColor     = colors.HexColor(0xffffff)
+    legend.deltax          = 75
+    legend.deltay          = 12
+    #legend.autoXPadding    = 7
+    #legend.yGap            = 0
+    #legend.dxTextSpace     = 5
+    #legend.dividerLines    = 1|2|4
+    #legend.dividerOffsY    = 5
+    #legend.subCols.rpad    = 40
+    legend.dividerColor    = colors.HexColor(0xdedede)
+    legend.columnMaximum = len(lvdComparedObjKey)
+    legend.colorNamePairs = [(bc.bars[i].fillColor, lvdComparedObjKey[i]) for i in xrange(len(bc.data))]
+    #pseChart.hAlign = 'RIGHT'
+
+    
+    label = Label()
+    label.setOrigin(10,bc.height/2)
+    #label.boxAnchor = 'sw'
+    label.angle = 90
+    label.fillColor = colors.HexColor(0x807F83)
+    label.setText('Envelope U-value (W/m2.k)')
+    label.fontName        = 'Helvetica'
+
+    lvdChart.add(label)  
+    lvdChart.add(legend, 'legend')
+    lvdChart.add(bc)
+    Elements.append(lvdChart)
+
+    Elements.append(PageBreak())
+    ## PAGE 4
+    #Elements.append(Paragraph("BEPU report",styleHeading))
+    #Elements.append(Paragraph("Energy Efficiency",styleHeading2))
+    Elements.append(Paragraph("How energy efficient is your building?",styleHeading3))
+    Elements.append(Paragraph("Using your input specifications, the annual electricity consumption is calculated and is compared to a similar building that meets SASO requirements:",styleBodyText))    
+    #Elements.append(Paragraph("Annual Energy Use (kWh/year)",styleBodyText))    
+    
+    #add chart
+    bepuComparisonData= task['bepuComparisonData']
+
+    bepuComparisonChartData=[[0 for i in xrange(len(bepuComparisonData[0]['values']))] for i in xrange(len(bepuComparisonData))]
+    bepuChartCategoryNames=[0 for i in xrange(len(bepuComparisonData[0]['values']))]
+    bepuComparedObjKey=[0 for i in xrange(len(bepuComparisonData))]
+    for i,result in enumerate(bepuComparisonData):
+        # write body cells
+        bepuComparedObjKey[i]= str(bepuComparisonData[i]['key'])
+        for j,value in enumerate(result['values']):
+            bepuChartCategoryNames[j]=value['label']
+            bepuComparisonChartData[i][j]=value['value']
+
+    
+
+    bepuComparisonChart = Drawing(400, 200)
+    bc = VerticalBarChart()
+    bc.x=70
+    bc.y=0
+    bc.height = 200
+    bc.width = 300
+    bc.data = bepuComparisonChartData
+    bc.strokeColor = colors.black
+    # bc.fillColor=colors.blue
+    bc.valueAxis.valueMin = 0
+    bc.strokeWidth = 0
+    bc.valueAxis.valueMin = 0
+    bc.categoryAxis.labels.boxAnchor = 'ne'
+    bc.categoryAxis.labels.dx = 10
+    bc.categoryAxis.labels.dy = -2
+    # bc.categoryAxis.labels.angle = 20
+    bc.valueAxis.labels.fontName  = 'Helvetica'
+    bc.valueAxis.labels.fontSize  = 10
+    bc.valueAxis.strokeWidth  = 0.5
+    bc.valueAxis.strokeColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.strokeWidth  = 0.5
+    bc.categoryAxis.strokeColor  = colors.HexColor(0x807F83)
+    bc.valueAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.labels.fontName  = 'Helvetica'
+    bc.categoryAxis.labels.fontSize  = 10
+    bc.categoryAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    bc.categoryAxis.categoryNames = bepuChartCategoryNames
+    bc.categoryAxis.labels.angle= 30
+    # create a list and add the elements of our document (image, paragraphs, table, chart) to it
+    #add our barchart and legend
+    bc.barWidth = .3*inch
+    bc.groupSpacing = .2 * inch
+
+    bc.bars.strokeColor     = colors.HexColor(0xffffff)
+    bc.bars.strokeWidth     = 0.5
+    bepu_chart_colors=['#5894D0','#F67A40']
+    for i , r in enumerate(bepuComparedObjKey):
+        bc.bars[i].fillColor= colors.HexColor(bepu_chart_colors[i])
+    #  = colors.blue
+    # bc.bars[1].fillColor = colors.lightblue
+    legend = Legend()
+    legend.alignment = 'right'
+    legend.x = bc.width+bc.x+5
+    legend.y = bc.height+bc.y
+    legend.deltax = 40
+    legend.dxTextSpace = 5
+    legend.dx              = 8
+    legend.dy              = 8
+    legend.fontName        = 'Helvetica'
+    legend.fillColor = colors.HexColor(0x807F83)
+    legend.fontSize        = 10
+    legend.boxAnchor       = 'nw'
+    legend.columnMaximum   = (len(bc.data)+1)/2
+    legend.strokeWidth     = 0.5
+    legend.strokeColor     = colors.HexColor(0xffffff)
+    legend.deltax          = 75
+    legend.deltay          = 12
+    #legend.autoXPadding    = 7
+    #legend.yGap            = 0
+    #legend.dxTextSpace     = 5
+    #legend.dividerLines    = 1|2|4
+    #legend.dividerOffsY    = 5
+    #legend.subCols.rpad    = 40
+    legend.dividerColor    = colors.HexColor(0xdedede)
+    legend.columnMaximum = len(bepuComparedObjKey)
+    legend.colorNamePairs = [(bc.bars[i].fillColor, bepuComparedObjKey[i]) for i in xrange(len(bc.data))]
+    #pseChart.hAlign = 'RIGHT'
+
+    label = Label()
+    label.setOrigin(10,bc.height/2)
+    #label.boxAnchor = 'sw'
+    label.angle = 90
+    label.fillColor = colors.HexColor(0x807F83)
+    label.setText('Annual Energy Use (kWh/year)')
+    label.fontName        = 'Helvetica'
+
+    bepuComparisonChart.add(label)  
+    bepuComparisonChart.add(legend, 'legend')
+    bepuComparisonChart.add(bc)
+    Elements.append(bepuComparisonChart)
+    
+    Elements.append(PageBreak())
+    
+
+    
+
+    
 
 
-    Elements.append(d)
+    #calibrationData = task['calibrationData']
+
+    #calibrationTableData=[[0 for i in xrange(2)] for i in xrange(len(calibrationData))]
+    #for i,result in enumerate(calibrationData):
+        # write body cells
+    #    calibrationTableData[i][0] = str(result)
+    #    calibrationTableData[i][1] = str(calibrationData[result])
+
+    #t=Table(calibrationTableData,style=[
+    #  ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
+    #  ('FONTSIZE',(0,0),(-1,-1),12),
+    #  ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
+    #  ('FONTNAME',(0,0),(0,len(calibrationTableData)-1),'Helvetica-Bold'),
+    #  ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
+    # ])
+
+    #Elements.append(t)
+
+
+
+
+    # Elements.append(PageBreak())
+    # Elements.append(Paragraph("PSE Report:",styleHeading))
+    # Elements.append(Paragraph("Table",styleHeading2))
+    # barChartData = task['pseBarData']
+    # month=['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+
+    # pseTableData=[[0 for i in xrange(len(barChartData[0]['values'])+1)] for i in xrange(len(barChartData)+1)]
+    # pseChartData=[[0 for i in xrange(len(barChartData[0]['values']))] for i in xrange(len(barChartData))]
+    # pseChartLegend=[0 for i in xrange(len(barChartData))]
+    # pseTableData[0][0] = 'Key'
+    # for i,m in enumerate(month):
+    #     pseTableData[0][i+1] = str(month[i])
+    # for i,result in enumerate(barChartData):
+    #     # write body cells
+    #     pseTableData[i+1][0] = str(result['key'])
+    #     pseChartLegend[i] = str(result['key'])
+    #     for j,value in enumerate(result['values']):
+    #         pseTableData[i+1][j+1]=str(result['values'][j]['y'])
+    #         pseChartData[i][j]=result['values'][j]['y']
+
+    # t=Table(pseTableData,style=[
+    #  ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
+    #  ('FONTSIZE',(0,0),(-1,-1),9),
+    #  ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
+    #  ('FONTNAME',(0,0),(len(pseTableData[0])-1,0),'Helvetica-Bold'),
+    #  ('LINEBELOW',(0,0),(len(pseTableData[0]),0),1,colors.HexColor(0x807F83)),
+    #  ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
+    #  ('ALIGN',(0,0),(0,0),'CENTER'),
+    #  ])
+    # # t._argW[3]=6*inch
+    # Elements.append(t)
+    # #start the construction of the pdf
+    # Elements.append(Paragraph('<br /><br />', styleBodyText))
+
+    # Elements.append(Paragraph("Chart",styleHeading2))
+    # drawing = Drawing(400, 200)
+
+    # bc = VerticalBarChart()
+    # bc.x=30
+    # bc.y=0
+    # bc.height = 200
+    # bc.width = 350
+
+    # bc.data = pseChartData
+    # bc.strokeColor = colors.black
+    # # bc.fillColor=colors.blue
+    # bc.valueAxis.valueMin = 0
+
+    # sumPSEcolumnData= [0 for i in xrange(len(pseChartData))]
+    # for j, result in enumerate(pseChartData[0]):
+    #     sumColum=0
+    #     for i, result in enumerate(pseChartData):
+    #         sumColum+=pseChartData[i][j]
+    #     sumPSEcolumnData[j]=sumColum
+    # bc.valueAxis.valueMax = max(sumPSEcolumnData)
+    # # bc.valueAxis.valueStep = 100
+    # bc.strokeWidth = 0
+    # bc.valueAxis.valueMin = 0
+    # bc.categoryAxis.style = 'stacked'
+    # bc.categoryAxis.labels.boxAnchor = 'ne'
+    # bc.categoryAxis.labels.dx = 10
+    # bc.categoryAxis.labels.dy = -2
+    # # bc.categoryAxis.labels.angle = 20
+    # bc.valueAxis.labels.fontName  = 'Helvetica'
+    # bc.valueAxis.labels.fontSize  = 10
+    # bc.valueAxis.strokeWidth  = 0.5
+    # bc.valueAxis.strokeColor  = colors.HexColor(0x807F83)
+    # bc.categoryAxis.strokeWidth  = 0.5
+    # bc.categoryAxis.strokeColor  = colors.HexColor(0x807F83)
+    # bc.valueAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    # bc.categoryAxis.labels.fontName  = 'Helvetica'
+    # bc.categoryAxis.labels.fontSize  = 10
+    # bc.categoryAxis.labels.fillColor  = colors.HexColor(0x807F83)
+    # bc.categoryAxis.categoryNames = month
+    # # create a list and add the elements of our document (image, paragraphs, table, chart) to it
+    # #add our barchart and legend
+    # bc.barWidth = .3*inch
+    # bc.groupSpacing = .2 * inch
+
+    # bc.bars.strokeColor     = colors.HexColor(0xffffff)
+    # bc.bars.strokeWidth     = 0.5
+    # for i , r in enumerate(pseChartLegend):
+    #     bc.bars[i].fillColor= colors.HexColor(pdf_chart_colors[i])
+    # #  = colors.blue
+    # # bc.bars[1].fillColor = colors.lightblue
+
+
+    # legend = Legend()
+    # legend.alignment = 'right'
+    # legend.x = bc.width+bc.x+20
+    # legend.y = bc.height+bc.y
+    # legend.deltax = 40
+    # legend.dxTextSpace = 5
+
+    # legend.dx              = 8
+    # legend.dy              = 8
+    # legend.fontName        = 'Helvetica'
+    # legend.fillColor = colors.HexColor(0x807F83)
+    # legend.fontSize        = 10
+    # legend.boxAnchor       = 'nw'
+    # legend.columnMaximum   = (len(bc.data)+1)/2
+    # legend.strokeWidth     = 0.5
+    # legend.strokeColor     = colors.HexColor(0xffffff)
+    # legend.deltax          = 75
+    # legend.deltay          = 12
+    # # # # legend.autoXPadding    = 7
+    # # # # legend.yGap            = 0
+    # # # # legend.dxTextSpace     = 5
+    # # # # legend.dividerLines    = 1|2|4
+    # # # # legend.dividerOffsY    = 5
+    # # # # legend.subCols.rpad    = 40
+    # legend.dividerColor    = colors.HexColor(0xdedede)
+
+    # legend.columnMaximum = len(pseChartLegend)
+    # legend.colorNamePairs = [(bc.bars[i].fillColor, pseChartLegend[i]) for i in xrange(len(bc.data))]
+
+    # # drawing.hAlign = 'RIGHT'
+
+
+    # drawing.add(legend, 'legend')
+
+    # drawing.add(bc)
+
+    # Elements.append(drawing)
+
+    # Elements.append(PageBreak())
+
+
+    # Elements.append(Paragraph("BEPU Report:",styleHeading))
+    # Elements.append(Paragraph("Table",styleHeading2))
+    # pieChartData = task['bepuPieData']
+    # BEPUtableData=[[0 for i in xrange(len(pieChartData[0]))] for i in xrange(len(pieChartData)+1)]
+    # BEPUchartLabel=[0 for i in xrange(len(pieChartData))]
+    # BEPUchartData=[0 for i in xrange(len(pieChartData))]
+    # BEPUtableData[0][0]= 'Key'
+    # BEPUtableData[0][1] = 'Value'
+    # for i,result in enumerate(pieChartData):
+    #     # write body cells
+    #     BEPUtableData[i+1][0]= str(result['label'])
+    #     BEPUtableData[i+1][1] = str(result['value'])
+    #     BEPUchartLabel[i] = str(result['label'])
+    #     BEPUchartData[i] = result['value']
+
+    # t=Table(BEPUtableData,style=[
+    #  ('TEXTCOLOR',(0,0),(-1,-1),colors.HexColor(0x666666)),
+    #  ('FONTSIZE',(0,0),(-1,-1),9),
+    #  ('FONTNAME',(0,0),(-1,-1),'Helvetica'),
+    #  ('FONTNAME',(0,0),(len(BEPUtableData[0])-1,0),'Helvetica-Bold'),
+    #  ('LINEBELOW',(0,0),(len(BEPUtableData[0]),0),1,colors.HexColor(0x807F83)),
+    #  ('BOX',(0,0),(-1,-1),1.5,colors.HexColor(0x807F83)),
+    #  ])
+
+    # Elements.append(t)
+
+    # Elements.append(Paragraph('<br /><br />', styleBodyText))
+    # Elements.append(Paragraph("Chart",styleHeading2))
+    # d = Drawing(400,200)
+    # pc = Pie()
+    # pc.data = BEPUchartData
+    # labelc=[0 for i in xrange(len(BEPUchartData))]
+    # for i , r in enumerate(BEPUchartData):
+    #     labelc[i]=str(round(r/sum(BEPUchartData)*100,1))+"%"
+    # pc.labels = labelc
+    # pc.slices.strokeWidth=0.5
+    # # pc.slices[3].popout = 20
+    # # pc.slices[3].strokeWidth = 2
+    # # pc.slices[3].strokeDashArray = [2,2]
+    # # pc.slices[3].labelRadius = 1.75
+    # # pc.slices[3].fontColor = colors.red
+    # # pc.legend.x=200
+    # pc._seriesCount = len(BEPUchartLabel)
+    # pc.slices.strokeColor     = colors.HexColor(0xffffff)
+    # pc.slices.strokeWidth     = 0.5
+    # for i , r in enumerate(BEPUchartLabel):
+    #     pc.slices[i].fillColor= colors.HexColor(pdf_chart_colors[i])
+
+    # pc.width=  pc.height= 150
+
+    # pc.x=50
+    # pc.y=20
+    # # add_legend(d, pc)
+    # legend = Legend()
+    # legend.alignment = 'right'
+    # legend.x = pc.width+pc.x+50
+    # legend.y = pc.height
+    # legend.dx              = 8
+    # legend.dy              = 8
+    # legend.fontName        = 'Helvetica'
+    # legend.fillColor = colors.HexColor(0x807F83)
+    # legend.fontSize        = 10
+    # legend.boxAnchor       = 'nw'
+    # # legend.columnMaximum   = (len(pc.data)+1)/2
+    # legend.columnMaximum   = 8
+    # legend.strokeWidth     = 0.5
+    # legend.strokeColor     = colors.HexColor(0xffffff)
+    # legend.deltax          = 75
+    # legend.deltay          = 10
+    # legend.autoXPadding    = 10
+    # legend.yGap            = 0
+    # legend.dxTextSpace     = 5
+    # legend.dividerLines    = 1|2|4
+    # legend.dividerOffsY    = 6
+    # legend.subCols.rpad    = 20
+    # legend.dividerColor    = colors.HexColor(0xdedede)
+    # legend.colorNamePairs = [(pc.slices[i].fillColor, (BEPUchartLabel[i][0:20], '  %0.2f' % pc.data[i])) for i in xrange(len(pc.data))]
+    # d.add(legend)
+    # # pc.x = 150
+    # # pc.y= 20
+    # pc.slices.fontColor = colors.HexColor(0x807F83)
+    # n = len(pc.data)
+
+    # d.add(pc, '')
+
+
+    # Elements.append(d)
+
+
 
     doc.build(Elements)
 
