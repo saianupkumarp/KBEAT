@@ -498,6 +498,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                      chart: {
                        type: 'pieChart',
                        showLabels: true,
+                       labelType:"percent",
                        labelThreshold: .10,
                        height: 270,
                        width: 500,

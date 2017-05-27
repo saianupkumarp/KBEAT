@@ -3,7 +3,7 @@
     <label style="font-size: 18px;font-weight: bold;color: #666;margin-bottom: 15px;">Overall Assessment</label><br>
     <p>Based on your description and the current SASO requirements, the tool provides the following assessments:</p>
         <ul style="list-style-type:disc;margin-left:15px">
-          <li>Your building <strong ng-if="task.compliant" style="color: green">meets</strong><strong ng-if="!task.compliant" style="color: red">does not meets</strong> SASO requirements for all building envelope</li>
+          <li>Your building <strong ng-if="task.compliant" style="color: green">meets</strong><strong ng-if="!task.compliant" style="color: red">does not meet</strong> SASO requirements for all building envelope</li>
           <li>Your building consumed <strong ng-if="task.energyDiff < 0"style="color: green">{{task.energyDiff}} kWh/year less</strong><strong ng-if="task.energyDiff >= 0" style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
           <li ng-if="task.compliant">You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances
             and air conditioning system</li>
@@ -55,7 +55,7 @@
               <h3 class="chart-header">Where electricity is used in your building?</h3>
               <div>
                 <br />
-                <p>You building needs electricity to operate several types of equipment including: air-conditioning, lighting, appliances, and domestic hot water.</p>
+                <p>Your building needs electricity to operate several types of equipment including: air-conditioning, lighting, appliances, and domestic hot water.</p>
                 <br />
                 <center><img src="/keec/assets/img/results-intro.png" width="50%" height="50%" /></center>
                 <br />
