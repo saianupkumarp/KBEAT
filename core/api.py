@@ -483,7 +483,7 @@ def get_pdf_results(task_id):
     legend.dividerOffsY    = 6
     legend.subCols.rpad    = 70
     legend.dividerColor    = colors.HexColor(0xdedede)
-    legend.colorNamePairs = [(pc.slices[i].fillColor, (bepuChartLabel[i][0:20], '  %0.0f ' % pc.data[i])) for i in xrange(len(pc.data))]
+    legend.colorNamePairs = [(pc.slices[i].fillColor, (bepuChartLabel[i][0:20], '  %s ' % "{:,}".format(int(pc.data[i])))) for i in xrange(len(pc.data))]
     legendHeader = Legend()
     legendHeader.colorNamePairs = [('', ('End-Use','Annual Electricity Use\n(kWh/year)'))]
     legendHeader.alignment = 'right'
@@ -495,15 +495,15 @@ def get_pdf_results(task_id):
     legendHeader.boxAnchor       = 'nw'
     legendHeader.subCols.rpad= 80
     legendFooter = Legend()
-    legendFooter.colorNamePairs = [('', ('Total',str(int(sum(bepuChartData)))+''))]
+    legendFooter.colorNamePairs = [('', ('Total',str("{:,}".format(int(sum(bepuChartData))))+''))]
     legendFooter.alignment = 'right'
-    legendFooter.x = legendHeader.x
-    legendFooter.y = legend.y-(len(bepuChartLabel)+1)*11
+    legendFooter.x = legendHeader.x+13
+    legendFooter.y = legend.y-(len(bepuChartLabel)+1)*10
     legendFooter.fontName        = 'Helvetica'
     legendFooter.fillColor = colors.HexColor(0x807F83)
     legendFooter.fontSize = 10
     legendFooter.boxAnchor       = 'nw'
-    legendFooter.subCols.rpad    = 150
+    legendFooter.subCols.rpad    = 143
     bepuChart.add(legend)
     bepuChart.add(legendHeader)
     bepuChart.add(legendFooter)
