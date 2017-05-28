@@ -35,7 +35,6 @@ steps:
           min: 1
           max: 3
           widthPercent: 50
-          default: 1
         - id: cmbBldgLocation
           type: dropdown
           options: Riyadh, Jeddah, Abha, Dharan, Gizan, Madinah, Makkah, Tabuk
@@ -254,7 +253,7 @@ steps:
           label: Shape
           related_id: cmbFirstFloorContact
           widthPercent: 50
-          span_width: 150
+          span_width: 350
           span_height: 150
           constructionImage: yes
     - id: constructionEdit
@@ -360,12 +359,12 @@ steps:
           max: 100
     - id: glassyTypeCont
       label: Glass Type
-      widthPercent: 100
+      widthPercent: 40
       parameters:
         - id: glasstype
           type: dropdown
-          url: Single Clear.png, Double clear.png, Single Low-e.png, Double low-e.png, Double-low-e-refl.png, Double-low-e-tint.png
-          options: Single Clear, Double clear, Single Low-e, Double low-e, Double-low-e-refl, Double-low-e-tint
+          url: Single Clear.png, Double Clear.png, Single Low-e.png, Double Low-e.png, Single Bronze.png, Double Bronze.png, Double-low-e-refl.png, Double-low-e-tint.png
+          options: Single Pane - Clear Glazing, Double Pane - Clear Glazing, Single Pane - Low-Emissivity Clear Glazing, Double Pane - Low-Emissivity Clear Glazing, Single Pane - Reflective Glazing, Double Pane - Reflective Glazing, Double Plane - Low-Emissivity Reflective Glazing, Double Pane - Low-Emissivity Tinted Glazing
           values: Single clear, Double clear, Single Low-e, Double low-e, Double-low-e-refl, Double-low-e-tint
           default: Single Clear
           label: Glass Type
@@ -380,7 +379,7 @@ steps:
           constructionImage: yes
     - id: overhang
       label: Overhang
-      widthPercent: 100
+      widthPercent: 60
       parameters:
         - id: txtWinSouthOverhang
           type: number
@@ -429,7 +428,7 @@ steps:
         - id: cmbBldgSystem
           type: dropdown
           label: HVAC System
-          url: Split System with Baseboard.gif, Residential System.jpg
+          url: Split System with Baseboard.gif, Residential System.png
           values: Split System with Baseboard, Residential System
           options: Split System with Baseboard, Residential System
           default: Residential System
@@ -455,7 +454,7 @@ steps:
         - id: eir
           type: number
           default: 9
-          label: Energy Efficiency Rating
+          label: Energy Efficiency Ratio
           widthPercent: 50
           min: 9
           max: 12
