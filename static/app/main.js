@@ -495,8 +495,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                      chart: {
                        type: 'pieChart',
                        showLabels: true,
-                       labelThreshold: .10,
-                       height: 270,
+                       labelThreshold: .05,
+                       height: 400,
                        width: 500,
                        margin: {
                           top: 80,
@@ -504,6 +504,8 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                           bottom: 20,
                           left: 50
                        },
+                       pieLabelsOutside: "false",
+                       labelType: "percent", 
                        legend: {
                           rightAlign: true
                         },

@@ -14,7 +14,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson import json_util
 import gridfs
-import time
+import time, copy
 
 client = MongoClient(settings.MONGO_HOST,settings.MONGO_PORT)
 
@@ -94,17 +94,14 @@ def get_task_result(task_id):
                     for elem in task.get('result').get(outputType).get('lvd'):
                         obj['values'] = elem['values']
                     lvdObj.append(obj)
-        # for item in task.get('result').get('userOutput').get('bepu'):
-        #     for val in item().values:
-        #         if val != 'Total':
-        #             bepuPieData = item
-                print bepuPieData
+        bepuPieData = copy.deepcopy(task.get('result').get('userOutput').get('bepu'))
+        bepuPieData.pop()
         report = {
             'id': task_id,
             'bepuComparisonData': bepuObj,
             'pseBarData': task.get('result').get('userOutput').get('pse'),
             'lvdData': lvdObj,
-            'bepuPieData': task.get('result').get('userOutput').get('bepu'),
+            'bepuPieData': bepuPieData,
             'compliant': task.get('result').get('compliant'),
             'energyDiff': task.get('result').get('energyDiff')
         }
