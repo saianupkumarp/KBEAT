@@ -4,11 +4,11 @@
     <p>Based on your description and the current SASO requirements, the tool provides the following assessments:</p>
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong ng-if="task.compliant" style="color: green">meets</strong><strong ng-if="!task.compliant" style="color: red">does not meet</strong> SASO requirements for all building envelope</li>
-          <li>Your building consumed <strong ng-if="task.energyDiff < 0"style="color: green">{{task.energyDiff}} kWh/year less</strong><strong ng-if="task.energyDiff >= 0" style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
+          <li>Your building consumed <strong ng-if="task.ngEnergyDiff < 0"style="color: green">{{task.energyDiff}} kWh/year less</strong><strong ng-if="task.ngEnergyDiff >= 0" style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
           <li ng-if="task.compliant">You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances
             and air conditioning system</li>
           <li ng-if="!task.compliant">You need have to add more insulation in walls and/or roof or use more efficient window glazing to comply with SASO requirements.</li>
-          <li ng-if="!task.compliant && task.energyDiff >= 0">You may also consider using LED lamps and high efficient appliances and air conditioning system.</li>
+          <li ng-if="!task.compliant && task.ngEnergyDiff >= 0">You may also consider using LED lamps and high efficient appliances and air conditioning system.</li>
         </ul>
   </div>
   <ul class="nav nav-tabs parentList">
@@ -22,9 +22,9 @@
         <li>
           <a ng-href="/keec/api/tasks/{{task.id}}/pdfexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PDF Report</a>
         </li>
-        <li>
+        <!--<li>
           <a ng-href="/keec/api/tasks/{{task.id}}/pptexport" target="_self"> <i class="fa fa-file-pdf-o" style="margin-right:10px;" aria-hidden="true"></i>PowerPoint Report</a>
-        </li>
+        </li>-->
       </ul>
     </div>
   </ul>

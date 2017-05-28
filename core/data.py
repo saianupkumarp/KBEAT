@@ -103,6 +103,8 @@ def get_task_result(task_id):
             'lvdData': lvdObj,
             'bepuPieData': bepuPieData,
             'compliant': task.get('result').get('compliant'),
-            'energyDiff': task.get('result').get('energyDiff')
+            'ngEnergyDiff': task.get('result').get('energyDiff'),
+            'energyDiff': abs(task.get('result').get('energyDiff')),
+            'calibrationData': task.get('request')
         }
     return report
