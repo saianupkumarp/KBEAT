@@ -208,7 +208,8 @@ header{
         display: flex;
         flex-flow: column;
         height: 100%;
-        margin-top:13%;
+        /*margin-top:13%;*/
+        margin-top: 11em;
     }
 
     .step-headers {
@@ -221,7 +222,7 @@ header{
         z-index: 1;
         top:60px;
         padding-bottom:1%;
-        padding-left:20px;
+        padding-left:22px;
     }
 
     .step-header {
@@ -389,7 +390,7 @@ header{
     clip-path: polygon(75% 0%, 83% 49%, 75% 100%, 0% 100%, 0 49%, 0% 0%);
 }
 .breadcrumbChild2{
-    margin-left: -7%;
+    margin-left: -5.6%;
     background-color:#c3c3c2;
     height:45px;
     width:24%;
@@ -2674,9 +2675,10 @@ strong{
 /* Loading bar */
 
 #loading-bar .bar {
-    position: relative;
+    position: absolute;
     background: green;
-    height: 4px;
+    height: 9px;
+    top: 0px;
 }
 #loading-bar-spinner .spinner-icon {
     border-top-color:  green;
@@ -2703,4 +2705,10 @@ strong{
     background-size: 150px 150px;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.compass
+{
+    float: right;
+    margin-top: -40px;
 }

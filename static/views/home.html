@@ -69,10 +69,10 @@
                     <div  ng-if="step.label !='Building Info'" class="step-footers-prev" style="position:relative;bottom:0;">
                         <input class="button" type="button" ng-click="stepBack($index-1)" value="Previous">        
                     </div>
-                    <div  ng-if="((step.label !='HVAC System')&&($index !=4))"  class="step-footers-next" style="position:relative;bottom:0;">
+                    <div  ng-if="((step.label !='HVAC System')&&($index !=5))"  class="step-footers-next" style="position:relative;bottom:0;">
                         <input class="button" type="button" ng-click="stepNext($index+1)" value="Next">        
                     </div>
-                    <div ng-if="((step.label =='HVAC System')&&($index !=4))" class="step-footers-next" style="position:relative;bottom:0;">
+                    <div ng-if="((step.label =='HVAC System')&&($index !=5))" class="step-footers-next" style="position:relative;bottom:0;">
                         <input class="button" type="button" ng-click="stepNext($index+1)"  value="Run">        
                     </div>
                 </div>

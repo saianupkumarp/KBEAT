@@ -220,42 +220,6 @@ steps:
           span_width: 150
           span_height: 150
           constructionImage: yes
-    - id: roofCons
-      label: Roof and Floor Constructions
-      widthPercent: 100
-      parameters:
-        - id: cmbRoof
-          type: dropdown
-          url: KSA-Roof-no-insulation.png, KSA-Roof-50-out.png, KSA-Roof-100-out.png, KSA-Conc-150-ins-out.png, KSA-Conc-200-ins-out.png, KSA-Roof-50-in.png, KSA-Roof-100-in.png, KSA-Roof-150-in.png, KSA-Roof-200-in.png
-          options: Reinforced Concrete - No Insulation, Reinforced Concrete - 50-mm Insulation On Top, Reinforced Concrete - 100-mm Insulation On Top, Reinforced Concrete - 150-mm Insulation On Top, Reinforced Concrete - 200-mm Insulation On Top, Reinforced Concrete - 50-mm Insulation Below, Reinforced Concrete - 100-mm Insulation Below, Reinforced Concrete Roof - 150-mm Insulation Below, Reinforced Concrete Roof - 200-mm Insulation Below
-          values: KSA-Roof-no-insulation, KSA-Roof-50-out, KSA-Roof-100-out, KSA-Conc-150-ins-out, KSA-Conc-200-ins-out, KSA-Roof-50-in, KSA-Roof-100-in, KSA-Roof-150-in, KSA-Roof-200-in
-          default: Reinforced Concrete - No Insulation
-          label: Roof
-          widthPercent: 50
-        - id: cmbFirstFloorContact
-          type: dropdown
-          url: ground.png, condition.png, uncondition.png
-          options: Slab-on-Grade Floor, Floor above Conditioned Space, Floor above Unconditioned Space 
-          values: ground, condition, uncondition
-          default: Slab-on-Grade Floor
-          label: 1st Floor Contact Condition
-          widthPercent: 50
-        - id: cmbRoofshp
-          type: shape
-          label: Shape
-          related_id: cmbRoof
-          widthPercent: 50
-          span_width: 350
-          span_height: 150
-          constructionImage: yes
-        - id: cmbFirstFloorContactshp
-          type: shape
-          label: Shape
-          related_id: cmbFirstFloorContact
-          widthPercent: 50
-          span_width: 350
-          span_height: 150
-          constructionImage: yes
     - id: constructionEdit
       label: Construction Edit
       widthPercent: 100
@@ -305,6 +269,57 @@ steps:
           label_suffix: (absorpt.)
           dialog: 1
           widthPercent: 50
+    - id: button
+      widthPercent: 100
+      label: Button
+      parameters:
+        - id: prev
+          type: button
+          label: Previous
+          widthPercent: 20
+        - id: next
+          type: button
+          label: Next
+          widthPercent: 20
+  - id: roofCont
+    label: Roof
+    containers:
+    - id: roofCons
+      label: Roof and Floor Constructions
+      widthPercent: 100
+      parameters:
+        - id: cmbRoof
+          type: dropdown
+          url: KSA-Roof-no-insulation.png, KSA-Roof-50-out.png, KSA-Roof-100-out.png, KSA-Conc-150-ins-out.png, KSA-Conc-200-ins-out.png, KSA-Roof-50-in.png, KSA-Roof-100-in.png, KSA-Roof-150-in.png, KSA-Roof-200-in.png
+          options: Reinforced Concrete - No Insulation, Reinforced Concrete - 50-mm Insulation On Top, Reinforced Concrete - 100-mm Insulation On Top, Reinforced Concrete - 150-mm Insulation On Top, Reinforced Concrete - 200-mm Insulation On Top, Reinforced Concrete - 50-mm Insulation Below, Reinforced Concrete - 100-mm Insulation Below, Reinforced Concrete Roof - 150-mm Insulation Below, Reinforced Concrete Roof - 200-mm Insulation Below
+          values: KSA-Roof-no-insulation, KSA-Roof-50-out, KSA-Roof-100-out, KSA-Conc-150-ins-out, KSA-Conc-200-ins-out, KSA-Roof-50-in, KSA-Roof-100-in, KSA-Roof-150-in, KSA-Roof-200-in
+          default: Reinforced Concrete - No Insulation
+          label: Roof
+          widthPercent: 50
+        - id: cmbFirstFloorContact
+          type: dropdown
+          url: ground.png, condition.png, uncondition.png
+          options: Slab-on-Grade Floor, Floor above Conditioned Space, Floor above Unconditioned Space 
+          values: ground, condition, uncondition
+          default: Slab-on-Grade Floor
+          label: 1st Floor Contact Condition
+          widthPercent: 50
+        - id: cmbRoofshp
+          type: shape
+          label: Shape
+          related_id: cmbRoof
+          widthPercent: 50
+          span_width: 350
+          span_height: 150
+          constructionImage: yes
+        - id: cmbFirstFloorContactshp
+          type: shape
+          label: Shape
+          related_id: cmbFirstFloorContact
+          widthPercent: 50
+          span_width: 350
+          span_height: 150
+          constructionImage: yes
     - id: button
       widthPercent: 100
       label: Button
@@ -441,7 +456,7 @@ steps:
           label: Heating setpoint temperature
           label_suffix: degC
           widthPercent: 50
-          min: 15
+          min: 1
           max: 30
         - id: txtCoolSetTemp
           type: number
@@ -449,14 +464,14 @@ steps:
           label: Cooling setpoint temperature
           label_suffix: degC
           widthPercent: 50
-          min: 15
+          min: 1
           max: 30
         - id: eir
           type: number
           default: 9
           label: Energy Efficiency Ratio
           widthPercent: 50
-          min: 9
+          min: 1
           max: 12
           widthPercent: 100
         - id: hvacShape

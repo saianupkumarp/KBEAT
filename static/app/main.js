@@ -161,6 +161,22 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               'content@': {
                 templateUrl: '/keec/assets/views/home.html',
                 controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window) {
+                  $('body').on({
+                      'mousewheel': function(e) {
+                          if (e.target.id == 'el') return;
+                          e.preventDefault();
+                          e.stopPropagation();
+                      }
+                  })
+                  var ar=new Array(33,34,35,36,37,38,39,40);
+                  $('body').keydown(function(e) {
+                      var key = e.which;
+                        if($.inArray(key,ar) > -1) {
+                            e.preventDefault();
+                            return false;
+                        }
+                        return true;
+                  });
                   $('#loadingOverlay').hide()
                   if ($window.localStorage.getItem("token") == null) {
                     $rootScope.selectedCountry = 0;
@@ -193,7 +209,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $rootScope.num = 0;
 
                   $rootScope.stepNext = function(index) {
-                    if (index == 4) {
+                    if (index == 5) {
                       $scope.activeStepIndex = index;
                       $rootScope.data = {};
                       var resJson = {}
@@ -281,7 +297,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       });
                     }
 
-                    if (index <= 3 && isError == false) {
+                    if (index <= 4 && isError == false) {
                       $scope.activeStepIndex = index;
                       if (index - 1 == $scope.count) {
                         $scope.count += 1;
