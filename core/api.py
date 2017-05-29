@@ -243,7 +243,7 @@ def get_pptx_results(task_id):
     output_file.seek(0)
 
     # Set filname and mimetype
-    file_name = 'KEEC_export_{}.pptx'.format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    file_name = 'K-BEAT_export_{}.pptx'.format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     #Returning the file from memory
     return send_file(output_file, attachment_filename=file_name, as_attachment=True)
@@ -338,7 +338,7 @@ def get_pdf_results(task_id):
     # Body text
     styles.add(ParagraphStyle(name = 'styleBodyText',
                                       parent = styles['Normal'],
-                                      fontSize = 10,
+                                      fontSize = 9,
                                       textColor= colors.HexColor(0x666666),
                                       spaceBefore = 5,
                                       spaceAfter = 15))
@@ -375,6 +375,45 @@ def get_pdf_results(task_id):
     ## PAGE 1
     #add some flowables
     Elements.append(Paragraph("KAPSARC Building Energy Assessment Tool (BEAT)",styleTitle))
+    Elements.append(Paragraph("Your Building Description",styleHeading))
+    rowHeights=0.3*inch
+    calibrationData=task['calibrationData']
+    Elements.append(Paragraph("General Information:",styleHeading3))
+    infoTableData=[[Paragraph('<b>- Name: </b>'+calibrationData['txtBldgName'],styleBodyText),
+                   Paragraph('<b>- Address: </b>'+calibrationData['txtBldgAddress'],styleBodyText),
+                   Paragraph('<b>- Type: </b>'+calibrationData['cmbBldgType'],styleBodyText)],
+                   [Paragraph('<b>- Location: </b>'+calibrationData['cmbBldgLocation'],styleBodyText),
+                   Paragraph('<b>- Shape: </b>'+calibrationData['cmbBldgShape'],styleBodyText),
+                   Paragraph('<b>- Floor Area (m'+u"\u00b2"+'): </b>'+str(calibrationData['txtFloorArea']),styleBodyText)]
+    ]
+    infoTable=Table(infoTableData, colWidths=[160,165,150], rowHeights=rowHeights)
+    Elements.append(infoTable)
+  
+    Elements.append(Paragraph('<br />', styleBodyText)) 
+    Elements.append(Paragraph("Envelope Construction Details:",styleHeading3))
+    envTableData=[[Paragraph('<b>- South Wall: </b>'+calibrationData['cmbSouthWall'],styleBodyText),
+                  Paragraph('<b>- West Wall: </b>'+calibrationData['cmbWestWall'],styleBodyText)],
+                  [Paragraph('<b>- North Wall: </b>'+calibrationData['cmbNorthWall'],styleBodyText),
+                  Paragraph('<b>- East Wall: </b>'+calibrationData['cmbEastWall'],styleBodyText)],
+                  [Paragraph('<b>- Roof: </b>'+calibrationData['cmbRoof'],styleBodyText),
+                  Paragraph('<b>- Floor: </b>'+calibrationData['cmbFirstFloorContact'],styleBodyText)],
+                  [Paragraph('<b>- Windows Type: </b>'+calibrationData['glasstype'],styleBodyText),
+                  Paragraph('<b>- Overhang Depth (m): </b>'+str(calibrationData['txtWinSouthOverhang']),styleBodyText)]
+    ]
+    envTable=Table(envTableData,colWidths=[240,235], rowHeights=rowHeights)
+    Elements.append(envTable)
+
+    Elements.append(Paragraph('<br />', styleBodyText)) 
+    Elements.append(Paragraph("Air Conditioining Systems",styleHeading3))
+    hvacTableData=[[Paragraph('<b>- HVAC  System Type: </b>'+calibrationData['cmbBldgSystem'],styleBodyText),
+                    Paragraph('<b>- Cooling Temperature Setting ('+u"\u00b0"+'C): </b>'+str(calibrationData['txtCoolSetTemp']),styleBodyText)],
+                    [Paragraph('<b>- Energy Efficiency Ratio (EER): </b>'+str(calibrationData['eir']),styleBodyText),
+                    Paragraph('<b>- Heating Temperature Setting ('+u"\u00b0"+'C): </b>'+str(calibrationData['txtHeatSetTemp']),styleBodyText)]
+    ]
+    hvacTable=Table(hvacTableData,colWidths=[240,235],rowHeights=rowHeights)
+    Elements.append(hvacTable)
+
+    Elements.append(Paragraph('<br />', styleBodyText)) 
     Elements.append(Paragraph("Overall Assessment",styleHeading))
     Elements.append(Paragraph("Based on your description and the current SASO requirements, the tool provides the following assessments:",styleBodyText))    
     
@@ -397,6 +436,8 @@ def get_pdf_results(task_id):
     if  not task['compliant'] and (task['ngEnergyDiff']>=0):
         Elements.append(Paragraph(" - You may also consider using LED lamps and high efficient appliances and air conditioning system",styleBodyText))   
     
+
+    Elements.append(PageBreak())
     #Elements.append(Paragraph("BEPU report",styleHeading))
     #Elements.append(Paragraph("End-Use",styleHeading2))
     Elements.append(Paragraph("Where electricity is used in your building?",styleHeading3))
@@ -404,7 +445,7 @@ def get_pdf_results(task_id):
     
     
     #add image
-    Elements.append(Image('static/img/results-intro.png', width=5.7*inch, height=2*inch))
+    Elements.append(Image('static/img/results-intro.png', width=4*inch, height=1.2*inch))
     #add text
     Elements.append(Paragraph("Based on the description you provided, here how your building consumes electricity on annual basis:",styleBodyText))
     
@@ -513,8 +554,8 @@ def get_pdf_results(task_id):
     Elements.append(bepuChart)
     
     
-
-    Elements.append(PageBreak())
+    #Elements.append(Paragraph('<br /><br />', styleBodyText))
+    #Elements.append(PageBreak())
     ## PAGE 2
     #Elements.append(Paragraph("PS-E report",styleHeading))
     #Elements.append(Paragraph("Monthly  Consumption",styleHeading2))
@@ -640,8 +681,8 @@ def get_pdf_results(task_id):
     pseChart.add(label)    
     Elements.append(pseChart)
 
-    #Elements.append(PageBreak())
-    Elements.append(Paragraph('<br /><br />', styleBodyText))    
+    Elements.append(PageBreak())
+    #Elements.append(Paragraph('<br /><br />', styleBodyText))    
     ## PAGE 3
     #Elements.append(Paragraph("LV-H report",styleHeading))
     #Elements.append(Paragraph("Thermal Compliance",styleHeading2))
@@ -746,7 +787,8 @@ def get_pdf_results(task_id):
     lvdChart.add(bc)
     Elements.append(lvdChart)
 
-    Elements.append(PageBreak())
+    #Elements.append(PageBreak())
+    Elements.append(Paragraph('<br /><br />', styleBodyText))   
     ## PAGE 4
     #Elements.append(Paragraph("BEPU report",styleHeading))
     #Elements.append(Paragraph("Energy Efficiency",styleHeading2))
@@ -1103,7 +1145,7 @@ def get_pdf_results(task_id):
     output_file.seek(0)
 
     # Set filname and mimetype
-    file_name = 'KEEC_export_{}.pdf'.format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    file_name = 'K-BEAT_export_{}.pdf'.format(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     #Returning the file from memory
     return send_file(output_file, attachment_filename=file_name, as_attachment=True)

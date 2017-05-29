@@ -96,6 +96,9 @@ def get_task_result(task_id):
                     lvdObj.append(obj)
         bepuPieData = copy.deepcopy(task.get('result').get('userOutput').get('bepu'))
         bepuPieData.pop()
+        calObj={}
+        for key,value in task.get('request').iteritems():
+            calObj[key]= (value.title() if isinstance(value, unicode) else value)
         report = {
             'id': task_id,
             'bepuComparisonData': bepuObj,
@@ -105,6 +108,6 @@ def get_task_result(task_id):
             'compliant': task.get('result').get('compliant'),
             'ngEnergyDiff': task.get('result').get('energyDiff'),
             'energyDiff': "{:,.0f}".format(abs(task.get('result').get('energyDiff'))),
-            'calibrationData': task.get('request')
+            'calibrationData': calObj
         }
     return report
