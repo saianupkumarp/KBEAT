@@ -364,7 +364,7 @@ def get_pdf_results(task_id):
             ]
 
     Elements=[]
-    doc = BaseDocTemplate(output_file, showBoundary=0, pagesize=A4,title='BEAT Report',author="KAPSARC",
+    doc = BaseDocTemplate(output_file, showBoundary=0, pagesize=A4,title='KASPSARC BEAT Report',author="KAPSARC",
     leftMargin=0.75*inch, rightMargin=0.75*inch, topMargin=inch, bottomMargin=inch)
 
     frame = Frame(doc.leftMargin, doc.topMargin, doc.width, doc.height,topPadding=0.3*inch, showBoundary=0)
@@ -382,7 +382,7 @@ def get_pdf_results(task_id):
         compliant="<strong><font color=green>meets</font></strong>"
     else: 
         compliant="<strong><font color=red>does not meet</font></strong>"
-    if (task['energyDiff']<0):
+    if (task['ngEnergyDiff']<0):
         energyDiff= "<strong><font color=green>"+str(task['energyDiff'])+" kWh/year, less</font></strong>"
     else:
         energyDiff= "<strong><font color=red>"+str(task['energyDiff'])+" kWh/year, more</font></strong>"
@@ -394,7 +394,7 @@ def get_pdf_results(task_id):
         Elements.append(Paragraph("- You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances and air conditioning system",styleBodyText))  
     else:
         Elements.append(Paragraph(" - You need have to add more insulation in walls and/or roof or use more efficient window glazing to comply with SASO requirements",styleBodyText))  
-    if  not task['compliant'] and (task['energyDiff']>=0):
+    if  not task['compliant'] and (task['ngEnergyDiff']>=0):
         Elements.append(Paragraph(" - You may also consider using LED lamps and high efficient appliances and air conditioning system",styleBodyText))   
     
     #Elements.append(Paragraph("BEPU report",styleHeading))
@@ -497,13 +497,13 @@ def get_pdf_results(task_id):
     legendFooter = Legend()
     legendFooter.colorNamePairs = [('', ('Total',str("{:,}".format(int(sum(bepuChartData))))+''))]
     legendFooter.alignment = 'right'
-    legendFooter.x = legendHeader.x+13
+    legendFooter.x = legendHeader.x+5
     legendFooter.y = legend.y-(len(bepuChartLabel)+1)*10
-    legendFooter.fontName        = 'Helvetica'
+    legendFooter.fontName        = 'Helvetica-Bold'
     legendFooter.fillColor = colors.HexColor(0x807F83)
     legendFooter.fontSize = 10
     legendFooter.boxAnchor       = 'nw'
-    legendFooter.subCols.rpad    = 143
+    legendFooter.subCols.rpad    = 145
     bepuChart.add(legend)
     bepuChart.add(legendHeader)
     bepuChart.add(legendFooter)
@@ -559,10 +559,6 @@ def get_pdf_results(task_id):
     bc.width = 300
     bc.data = pseChartData
     bc.strokeColor = colors.black
-    #bc.text="klkjl"
-    #bc.valueAxis._text="a;aaaaaak"
-    #bc.title._text = '5-year average\nannual return (%)'
-    #bc.valueAxis.yTitleText="Electric Consumption (kWh)"
     #bc.fillColor=colors.blue
     bc.valueAxis.valueMin = 0
     # sumPSEcolumnData= [0 for i in xrange(len(pseChartData))]
@@ -636,7 +632,7 @@ def get_pdf_results(task_id):
     #label.boxAnchor = 'sw'
     label.angle = 90
     label.fillColor = colors.HexColor(0x807F83)
-    label.setText('Electric Consumption (kWh)')
+    label.setText('Electricity Consumption (kWh)')
     label.fontName        = 'Helvetica'
 
     pseChart.add(legend, 'legend')
@@ -679,8 +675,8 @@ def get_pdf_results(task_id):
     bc.valueAxis.valueMin = 0
     bc.strokeWidth = 0
     bc.valueAxis.valueMin = 0
-    bc.categoryAxis.labels.boxAnchor = 'ne'
-    bc.categoryAxis.labels.dx = 20
+    bc.categoryAxis.labels.boxAnchor = 'n'
+    bc.categoryAxis.labels.dx = 0
     bc.categoryAxis.labels.dy = -2
     # bc.categoryAxis.labels.angle = 20
     bc.valueAxis.labels.fontName  = 'Helvetica'
@@ -691,7 +687,7 @@ def get_pdf_results(task_id):
     bc.categoryAxis.strokeColor  = colors.HexColor(0x807F83)
     bc.valueAxis.labels.fillColor  = colors.HexColor(0x807F83)
     bc.categoryAxis.labels.fontName  = 'Helvetica'
-    bc.categoryAxis.labels.fontSize  = 10
+    bc.categoryAxis.labels.fontSize  = 8
     bc.categoryAxis.labels.fillColor  = colors.HexColor(0x807F83)
     bc.categoryAxis.categoryNames = lvdChartCategoryNames
     bc.categoryAxis.labels.angle= 0
@@ -742,7 +738,7 @@ def get_pdf_results(task_id):
     #label.boxAnchor = 'sw'
     label.angle = 90
     label.fillColor = colors.HexColor(0x807F83)
-    label.setText('Envelope U-value (W/m2.k)')
+    label.setText('Envelope U-value (W/m'+u'\u00b2'+'.k)')
     label.fontName        = 'Helvetica'
 
     lvdChart.add(label)  
