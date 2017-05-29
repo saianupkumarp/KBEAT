@@ -104,7 +104,7 @@ def get_task_result(task_id):
             'bepuPieData': bepuPieData,
             'compliant': task.get('result').get('compliant'),
             'ngEnergyDiff': task.get('result').get('energyDiff'),
-            'energyDiff': abs(task.get('result').get('energyDiff')),
+            'energyDiff': "{:,.0f}".format(abs(task.get('result').get('energyDiff'))),
             'calibrationData': task.get('request')
         }
     return report
