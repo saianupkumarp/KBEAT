@@ -161,7 +161,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               'content@': {
                 templateUrl: '/keec/assets/views/home.html',
                 controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window) {
-                  console.log($rootScope.spinnerGif)
                   $('#loadingOverlay').hide()
                   if ($window.localStorage.getItem("token") == null) {
                     $rootScope.selectedCountry = 0;
@@ -379,31 +378,28 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         width: 700,
                         color: (['#5894D0','#F67A40']),
                         margin : {
-                            top: 80,
+                            top: 50,
                             right: 30,
-                            bottom: 20,
-                            left: 50
+                            bottom: 40,
+                            left: 80
                         },
                         legend: {
                           rightAlign: true
                         },
                         tooltip: {
-                          enabled: true,
-                          headerEnabled: true,
-                          id: 'nvtooltip-58248'
+                          enabled: false
                         },
                         duration: 500,
                         x: function(d){ return d.label; },
                         y: function(d){ return d.value; },
                         xAxis: {
-                            // axisLabel: "Time",
-                            orient: "bottom",
-                            tickSize: 1,
+                            "showMaxMin": false,
                             tickFormat: function(d) {return d;}
                         },
                         yAxis: {
-                            "showMaxMin": false,
-                            axisLabelDistance: 100,
+                            "showMaxMin": true,
+                            axisLabel: "Annual Energy Use (kWh/year)",
+                            axisLabelDistance: 20,
                             tickFormat: function(d){
                               return d3.format(',.f')(d);
                           }
@@ -436,10 +432,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                           enabled: false,
                         },
                         margin : {
-                            top: 80,
+                            top: 50,
                             right: 30,
-                            bottom: 20,
-                            left: 50
+                            bottom: 36,
+                            left: 90
                         },
                         legend: {
                           rightAlign: true
@@ -450,8 +446,9 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                             tickFormat: function(d) {return months[d];}
                         },
                         yAxis: {
-                            "showMaxMin": false,
-                            axisLabelDistance: 100,
+                            "showMaxMin": true,
+                            axisLabel: "Electricity Consumption (kWh)",
+                            axisLabelDistance: 10,
                             tickFormat: function(d){
                               return d3.format(',.f')(d);
                           }
@@ -472,13 +469,13 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                           enabled: false,
                         },
                         height: 270,
-                        width: 800,
+                        width: 700,
                         color: (['#5894D0','#F67A40']),
                         margin : {
-                            top: 80,
+                            top: 50,
                             right: 30,
-                            bottom: 20,
-                            left: 50
+                            bottom: 35,
+                            left: 70
                         },
                         legend: {
                           rightAlign: true
@@ -491,10 +488,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                             tickFormat: function(d) {return d;}
                         },
                         yAxis: {
-                            "showMaxMin": false,
-                            axisLabelDistance: 100,
+                            "showMaxMin": true,
+                            axisLabel: "Envelope U-value (W/sqm.K)",
+                            axisLabelDistance: 10,
                             tickFormat: function(d){
-                              return d3.format(',.f')(d);
+                              return d3.format(',.02f')(d);
                           }
                         },
                       }

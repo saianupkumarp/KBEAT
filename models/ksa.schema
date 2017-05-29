@@ -42,6 +42,14 @@ steps:
           default: TUNIS
           label: Building Location
           widthPercent: 50
+        - id: txtFloorHeight
+          type: number
+          label: Floor to Floor Height
+          label_suffix: m
+          default: 3
+          min: 1
+          max: 50
+          widthPercent: 50
         - id: txtBldgCondArea
           type: number
           label: Air-Conditioned Area
@@ -74,15 +82,7 @@ steps:
           default: 0
           min: 0
           max: 360
-          widthPercent: 50
-        - id: txtFloorHeight
-          type: number
-          label: Floor to Floor Height
-          label_suffix: m
-          default: 3
-          min: 1
-          max: 50
-          widthPercent: 50
+          widthPercent: 100
         - id: Rectangular
           type: dimension
           label: X1,Y1
@@ -385,7 +385,7 @@ steps:
           type: number
           label: Overhang Width
           default: '0.3'
-          min: 0
+          min: '0.1'
           max: 10
           label_suffix: m(depth)
           url: fp.png
@@ -396,7 +396,7 @@ steps:
           label_suffix: m
           default: '0.2'
           widthPercent: 50
-          min: 0
+          min: '0.1'
           max: 10
         - id: overhangShape
           type: shape

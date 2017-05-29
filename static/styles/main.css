@@ -972,19 +972,19 @@ display: -webkit-box;
 .step-container-wrapper::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 5px;
+    border-radius: 9px;
     background-color: #F5F5F5;
 }
 
 .step-container-wrapper::-webkit-scrollbar
 {
-    width: 5px;
+    width: 9px;
     background-color: #F5F5F5;
 }
 
 .step-container-wrapper::-webkit-scrollbar-thumb
 {
-    border-radius: 4px;
+    border-radius: 8px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: green;
 }
