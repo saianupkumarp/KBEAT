@@ -1,14 +1,14 @@
 <div class="taskResult">
   <div style="font-size: 14px;color: #666;line-height: 1.5em;margin: 10px 0px 40px 0px;padding: 25px;background: #f8f8f8;">
     <label style="font-size: 18px;font-weight: bold;color: #666;margin-bottom: 15px;">Overall Assessment</label><br>
-    <p>Based on your description and the current SASO requirements, the tool provides the following assessments:</p>
+    <p>Based on your description and current SASO requirements, the tool provides the following assessments:</p>
         <ul style="list-style-type:disc;margin-left:15px">
           <li>Your building <strong ng-if="task.compliant" style="color: green">meets</strong><strong ng-if="!task.compliant" style="color: red">does not meet</strong> SASO requirements for all building envelope</li>
           <li>Your building consumed <strong ng-if="task.ngEnergyDiff < 0"style="color: green">{{task.energyDiff}} kWh/year less</strong><strong ng-if="task.ngEnergyDiff >= 0" style="color: red">{{task.energyDiff}} kWh/year more</strong> than the SASO Baseline</li>
           <li ng-if="task.compliant">You may reduce even more your energy consumption in your building by using LED lamps and high efficient appliances
             and air conditioning system</li>
-          <li ng-if="!task.compliant">You need have to add more insulation in walls and/or roof or use more efficient window glazing to comply with SASO requirements.</li>
-          <li ng-if="!task.compliant && task.ngEnergyDiff >= 0">You may also consider using LED lamps and high efficient appliances and air conditioning system.</li>
+          <li ng-if="!task.compliant">You need to add more insulation to the walls and/or roof, or use more efficient window glazing to comply with SASO requirements.</li>
+          <li ng-if="!task.compliant && task.ngEnergyDiff >= 0">You may also consider using LED lamps and energy efficient appliances and air conditioning system.</li>
         </ul>
   </div>
   <ul class="nav nav-tabs parentList">
@@ -52,14 +52,14 @@
         <div id="enduse" class="tab-pane fade in active">
           <div ng-class="{chartContainer:true}">
             <div ng-class="{chart:true,card:true}">
-              <h3 class="chart-header">Where electricity is used in your building?</h3>
+              <h3 class="chart-header">How electricity is used in your building?</h3>
               <div>
                 <br />
-                <p>Your building needs electricity to operate several types of equipment including: air-conditioning, lighting, appliances, and domestic hot water.</p>
+                <p>Your building needs electricity to operate several types of equipment including: air-conditioning, lighting, appliances and domestic hot water.</p>
                 <br />
                 <center><img src="/keec/assets/img/results-intro.png" width="50%" height="50%" /></center>
                 <br />
-                <p>Based on the description you provided, here how your building consumes electricity  on annual basis:</p>
+                <p>Based on the description you provided as well as typical lighting and appliances used in households, here how your building consumes electricity on annual basis:</p>
                 <br />
               </div>
               <div class="charts">
@@ -72,10 +72,10 @@
         <div id="monthlyConsumption" class="tab-pane fade">
           <div ng-class="{chartContainer:true}">
             <div ng-class="{chart:true,card:true}">
-              <h3 class="chart-header">When and where electricity is consumed in your building?</h3>
+              <h3 class="chart-header">When electricity is consumed in your building?</h3>
               <div>
                 <br />
-                <p>Based on the weather of your location, your building consumes electricity as noted in the following monthly profile:</p>
+                <p>Based on the weather of your location as well as typical lighting and appliances used in households, your building consumes electricity as noted in the following monthly profile:</p>
                 <br />
               </div>
               <div class="charts">
@@ -83,31 +83,15 @@
                 <!--<nvd3 options='bepuCompareChartOptions' data='bepuComparisonData'></nvd3>-->
               </div>
             </div>
-            <!--<div ng-class="{chart1:true,card:true}">
-              <h3 class="chart-header">BEPU Report</h3>
-              <div style="border:6px solid #f8f8f8;" class="tableContainer">
-                <label style="font-size: 18px;font-weight: 400;color: #666;padding-left: 30px;margin-bottom: 0px;">Table</label>
-                <table class="table table-responsive table-hover">
-                  <tr>
-                    <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">Label</th>
-                    <th style="padding-left: 4%;font-weight: 600;font-size: 15px;">value</th>
-                  </tr>
-                  <tr ng-repeat="pieChartData in reportResultData.pieChartData">
-                    <td style="padding-left:4%;">{{pieChartData.label}}</td>
-                    <td style="padding-left:4%;">{{pieChartData.value}}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>-->
           </div>
         </div>
         <div id="thermalCompliance" class="tab-pane fade">
           <div ng-class="{chartContainer:true}">
             <div ng-class="{chart:true,card:true}">
-              <h3 class="chart-header">Does your building meets SASO Thermal Performance Requirements?</h3>
+              <h3 class="chart-header">Does your building meet SASO Thermal Performance Requirements?</h3>
               <div>
                 <br />
-                <p>Based on your description, the thermal transmittance properties of the walls, roof, and glazing are calculated and are compared to SASO requirements:</p>
+                <p>Based on your description, the thermal transmittance properties of the walls, roof and glazing are calculated, and compared with SASO thermal building performance requirements:</p>
                 <br />
               </div>
               <div class="charts">
@@ -122,7 +106,7 @@
               <h3 class="chart-header">How energy efficient is your building?</h3>
               <div>
                 <br />
-                <p>Using your input specifications, the annual electricity consumption is calculated and is compared to a similar building that meets SASO requirements:</p>
+                <p>Using your input specifications, the annual electricity consumption is calculated and compared with a similar building that meets SASO requirements:</p>
                 <br />
               </div>
               <div class="charts">
