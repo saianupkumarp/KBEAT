@@ -20,7 +20,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         $translateProvider
           .useLocalStorage()
           .useStaticFilesLoader({
-            prefix: '/keec/assets/locales/',
+            prefix: '/kbeat/assets/locales/',
             suffix: '.json'
           })
           .determinePreferredLanguage(function() {
@@ -40,10 +40,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
           /* Intro Page */
           .state('app.intro', {
-            url: '/keec/',
+            url: '/kbeat/',
             views: {
               'content@': {
-                templateUrl: '/keec/assets/views/intro.html',
+                templateUrl: '/kbeat/assets/views/intro.html',
                 controller: function($scope, $rootScope, $window) {
                   $rootScope.footer = true;
                 }
@@ -57,7 +57,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             resolve: {
               // Gets app configuration
               config: function($http) {
-                return $http.get('/keec/api/config').then(function(response) {
+                return $http.get('/kbeat/api/config').then(function(response) {
                   return response.data;
                 });
               },
@@ -65,7 +65,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               //Get model - By Anup Kumar -
               models: function($http, $rootScope, $translate, $sce) {
                 var locale = $translate.use() || $translate.proposedLanguage();
-                return $http.get('/keec/api/models', {
+                return $http.get('/kbeat/api/models', {
                   params: {
                     locale: locale
                   }
@@ -78,7 +78,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
               //Gets tasks
               tasks: function($http, $rootScope, models) {
-                return $http.get('/keec/api/tasks').then(function(response) {
+                return $http.get('/kbeat/api/tasks').then(function(response) {
                   var tasks = response.data['tasks'] || [];
                   var paginationLimit = 10;
                   _(tasks).each(function (task) {
@@ -139,17 +139,17 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             },
             views: {
               'header': {
-                templateUrl: '/keec/assets/views/header.html'
+                templateUrl: '/kbeat/assets/views/header.html'
               },
               'footer': {
-                templateUrl: '/keec/assets/views/footer.html'
+                templateUrl: '/kbeat/assets/views/footer.html'
               },
             }
           })
 
           /* Home */
           .state('app.home', {
-            url: '/keec/model/{model_name}',
+            url: '/kbeat/model/{model_name}',
             resolve: {
               model: function($stateParams, models) {
                 return _(models).findWhere({
@@ -159,7 +159,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             },
             views: {
               'content@': {
-                templateUrl: '/keec/assets/views/home.html',
+                templateUrl: '/kbeat/assets/views/home.html',
                 controller: function($scope, $rootScope, $mdDialog, api, model, $location, $anchorScroll, $document, $window) {
                   $('body').on({
                       'mousewheel': function(e) {
@@ -276,20 +276,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       $rootScope.model.steps[$scope.activeStepIndex].containers.forEach(function(container) {
                         container.parameters.forEach(function(parameter) {
                           parameter.error = false;
+                          // parameter.dimError = false;
+                          // if((parameter.id = parameter.value) && (parameter.related_id = 'cmbBldgShape')){
+                          //   if((parameter.value['X2'] >= parameter.value['X1']) || (parameter.value['X3'] >= parameter.value['X1']) || ((parameter.value['X2'] + parameter.value['X3']) >= parameter.value['X1']) || (parameter.value['Y2'] >= parameter.value['Y1'])){
+                          //     parameter.dimError = true
+                          //     isError = true;
+                          //   }
+                          // }
                           if ((parameter.type != 'shape') && (parameter.type != 'button') && (parameter.type != 'table') && (parameter.type != 'figure') && (parameter.value === null || parameter.value === "")) {
-                            /* if(parameter.type == 'table'){
-                              parameter.combine.forEach(function(element){
-                               if((element.item == '')||(element.item == null)){
-                                 parameter.error = true;
-                                 isError = true;
-                               }
-                             })
-
-                            }
-                            else{
-                              parameter.error = true;
-                              isError = true;
-                            }*/
                             parameter.error = true;
                             isError = true;
                           }
@@ -329,7 +323,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                             $mdDialog.hide();
                           };
                         },
-                        templateUrl: '/keec/assets/views/dialog.html',
+                        templateUrl: '/kbeat/assets/views/dialog.html',
                         targetEvent: ev,
                         scope: $scope,
                         preserveScope: true,
@@ -345,10 +339,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
           //Task list page state
           .state('app.tlist', {
-            url: '/keec/task',
+            url: '/kbeat/task',
             views: {
               'content@': {
-                templateUrl: '/keec/assets/views/task-list.html',
+                templateUrl: '/kbeat/assets/views/task-list.html',
                 controller: function($scope,$rootScope){
                   $rootScope.footer = true;
                 }
@@ -361,11 +355,11 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
 
           //Task Result
           .state('app.taskResult', {
-            url: '/keec/task/{task_id}',
+            url: '/kbeat/task/{task_id}',
             resolve: {
               task: function($stateParams, $http, tasks, $rootScope) {
                 var task = _(tasks).findWhere({id: $stateParams['task_id']});
-                return $http.get('/keec/api/tasks/' + task.id + '/result').then(function (response) {
+                return $http.get('/kbeat/api/tasks/' + task.id + '/result').then(function (response) {
                     console.log(response.data)
                     // var result = response.data;
                     $rootScope.reportResultData = response.data;
@@ -375,7 +369,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             },
             views: {
               'content@': {
-                templateUrl: '/keec/assets/views/task-result.html',
+                templateUrl: '/kbeat/assets/views/task-result.html',
                 controller: function ($scope, $window, task, $rootScope) {
                   $rootScope.footer = true;
                   $scope.task = task;
@@ -550,10 +544,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             }
           })
         // If the path doesn't match any of the configured urls redirect to home
-        $urlRouterProvider.otherwise('/keec/');
+        $urlRouterProvider.otherwise('/kbeat/');
       })
       /* Backend API */
-      .factory('api', function($q, $http, $state, $timeout, $rootScope, $window) {
+      .factory('api', function($q, $http, $state, $timeout, $rootScope, $window, $mdDialog) {
         var request = function(callback, timeout) {
           var deferred = $q.defer();
 
@@ -571,11 +565,19 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         };
 
         function postData(name, data) {
-          return $http.post('/keec/api/models/' + name, data).then(function(response) {
-            // if(response.data.status == 'QUEUED'){
-               $window.location.href = "/keec/task/" + response.data.id;
-              // $state.go('app.taskResult', {task_id: response.data.id});
-            // }
+          return $http.post('/kbeat/api/models/' + name, data).then(function(response) {
+            if(response.data.status == 'COMPLETED'){
+               $window.location.href = "/kbeat/task/" + response.data.id;
+            }else if(response.data.status == 'ERROR') {
+              $('#loadingOverlay').hide()
+                $mdDialog.show(
+                  $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Model Error')
+                    .textContent(response.data.errorMsg)
+                    .ok('Got it!')
+                );
+            }
           })
         }
       })
@@ -710,7 +712,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             scope.field.type = scope.field.type || 'text';
             scope.field.value = null;
             scope.getTemplateUrl = function() {
-              return '/keec/assets/views/fields/' + scope.field.type + '.html';
+              return '/kbeat/assets/views/fields/' + scope.field.type + '.html';
             };
 
             scope.blocked = function() {
@@ -862,8 +864,49 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                       if(scope.field.id == 'Rectangular'){
                         scope.txtFloorArea *= scope.axisObj[axisKey]
                       }else if(scope.field.id == 'L-Shape'){
-                        scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y2']) + ((scope.axisObj['Y1'] - scope.axisObj['Y2']) * scope.axisObj['X2'])
+                        if(scope.axisObj['X2'] >= scope.axisObj['X1']){
+                          $mdDialog.show(
+                            $mdDialog.alert()
+                              .clickOutsideToClose(true)
+                              .title('Error: X2 should be less than the X1')
+                              .ok('Got it!')
+                          );
+                          scope.axisObj['X2'] = scope.axisObj['X1'] - 1
+                          return false;
+                        }
+                        if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
+                          $mdDialog.show(
+                            $mdDialog.alert()
+                              .clickOutsideToClose(true)
+                              .title('Error: Y2 should be less than the Y1')
+                              .ok('Got it!')
+                          );
+                          scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
+                          return false;
+                        }
+                        scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y1']) - ((scope.axisObj['X1'] - scope.axisObj['X2']) * (scope.axisObj['Y1'] - scope.axisObj['Y2']))
                       }else if(scope.field.id == 'T-Shape'){
+                        if((scope.axisObj['X2'] + scope.axisObj['X3']) >= scope.axisObj['X1']){
+                          $mdDialog.show(
+                            $mdDialog.alert()
+                              .clickOutsideToClose(true)
+                              .title('Error: Sum of X2 and X3 should be less than the X1')
+                              .ok('Got it!')
+                          );
+                          scope.axisObj['X2'] = (scope.axisObj['X1'] / 2) - 1
+                          scope.axisObj['X3'] = (scope.axisObj['X1'] / 2) - 1
+                          return false;
+                        }
+                        if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
+                          $mdDialog.show(
+                            $mdDialog.alert()
+                              .clickOutsideToClose(true)
+                              .title('Error: Y2 should be less than the Y1')
+                              .ok('Got it!')
+                          );
+                          scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
+                          return false;
+                        }
                         scope.txtFloorArea =  ((scope.axisObj['X1'] * scope.axisObj['Y1']) - (scope.axisObj['X2'] * scope.axisObj['Y2']) - ((scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * scope.axisObj['Y2']))
                       }else if(scope.field.id == 'U-Shape'){
                         scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])

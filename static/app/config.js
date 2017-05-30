@@ -1,5 +1,5 @@
 requirejs.config({
-  baseUrl: '/keec/assets',
+  baseUrl: '/kbeat/assets',
   paths: {
     'angular': 'vendor/angular/angular',
     'angular-cookies': 'vendor/angular-cookies/angular-cookies.min',

@@ -48,7 +48,7 @@ html.md-default-theme, html, body.md-default-theme, body {
     background-color: #fff;
      /*image background
      ..............*/
-/*     background-image: url(/keec/assets/img/infographic.jpg);
+/*     background-image: url(/kbeat/assets/img/infographic.jpg);
 */     background-size: 100% 110%;
 background-repeat: no-repeat;
 /*background-position:center;*/
@@ -329,7 +329,7 @@ header{
         background: #61a659;
         color: white;
         padding: 10px;
-        background-image: url(/keec/assets/img/building.svg);
+        background-image: url(/kbeat/assets/img/building.svg);
         background-size: 20px 20px;
         background-repeat: no-repeat;
         padding-left: 50px;
@@ -528,6 +528,19 @@ header{
     position: absolute;
     top: 36px;
 }
+.input-container.dimError {
+    padding-bottom: 10px;
+    position: relative;
+
+}
+.input-container.dimError:after {
+    display: block;
+    font-size: 10px;
+    color: red;
+    content: "X2/X3 should not be greater than X1 and Y2 should not be greater than Y1";
+    position: absolute;
+    top: 36px;
+}
 .errorTable {
     padding-bottom: 10px;
     position: relative;
@@ -671,7 +684,7 @@ display: -webkit-box;
     padding: 30px;
     background-color: #666;
     color: white;
-    background-image: url("/keec/assets/img/logo/logo-white.svg");
+    background-image: url("/kbeat/assets/img/logo/logo-white.svg");
     background-size: 160px;
     background-repeat: no-repeat;
     background-position: 10px;
@@ -2701,7 +2714,7 @@ strong{
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background-image: url('/keec/assets/img/spinner.gif');
+    background-image: url('/kbeat/assets/img/spinner.gif');
     background-size: 150px 150px;
     background-position: center;
     background-repeat: no-repeat;

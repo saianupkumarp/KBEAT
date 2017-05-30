@@ -65,7 +65,7 @@ header {
 
 .content-area {
     flex: 1;
-    background-image: url(/keec/assets/img/infographic.jpg);
+    background-image: url(/kbeat/assets/img/infographic.jpg);
     background-size: cover;
 }
 
@@ -149,7 +149,7 @@ header {
     background: #61a659;
     color: white;
     padding: 10px;
-    background-image: url(/keec/assets/img/building.svg);
+    background-image: url(/kbeat/assets/img/building.svg);
     background-size: 20px 20px;
     background-repeat: no-repeat;
     padding-left: 40px;
@@ -299,14 +299,14 @@ footer {
 }
 
 .edit:hover{
-	background-color:#fff;
-	color:#61a659;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-	outline-color: #fff;
+    background-color:#fff;
+    color:#61a659;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    outline-color: #fff;
 }
 
 .step-footers > .button{
-	width: 120px;
+    width: 120px;
     height: 40px;
     font-size: 17px;
     margin: 5px;
@@ -316,10 +316,10 @@ footer {
     outline-color: #61a659;
 }
 .step-footers > .button:hover{
-	background-color:#fff;
-	color:#61a659;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-	outline-color: #fff;
+    background-color:#fff;
+    color:#61a659;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    outline-color: #fff;
 }
 .single-input-box.flex-33 {
     flex: 1;

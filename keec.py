@@ -7,11 +7,11 @@ import settings
 from core.api import rest_api
 
 #Flask App
-app = Flask(__name__, static_url_path='/keec/assets')
+app = Flask(__name__, static_url_path='/kbeat/assets')
 app.config.from_object(settings)
 
 #KEEC Rest api
-app.register_blueprint(rest_api, url_prefix='/keec/api')
+app.register_blueprint(rest_api, url_prefix='/kbeat/api')
 
 #Commands
 manager = command_manager(app)
@@ -24,12 +24,12 @@ def adding_header_content(head):
     head.headers['Cache-Control'] = 'public, max-age=0'
     return head
 
-@app.route('/keec/')
-@app.route('/keec/<path:path>')
+@app.route('/kbeat/')
+@app.route('/kbeat/<path:path>')
 def index(path=''):
     return app.send_static_file('views/index.html')
 
-@app.route('/keec/favicon.ico')
+@app.route('/kbeat/favicon.ico')
 def favicon():
     return app.send_static_file('favicon.ico')
 

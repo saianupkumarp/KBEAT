@@ -1,19 +1,19 @@
 <!-- <div style="color:green;">
-	<div style="padding: 20px;padding-left: 40px;">{{field.label}}</div>
-	<table class="table-field">
-		<tr>
-			<th>&nbsp;</th>
-			<th style="padding:10px 0px;" ng-repeat="heading in field.column_heading track by $index">{{heading}}</th>
-		</tr>
-		<tr  ng-repeat="heading in field.row_heading track by $index">
-			<td style="padding:0px 5px;">
-				{{heading}}
-			</td>
-			<td ng-repeat="heading in field.column_heading track by $index">
-				<input type="text" ng-model="field.value[$index][$parent.$index]" style="outline: none; border: solid 1px green; color: green;padding: 0 15px;">
-			</td>
-		</tr>
-	</table>
+    <div style="padding: 20px;padding-left: 40px;">{{field.label}}</div>
+    <table class="table-field">
+        <tr>
+            <th>&nbsp;</th>
+            <th style="padding:10px 0px;" ng-repeat="heading in field.column_heading track by $index">{{heading}}</th>
+        </tr>
+        <tr  ng-repeat="heading in field.row_heading track by $index">
+            <td style="padding:0px 5px;">
+                {{heading}}
+            </td>
+            <td ng-repeat="heading in field.column_heading track by $index">
+                <input type="text" ng-model="field.value[$index][$parent.$index]" style="outline: none; border: solid 1px green; color: green;padding: 0 15px;">
+            </td>
+        </tr>
+    </table>
 </div> -->
 <!-- <input style="margin-bottom: 4px;
     background-color: green;
@@ -24,84 +24,84 @@
 
 
   <!--   <md-table-container ng-if="field.id=='windowTable'">
-    	<table md-table>
-    		<thead md-head>
-    			<tr md-row>
-    				<th md-column>&nbsp;</th> 
-    				<th style="border:1px solid green;text-align:center;" md-column>Direction</th>
-    				<th style="border:1px solid green;text-align:center;" md-column>Value</th>
-    				<th style="border:1px solid green;text-align:center;" md-column>Glazing Type</th>
-    			</tr>
-    		</thead>
-    		<tbody md-body>
-    			<tr  md-row ng-repeat="row in field.rowValues track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
-    				<td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/keec/assets/img/pencil-edit-button.svg"></md-icon></td>
-    				<td style="border:1px solid green;" md-cell>
-    					<md-select ng-model="row.directionValue" style="border:none;">
-    						<md-option ng-value="option" ng-repeat="option in row.directionOptions track by $index">{{row.directionValues[$index]}}</md-option>
-    					</md-select>
-    				</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
-    					{{row.fieldValue}}
-    				</td>
-    				<td style="border:1px solid green;" md-cell>
-    					<md-select ng-model="row.glazingValue" style="border:none;">
-    						<md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index">{{row.glazingValues[$index]}}</md-option>
-    					</md-select>
-    				</td>
-    			</tr>
-    		</tbody>
-    	</table>
+        <table md-table>
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>&nbsp;</th> 
+                    <th style="border:1px solid green;text-align:center;" md-column>Direction</th>
+                    <th style="border:1px solid green;text-align:center;" md-column>Value</th>
+                    <th style="border:1px solid green;text-align:center;" md-column>Glazing Type</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr  md-row ng-repeat="row in field.rowValues track by $index" ng-class="{selectedTableRow: $index == selectedTableRow}">
+                    <td md-cell ng-click="selectRow($index)"><md-icon md-svg-src="/kbeat/assets/img/pencil-edit-button.svg"></md-icon></td>
+                    <td style="border:1px solid green;" md-cell>
+                        <md-select ng-model="row.directionValue" style="border:none;">
+                            <md-option ng-value="option" ng-repeat="option in row.directionOptions track by $index">{{row.directionValues[$index]}}</md-option>
+                        </md-select>
+                    </td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInputValue($event,row)">
+                        {{row.fieldValue}}
+                    </td>
+                    <td style="border:1px solid green;" md-cell>
+                        <md-select ng-model="row.glazingValue" style="border:none;">
+                            <md-option ng-value="option" ng-repeat="option in row.glazingOptions track by $index">{{row.glazingValues[$index]}}</md-option>
+                        </md-select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </md-table-container>
     <div ng-class="{errorTable: field.error}"></div>
 
     <md-table-container ng-if="field.id=='spaceTable'" style="margin-bottom:20px;">
-    	<table md-table>
-    		<thead md-head md-order="default.order">
-    			<tr md-row>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
-    				<th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[7]}}</th>
-    			</tr>
-    		</thead>
-    		<tbody md-body>
-    			<tr md-row ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
-    				<td ng-click="selectRow($index)" style="border:1px solid green;" md-cell>{{row[0]}}</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
-    				<td style="border:1px solid green;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
-    				<td style="border:1px solid green;" md-cell>
-    				<img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/selected.png"/>
-    				</td>
-    				<td style="border:1px solid green;" md-cell>
-    				<img  width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/deselected.png"/>
-    				</td>
-    			</tr>
-    		</tbody>
-    	</table>
+        <table md-table>
+            <thead md-head md-order="default.order">
+                <tr md-row>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[0]">{{field.column_heading[0]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[1]">{{field.column_heading[1]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[2]">{{field.column_heading[2]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[3]">{{field.column_heading[3]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[4]">{{field.column_heading[4]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[5]">{{field.column_heading[5]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[6]}}</th>
+                    <th style="border:1px solid green;text-align:center;" md-column md-order-by="[6]">{{field.column_heading[7]}}</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="row in field.merge | orderBy : default.order" ng-class="{selectedTableRow: $index == selectedTableRow}">
+                    <td ng-click="selectRow($index)" style="border:1px solid green;" md-cell>{{row[0]}}</td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInput($event,row,1)">{{row[1]}}</td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInput($event,row,2)">{{row[2]}}</td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInput($event,row,3)">{{row[3]}}</td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInput($event,row,4)">{{row[4]}}</td>
+                    <td style="border:1px solid green;" md-cell ng-click="editInput($event,row,5)">{{row[5]}}</td>
+                    <td style="border:1px solid green;" md-cell>
+                    <img  width="25" height="25" style="padding: 6px;" ng-src="/kbeat/assets/img/selected.png"/>
+                    </td>
+                    <td style="border:1px solid green;" md-cell>
+                    <img  width="25" height="25" style="padding: 6px;" ng-src="/kbeat/assets/img/deselected.png"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </md-table-container> -->
 
    <div ng-if="field.bldType==buildType.cmbBldgTypeVal" style="margin-bottom:20px;overflow-x:scroll;">
         <table class="Table">
             <thead>
                 <tr class="Tr">
-					<th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;" ng-repeat="col in field.column_heading">{{col}}</th>
+                    <th class="Th" style="border:1px solid green;text-align:center;background-color:#c3c3c2;" ng-repeat="col in field.column_heading">{{col}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="Tr" ng-repeat="row in field.tblData" ng-class="{selectedTableRow: $index == selectedTableRow}">
-					<td class="Td" ng-repeat="colVal in row track by $index" style="border:1px solid green;">
-						<span ng-if="colVal!='()' && colVal!='-'">{{colVal}}</span>
-						<img ng-if="colVal=='()'" width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/selected.png"/>
-						<img ng-if="colVal=='-'" width="25" height="25" style="padding: 6px;" ng-src="/keec/assets/img/deselected.png"/
-					</td>
+                    <td class="Td" ng-repeat="colVal in row track by $index" style="border:1px solid green;">
+                        <span ng-if="colVal!='()' && colVal!='-'">{{colVal}}</span>
+                        <img ng-if="colVal=='()'" width="25" height="25" style="padding: 6px;" ng-src="/kbeat/assets/img/selected.png"/>
+                        <img ng-if="colVal=='-'" width="25" height="25" style="padding: 6px;" ng-src="/kbeat/assets/img/deselected.png"/
+                    </td>
                 </tr>
             </tbody>
         </table>
