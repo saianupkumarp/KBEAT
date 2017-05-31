@@ -34,7 +34,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
           enabled: true,
           requireBase: false
         });
-
+        
         // URL States (routes)
         $stateProvider
 
@@ -45,6 +45,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               'content@': {
                 templateUrl: '/kbeat/assets/views/intro.html',
                 controller: function($scope, $rootScope, $window) {
+                  
                   $rootScope.footer = true;
                 }
               }
@@ -360,7 +361,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
               task: function($stateParams, $http, tasks, $rootScope) {
                 var task = _(tasks).findWhere({id: $stateParams['task_id']});
                 return $http.get('/kbeat/api/tasks/' + task.id + '/result').then(function (response) {
-                    console.log(response.data)
+                    // console.log(response.data)
                     // var result = response.data;
                     $rootScope.reportResultData = response.data;
                     return response.data;
