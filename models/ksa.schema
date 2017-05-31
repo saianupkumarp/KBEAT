@@ -150,7 +150,7 @@ steps:
           label: Next
           widthPercent: 20
   - id: envelope
-    label: Envelope
+    label: Walls
     containers:
     - id: exteriorConstructions
       label: Exterior Wall Constructions

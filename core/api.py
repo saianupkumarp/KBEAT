@@ -404,7 +404,7 @@ def get_pdf_results(task_id):
     Elements.append(envTable)
 
     Elements.append(Paragraph('<br />', styleBodyText)) 
-    Elements.append(Paragraph("Air Conditioining Systems",styleHeading3))
+    Elements.append(Paragraph("Air Conditioning Systems",styleHeading3))
     hvacTableData=[[Paragraph('<b>- HVAC  System Type: </b>'+calibrationData['cmbBldgSystem'],styleBodyText),
                     Paragraph('<b>- Cooling Temperature Setting ('+u"\u00b0"+'C): </b>'+str(calibrationData['txtCoolSetTemp']),styleBodyText)],
                     [Paragraph('<b>- Energy Efficiency Ratio (EER): </b>'+str(calibrationData['eir']),styleBodyText),
