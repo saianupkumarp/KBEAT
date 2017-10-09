@@ -165,7 +165,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   $('body').on({
                       'mousewheel': function(e) {
                           if (e.target.id == 'el') return;
-                          e.preventDefault();
+                          // e.preventDefault();
                           e.stopPropagation();
                       }
                   })

@@ -648,6 +648,8 @@ display: -webkit-box;
         width:100%;
         padding:25px;
         border:1px solid;
+        border-color: #ccc;
+        text-align: center;
     }
 
 
@@ -2678,6 +2680,7 @@ nvd3{
 
 .img-fieldset {
     border-style: solid;
+    border-color: #ccc;
     border-width: 1px;
     height: 100%;
 }
