@@ -75,7 +75,7 @@ steps:
           span_height: 180
           widthPercent: 100
         - id: txtBldgAzi
-          type: number
+          type: dimension
           label: Building Orientation
           label_suffix: deg
           label_below: (North 0deg. South 180 deg. West 135 deg)
@@ -85,14 +85,17 @@ steps:
           widthPercent: 100
         - id: Rectangular
           type: dimension
-          label: X1,Y1
+          label: Building Orientation,X1,Y1
           rel_id: rect
-          label_suffix: m
+          txtLengX1_label_suffix: m
+          txtLengY1_label_suffix: m
+          txtLengBuilding Orientation_label_suffix: deg
           related_id: cmbBldgShape
           widthPercent: 100
           url: Rectangular.jpg
           txtLengX1: 20
           txtLengY1: 20
+          txtLengBuilding Orientation: 20
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2

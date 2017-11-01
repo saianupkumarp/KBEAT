@@ -316,6 +316,7 @@ header{
 
     .step-container > .body.shaped .input-area {
         width: 60%;
+        min-height: 360px;
     }
     .step-container > .body-button.shaped .input-area-button{
         width: 50%;
