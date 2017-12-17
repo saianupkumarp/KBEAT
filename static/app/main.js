@@ -223,6 +223,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                               if (obj2.id == 'cmbBldgShape') {
                                 RelDimId = obj2.value;
                               }
+                              console.log(obj2.id);
                               if (typeof RelDimId != "undefined" && obj2.id == RelDimId) {
                                 if(RelDimId == 'Rectangular'){
                                   resJson['txtFloorArea'] = obj2.value['X1'] * obj2.value['Y1']
@@ -566,6 +567,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         };
 
         function postData(name, data) {
+          console.log(data)
           return $http.post('/kbeat/api/models/' + name, data).then(function(response) {
             if(response.data.status == 'COMPLETED'){
                $window.location.href = "/kbeat/task/" + response.data.id;
@@ -914,6 +916,14 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                           scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
                         }else{
                           scope.txtFloorArea *= scope.axisObj[axisKey]
+                        }
+                      }
+                      else if (axisKey == 'Building Orientation'){
+                        console.log(Number(scope.axisObj['Building Orientation']));
+                        if (scope.axisObj['Building Orientation'] > 360){// || scope.axisObj['Building Orientation'] == 'null' || scope.axisObj['Building Orientation'] < 0){
+                          scope.axisObj['Building Orientation']=360;
+                        } else if(scope.axisObj['Building Orientation'] == 'undefined') {
+                          scope.axisObj['Building Orientation'] = 1;
                         }
                       }
                     };

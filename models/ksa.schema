@@ -90,19 +90,24 @@ steps:
           txtLengX1_label_suffix: m
           txtLengY1_label_suffix: m
           txtLengBuilding Orientation_label_suffix: deg
+          txtLengBuilding Orientation: 0
           related_id: cmbBldgShape
           widthPercent: 100
           url: Rectangular.jpg
           txtLengX1: 20
           txtLengY1: 20
-          txtLengBuilding Orientation: 20
           txtFloorArea: 0
           containerWidthPercent: 100
           floor_area_label_suffix: m2
         - id: L-Shape
           type: dimension
-          label: X1,X2,Y1,Y2
-          label_suffix: m
+          label: Building Orientation,X1,X2,Y1,Y2
+          txtLengX1_label_suffix: m
+          txtLengX2_label_suffix: m
+          txtLengY1_label_suffix: m
+          txtLengY2_label_suffix: m
+          txtLengBuilding Orientation_label_suffix: deg
+          txtLengBuilding Orientation: 0
           related_id: cmbBldgShape
           widthPercent: 100
           txtLengX1: 20
@@ -115,8 +120,14 @@ steps:
           floor_area_label_suffix: m2
         - id: T-Shape
           type: dimension
-          label: X1,X2,X3,Y1,Y2
-          label_suffix: m
+          label: Building Orientation,X1,X2,X3,Y1,Y2
+          txtLengX1_label_suffix: m
+          txtLengX2_label_suffix: m
+          txtLengX3_label_suffix: m
+          txtLengY1_label_suffix: m
+          txtLengY2_label_suffix: m
+          txtLengBuilding Orientation_label_suffix: deg
+          txtLengBuilding Orientation: 0
           related_id: cmbBldgShape
           widthPercent: 100
           txtLengX1: 20
@@ -130,8 +141,15 @@ steps:
           floor_area_label_suffix: m2
         - id: U-Shape
           type: dimension
-          label: X1,X2,X3,Y1,Y2,Y3
-          label_suffix: m
+          label: Building Orientation,X1,X2,X3,Y1,Y2,Y3
+          txtLengX1_label_suffix: m
+          txtLengX2_label_suffix: m
+          txtLengX3_label_suffix: m
+          txtLengY1_label_suffix: m
+          txtLengY2_label_suffix: m
+          txtLengY3_label_suffix: m
+          txtLengBuilding Orientation_label_suffix: deg
+          txtLengBuilding Orientation: 0
           related_id: cmbBldgShape
           widthPercent: 100
           txtLengX1: 20
