@@ -242,7 +242,10 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                                   ObjCount = ObjCount + 2;
                                 }
                                 for (var key in obj2.value) {
-                                  resJson['txtLeng' + key] = obj2.value[key];
+                                  if (key == "Building Orientation")
+                                    resJson['txtBldgAzi']= obj2.value[key];
+                                  else 
+                                    resJson['txtLeng' + key] = obj2.value[key];
                                   ObjCount = ObjCount + 2;
                                 }
                               }
