@@ -6,3 +6,4 @@ Werkzeug==0.11.11
 Requests==2.11.0
 python-pptx==0.6.3
 reportlab==3.4.0
+flask-compress==1.4.0

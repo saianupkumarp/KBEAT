@@ -2,12 +2,14 @@ from gevent import monkey
 
 monkey.patch_all()
 from flask import Flask
+from flask_compress import Compress
 from core.commands import command_manager
 import settings
 from core.api import rest_api
 
 #Flask App
 app = Flask(__name__, static_url_path='/kbeat/assets')
+Compress(app)
 app.config.from_object(settings)
 
 #KEEC Rest api

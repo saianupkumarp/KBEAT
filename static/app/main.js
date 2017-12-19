@@ -223,7 +223,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                               if (obj2.id == 'cmbBldgShape') {
                                 RelDimId = obj2.value;
                               }
-                              console.log(obj2.id);
+                              // console.log(obj2.id);
                               if (typeof RelDimId != "undefined" && obj2.id == RelDimId) {
                                 if(RelDimId == 'Rectangular'){
                                   resJson['txtFloorArea'] = obj2.value['X1'] * obj2.value['Y1']
@@ -242,11 +242,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                                   ObjCount = ObjCount + 2;
                                 }
                                 for (var key in obj2.value) {
-                                  if (key == "Building Orientation")
-                                    resJson['txtBldgAzi']= obj2.value[key];
-                                  else 
+                                  if (key == "Building Orientation"){
+                                    resJson['txtBldgAzi'] = (typeof obj2.value[key] != 'undefined') ? obj2.value[key] : 0
+                                  }else {
                                     resJson['txtLeng' + key] = obj2.value[key];
-                                  ObjCount = ObjCount + 2;
+                                    ObjCount = ObjCount + 2;
+                                  }
                                 }
                               }
                               if (obj2.id == 'rdbtnWinWwr') {
@@ -570,7 +571,6 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
         };
 
         function postData(name, data) {
-          console.log(data)
           return $http.post('/kbeat/api/models/' + name, data).then(function(response) {
             if(response.data.status == 'COMPLETED'){
                $window.location.href = "/kbeat/task/" + response.data.id;
@@ -922,12 +922,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                         }
                       }
                       else if (axisKey == 'Building Orientation'){
-                        console.log(Number(scope.axisObj['Building Orientation']));
-                        if (scope.axisObj['Building Orientation'] > 360){// || scope.axisObj['Building Orientation'] == 'null' || scope.axisObj['Building Orientation'] < 0){
-                          scope.axisObj['Building Orientation']=360;
-                        } else if(scope.axisObj['Building Orientation'] == 'undefined') {
-                          scope.axisObj['Building Orientation'] = 1;
-                        }
+                        scope.axisObj['Building Orientation'] = (scope.axisObj['Building Orientation'] > 360) ? 360 : (typeof scope.axisObj['Building Orientation'] == 'undefined') ? 0 : scope.axisObj['Building Orientation']
                       }
                     };
                        scope.field.value = scope.axisObj;
