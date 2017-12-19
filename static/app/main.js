@@ -223,6 +223,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                               if (obj2.id == 'cmbBldgShape') {
                                 RelDimId = obj2.value;
                               }
+                              // console.log(obj2.id);
                               if (typeof RelDimId != "undefined" && obj2.id == RelDimId) {
                                 if(RelDimId == 'Rectangular'){
                                   resJson['txtFloorArea'] = obj2.value['X1'] * obj2.value['Y1']
@@ -241,8 +242,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                                   ObjCount = ObjCount + 2;
                                 }
                                 for (var key in obj2.value) {
-                                  resJson['txtLeng' + key] = obj2.value[key];
-                                  ObjCount = ObjCount + 2;
+                                  if (key == "Building Orientation"){
+                                    resJson['txtBldgAzi'] = (typeof obj2.value[key] != 'undefined') ? obj2.value[key] : 0
+                                  }else {
+                                    resJson['txtLeng' + key] = obj2.value[key];
+                                    ObjCount = ObjCount + 2;
+                                  }
                                 }
                               }
                               if (obj2.id == 'rdbtnWinWwr') {
@@ -715,7 +720,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             scope.getTemplateUrl = function() {
               return '/kbeat/assets/views/fields/' + scope.field.type + '.html';
             };
-
+            
             scope.blocked = function() {
               if (scope.field.enabled == 'False') {
                 return true;
@@ -847,7 +852,7 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                 })[0];
                 break;
               case 'dimension':
-                scope.axisObj = {};
+              scope.axisObj = {};
                 function axisData() {
                   var shpAxisArr = scope.field.label.split(',');
                   for (var axisKey of shpAxisArr) {
@@ -862,59 +867,63 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
                   "axisObj", function() {
                     scope.txtFloorArea = 1;
                     for(var axisKey in scope.axisObj) {
-                      if(scope.field.id == 'Rectangular'){
-                        scope.txtFloorArea *= scope.axisObj[axisKey]
-                      }else if(scope.field.id == 'L-Shape'){
-                        if(scope.axisObj['X2'] >= scope.axisObj['X1']){
-                          $mdDialog.show(
-                            $mdDialog.alert()
-                              .clickOutsideToClose(true)
-                              .title('Error: X2 should be less than the X1')
-                              .ok('Got it!')
-                          );
-                          scope.axisObj['X2'] = scope.axisObj['X1'] - 1
-                          return false;
+                      if (axisKey != 'Building Orientation'){
+                        if(scope.field.id == 'Rectangular'){
+                          scope.txtFloorArea *= scope.axisObj[axisKey]
+                        }else if(scope.field.id == 'L-Shape'){
+                          if(scope.axisObj['X2'] >= scope.axisObj['X1']){
+                            $mdDialog.show(
+                              $mdDialog.alert()
+                                .clickOutsideToClose(true)
+                                .title('Error: X2 should be less than the X1')
+                                .ok('Got it!')
+                            );
+                            scope.axisObj['X2'] = scope.axisObj['X1'] - 1
+                            return false;
+                          }
+                          if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
+                            $mdDialog.show(
+                              $mdDialog.alert()
+                                .clickOutsideToClose(true)
+                                .title('Error: Y2 should be less than the Y1')
+                                .ok('Got it!')
+                            );
+                            scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
+                            return false;
+                          }
+                          scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y1']) - ((scope.axisObj['X1'] - scope.axisObj['X2']) * (scope.axisObj['Y1'] - scope.axisObj['Y2']))
+                        }else if(scope.field.id == 'T-Shape'){
+                          if((scope.axisObj['X2'] + scope.axisObj['X3']) >= scope.axisObj['X1']){
+                            $mdDialog.show(
+                              $mdDialog.alert()
+                                .clickOutsideToClose(true)
+                                .title('Error: Sum of X2 and X3 should be less than the X1')
+                                .ok('Got it!')
+                            );
+                            scope.axisObj['X2'] = (scope.axisObj['X1'] / 2) - 1
+                            scope.axisObj['X3'] = (scope.axisObj['X1'] / 2) - 1
+                            return false;
+                          }
+                          if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
+                            $mdDialog.show(
+                              $mdDialog.alert()
+                                .clickOutsideToClose(true)
+                                .title('Error: Y2 should be less than the Y1')
+                                .ok('Got it!')
+                            );
+                            scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
+                            return false;
+                          }
+                          scope.txtFloorArea =  ((scope.axisObj['X1'] * scope.axisObj['Y1']) - (scope.axisObj['X2'] * scope.axisObj['Y2']) - ((scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * scope.axisObj['Y2']))
+                        }else if(scope.field.id == 'U-Shape'){
+                          scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
+                        }else{
+                          scope.txtFloorArea *= scope.axisObj[axisKey]
                         }
-                        if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
-                          $mdDialog.show(
-                            $mdDialog.alert()
-                              .clickOutsideToClose(true)
-                              .title('Error: Y2 should be less than the Y1')
-                              .ok('Got it!')
-                          );
-                          scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
-                          return false;
-                        }
-                        scope.txtFloorArea = (scope.axisObj['X1'] * scope.axisObj['Y1']) - ((scope.axisObj['X1'] - scope.axisObj['X2']) * (scope.axisObj['Y1'] - scope.axisObj['Y2']))
-                      }else if(scope.field.id == 'T-Shape'){
-                        if((scope.axisObj['X2'] + scope.axisObj['X3']) >= scope.axisObj['X1']){
-                          $mdDialog.show(
-                            $mdDialog.alert()
-                              .clickOutsideToClose(true)
-                              .title('Error: Sum of X2 and X3 should be less than the X1')
-                              .ok('Got it!')
-                          );
-                          scope.axisObj['X2'] = (scope.axisObj['X1'] / 2) - 1
-                          scope.axisObj['X3'] = (scope.axisObj['X1'] / 2) - 1
-                          return false;
-                        }
-                        if(scope.axisObj['Y2'] >= scope.axisObj['Y1']){
-                          $mdDialog.show(
-                            $mdDialog.alert()
-                              .clickOutsideToClose(true)
-                              .title('Error: Y2 should be less than the Y1')
-                              .ok('Got it!')
-                          );
-                          scope.axisObj['Y2'] = scope.axisObj['Y1'] - 1
-                          return false;
-                        }
-                        scope.txtFloorArea =  ((scope.axisObj['X1'] * scope.axisObj['Y1']) - (scope.axisObj['X2'] * scope.axisObj['Y2']) - ((scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * scope.axisObj['Y2']))
-                      }else if(scope.field.id == 'U-Shape'){
-                        scope.txtFloorArea = (scope.axisObj['Y1'] >= scope.axisObj['Y2']) ? scope.axisObj['X1'] * scope.axisObj['Y1'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y1'] - scope.axisObj['Y3']) - scope.axisObj['X3'] * (scope.axisObj['Y1'] - scope.axisObj['Y2']) : scope.axisObj['X1'] * scope.axisObj['Y2'] - (scope.axisObj['X1'] - scope.axisObj['X2'] - scope.axisObj['X3']) * (scope.axisObj['Y2'] - scope.axisObj['Y3']) - scope.axisObj['X2'] * (scope.axisObj['Y2'] - scope.axisObj['Y1'])
-                      }else{
-                        scope.txtFloorArea *= scope.axisObj[axisKey]
                       }
-
+                      else if (axisKey == 'Building Orientation'){
+                        scope.axisObj['Building Orientation'] = (scope.axisObj['Building Orientation'] > 360) ? 360 : (typeof scope.axisObj['Building Orientation'] == 'undefined') ? 0 : scope.axisObj['Building Orientation']
+                      }
                     };
                        scope.field.value = scope.axisObj;
                   }

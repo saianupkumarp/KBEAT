@@ -22,3 +22,15 @@ OUTPUT_ROOT = tempfile.gettempdir()
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
 MONGO_DBNAME = 'keec'
+
+# Compress
+COMPRESS_MIN_SIZE = 50
+COMPRESS_MIMETYPES = [
+                        'text/html',
+                        'text/css',
+                        'text/xml',
+                        'application/json',
+                        'application/javascript',
+                        'image/jpeg',
+                        'image/png'
+                    ]
