@@ -110,5 +110,4 @@ def get_task_result(task_id):
             'energyDiff': "{:,.0f}".format(abs(task.get('result').get('energyDiff'))),
             'calibrationData': calObj
         }
-        print report
     return report
