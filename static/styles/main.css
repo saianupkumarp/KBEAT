@@ -2342,14 +2342,16 @@ width:100%;
     border-radius:0px;
 }
 a{
-    color:#555;
+    color: #61A659;
     text-decoration: none;
 }
 a:focus, a:hover {
-    color: #555;
+    color: #61A659;
     text-decoration:underline;
 }
-
+p { 
+    margin: 10px 0 10px 0;
+}
 .panel-default>.panel-heading a::after{
     font-family: 'Glyphicons Halflings';
     content: "\e114";
@@ -2729,3 +2731,110 @@ strong{
     float: right;
     margin-top: -40px;
 }
+
+.introjs-tooltip-title{
+    color: #49a858;
+    font-size: 16px;
+    padding:10px 0 10px 0;
+}
+
+.introjs-tooltip-content{
+    font-size: 13px;
+    padding:7px 0 10px 0;
+    line-height: 1.3;
+}
+
+.introjs-tooltip-content ul {
+    list-style-position: inside;
+    list-style-type: disc;
+}
+.introjs-tooltip-content li {
+    padding:3px 0 3px 0;
+}
+.introjs-tooltip{
+    min-width:300px !important; 
+    max-width:400px !important; 
+}
+
+.modal-header{
+    padding:10px 30px;
+}
+.modal-body{
+    padding:10px 20px;
+}
+.modal-lg{
+    max-width: 750px;
+}
+.help section {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.help input {
+    display: none;
+}
+
+.help label {
+display: inline-block;
+margin: 0 0 -1px;
+padding: 15px 25px;
+font-weight: 600;
+text-align: center;
+color: #bbb;
+border: 1px solid transparent;
+}
+
+.help label:before {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin-right: 10px;
+    background-size:100% 100%;
+    display: inline-block;
+    width: 14px;
+    height: 17px;
+        
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    opacity: 0.5; 
+}
+
+.help label:hover {
+color: #888;
+cursor: pointer;
+}
+
+.help input:checked + label {
+color: #555;
+border: 1px solid #ddd;
+border-top: 2px solid #ffd204;
+border-bottom: 1px solid #fff;
+}
+
+.help #tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+display: block;
+padding: 30px 20px 30px 20px;
+}
+
+.help h3{
+    display:inline-block;
+    color: #61A659;
+    margin: 0 auto 0px;
+    font-size: 16px;
+}
+.help p{
+    margin-bottom:10px;
+    line-height:20px;
+}
+.help ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.help li{
+    margin: 10px 0;
+    line-height:20px;
+}
+  

@@ -42,7 +42,110 @@
   </section>
   <footer ui-view="footer" ng-cloak></footer>
 </div>
+<div class="modal fade help" id="help" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4><i class="fa fa-info-circle" aria-hidden="true"></i> Help</h4>
+      </div>
+      <div class="modal-body">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1"><i class="fa fa-building-o" aria-hidden="true"></i> Building</label>
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2"><i class="fa fa-envelope" aria-hidden="true"></i> Envelope</label>
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3"><i class="fa fa-square-o" aria-hidden="true"></i> Windows</label>
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4"><i class="fa fa-cog" aria-hidden="true"></i> HVAC system</label>
 
+        <section id="content1">
+          <h3>Building Information </h3>
+          <p>Enter name and address of the building owner or occupant</p>
+          <h3>Building Use </h3>              
+          <p>
+            <ul>
+              <li><strong>Type –</strong> Select ( Apartment or Villa ) from the drop down menu</li>
+              <li><strong>Location –</strong> Select the city</li>
+              <li><strong>Number of floors –</strong> Number of floors of an individual villa or duplex apartment (maximum 3 floors)</li>
+              <li><strong>Floor to floor height –</strong> The height from the floor of room to its ceiling</li>
+            </ul>
+          </p>
+          <h3>Building shape </h3>
+          <p>Select shape of the villa or apartment from the drop-down-menu; ( Rectangular, L-shape, T-shape or U-shape )</p>
+          <h3>Building Orientation </h3>
+          <p>
+            The orientation of the villa or apartment can be defined by changing the degrees from the drop-down menu. The building can be oriented in any direction
+            <ul>
+              <li><strong>X1 and Y1 –</strong> are the building dimensions on the basis of the selected building shape. Values can be changed to customize the dimensions</li>
+            </ul>
+          </p>
+          <h3>Floor Area </h3>
+          <p>Auto calculated when the building dimensions are entered </p>
+        </section>
+        <section id="content2">
+          <p>The envelope (enclosure) of the building consists of roofs, walls and windows. The U-value (W/m<sup>2</sup>.K) of envelope means, the heat transmission through materials of walls and roofs. <strong>The lower U-value, the higher thermal resistance.</strong></p>
+          <ul>
+            <li><strong>Wall Construction –</strong> the walls of a villa or apartment shields us from weather conditions. The thermal resistance of the wall depends on the layers of insulation material used or planned in construction. The drop down-menu should be used to change the wall construction type</li>
+            <li><strong>Roof and Floor construction –</strong> The drop down-menu should be used to change the roof and floor construction type</li>
+            <li><strong>Plaster –</strong> Plaster is the leveling layer that is applied prior the finishing material layer (last layer)</li>
+            <li><strong>Finishing material –</strong> such as paint, stucco, stone, tiles … etc</li>
+            <li><strong>Mortar bed –</strong> is an adhesive layer made of cement, sand, and water to fix the tiles. “Tiles glue fix” is used in some application</li>
+            <li><strong>Water-proofing membrane (WRM) –</strong> is used to isolate the water and prevent it from penetration</li>
+            <li><strong>Foam concrete –</strong> is a layer used for sloping screed to drain the water (as shown in the picture)</li>
+            <div style="text-align: center">
+              <img src="/kbeat/assets/img/foam-concrete.png" width="600px"  align="middle">
+            </div>
+            <li><strong>Reinforced concrete –</strong> is the structural member that holds the roof</li>
+            <li><strong>Slab-on-Grade –</strong> is a situation where the space is located in the ground floor, such as a villa or apartment on ground floor. 
+              <strong>Note:</strong> no basement on this situation</li>
+            <li><strong>Floor above conditioned space –</strong> is a situation where the spaces is located in the upper floors above an apartment or a duplex floor</li>
+            <li><strong>Floor above unconditioned space – </strong> is a situation where the spaces is located above a basement which is not air-conditioned</li>
+          </ul>
+        </section>
+        <section id="content3">
+          <ul>
+            <li><strong>Percent of wall / Window wall ratio –</strong> the ratio of the window area to the total area of the wall</li>
+            <p>For example: The area of the wall shown below is 3.0m X 6.0m= 18.0 m<sup>2</sup></p>
+            <p>The area of the window is 2.0m X 0.5m= 1.0 m<sup>2</sup></p>
+            <p>So, the window/wall ratio is = [ Area of the window(s) / Area of the wall ] X 100 = 1/18 X 100 = 5.56%</p>
+            <div style="text-align: center">
+              <img src="/kbeat/assets/img/window-wall-ratio.png" width="400px" style="text-align:center">
+            </div>
+            <li><strong>Window area –</strong> Total area of window in sq. meter (m2) in all direction of the house</li>
+            <li><strong>Glass type –</strong> Select the glazing type from the drop-down menu for the windows</li>
+            <li><strong>Single pane –</strong> represents just a single layer of the glazing</li>
+            <li><strong>Double pane –</strong> represents two layers of the glazing</li>
+            <li><strong>Clear glazing –</strong> is highly transparent glazing in the visibility, it allows the daylight and the heat to be transmitted into the building</li>
+            <li><strong>Low-Emissivity or “Low-E” –</strong> is a transparent and tented glazing, it allows daylight to transmit into the building and reflects remarkable solar heat</li>
+            <li><strong>Reflective glazing –</strong> is highlight reflective glazing system that reflects the light and block the visibility. Furthermore, it reduces the heat transfer from and into the building</li>
+            <li><strong>Overhang –</strong> provides with the shading which can reduce the direct solar radiation in the building</li>
+          </ul>
+        </section>
+        <section id="content4">
+          <ul>
+            <li><strong>HVAC system –</strong> Heating Ventilation and Air-Conditioning system is the technical term for AC system that provides heating or cooling in the building either collectively or through individual system. An efficient HVAC system would improve air quality, thermal comfort, energy consumption and environmental benefits</li>
+            <li><strong>Heating set point –</strong> the set point at which the heating system is adjusted in the household (lowest temperature)</li>
+            <li><strong>Cooling set point –</strong> the set point at which the cooling system is adjusted in the household (highest temperature)</li>
+            <li><strong>Residential system –</strong> is the central system which has ducts and diffusers concealed within the false ceiling or within the floor</li>
+            <li><strong>Energy Efficiency Ratio –</strong> is the ratio of cooling capacity to the power used. The EER rating is labelled on the Air Condition system unit. <strong>The higher the value, the more energy saving from the device</strong></li>
+          </ul>
+          <h3>How to get EER?</h3>
+          <p>When you purchase any electronic device or system, a label similar to the label shown below from SASO will be attached to the device where EER is stated.</p>
+          <div style="text-align: center">
+            <img src="/kbeat/assets/img/eer.png" height="500px" style="text-align:center">
+          </div>
+          <p>Also, you may use the table below to transfer the “Star Rating” to EER.</p>
+          <div style="text-align: center">
+            <img src="/kbeat/assets/img/table2.png" width="600px" style="text-align:center">
+          </div>
+          <p>Source: <a href="https://www.kapsarc.org/wp-content/uploads/2016/10/KS-1655-DP049A-Evaluating-Building-Energy-Efficiency-Investment-Options-for-SA.pdf">Evaluating Building Energy Efficiency Investment Options for Saudi Arabia</a></p>
+          
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript" src="/kbeat/assets/vendor/requirejs/require.js" data-main="/kbeat/assets/app/config.js"></script>
 </body>
 </html>

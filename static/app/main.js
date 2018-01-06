@@ -140,7 +140,12 @@ define(['jquery', 'angular', 'angular-i18n', 'angular-ui-router', 'underscore',
             },
             views: {
               'header': {
-                templateUrl: '/kbeat/assets/views/header.html'
+                templateUrl: '/kbeat/assets/views/header.html',
+                controller: function($scope,$rootScope){
+                  $("#helpBtn").click(function(){
+                    $("#help").modal();
+                  });
+                }
               },
               'footer': {
                 templateUrl: '/kbeat/assets/views/footer.html'
